@@ -2537,7 +2537,7 @@
 
       function getFrameSrc(index) {
         const padded = String(index).padStart(5, '0');
-        return `${imagePrefix}prakash-portfolio_${padded}.png`;
+        return `webp/prakash-portfolio_${padded}.webp`;
       }
 
       function resize() {
@@ -2601,6 +2601,16 @@
           loaded[index] = 1;
           if (index === 0 || Math.abs(index - Math.round(currentFrame)) <= 1) {
             needsRedraw = true;
+          }
+        };
+        img.onerror = function () {
+          const padded = String(index).padStart(5, '0');
+          if (!img._retried) {
+            img._retried = 1;
+            img.src = `prakash-portfolio_${padded}.webp`;
+          } else if (img._retried === 1) {
+            img._retried = 2;
+            img.src = `../webp/prakash-portfolio_${padded}.webp`;
           }
         };
         img.src = getFrameSrc(index);

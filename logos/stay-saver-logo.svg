@@ -1,0 +1,104 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 260" width="100%" height="100%">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@700;800;900&amp;display=swap');
+      .brand-text {
+        font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        font-weight: 800;
+      }
+      .tagline-text {
+        font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        font-weight: 700;
+        letter-spacing: 0.18em;
+      }
+    </style>
+  </defs>
+
+  <!-- EMBLEM GROUP (Bed Archway + S Monogram + Gold Cushion) -->
+  <g id="emblem" transform="translate(10, 0)">
+    <!-- Archway Outline -->
+    <path 
+      d="M 28 175 V 95 A 67 67 0 0 1 162 95 V 175" 
+      fill="none" 
+      stroke="#0E2A47" 
+      stroke-width="12" 
+      stroke-linecap="round"
+    />
+
+    <!-- Stylized Serif Luxury 'S' Monogram -->
+    <g fill="#0E2A47">
+      <!-- Top serif terminal -->
+      <path d="M 115 52 H 124 V 80 H 115 Z" />
+      <!-- Serif S body -->
+      <path d="M 120 78 C 117 68 110 59 97 59 C 83 59 73 68 73 80 C 73 93 83 99 99 105 C 120 113 133 123 133 143 C 133 162 118 174 96 174 C 79 174 69 164 65 149 L 79 146 C 81 155 88 161 97 161 C 108 161 116 153 116 142 C 116 130 106 123 90 117 C 71 109 58 99 58 80 C 58 62 73 47 97 47 C 113 47 124 55 128 71 Z" />
+      <!-- Lower left serif foot accent -->
+      <path d="M 60 168 H 70 V 175 H 60 Z" />
+    </g>
+
+    <!-- Golden Cushion / Mattress Pillow -->
+    <path 
+      d="M 52 170 C 52 163 58 158 66 158 H 124 C 132 158 138 163 138 170 L 144 178 C 144 182 140 185 135 185 H 55 C 50 185 46 182 46 178 Z" 
+      fill="#C1A364"
+    />
+
+    <!-- Bed Frame Horizontal Bar & Legs -->
+    <!-- Horizontal Crossbar -->
+    <rect x="22" y="185" width="146" height="20" rx="3" fill="#0E2A47" />
+    <!-- Left Bed Post / Leg -->
+    <rect x="22" y="185" width="16" height="42" rx="4" fill="#0E2A47" />
+    <!-- Right Bed Post / Leg -->
+    <rect x="152" y="185" width="16" height="42" rx="4" fill="#0E2A47" />
+  </g>
+
+  <!-- LOGO TEXT GROUP -->
+  <g id="typography" transform="translate(210, 0)">
+    <!-- "Stay" (Solid Dark / Black) -->
+    <text x="0" y="128" class="brand-text" font-size="94" fill="#0A0A0A">Stay</text>
+    
+    <!-- "Saver" (Warm Gold #C1A364) -->
+    <text x="215" y="128" class="brand-text" font-size="94" fill="#C1A364">Saver</text>
+
+    <!-- Subtitle: "DAY USE ROOMS & PRICE ALERTS" -->
+    <text x="2" y="172" class="tagline-text" font-size="21.5" fill="#0A0A0A">DAY USE ROOMS &amp; PRICE ALERTS</text>
+  </g>
+
+  <!-- ORNAMENTAL GOLD FILIGREE BOTTOM DIVIDER -->
+  <g id="ornament" stroke="#C1A364" fill="#C1A364" transform="translate(0, 222)">
+    <!-- Left horizontal line -->
+    <line x1="45" y1="12" x2="265" y2="12" stroke-width="2.2" />
+    
+    <!-- Left arrow diamond tip -->
+    <polygon points="45,12 30,12 20,6 30,0 45,0" transform="translate(10, 6) scale(0.6)" />
+    <circle cx="56" cy="12" r="3.5" />
+
+    <!-- Center Ornament Cluster -->
+    <!-- Left Outer Diamond -->
+    <g transform="translate(285, 12)">
+      <polygon points="0,-10 8,0 0,10 -8,0" fill="none" stroke-width="2" />
+      <polygon points="0,-5 4,0 0,5 -4,0" />
+    </g>
+
+    <circle cx="310" cy="12" r="3.5" />
+
+    <!-- Center Grand Rhombus -->
+    <g transform="translate(355, 12)">
+      <polygon points="0,-17 17,0 0,17 -17,0" fill="none" stroke-width="2.5" />
+      <polygon points="0,-9 9,0 0,9 -9,0" fill="#C1A364" />
+    </g>
+
+    <circle cx="400" cy="12" r="3.5" />
+
+    <!-- Right Outer Diamond -->
+    <g transform="translate(425, 12)">
+      <polygon points="0,-10 8,0 0,10 -8,0" fill="none" stroke-width="2" />
+      <polygon points="0,-5 4,0 0,5 -4,0" />
+    </g>
+
+    <!-- Right horizontal line -->
+    <line x1="445" y1="12" x2="665" y2="12" stroke-width="2.2" />
+    
+    <!-- Right arrow diamond tip -->
+    <circle cx="654" cy="12" r="3.5" />
+    <polygon points="0,0 15,6 0,12 -15,12 -5,6 -15,0" transform="translate(680, 6) scale(0.6)" />
+  </g>
+</svg>

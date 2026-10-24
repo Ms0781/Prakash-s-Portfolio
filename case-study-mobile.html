@@ -1,0 +1,2749 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PMS iTranscript360 Mobile App Case Study — Mobile Healthcare &amp; Clinical Workflows | Bhatu Prakash</title>
+  <meta name="description"
+    content="Senior Product Designer case study documenting the zero-to-one mobile UI/UX architecture, role-based clinical workflows, and Figma design system for PMS iTranscript360 Mobile Companion App.">
+
+  <!-- Google Fonts: Bricolage Grotesque (Headings) + Plus Jakarta Sans & Inter (UI/Body) + JetBrains Mono (Specs) + Caveat (Accents) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800;12..96,900&family=Caveat:wght@600;700&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="responsive.css">
+
+  <style>
+    /* ==========================================================================
+       PMS ITRANSCRIPT360 MOBILE APP — LIGHT HEALTHCARE SAAS DESIGN SYSTEM
+       Author: Bhatu Prakash
+       Palette: Deep Navy (#142033), Healthcare Teal (#3EC5AA / #147D70), Neutral (#F7F9FC)
+       Typography: Bricolage Grotesque (Display) + Inter / Plus Jakarta Sans (UI/Body)
+       ========================================================================== */
+    :root {
+      /* Brand Neutrals */
+      --navy-950: #0a101d;
+      --navy-900: #142033;
+      --navy-850: #1a2940;
+      --navy-800: #24344d;
+      --navy-700: #33445e;
+      --slate-600: #475569;
+      --slate-500: #64748b;
+      --slate-400: #94a3b8;
+      --slate-300: #cbd5e1;
+      --slate-200: #e2e8f0;
+      --slate-100: #f1f5f9;
+      --slate-50: #f7f9fc;
+      --white: #ffffff;
+
+      /* Healthcare Teal Brand System */
+      --teal-800: #0d5e54;
+      --teal-700: #147d70;
+      --teal-600: #1a9e8e;
+      --teal-500: #3ec5aa;
+      --teal-400: #5fe0c7;
+      --teal-100: #ccfbf1;
+      --teal-50: #eaf9f5;
+
+      /* Functional Accents */
+      --emerald-700: #047857;
+      --emerald-600: #059669;
+      --emerald-50: #ecfdf5;
+      --blue-700: #0369a1;
+      --blue-600: #0284c7;
+      --blue-50: #f0f9ff;
+      --amber-700: #b45309;
+      --amber-600: #d97706;
+      --amber-50: #fffbeb;
+      --rose-700: #be123c;
+      --rose-600: #e11d48;
+      --rose-50: #fff1f2;
+
+      /* Semantic Surface Tokens */
+      --bg-body: #f7f9fc;
+      --bg-surface: #ffffff;
+      --bg-subtle: #f1f5f9;
+      --text-primary: var(--navy-900);
+      --text-secondary: var(--slate-600);
+      --text-muted: var(--slate-500);
+      --border-subtle: #e2e8f0;
+      --border-strong: #cbd5e1;
+      --border-accent: var(--teal-500);
+
+      /* Shadows */
+      --shadow-xs: 0 1px 2px 0 rgba(20, 32, 51, 0.04);
+      --shadow-sm: 0 1px 3px 0 rgba(20, 32, 51, 0.06), 0 1px 2px -1px rgba(20, 32, 51, 0.04);
+      --shadow-md: 0 4px 6px -1px rgba(20, 32, 51, 0.06), 0 2px 4px -2px rgba(20, 32, 51, 0.04);
+      --shadow-lg: 0 10px 15px -3px rgba(20, 32, 51, 0.07), 0 4px 6px -4px rgba(20, 32, 51, 0.03);
+      --shadow-xl: 0 20px 25px -5px rgba(20, 32, 51, 0.08), 0 8px 10px -6px rgba(20, 32, 51, 0.04);
+
+      /* Typography Tokens */
+      --font-heading: 'Bricolage Grotesque', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      --font-body: 'Inter', 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+      --font-script: 'Caveat', cursive;
+
+      --radius-sm: 6px;
+      --radius-md: 10px;
+      --radius-lg: 14px;
+      --radius-xl: 20px;
+    }
+
+    /* Reset & Base Styles */
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      color-scheme: light;
+    }
+
+    body {
+      background-color: var(--bg-body);
+      color: var(--text-primary);
+      font-family: var(--font-body);
+      font-size: 1rem;
+      line-height: 1.68;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+      font-family: var(--font-heading);
+      color: var(--navy-900);
+      font-weight: 700;
+      line-height: 1.25;
+      letter-spacing: -0.02em;
+    }
+
+    p {
+      color: var(--text-secondary);
+      line-height: 1.7;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* READING PROGRESS BAR */
+    .reading-progress-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--teal-700), var(--teal-500));
+      width: 0%;
+      z-index: 1000;
+      transition: width 0.1s linear;
+    }
+
+    /* TOP NAVBAR */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.9rem clamp(1.25rem, 4vw, 5rem);
+      background: rgba(255, 255, 255, 0.94);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border-subtle);
+      z-index: 100;
+      transition: all 0.25s ease;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+      text-decoration: none;
+      color: var(--navy-900);
+    }
+
+    .dp-wrapper {
+      position: relative;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      padding: 2px;
+      background: linear-gradient(135deg, var(--teal-600), #99f6e4);
+      flex-shrink: 0;
+    }
+
+    .dp-img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+      display: block;
+      background-color: var(--slate-100);
+    }
+
+    .dp-status-dot {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      width: 11px;
+      height: 11px;
+      border-radius: 50%;
+      background-color: var(--emerald-600);
+      border: 2px solid var(--white);
+    }
+
+    .logo-text {
+      font-family: var(--font-heading);
+      font-size: 1.18rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: var(--navy-900);
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.75rem;
+      list-style: none;
+    }
+
+    .nav-link {
+      color: var(--slate-600);
+      text-decoration: none;
+      font-size: 0.92rem;
+      font-weight: 600;
+      transition: color 0.2s ease;
+    }
+
+    .nav-link:hover {
+      color: var(--teal-700);
+    }
+
+    .btn-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      background: var(--white);
+      border: 1px solid var(--border-strong);
+      color: var(--navy-800);
+      font-size: 0.88rem;
+      font-weight: 600;
+      padding: 0.55rem 1.15rem;
+      border-radius: var(--radius-md);
+      transition: all 0.2s ease;
+    }
+
+    .btn-back:hover {
+      background: var(--slate-50);
+      border-color: var(--teal-600);
+      color: var(--teal-800);
+      transform: translateX(-2px);
+    }
+
+    .btn-cta {
+      background: var(--teal-700);
+      color: var(--white);
+      font-family: var(--font-heading);
+      font-size: 0.88rem;
+      font-weight: 700;
+      padding: 0.55rem 1.25rem;
+      border-radius: var(--radius-md);
+      transition: all 0.2s ease;
+      white-space: nowrap;
+    }
+
+    .btn-cta:hover {
+      background: var(--teal-800);
+      box-shadow: 0 4px 12px rgba(20, 125, 112, 0.25);
+    }
+
+    .mobile-nav-toggle {
+      display: none;
+      background: var(--slate-100);
+      border: 1px solid var(--border-strong);
+      border-radius: 8px;
+      cursor: pointer;
+      width: 40px;
+      height: 40px;
+      padding: 0;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 5px;
+      transition: background 0.2s ease, border-color 0.2s ease;
+    }
+
+    .mobile-nav-toggle:hover {
+      background: var(--slate-200);
+      border-color: var(--teal-600);
+    }
+
+    .hamburger-line {
+      display: block;
+      width: 20px;
+      height: 2px;
+      background-color: var(--navy-900) !important;
+      border-radius: 2px;
+      transition: all 0.2s ease;
+    }
+
+    /* FLOATING TABLE OF CONTENTS DOCK */
+    .cs-toc-wrapper {
+      position: sticky;
+      top: 74px;
+      z-index: 90;
+      display: flex;
+      justify-content: center;
+      padding: 0.6rem 1rem;
+      pointer-events: none;
+    }
+
+    .cs-toc-inner {
+      pointer-events: auto;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(255, 255, 255, 0.95);
+      border: 1px solid var(--border-subtle);
+      box-shadow: var(--shadow-md);
+      border-radius: 999px;
+      padding: 0.35rem 0.6rem;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      max-width: 95vw;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+
+    .cs-toc-inner::-webkit-scrollbar {
+      display: none;
+    }
+
+    .cs-toc-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 0.76rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--slate-400);
+      padding: 0 0.5rem;
+      white-space: nowrap;
+    }
+
+    .cs-toc-list {
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+      list-style: none;
+    }
+
+    .cs-toc-item a {
+      display: block;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--slate-600);
+      padding: 0.35rem 0.85rem;
+      border-radius: 999px;
+      white-space: nowrap;
+      transition: all 0.2s ease;
+    }
+
+    .cs-toc-item a:hover {
+      color: var(--teal-700);
+      background: var(--slate-100);
+    }
+
+    .cs-toc-item a.active {
+      color: var(--teal-800);
+      background: var(--teal-50);
+      border: 1px solid var(--teal-100);
+      font-weight: 700;
+    }
+
+    /* MAIN CONTAINER */
+    .cs-wrapper {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 2.5rem clamp(1.25rem, 4vw, 3rem) 5rem;
+    }
+
+    /* BREADCRUMB */
+    .cs-breadcrumb {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.84rem;
+      color: var(--slate-500);
+      margin-bottom: 2rem;
+    }
+
+    .cs-breadcrumb a {
+      color: var(--slate-500);
+      transition: color 0.2s;
+    }
+
+    .cs-breadcrumb a:hover {
+      color: var(--teal-700);
+    }
+
+    .cs-breadcrumb .sep {
+      color: var(--slate-300);
+    }
+
+    .cs-breadcrumb .current {
+      color: var(--navy-800);
+      font-weight: 600;
+    }
+
+    /* ==========================================================================
+       SECTION 01: HERO & METADATA
+       ========================================================================== */
+    .cs-hero {
+      margin-bottom: 4.5rem;
+    }
+
+    .cs-hero-header {
+      text-align: center;
+      max-width: 960px;
+      margin: 0 auto 2.5rem;
+    }
+
+    .cs-badge-row {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .cs-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      padding: 0.35rem 0.85rem;
+      border-radius: 999px;
+      background: var(--slate-100);
+      color: var(--slate-600);
+      border: 1px solid var(--border-subtle);
+      letter-spacing: 0.02em;
+    }
+
+    .cs-pill-teal {
+      background: var(--teal-50);
+      color: var(--teal-800);
+      border-color: var(--teal-100);
+    }
+
+    .cs-pill-blue {
+      background: var(--blue-50);
+      color: var(--blue-700);
+      border-color: #bae6fd;
+    }
+
+    .cs-script {
+      display: block;
+      font-family: var(--font-script);
+      font-size: 1.45rem;
+      color: var(--teal-700);
+      margin-bottom: 0.5rem;
+    }
+
+    .cs-title {
+      font-size: clamp(2.2rem, 4.2vw, 3.5rem);
+      line-height: 1.15;
+      font-weight: 800;
+      color: var(--navy-950);
+      margin-bottom: 1.25rem;
+      letter-spacing: -0.03em;
+    }
+
+    .cs-title .highlight {
+      color: var(--teal-700);
+      background: linear-gradient(120deg, var(--teal-700), #0d9488);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .cs-tagline {
+      font-size: clamp(1.05rem, 1.8vw, 1.22rem);
+      color: var(--navy-700);
+      line-height: 1.7;
+      max-width: 860px;
+      margin: 0 auto;
+    }
+
+    /* METADATA MATRIX */
+    .cs-meta-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.25rem;
+      background: var(--white);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 1.5rem 1.75rem;
+      box-shadow: var(--shadow-sm);
+      margin-bottom: 2.5rem;
+    }
+
+    .meta-item {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+
+    .meta-label {
+      font-size: 0.74rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--slate-400);
+    }
+
+    .meta-value {
+      font-family: var(--font-heading);
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--navy-900);
+      line-height: 1.35;
+    }
+
+    .meta-sub {
+      font-size: 0.8rem;
+      color: var(--slate-500);
+    }
+
+    .live-ref-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      color: var(--teal-700);
+      font-weight: 700;
+      transition: color 0.2s;
+    }
+
+    .live-ref-link:hover {
+      color: var(--teal-800);
+      text-decoration: underline;
+    }
+
+    /* HERO SHOWCASE FRAME */
+    .cs-hero-mockup-frame {
+      position: relative;
+      background: linear-gradient(180deg, #ffffff 0%, #f1f5f9 100%);
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-xl);
+      padding: 1.75rem;
+      box-shadow: var(--shadow-xl);
+      overflow: hidden;
+    }
+
+    .cs-hero-mockup-frame img {
+      width: 100%;
+      height: auto;
+      border-radius: var(--radius-md);
+      cursor: zoom-in;
+    }
+
+    .cs-mockup-overlay-pill {
+      position: absolute;
+      bottom: 1.5rem;
+      left: 1.5rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      background: rgba(20, 32, 51, 0.88);
+      color: var(--white);
+      font-size: 0.78rem;
+      font-weight: 600;
+      padding: 0.45rem 0.95rem;
+      border-radius: 999px;
+      backdrop-filter: blur(8px);
+    }
+
+    .status-pulse {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--teal-500);
+      box-shadow: 0 0 0 2px rgba(62, 197, 170, 0.3);
+    }
+
+    /* ==========================================================================
+       SECTION COMMON STYLES
+       ========================================================================== */
+    .cs-section {
+      margin-bottom: 5.5rem;
+      scroll-margin-top: 130px;
+    }
+
+    .cs-section-header {
+      max-width: 840px;
+      margin-bottom: 2.25rem;
+    }
+
+    .cs-section-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.76rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--teal-800);
+      background: var(--teal-50);
+      border: 1px solid var(--teal-100);
+      padding: 0.3rem 0.75rem;
+      border-radius: 6px;
+      margin-bottom: 0.85rem;
+    }
+
+    .cs-section-badge.blue {
+      color: var(--blue-700);
+      background: var(--blue-50);
+      border-color: #bae6fd;
+    }
+
+    .cs-section-badge.amber {
+      color: var(--amber-700);
+      background: var(--amber-50);
+      border-color: #fde68a;
+    }
+
+    .cs-section-heading {
+      font-size: clamp(1.8rem, 3.2vw, 2.4rem);
+      font-weight: 800;
+      color: var(--navy-950);
+      margin-bottom: 0.85rem;
+      letter-spacing: -0.025em;
+    }
+
+    .cs-body-p {
+      font-size: 1.05rem;
+      color: var(--navy-700);
+      line-height: 1.72;
+    }
+
+    /* ==========================================================================
+       SECTION 02: THE BEDSIDE CLINICAL CHALLENGE
+       ========================================================================== */
+    .challenge-grid-2x2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+
+    .challenge-card {
+      background: var(--white);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 1.75rem;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      position: relative;
+    }
+
+    .challenge-num {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 0.74rem;
+      font-weight: 700;
+      color: var(--teal-800);
+      background: var(--teal-50);
+      border: 1px solid var(--teal-100);
+      padding: 0.2rem 0.55rem;
+      border-radius: 4px;
+      width: fit-content;
+    }
+
+    .challenge-card h3 {
+      font-size: 1.2rem;
+      color: var(--navy-950);
+      line-height: 1.35;
+    }
+
+    .challenge-block {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+
+    .challenge-label {
+      font-size: 0.74rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--slate-400);
+    }
+
+    .challenge-text {
+      font-size: 0.92rem;
+      color: var(--navy-700);
+      line-height: 1.6;
+    }
+
+    .challenge-solution {
+      background: var(--slate-50);
+      border-left: 3px solid var(--teal-600);
+      padding: 0.75rem 0.95rem;
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    }
+
+    .challenge-solution .challenge-label {
+      color: var(--teal-800);
+    }
+
+    .challenge-solution .challenge-text {
+      color: var(--navy-800);
+      font-weight: 500;
+    }
+
+    /* ==========================================================================
+       SECTION 03: MY ROLE & RESPONSIBILITIES
+       ========================================================================== */
+    .role-scope-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .scope-box {
+      background: var(--white);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 1.5rem;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-direction: column;
+      gap: 0.65rem;
+    }
+
+    .scope-box-num {
+      font-family: var(--font-mono);
+      font-size: 0.76rem;
+      font-weight: 700;
+      color: var(--teal-700);
+    }
+
+    .scope-box h3 {
+      font-size: 1.1rem;
+      color: var(--navy-900);
+    }
+
+    .scope-box p {
+      font-size: 0.9rem;
+      color: var(--navy-700);
+      line-height: 1.6;
+    }
+
+    .scope-tag-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-top: auto;
+    }
+
+    .scope-tag {
+      font-size: 0.72rem;
+      font-weight: 600;
+      padding: 0.2rem 0.55rem;
+      border-radius: 4px;
+      background: var(--slate-100);
+      color: var(--slate-600);
+    }
+
+    /* ==========================================================================
+       SECTION 04: ROLE-BASED CLINICAL WORKFLOWS
+       ========================================================================== */
+    .roles-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+    }
+
+    .role-card {
+      background: var(--white);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 1.5rem;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+    }
+
+    .role-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .role-badge {
+      font-size: 0.72rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--teal-800);
+      background: var(--teal-50);
+      padding: 0.2rem 0.55rem;
+      border-radius: 4px;
+      border: 1px solid var(--teal-100);
+    }
+
+    .role-title {
+      font-size: 1.12rem;
+      color: var(--navy-900);
+    }
+
+    .role-desc {
+      font-size: 0.88rem;
+      color: var(--navy-700);
+      line-height: 1.58;
+    }
+
+    .role-features {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.45rem;
+      margin-top: 0.35rem;
+      padding-top: 0.65rem;
+      border-top: 1px dashed var(--border-subtle);
+    }
+
+    .role-features li {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      font-size: 0.84rem;
+      color: var(--navy-800);
+      line-height: 1.5;
+    }
+
+    .role-features .check {
+      color: var(--teal-700);
+      font-weight: 800;
+      flex-shrink: 0;
+    }
+
+    /* ==========================================================================
+       SECTION 05: INFORMATION ARCHITECTURE & USER JOURNEYS
+       ========================================================================== */
+    .workflow-stepper {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 0.85rem;
+      margin-bottom: 2rem;
+    }
+
+    .wf-step-card {
+      background: var(--white);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 1.25rem 1rem;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-direction: column;
+      gap: 0.55rem;
+      position: relative;
+    }
+
+    .wf-step-num {
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--teal-800);
+      background: var(--teal-50);
+      border: 1px solid var(--teal-100);
+      width: 26px;
+      height: 26px;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .wf-step-card h4 {
+      font-size: 0.94rem;
+      color: var(--navy-900);
+      line-height: 1.3;
+    }
+
+    .wf-step-card p {
+      font-size: 0.8rem;
+      color: var(--navy-700);
+      line-height: 1.5;
+    }
+
+    .wf-step-tag {
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: var(--slate-500);
+      background: var(--slate-100);
+      padding: 0.15rem 0.45rem;
+      border-radius: 4px;
+      margin-top: auto;
+      width: fit-content;
+    }
+
+    /* ==========================================================================
+       SECTION 06: KEY MOBILE SCREENS & DESIGN DECISIONS (THE CORE GALLERY)
+       ========================================================================== */
+    .gallery-showcase-container {
+      display: flex;
+      flex-direction: column;
+      gap: 4rem;
+    }
+
+    .screen-group-block {
+      background: var(--white);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-xl);
+      padding: 2.25rem;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-direction: column;
+      gap: 1.75rem;
+    }
+
+    .screen-group-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 2rem;
+      flex-wrap: wrap;
+      padding-bottom: 1.25rem;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .sgh-left h3 {
+      font-size: 1.35rem;
+      color: var(--navy-900);
+      margin-bottom: 0.35rem;
+    }
+
+    .sgh-left p {
+      font-size: 0.94rem;
+      color: var(--navy-700);
+      max-width: 680px;
+    }
+
+    .sgh-tag-row {
+      display: flex;
+      gap: 0.5rem;
+      align-items: center;
+      margin-bottom: 0.45rem;
+    }
+
+    .group-tag {
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 0.2rem 0.6rem;
+      border-radius: 4px;
+      background: var(--slate-100);
+      color: var(--slate-700);
+    }
+
+    .group-tag.teal {
+      background: var(--teal-50);
+      color: var(--teal-800);
+      border: 1px solid var(--teal-100);
+    }
+
+    /* Multi-Phone Grid */
+    .phones-grid-3col {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    .phones-grid-2col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.75rem;
+    }
+
+    .phone-item {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      background: var(--slate-50);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 1rem;
+    }
+
+    .phone-img-wrap {
+      background: #f1f5f9;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: zoom-in;
+      position: relative;
+    }
+
+    .phone-img-wrap img {
+      width: 100%;
+      height: auto;
+      display: block;
+      transition: transform 0.25s ease;
+    }
+
+    .phone-img-wrap:hover img {
+      transform: scale(1.02);
+    }
+
+    .phone-caption {
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+    }
+
+    .phone-caption h4 {
+      font-size: 0.96rem;
+      color: var(--navy-900);
+    }
+
+    .phone-caption p {
+      font-size: 0.82rem;
+      color: var(--slate-600);
+      line-height: 1.5;
+    }
+
+    .phone-btn-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 0.25rem;
+    }
+
+    .view-zoom-link {
+      font-size: 0.76rem;
+      font-weight: 700;
+      color: var(--teal-700);
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      cursor: pointer;
+    }
+
+    .view-zoom-link:hover {
+      text-decoration: underline;
+    }
+
+    /* ==========================================================================
+       SECTION 07: UI DESIGN SYSTEM & TOKENS
+       ========================================================================== */
+    .design-system-container {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    .ds-sub-section {
+      background: var(--white);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 1.75rem;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .ds-sub-title {
+      font-size: 1.15rem;
+      color: var(--navy-900);
+      margin-bottom: 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .color-swatches-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(135px, 1fr));
+      gap: 1rem;
+    }
+
+    .swatch-card {
+      display: flex;
+      flex-direction: column;
+      gap: 0.45rem;
+    }
+
+    .swatch-box {
+      height: 56px;
+      border-radius: var(--radius-md);
+      border: 1px solid rgba(0,0,0,0.06);
+    }
+
+    .swatch-info {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .swatch-name {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--navy-900);
+    }
+
+    .swatch-hex {
+      font-family: var(--font-mono);
+      font-size: 0.74rem;
+      color: var(--slate-500);
+    }
+
+    .swatch-role {
+      font-size: 0.72rem;
+      color: var(--slate-400);
+    }
+
+    .type-spec-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+
+    .type-card {
+      background: var(--slate-50);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 1.25rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .type-sample-display {
+      font-family: var(--font-heading);
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--navy-950);
+      letter-spacing: -0.02em;
+    }
+
+    .type-sample-body {
+      font-family: var(--font-body);
+      font-size: 0.96rem;
+      color: var(--navy-700);
+      line-height: 1.6;
+    }
+
+    .type-meta {
+      font-family: var(--font-mono);
+      font-size: 0.74rem;
+      color: var(--slate-500);
+    }
+
+    /* ==========================================================================
+       SECTION 08: CONNECTION TO THE PMS WEB PLATFORM
+       ========================================================================== */
+    .ecosystem-panel {
+      background: var(--white);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-xl);
+      padding: 2.25rem;
+      box-shadow: var(--shadow-sm);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .ecosystem-info h3 {
+      font-size: 1.35rem;
+      color: var(--navy-900);
+      margin-bottom: 0.75rem;
+    }
+
+    .ecosystem-info p {
+      font-size: 0.94rem;
+      color: var(--navy-700);
+      line-height: 1.68;
+      margin-bottom: 1.25rem;
+    }
+
+    .ecosystem-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+
+    .ecosystem-preview-card {
+      background: var(--slate-50);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 1.25rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .ecosystem-preview-card img {
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-subtle);
+    }
+
+    .ep-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.8rem;
+      color: var(--slate-500);
+    }
+
+    /* ==========================================================================
+       SECTION 09: VERIFIED DELIVERABLES & REFLECTION
+       ========================================================================== */
+    .deliverables-summary-box {
+      background: var(--white);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 1.75rem;
+      box-shadow: var(--shadow-sm);
+      margin-bottom: 2rem;
+    }
+
+    .deliverables-summary-box h3 {
+      font-size: 1.22rem;
+      color: var(--navy-900);
+      margin-bottom: 1rem;
+    }
+
+    .deliverables-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+    }
+
+    .del-item {
+      background: var(--slate-50);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+    }
+
+    .del-num {
+      font-family: var(--font-heading);
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: var(--teal-700);
+    }
+
+    .del-title {
+      font-size: 0.86rem;
+      font-weight: 700;
+      color: var(--navy-900);
+    }
+
+    .del-desc {
+      font-size: 0.78rem;
+      color: var(--slate-500);
+      line-height: 1.5;
+    }
+
+    .reflection-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin-bottom: 3rem;
+    }
+
+    .reflection-card {
+      background: var(--white);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 1.75rem;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+    }
+
+    .reflection-card h3 {
+      font-size: 1.22rem;
+      color: var(--navy-900);
+    }
+
+    .reflection-card p {
+      font-size: 0.94rem;
+      color: var(--navy-700);
+      line-height: 1.68;
+    }
+
+    .reflection-points {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      margin-top: 0.5rem;
+    }
+
+    .reflection-points li {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      font-size: 0.9rem;
+      color: var(--navy-700);
+      line-height: 1.55;
+    }
+
+    .reflection-points .bullet {
+      color: var(--teal-700);
+      font-weight: 800;
+    }
+
+    /* ==========================================================================
+       NEXT PROJECT BANNER & FOOTER
+       ========================================================================== */
+    .cs-next-banner {
+      margin-top: 4rem;
+      background: linear-gradient(135deg, var(--navy-950) 0%, var(--navy-900) 100%);
+      border-radius: var(--radius-xl);
+      padding: 2.75rem clamp(1.5rem, 4vw, 3rem);
+      color: var(--white);
+      box-shadow: var(--shadow-xl);
+    }
+
+    .next-card {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .next-info {
+      max-width: 600px;
+    }
+
+    .next-script {
+      display: block;
+      font-family: var(--font-script);
+      font-size: 1.35rem;
+      color: #5eead4;
+      margin-bottom: 0.35rem;
+    }
+
+    .next-title {
+      font-size: clamp(1.6rem, 2.8vw, 2.2rem);
+      color: var(--white);
+      margin-bottom: 0.5rem;
+    }
+
+    .next-desc {
+      font-size: 0.96rem;
+      color: var(--slate-300);
+      line-height: 1.6;
+    }
+
+    .next-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+
+    .next-actions .btn-cta {
+      background: var(--teal-500);
+      color: var(--navy-950);
+      font-weight: 800;
+      padding: 0.75rem 1.5rem;
+    }
+
+    .next-actions .btn-cta:hover {
+      background: #2dd4bf;
+    }
+
+    .next-actions .btn-back {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: rgba(255, 255, 255, 0.15);
+      color: var(--white);
+      padding: 0.75rem 1.25rem;
+    }
+
+    .next-actions .btn-back:hover {
+      background: rgba(255, 255, 255, 0.16);
+      border-color: var(--teal-500);
+      color: #5eead4;
+    }
+
+    /* SITE FOOTER */
+    .site-footer {
+      border-top: 1px solid var(--border-subtle);
+      background: var(--white);
+      padding: 2.5rem clamp(1.25rem, 4vw, 5rem);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      font-size: 0.88rem;
+      color: var(--slate-500);
+    }
+
+    .footer-socials {
+      display: flex;
+      gap: 1.5rem;
+      list-style: none;
+    }
+
+    .social-link {
+      color: var(--slate-600);
+      font-weight: 600;
+      transition: color 0.2s;
+    }
+
+    .social-link:hover {
+      color: var(--teal-700);
+    }
+
+    .btn-back-to-top {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--slate-100);
+      border: 1px solid var(--border-subtle);
+      color: var(--navy-800);
+      font-size: 0.82rem;
+      font-weight: 700;
+      padding: 0.45rem 0.95rem;
+      border-radius: 999px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .btn-back-to-top:hover {
+      background: var(--teal-50);
+      border-color: var(--teal-100);
+      color: var(--teal-800);
+    }
+
+    /* LIGHTBOX MODAL */
+    .lightbox-modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(20, 32, 51, 0.92);
+      backdrop-filter: blur(10px);
+      z-index: 2000;
+      padding: 2rem;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .lightbox-modal.active {
+      display: flex;
+    }
+
+    .lightbox-content {
+      max-width: 95vw;
+      max-height: 90vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .lightbox-img {
+      max-width: 100%;
+      max-height: 90vh;
+      object-fit: contain;
+      border-radius: var(--radius-md);
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: 1.5rem;
+      right: 1.5rem;
+      background: rgba(255, 255, 255, 0.15);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: var(--white);
+      font-size: 1.75rem;
+      line-height: 1;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .lightbox-close:hover {
+      background: rgba(255, 255, 255, 0.3);
+    }
+
+    /* RESPONSIVE BREAKPOINTS */
+    @media (max-width: 1024px) {
+      .cs-meta-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .workflow-stepper {
+        grid-template-columns: repeat(3, 1fr);
+      }
+      .roles-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .role-scope-grid {
+        grid-template-columns: 1fr;
+      }
+      .phones-grid-3col {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .deliverables-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .ecosystem-panel {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .nav-links, .btn-back {
+        display: none;
+      }
+      .mobile-nav-toggle {
+        display: flex;
+      }
+      .cs-toc-wrapper {
+        display: none;
+      }
+      .challenge-grid-2x2,
+      .roles-grid,
+      .workflow-stepper,
+      .phones-grid-3col,
+      .phones-grid-2col,
+      .type-spec-grid,
+      .deliverables-grid,
+      .reflection-grid {
+        grid-template-columns: 1fr;
+      }
+      .cs-meta-grid {
+        grid-template-columns: 1fr;
+      }
+      .screen-group-block {
+        padding: 1.25rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- READING PROGRESS BAR -->
+  <div class="reading-progress-bar" id="progressBar"></div>
+
+  <!-- TOP NAVBAR -->
+  <nav class="navbar">
+    <a href="index.html#home" class="nav-logo">
+      <div class="dp-wrapper">
+        <img id="nav-dp" src="prakash-portfolio_00239.webp" alt="Bhatu Prakash" class="dp-img">
+        <span class="dp-status-dot"></span>
+      </div>
+      <span class="logo-text">Bhatu Prakash</span>
+    </a>
+
+    <div class="nav-right">
+      <ul class="nav-links">
+        <li><a href="index.html#home" class="nav-link">Home</a></li>
+        <li><a href="index.html#contents" class="nav-link">Services</a></li>
+        <li><a href="index.html#uiux" class="nav-link">UI/UX</a></li>
+        <li><a href="index.html#projects" class="nav-link">Projects</a></li>
+        <li><a href="contact.html" class="nav-link">Contact</a></li>
+      </ul>
+      <a href="index.html#projects" class="btn-back">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+          stroke-linecap="round" stroke-linejoin="round">
+          <line x1="19" y1="12" x2="5" y2="12"></line>
+          <polyline points="12 19 5 12 12 5"></polyline>
+        </svg>
+        Back to Projects
+      </a>
+      <a href="contact.html" class="btn-cta">Hire Me</a>
+      <button id="mobileNavToggle" class="mobile-nav-toggle" type="button" aria-label="Open menu" aria-expanded="false"
+        aria-controls="mobileNavDrawer">
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- MOBILE NAV DRAWER -->
+  <div id="mobileNavDrawer" class="mobile-nav-drawer" aria-hidden="true">
+    <div class="mobile-nav-backdrop"></div>
+    <div class="mobile-nav-panel">
+      <div class="mobile-nav-header">
+        <div class="mobile-nav-brand">
+          <img src="prakash-portfolio_00239.webp" alt="Bhatu Prakash" class="mobile-dp-img" width="44" height="44">
+          <div class="mobile-brand-meta">
+            <span class="mobile-brand-name">Bhatu Prakash</span>
+            <span class="mobile-brand-status"><span class="dot"></span> Available for work</span>
+          </div>
+        </div>
+        <button id="mobileNavClose" class="mobile-nav-close" type="button" aria-label="Close navigation">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+      <ul class="mobile-nav-list">
+        <li><a href="index.html#home" class="mobile-nav-item"><span class="mn-num">01</span><span
+              class="mn-text">Home</span><span class="mn-arrow">↗</span></a></li>
+        <li><a href="index.html#projects" class="mobile-nav-item"><span class="mn-num">02</span><span class="mn-text">←
+              All Projects</span><span class="mn-arrow">↗</span></a></li>
+        <li><a href="case-study-mobile.html" class="mobile-nav-item highlight"><span class="mn-num">03</span><span
+              class="mn-text">PMS Mobile App</span><span class="mn-arrow">↗</span></a></li>
+        <li><a href="case-study-pms.html" class="mobile-nav-item"><span class="mn-num">04</span><span
+              class="mn-text">PMS Web SaaS</span><span class="mn-arrow">↗</span></a></li>
+        <li><a href="case-study.html" class="mobile-nav-item"><span class="mn-num">05</span><span
+              class="mn-text">iTranscript360</span><span class="mn-arrow">↗</span></a></li>
+        <li><a href="case-study-flyfi-web.html" class="mobile-nav-item"><span class="mn-num">06</span><span
+              class="mn-text">FlyFi Web Redesign</span><span class="mn-arrow">↗</span></a></li>
+        <li><a href="contact.html" class="mobile-nav-item highlight"><span class="mn-num">07</span><span
+              class="mn-text">Contact / Hire</span><span class="mn-arrow">↗</span></a></li>
+      </ul>
+      <div class="mobile-nav-footer">
+        <a href="contact.html" class="mobile-nav-cta">
+          <span>Get in Touch ↗</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- FLOATING TABLE OF CONTENTS DOCK -->
+  <nav class="cs-toc-wrapper" aria-label="Case Study Navigation">
+    <div class="cs-toc-inner">
+      <div class="cs-toc-label">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+        Sections:
+      </div>
+      <ul class="cs-toc-list">
+        <li class="cs-toc-item"><a href="#overview" class="active">01. Overview</a></li>
+        <li class="cs-toc-item"><a href="#challenges">02. Challenges</a></li>
+        <li class="cs-toc-item"><a href="#responsibilities">03. My Role</a></li>
+        <li class="cs-toc-item"><a href="#roles">04. Roles</a></li>
+        <li class="cs-toc-item"><a href="#workflow">05. Workflows</a></li>
+        <li class="cs-toc-item"><a href="#screens">06. Mobile Screens</a></li>
+        <li class="cs-toc-item"><a href="#design-system">07. Design System</a></li>
+        <li class="cs-toc-item"><a href="#ecosystem">08. Web Ecosystem</a></li>
+        <li class="cs-toc-item"><a href="#reflection">09. Reflection</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="cs-wrapper">
+
+    <!-- BREADCRUMB -->
+    <div class="cs-breadcrumb">
+      <a href="index.html#home">Home</a>
+      <span class="sep">/</span>
+      <a href="index.html#projects">Selected Work</a>
+      <span class="sep">/</span>
+      <span class="current">PMS iTranscript360 Mobile Companion App</span>
+    </div>
+
+    <!-- ==========================================================================
+         01. HERO SECTION
+         ========================================================================== -->
+    <header class="cs-hero" id="overview">
+      <div class="cs-hero-header">
+        <div class="cs-badge-row">
+          <span class="cs-pill cs-pill-teal">Mobile Healthcare Experience</span>
+          <span class="cs-pill cs-pill-blue">Figma UI/UX &amp; Component System</span>
+          <span class="cs-pill">Role-Based Clinical Workflows</span>
+          <span class="cs-pill" style="background: var(--slate-100); color: var(--navy-800);">Connected to PMS Web Ecosystem</span>
+        </div>
+
+        <span class="cs-script">Mobile Product Design Case Study</span>
+        <h1 class="cs-title">
+          Bringing Clinical Workflows <span class="highlight">Beyond the Desktop</span>
+        </h1>
+        <p class="cs-tagline">
+          Designing a mobile healthcare experience for clinical teams to manage appointments, access patient information, and navigate transcription workflows across roles.
+        </p>
+      </div>
+
+      <!-- METADATA GRID -->
+      <div class="cs-meta-grid">
+        <div class="meta-item">
+          <span class="meta-label">Project</span>
+          <span class="meta-value">PMS iTranscript360 App</span>
+          <span class="meta-sub">Mobile Companion Product</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-label">My Role</span>
+          <span class="meta-value">UI/UX Designer</span>
+          <span class="meta-sub">Figma Architecture &amp; Flows</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-label">Platform &amp; Canvas</span>
+          <span class="meta-value">iOS &amp; Android</span>
+          <span class="meta-sub">390×844 Handheld Standard</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-label">Tools &amp; Stack</span>
+          <span class="meta-value">Figma · HTML5 · CSS3</span>
+          <span class="meta-sub">Auto Layout, Tokens &amp; JS</span>
+        </div>
+      </div>
+
+      <!-- HERO SHOWCASE FRAME -->
+      <div class="cs-hero-mockup-frame">
+        <img src="pms-app/app-main.webp" alt="PMS iTranscript360 Mobile App Multi-Screen Showcase" class="zoomable"
+          data-src="pms-app/app-main.webp">
+        <div class="cs-mockup-overlay-pill">
+          <span class="status-pulse"></span>
+          Master Multi-Screen Showcase · Onboarding, Appointment Triage, Patient Hub &amp; Role Workflows
+        </div>
+      </div>
+    </header>
+
+    <!-- ==========================================================================
+         02. THE BEDSIDE CLINICAL CHALLENGE
+         ========================================================================== -->
+    <section class="cs-section" id="challenges">
+      <div class="cs-section-header">
+        <span class="cs-section-badge amber">The Clinical Challenge</span>
+        <h2 class="cs-section-heading">Why Desktop Clinical Software Stalls at Bedside</h2>
+        <p class="cs-body-p">
+          In outpatient clinics and hospital wards, clinicians spend hours walking between examination bays, triage rooms, and private consulting suites. Heavy computer trollies and fixed desktop stations tether staff to desks, causing documentation bottlenecks and delayed patient notes.
+        </p>
+      </div>
+
+      <div class="challenge-grid-2x2">
+        <div class="challenge-card">
+          <span class="challenge-num">CHALLENGE 01</span>
+          <h3>Information Density on Handheld Screens</h3>
+          <div class="challenge-block">
+            <span class="challenge-label">The Problem</span>
+            <p class="challenge-text">
+              Desktop EHR screens rely on wide, multi-column tables with dense demographic rows. Squeezing this data directly onto a 390px smartphone screen causes illegible text and horizontal scrolling.
+            </p>
+          </div>
+          <div class="challenge-solution">
+            <span class="challenge-label">My Design Solution</span>
+            <p class="challenge-text">
+              I transformed wide tables into compact, scannable appointment cards prioritizing essential clinical data: patient name, slot time, status pill, and attending doctor.
+            </p>
+          </div>
+        </div>
+
+        <div class="challenge-card">
+          <span class="challenge-num">CHALLENGE 02</span>
+          <h3>Fast Appointment Booking &amp; Triage</h3>
+          <div class="challenge-block">
+            <span class="challenge-label">The Problem</span>
+            <p class="challenge-text">
+              Clinic receptionists and nurses often manage bookings on the move while coordinating waiting rooms. Multi-page forms with tiny dropdowns lead to slow intake.
+            </p>
+          </div>
+          <div class="challenge-solution">
+            <span class="challenge-label">My Design Solution</span>
+            <p class="challenge-text">
+              I created a streamlined 3-step modal flow: horizontal date selector strip, visual doctor selection card with specialties, and clean slot confirmation.
+            </p>
+          </div>
+        </div>
+
+        <div class="challenge-card">
+          <span class="challenge-num">CHALLENGE 03</span>
+          <h3>Voice Capture &amp; Ambient Dictation</h3>
+          <div class="challenge-block">
+            <span class="challenge-label">The Problem</span>
+            <p class="challenge-text">
+              Physicians often postpone dictations until the end of shifts because recording on desktop setups requires returning to dedicated workstations between rounds.
+            </p>
+          </div>
+          <div class="challenge-solution">
+            <span class="challenge-label">My Design Solution</span>
+            <p class="challenge-text">
+              I designed a prominent, thumb-reachable audio recording module on the dashboard, allowing clinicians to capture encounter audio immediately after visiting a patient.
+            </p>
+          </div>
+        </div>
+
+        <div class="challenge-card">
+          <span class="challenge-num">CHALLENGE 04</span>
+          <h3>Multi-Role Navigation Complexity</h3>
+          <div class="challenge-block">
+            <span class="challenge-label">The Problem</span>
+            <p class="challenge-text">
+              Attending physicians, practice managers, secretaries, and patients require completely different tools. Cramming all features into a single menu confuses users.
+            </p>
+          </div>
+          <div class="challenge-solution">
+            <span class="challenge-label">My Design Solution</span>
+            <p class="challenge-text">
+              I established tailored role-based user journeys sharing a single design system, ensuring users only see the actions and data relevant to their role.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         03. MY ROLE & RESPONSIBILITIES
+         ========================================================================== -->
+    <section class="cs-section" id="responsibilities">
+      <div class="cs-section-header">
+        <span class="cs-section-badge">My Scope</span>
+        <h2 class="cs-section-heading">My Role &amp; Design Responsibilities</h2>
+        <p class="cs-body-p">
+          As the UI/UX Designer for this mobile exploration, I focused on user experience architecture, component design, interaction flows, and responsive presentation.
+        </p>
+      </div>
+
+      <div class="role-scope-grid">
+        <div class="scope-box">
+          <span class="scope-box-num">01</span>
+          <h3>Figma Architecture &amp; Flows</h3>
+          <p>
+            Engineered the complete mobile screen library in Figma using Auto Layout, component variants, and interactive click-through prototyping.
+          </p>
+          <div class="scope-tag-list">
+            <span class="scope-tag">Auto Layout</span>
+            <span class="scope-tag">Variants</span>
+            <span class="scope-tag">Component Sets</span>
+          </div>
+        </div>
+
+        <div class="scope-box">
+          <span class="scope-box-num">02</span>
+          <h3>Ergonomics &amp; Layout UX</h3>
+          <p>
+            Structured handheld layouts around the natural thumb zone, ensuring critical interactive controls (audio recorder, date picker, tabs) are easily accessible with one hand.
+          </p>
+          <div class="scope-tag-list">
+            <span class="scope-tag">Thumb Zone</span>
+            <span class="scope-tag">44px+ Tap Targets</span>
+            <span class="scope-tag">Visual Contrast</span>
+          </div>
+        </div>
+
+        <div class="scope-box">
+          <span class="scope-box-num">03</span>
+          <h3>Responsive Showcase Implementation</h3>
+          <p>
+            Handcrafted the portfolio presentation using semantic HTML5, modern CSS Grid/Flexbox, and vanilla JavaScript for recruiters to inspect on any device.
+          </p>
+          <div class="scope-tag-list">
+            <span class="scope-tag">Semantic HTML5</span>
+            <span class="scope-tag">CSS Custom Props</span>
+            <span class="scope-tag">Vanilla JS</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         04. ROLE-BASED CLINICAL WORKFLOWS
+         ========================================================================== -->
+    <section class="cs-section" id="roles">
+      <div class="cs-section-header">
+        <span class="cs-section-badge">Role Architecture</span>
+        <h2 class="cs-section-heading">Role-Based Workflows Across Clinical Teams</h2>
+        <p class="cs-body-p">
+          Healthcare organizations operate through tightly coordinated team handoffs. The mobile experience addresses these needs by supporting tailored views and actions for key stakeholder groups:
+        </p>
+      </div>
+
+      <div class="roles-grid">
+        <div class="role-card">
+          <div class="role-top">
+            <span class="role-badge">Doctor Workflows</span>
+            <span style="font-size: 1.1rem;">🩺</span>
+          </div>
+          <h3 class="role-title">Attending Clinicians &amp; Specialists</h3>
+          <p class="role-desc">
+            Focused on reviewing daily consultation queues, glancing at patient vitals, capturing bedside audio dictation, and inspecting SOAP notes.
+          </p>
+          <ul class="role-features">
+            <li><span class="check">✓</span> One-tap audio consultation recording</li>
+            <li><span class="check">✓</span> Appointment list with date strip selector</li>
+            <li><span class="check">✓</span> Patient history &amp; vitals summary access</li>
+          </ul>
+        </div>
+
+        <div class="role-card">
+          <div class="role-top">
+            <span class="role-badge">Clinic Ops</span>
+            <span style="font-size: 1.1rem;">📊</span>
+          </div>
+          <h3 class="role-title">Practice Managers</h3>
+          <p class="role-desc">
+            Equipped with clinic group controls, provider roster oversight, and doctor allocation to ensure appointment capacity stays balanced across facilities.
+          </p>
+          <ul class="role-features">
+            <li><span class="check">✓</span> Clinic group &amp; department hierarchies</li>
+            <li><span class="check">✓</span> Add super doctor credentialing form</li>
+            <li><span class="check">✓</span> Facility capacity monitoring</li>
+          </ul>
+        </div>
+
+        <div class="role-card">
+          <div class="role-top">
+            <span class="role-badge">Front Desk</span>
+            <span style="font-size: 1.1rem;">📋</span>
+          </div>
+          <h3 class="role-title">Secretaries &amp; Receptionists</h3>
+          <p class="role-desc">
+            Optimized for fast patient intake, selecting available doctors, booking appointment slots, and updating status (Upcoming, Completed, Cancelled).
+          </p>
+          <ul class="role-features">
+            <li><span class="check">✓</span> 3-step rapid appointment booking</li>
+            <li><span class="check">✓</span> Doctor directory with specialty filters</li>
+            <li><span class="check">✓</span> Slot rescheduling and cancel flows</li>
+          </ul>
+        </div>
+
+        <div class="role-card">
+          <div class="role-top">
+            <span class="role-badge">Patient Portal</span>
+            <span style="font-size: 1.1rem;">👤</span>
+          </div>
+          <h3 class="role-title">Patients</h3>
+          <p class="role-desc">
+            A clean, accessible view for patients to review upcoming visits, check attending doctor credentials, and inspect verified encounter summaries.
+          </p>
+          <ul class="role-features">
+            <li><span class="check">✓</span> Personal appointment schedule</li>
+            <li><span class="check">✓</span> Doctor credentials &amp; clinic address</li>
+            <li><span class="check">✓</span> Profile and communication preferences</li>
+          </ul>
+        </div>
+
+        <div class="role-card">
+          <div class="role-top">
+            <span class="role-badge">Transcription QA</span>
+            <span style="font-size: 1.1rem;">🎧</span>
+          </div>
+          <h3 class="role-title">Medical QA &amp; Editors</h3>
+          <p class="role-desc">
+            Monitoring incoming voice consultation uploads and tracking transcription status between AI draft generation and final doctor sign-off.
+          </p>
+          <ul class="role-features">
+            <li><span class="check">✓</span> Voice file upload verification</li>
+            <li><span class="check">✓</span> Status tracking for transcription batches</li>
+            <li><span class="check">✓</span> Notification alerts on urgent records</li>
+          </ul>
+        </div>
+
+        <div class="role-card">
+          <div class="role-top">
+            <span class="role-badge">Account Security</span>
+            <span style="font-size: 1.1rem;">🔒</span>
+          </div>
+          <h3 class="role-title">Security &amp; Account Controls</h3>
+          <p class="role-desc">
+            Essential credential management allowing staff to update passwords, manage multi-factor access, and review session notifications securely.
+          </p>
+          <ul class="role-features">
+            <li><span class="check">✓</span> Password change with security rules</li>
+            <li><span class="check">✓</span> Session notification center</li>
+            <li><span class="check">✓</span> Profile details &amp; clinic affiliation</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         05. INFORMATION ARCHITECTURE & USER JOURNEYS
+         ========================================================================== -->
+    <section class="cs-section" id="workflow">
+      <div class="cs-section-header">
+        <span class="cs-section-badge">Navigation Structure</span>
+        <h2 class="cs-section-heading">Mobile Information Architecture &amp; User Journeys</h2>
+        <p class="cs-body-p">
+          A coherent six-stage flow guiding clinicians and staff seamlessly through mobile daily tasks:
+        </p>
+      </div>
+
+      <div class="workflow-stepper">
+        <div class="wf-step-card">
+          <span class="wf-step-num">01</span>
+          <h4>Onboarding</h4>
+          <p>Multi-step value primer introducing voice dictation, SOAP notes, and EHR sync.</p>
+          <span class="wf-step-tag">Step 01</span>
+        </div>
+
+        <div class="wf-step-card">
+          <span class="wf-step-num">02</span>
+          <h4>Role Gateway</h4>
+          <p>Secure login routing the user directly into their tailored role view.</p>
+          <span class="wf-step-tag">Step 02</span>
+        </div>
+
+        <div class="wf-step-card">
+          <span class="wf-step-num">03</span>
+          <h4>Dashboard</h4>
+          <p>Home screen with daily appointment stats and primary audio action.</p>
+          <span class="wf-step-tag">Step 03</span>
+        </div>
+
+        <div class="wf-step-card">
+          <span class="wf-step-num">04</span>
+          <h4>Appointments</h4>
+          <p>Calendar strip with Upcoming, Past, and Cancelled filter tabs.</p>
+          <span class="wf-step-tag">Step 04</span>
+        </div>
+
+        <div class="wf-step-card">
+          <span class="wf-step-num">05</span>
+          <h4>Patient Chart</h4>
+          <p>Compact card layout presenting demographics, vitals, and visit log.</p>
+          <span class="wf-step-tag">Step 05</span>
+        </div>
+
+        <div class="wf-step-card">
+          <span class="wf-step-num">06</span>
+          <h4>Security Hub</h4>
+          <p>Notification center and password change with validation rules.</p>
+          <span class="wf-step-tag">Step 06</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         06. KEY MOBILE SCREENS & DESIGN DECISIONS (THE CORE GALLERY)
+         ========================================================================== -->
+    <section class="cs-section" id="screens">
+      <div class="cs-section-header">
+        <span class="cs-section-badge">Interface Showcase</span>
+        <h2 class="cs-section-heading">Key Mobile Interfaces &amp; Design Rationale</h2>
+        <p class="cs-body-p">
+          Every screen below is extracted from the actual project design files. Click any interface to open it in full resolution in the interactive lightbox.
+        </p>
+      </div>
+
+      <div class="gallery-showcase-container">
+
+        <!-- Group 1: Onboarding Carousel -->
+        <div class="screen-group-block">
+          <div class="screen-group-header">
+            <div class="sgh-left">
+              <div class="sgh-tag-row">
+                <span class="group-tag teal">Group 01</span>
+                <span class="group-tag">First Impressions</span>
+                <span class="group-tag">3-Step Flow</span>
+              </div>
+              <h3>Mobile Onboarding &amp; Clinical Primer</h3>
+              <p>
+                Introducing clinicians to core mobile value: hands-free consultation dictation, structured clinical SOAP notes, and direct hospital EHR write-back without opening a laptop.
+              </p>
+            </div>
+          </div>
+
+          <div class="phones-grid-3col">
+            <div class="phone-item">
+              <div class="phone-img-wrap" data-src="pms-app/tr-app-1.webp">
+                <img src="pms-app/tr-app-1.webp" alt="Onboarding Screen 1: Voice Dictation Feature" class="zoomable"
+                  data-src="pms-app/tr-app-1.webp">
+              </div>
+              <div class="phone-caption">
+                <h4>01. Voice Consultation Capture</h4>
+                <p>Explaining how doctors can record conversations directly at the bedside with ambient noise cancellation.</p>
+                <div class="phone-btn-row">
+                  <span class="view-zoom-link" onclick="openLightbox('pms-app/tr-app-1.webp')">Zoom Screen ↗</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="phone-item">
+              <div class="phone-img-wrap" data-src="pms-app/tr-app-2.webp">
+                <img src="pms-app/tr-app-2.webp" alt="Onboarding Screen 2: Structured SOAP Notes" class="zoomable"
+                  data-src="pms-app/tr-app-2.webp">
+              </div>
+              <div class="phone-caption">
+                <h4>02. Structured SOAP Notes</h4>
+                <p>Showing how ambient audio is formatted into Subjective, Objective, Assessment, and Plan fields automatically.</p>
+                <div class="phone-btn-row">
+                  <span class="view-zoom-link" onclick="openLightbox('pms-app/tr-app-2.webp')">Zoom Screen ↗</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="phone-item">
+              <div class="phone-img-wrap" data-src="pms-app/tr-app-3.webp">
+                <img src="pms-app/tr-app-3.webp" alt="Onboarding Screen 3: Hospital EHR Synchronization" class="zoomable"
+                  data-src="pms-app/tr-app-3.webp">
+              </div>
+              <div class="phone-caption">
+                <h4>03. EHR Direct Write-Back</h4>
+                <p>Highlighting seamless synchronization with primary hospital record systems (Epic, EMIS Web, SystmOne).</p>
+                <div class="phone-btn-row">
+                  <span class="view-zoom-link" onclick="openLightbox('pms-app/tr-app-3.webp')">Zoom Screen ↗</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Group 2: The Command Dashboard -->
+        <div class="screen-group-block">
+          <div class="screen-group-header">
+            <div class="sgh-left">
+              <div class="sgh-tag-row">
+                <span class="group-tag teal">Group 02</span>
+                <span class="group-tag">Doctor Home</span>
+                <span class="group-tag">Primary Actions</span>
+              </div>
+              <h3>Clinical Command Dashboard</h3>
+              <p>
+                Designed for single-handed use during clinic rounds. The primary action card places audio dictation in the lower thumb zone, accompanied by daily appointment statistics and upcoming patient cards.
+              </p>
+            </div>
+          </div>
+
+          <div class="phones-grid-2col">
+            <div class="phone-item">
+              <div class="phone-img-wrap" data-src="pms-app/tr-app-Dashbord.webp">
+                <img src="pms-app/tr-app-Dashbord.webp" alt="PMS iTranscript Mobile App Doctor Dashboard" class="zoomable"
+                  data-src="pms-app/tr-app-Dashbord.webp">
+              </div>
+              <div class="phone-caption">
+                <h4>Doctor Command Dashboard</h4>
+                <p>Shows daily appointment counts, audio upload status, quick action buttons, and upcoming patient triage queue cards.</p>
+                <div class="phone-btn-row">
+                  <span class="view-zoom-link" onclick="openLightbox('pms-app/tr-app-Dashbord.webp')">Zoom Screen ↗</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="phone-item">
+              <div class="phone-img-wrap" data-src="pms-app/patient-detail.webp">
+                <img src="pms-app/patient-detail.webp" alt="Patient Detail and Clinical History Screen" class="zoomable"
+                  data-src="pms-app/patient-detail.webp">
+              </div>
+              <div class="phone-caption">
+                <h4>Patient Demographics &amp; Vitals Summary</h4>
+                <p>Patient header with MRN number, appointment slot details, contact links, and historical consultation logs.</p>
+                <div class="phone-btn-row">
+                  <span class="view-zoom-link" onclick="openLightbox('pms-app/patient-detail.webp')">Zoom Screen ↗</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Group 3: Appointment Booking Flow -->
+        <div class="screen-group-block">
+          <div class="screen-group-header">
+            <div class="sgh-left">
+              <div class="sgh-tag-row">
+                <span class="group-tag teal">Group 03</span>
+                <span class="group-tag">Front Desk &amp; Triage</span>
+                <span class="group-tag">Appointment Booking</span>
+              </div>
+              <h3>Appointment Triage &amp; Doctor Selection</h3>
+              <p>
+                Enabling secretaries, nurses, and patients to check doctor availability, review calendar dates, and confirm consultations in three fast steps.
+              </p>
+            </div>
+          </div>
+
+          <div class="phones-grid-3col">
+            <div class="phone-item">
+              <div class="phone-img-wrap" data-src="pms-app/appointment.webp">
+                <img src="pms-app/appointment.webp" alt="Appointment Calendar and Status Tabs" class="zoomable"
+                  data-src="pms-app/appointment.webp">
+              </div>
+              <div class="phone-caption">
+                <h4>Appointment Calendar Strip</h4>
+                <p>Horizontal date picker with filter tabs: Upcoming (02), Past, and Cancelled.</p>
+                <div class="phone-btn-row">
+                  <span class="view-zoom-link" onclick="openLightbox('pms-app/appointment.webp')">Zoom Screen ↗</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="phone-item">
+              <div class="phone-img-wrap" data-src="pms-app/select-a-doctor.webp">
+                <img src="pms-app/select-a-doctor.webp" alt="Select a Doctor Provider Directory" class="zoomable"
+                  data-src="pms-app/select-a-doctor.webp">
+              </div>
+              <div class="phone-caption">
+                <h4>Select A Doctor Directory</h4>
+                <p>Provider cards with doctor avatars, clinical specialty tags, and direct availability selection.</p>
+                <div class="phone-btn-row">
+                  <span class="view-zoom-link" onclick="openLightbox('pms-app/select-a-doctor.webp')">Zoom Screen ↗</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="phone-item">
+              <div class="phone-img-wrap" data-src="pms-app/book-appointment-form.webp">
+                <img src="pms-app/book-appointment-form.webp" alt="Book Appointment Form Screen" class="zoomable"
+                  data-src="pms-app/book-appointment-form.webp">
+              </div>
+              <div class="phone-caption">
+                <h4>Booking Input Form</h4>
+                <p>Clean modal inputs for patient details, contact numbers, symptoms, and slot confirmation.</p>
+                <div class="phone-btn-row">
+                  <span class="view-zoom-link" onclick="openLightbox('pms-app/book-appointment-form.webp')">Zoom Screen ↗</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Group 4: Practice Management & Governance -->
+        <div class="screen-group-block">
+          <div class="screen-group-header">
+            <div class="sgh-left">
+              <div class="sgh-tag-row">
+                <span class="group-tag teal">Group 04</span>
+                <span class="group-tag">Practice Governance</span>
+                <span class="group-tag">Doctor Roster</span>
+              </div>
+              <h3>Clinic Groups &amp; Provider Credentialing</h3>
+              <p>
+                Practice managers can organize providers across multiple clinic locations, register new attending doctors, and enforce healthcare governance from their phones.
+              </p>
+            </div>
+          </div>
+
+          <div class="phones-grid-3col">
+            <div class="phone-item">
+              <div class="phone-img-wrap" data-src="pms-app/clinic-groups.webp">
+                <img src="pms-app/clinic-groups.webp" alt="Clinic Groups Roster Screen" class="zoomable"
+                  data-src="pms-app/clinic-groups.webp">
+              </div>
+              <div class="phone-caption">
+                <h4>Clinic Groups Roster</h4>
+                <p>Managing affiliated hospital departments, satellite clinics, and staff allocations.</p>
+                <div class="phone-btn-row">
+                  <span class="view-zoom-link" onclick="openLightbox('pms-app/clinic-groups.webp')">Zoom Screen ↗</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="phone-item">
+              <div class="phone-img-wrap" data-src="pms-app/add-group.webp">
+                <img src="pms-app/add-group.webp" alt="Add Clinic Group Modal Form" class="zoomable"
+                  data-src="pms-app/add-group.webp">
+              </div>
+              <div class="phone-caption">
+                <h4>Add Clinic Group Modal</h4>
+                <p>Bottom-sheet input form for creating new practice branches and setting group parameters.</p>
+                <div class="phone-btn-row">
+                  <span class="view-zoom-link" onclick="openLightbox('pms-app/add-group.webp')">Zoom Screen ↗</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="phone-item">
+              <div class="phone-img-wrap" data-src="pms-app/add-super-doctor.webp">
+                <img src="pms-app/add-super-doctor.webp" alt="Add Super Doctor Credentialing Form" class="zoomable"
+                  data-src="pms-app/add-super-doctor.webp">
+              </div>
+              <div class="phone-caption">
+                <h4>Doctor Credentialing Form</h4>
+                <p>Registering attending doctors with specialty selection, medical license numbers, and clinic assignments.</p>
+                <div class="phone-btn-row">
+                  <span class="view-zoom-link" onclick="openLightbox('pms-app/add-super-doctor.webp')">Zoom Screen ↗</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Group 5: Notifications & Security -->
+        <div class="screen-group-block">
+          <div class="screen-group-header">
+            <div class="sgh-left">
+              <div class="sgh-tag-row">
+                <span class="group-tag teal">Group 05</span>
+                <span class="group-tag">Notifications</span>
+                <span class="group-tag">Security &amp; Profile</span>
+              </div>
+              <h3>Alerts, Profile &amp; Credential Security</h3>
+              <p>
+                Providing clinical staff with timestamped alert feeds for appointment changes, user profile controls, and secure password updates.
+              </p>
+            </div>
+          </div>
+
+          <div class="phones-grid-3col">
+            <div class="phone-item">
+              <div class="phone-img-wrap" data-src="pms-app/tr-app-notification3.webp">
+                <img src="pms-app/tr-app-notification3.webp" alt="Clinical Notifications Feed Screen" class="zoomable"
+                  data-src="pms-app/tr-app-notification3.webp">
+              </div>
+              <div class="phone-caption">
+                <h4>Notification Center</h4>
+                <p>Timestamped alert cards notifying staff of appointment bookings, doctor reassignments, and transcription progress.</p>
+                <div class="phone-btn-row">
+                  <span class="view-zoom-link" onclick="openLightbox('pms-app/tr-app-notification3.webp')">Zoom Screen ↗</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="phone-item">
+              <div class="phone-img-wrap" data-src="pms-app/tr-app-profile.webp">
+                <img src="pms-app/tr-app-profile.webp" alt="Clinician User Profile and Settings Screen" class="zoomable"
+                  data-src="pms-app/tr-app-profile.webp">
+              </div>
+              <div class="phone-caption">
+                <h4>User Profile &amp; Settings</h4>
+                <p>Doctor credentials, clinic association details, notification preferences, and logout trigger.</p>
+                <div class="phone-btn-row">
+                  <span class="view-zoom-link" onclick="openLightbox('pms-app/tr-app-profile.webp')">Zoom Screen ↗</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="phone-item">
+              <div class="phone-img-wrap" data-src="pms-app/change-password.webp">
+                <img src="pms-app/change-password.webp" alt="Change Password and Security Screen" class="zoomable"
+                  data-src="pms-app/change-password.webp">
+              </div>
+              <div class="phone-caption">
+                <h4>Security &amp; Password Update</h4>
+                <p>Protected credential update form with current password verification, new password field, and validation rules.</p>
+                <div class="phone-btn-row">
+                  <span class="view-zoom-link" onclick="openLightbox('pms-app/change-password.webp')">Zoom Screen ↗</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         07. UI DESIGN SYSTEM & TOKENS
+         ========================================================================== -->
+    <section class="cs-section" id="design-system">
+      <div class="cs-section-header">
+        <span class="cs-section-badge">Design System</span>
+        <h2 class="cs-section-heading">Mobile Design Tokens &amp; Component Anatomy</h2>
+        <p class="cs-body-p">
+          A disciplined, accessible mobile design system engineered for high-stress hospital lighting conditions and single-handed thumb navigation.
+        </p>
+      </div>
+
+      <div class="design-system-container">
+        <!-- 1. Color System -->
+        <div class="ds-sub-section">
+          <h3 class="ds-sub-title">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"></circle>
+              <path d="M12 2a10 10 0 0 1 10 10c0 5.523-4.477 10-10 10a10 10 0 0 1-10-10c0-5.523 4.477-10 10-10z"></path>
+            </svg>
+            Color Token Architecture
+          </h3>
+          <div class="color-swatches-grid">
+            <div class="swatch-card">
+              <div class="swatch-box" style="background: #142033;"></div>
+              <div class="swatch-info">
+                <span class="swatch-name">Primary Navy 900</span>
+                <span class="swatch-hex">#142033</span>
+                <span class="swatch-role">Primary Headings</span>
+              </div>
+            </div>
+            <div class="swatch-card">
+              <div class="swatch-box" style="background: #475569;"></div>
+              <div class="swatch-info">
+                <span class="swatch-name">Slate Secondary 600</span>
+                <span class="swatch-hex">#475569</span>
+                <span class="swatch-role">Body Typography</span>
+              </div>
+            </div>
+            <div class="swatch-card">
+              <div class="swatch-box" style="background: #3ec5aa;"></div>
+              <div class="swatch-info">
+                <span class="swatch-name">Brand Teal 500</span>
+                <span class="swatch-hex">#3EC5AA</span>
+                <span class="swatch-role">Interactive Focus</span>
+              </div>
+            </div>
+            <div class="swatch-card">
+              <div class="swatch-box" style="background: #147d70;"></div>
+              <div class="swatch-info">
+                <span class="swatch-name">Deep Teal 700</span>
+                <span class="swatch-hex">#147D70</span>
+                <span class="swatch-role">Active Buttons</span>
+              </div>
+            </div>
+            <div class="swatch-card">
+              <div class="swatch-box" style="background: #eaf9f5; border: 1px solid #ccfbf1;"></div>
+              <div class="swatch-info">
+                <span class="swatch-name">Soft Teal 50</span>
+                <span class="swatch-hex">#EAF9F5</span>
+                <span class="swatch-role">Badge Background</span>
+              </div>
+            </div>
+            <div class="swatch-card">
+              <div class="swatch-box" style="background: #f7f9fc; border: 1px solid #e2e8f0;"></div>
+              <div class="swatch-info">
+                <span class="swatch-name">Neutral Canvas 50</span>
+                <span class="swatch-hex">#F7F9FC</span>
+                <span class="swatch-role">App Background</span>
+              </div>
+            </div>
+            <div class="swatch-card">
+              <div class="swatch-box" style="background: #059669;"></div>
+              <div class="swatch-info">
+                <span class="swatch-name">Compliance Green</span>
+                <span class="swatch-hex">#059669</span>
+                <span class="swatch-role">Verified Status</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. Typography Stack -->
+        <div class="ds-sub-section">
+          <h3 class="ds-sub-title">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="4 7 4 4 20 4 20 7"></polyline>
+              <line x1="9" y1="20" x2="15" y2="20"></line>
+              <line x1="12" y1="4" x2="12" y2="20"></line>
+            </svg>
+            Typography Hierarchy
+          </h3>
+          <div class="type-spec-grid">
+            <div class="type-card">
+              <span class="type-meta">DISPLAY &amp; SECTION HEADINGS</span>
+              <div class="type-sample-display">Bricolage Grotesque</div>
+              <p class="cs-body-p" style="font-size: 0.88rem;">
+                Distinctive, contemporary grotesque typeface used for presentation headings, high-impact titles, and section dividers.
+              </p>
+              <span class="type-meta">Weights: 600, 700, 800 | Tracking: -0.025em</span>
+            </div>
+
+            <div class="type-card">
+              <span class="type-meta">MOBILE INTERFACE &amp; BODY COPY</span>
+              <div class="type-sample-body" style="font-weight: 700; font-size: 1.25rem;">Inter &amp; Plus Jakarta Sans</div>
+              <p class="cs-body-p" style="font-size: 0.88rem;">
+                Clean geometric sans-serif typefaces engineered for digital screens, offering tall x-heights, distinct numeric glyphs, and high legibility at 13–16px sizes.
+              </p>
+              <span class="type-meta">Weights: 400, 500, 600, 700 | Line Height: 1.6</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         08. CONNECTION TO THE PMS WEB PLATFORM
+         ========================================================================== -->
+    <section class="cs-section" id="ecosystem">
+      <div class="cs-section-header">
+        <span class="cs-section-badge">Connected Ecosystem</span>
+        <h2 class="cs-section-heading">Connecting Mobile rounds to the PMS Web Platform</h2>
+        <p class="cs-body-p">
+          The mobile application does not exist in isolation. It forms a unified healthcare ecosystem with the PMS iTranscript360 desktop command center.
+        </p>
+      </div>
+
+      <div class="ecosystem-panel">
+        <div class="ecosystem-info">
+          <h3>Desktop Power, Bedside Mobility</h3>
+          <p>
+            While clinic administrators, billing clerks, and transcription QA editors work primarily on large multi-monitor workstations, physicians move fluidly between desk visits and hospital rounds. Encounters recorded on mobile sync directly into the web command center for formal SOAP finalization and hospital EHR export.
+          </p>
+          <div class="ecosystem-actions">
+            <a href="case-study-pms.html" class="btn-cta" style="font-size: 0.9rem;">
+              View PMS Web Platform Case Study →
+            </a>
+            <a href="case-study.html" class="btn-back" style="font-size: 0.9rem;">
+              Corporate Website Case Study
+            </a>
+          </div>
+        </div>
+
+        <div class="ecosystem-preview-card">
+          <img src="pms-white.webp" alt="PMS iTranscript360 Desktop Platform Preview">
+          <div class="ep-meta">
+            <span>PMS Web Platform (Desktop Command Center)</span>
+            <span style="color: var(--teal-700); font-weight: 700;">case-study-pms.html ↗</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         09. VERIFIED OUTCOMES, LIMITATIONS & REFLECTION
+         ========================================================================== -->
+    <section class="cs-section" id="reflection">
+      <div class="cs-section-header">
+        <span class="cs-section-badge">Results &amp; Reflection</span>
+        <h2 class="cs-section-heading">Verified Deliverables &amp; Honest Takeaways</h2>
+        <p class="cs-body-p">
+          Prioritizing verified design outcomes and realistic product learnings over fabricated statistics.
+        </p>
+      </div>
+
+      <div class="deliverables-summary-box">
+        <h3>Verified Deliverables Completed by Me</h3>
+        <div class="deliverables-grid">
+          <div class="del-item">
+            <span class="del-num">15+</span>
+            <span class="del-title">Mobile Screen Flows</span>
+            <p class="del-desc">Onboarding, Dashboard, Appointment Strip, Booking, Patient Detail, Groups, and Settings.</p>
+          </div>
+          <div class="del-item">
+            <span class="del-num">01</span>
+            <span class="del-title">Figma Design System</span>
+            <p class="del-desc">Structured Auto Layout components, tokens, inputs, and variants for iOS/Android canvases.</p>
+          </div>
+          <div class="del-item">
+            <span class="del-num">06</span>
+            <span class="del-title">Role Workflows</span>
+            <p class="del-desc">Tailored journeys for Doctors, Clinic Managers, Front Desk, Patients, and QA Editors.</p>
+          </div>
+          <div class="del-item">
+            <span class="del-num">100%</span>
+            <span class="del-title">Responsive Showcase</span>
+            <p class="del-desc">Handcrafted HTML5/CSS presentation with interactive full-screen lightbox modal.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="reflection-grid">
+        <div class="reflection-card">
+          <h3>What I Learned Designing for Mobile Healthcare</h3>
+          <p>
+            Designing PMS iTranscript360 Mobile App reinforced that handheld clinical software must eliminate friction at all costs. Physicians on ward rounds have zero tolerance for multi-nested menus or tiny tap targets.
+          </p>
+          <ul class="reflection-points">
+            <li>
+              <span class="bullet">▪</span>
+              <span><strong>Thumb Zone Prioritization:</strong> Primary clinical actions like audio recording must sit in the natural thumb reach zone to allow single-hand operation.</span>
+            </li>
+            <li>
+              <span class="bullet">▪</span>
+              <span><strong>Scannable Appointment Cards:</strong> Replacing wide desktop tables with compact status cards dramatically improves readability in bright hospital corridors.</span>
+            </li>
+            <li>
+              <span class="bullet">▪</span>
+              <span><strong>Role Scoping:</strong> Aligning features strictly to user responsibilities keeps the interface clean and prevents accidental setting modifications.</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="reflection-card">
+          <h3>Limitations &amp; Future Design Iterations</h3>
+          <p>
+            A strong design case study transparently acknowledges project boundaries rather than manufacturing fictional results:
+          </p>
+          <ul class="reflection-points">
+            <li>
+              <span class="bullet">▪</span>
+              <span><strong>Prototype Scope:</strong> This project represents an end-to-end mobile design concept and interactive prototype. Longitudinal clinical time savings and formal System Usability Scale (SUS) benchmarks were not conducted in this phase and are intentionally omitted.</span>
+            </li>
+            <li>
+              <span class="bullet">▪</span>
+              <span><strong>Haptic Audio Feedback:</strong> Future iterations could explore designing distinct haptic vibration cues for microphone start/pause states so doctors can record without looking at the screen.</span>
+            </li>
+            <li>
+              <span class="bullet">▪</span>
+              <span><strong>Offline Caching Visual States:</strong> Developing visual indicator states showing local audio storage status when moving through hospital Wi-Fi dead zones.</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         NEXT PROJECT BANNER
+         ========================================================================== -->
+    <section class="cs-next-banner">
+      <div class="next-card">
+        <div class="next-info">
+          <span class="next-script">Next in Selected Work</span>
+          <h3 class="next-title">Explore PMS iTranscript360 Web Platform</h3>
+          <p class="next-desc">
+            Discover the companion enterprise desktop web platform and clinical design system that works alongside this mobile app.
+          </p>
+        </div>
+        <div class="next-actions">
+          <a href="case-study-pms.html" class="btn-cta">
+            View PMS Web SaaS Case Study →
+          </a>
+          <a href="case-study-staysaver.html" class="btn-back">
+            StaySaver Hospitality SaaS (In Dev)
+          </a>
+          <a href="case-study.html" class="btn-back">
+            Corporate Website Case Study
+          </a>
+          <a href="case-study-uk.html" class="btn-back">
+            iTranscript UK NHS Edition
+          </a>
+          <a href="index.html#projects" class="btn-back">
+            ← All Selected Projects
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- SITE FOOTER -->
+  <footer class="site-footer">
+    <div class="footer-copy">
+      © 2026 Bhatu Prakash. All rights reserved. Ahmedabad, India.
+    </div>
+
+    <ul class="footer-socials">
+      <li><a href="index.html#projects" class="social-link">Selected Projects</a></li>
+      <li><a href="case-study-staysaver.html" class="social-link">StaySaver (In Dev)</a></li>
+      <li><a href="case-study-mobile.html" class="social-link" style="color: var(--teal-700);">PMS Mobile Companion App</a></li>
+      <li><a href="case-study-pms.html" class="social-link">PMS Web Platform</a></li>
+      <li><a href="case-study.html" class="social-link">Corporate Web Architecture</a></li>
+      <li><a href="case-study-uk.html" class="social-link">UK NHS Edition</a></li>
+    </ul>
+
+    <button id="back-to-top" class="btn-back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'});">
+      <span>Back to Top</span>
+      <span>↑</span>
+    </button>
+  </footer>
+
+  <!-- IMAGE LIGHTBOX MODAL -->
+  <div class="lightbox-modal" id="lightbox">
+    <button class="lightbox-close" id="lightbox-close" aria-label="Close enlarged view">&times;</button>
+    <div class="lightbox-content">
+      <img src="" alt="Enlarged Case Study Screen" class="lightbox-img" id="lightbox-img">
+    </div>
+  </div>
+
+  <!-- INTERACTION SCRIPTS -->
+  <script>
+    (function () {
+      'use strict';
+
+      // 1. Reading Progress Bar
+      const progressBar = document.getElementById('progressBar');
+      window.addEventListener('scroll', () => {
+        const scrollTop = window.scrollY || document.documentElement.scrollTop;
+        const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        if (progressBar && scrollHeight > 0) {
+          const progress = (scrollTop / scrollHeight) * 100;
+          progressBar.style.width = progress + '%';
+        }
+      }, { passive: true });
+
+      // 2. Image Lightbox Modal
+      const lightbox = document.getElementById('lightbox');
+      const lightboxImg = document.getElementById('lightbox-img');
+      const lightboxClose = document.getElementById('lightbox-close');
+
+      window.openLightbox = function (src) {
+        if (!src || !lightbox || !lightboxImg) return;
+        lightboxImg.src = src;
+        lightbox.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      };
+
+      function closeLightbox() {
+        if (!lightbox || !lightboxImg) return;
+        lightbox.classList.remove('active');
+        lightboxImg.src = '';
+        document.body.style.overflow = '';
+      }
+
+      document.querySelectorAll('.zoomable').forEach(img => {
+        img.addEventListener('click', () => {
+          const src = img.getAttribute('data-src') || img.getAttribute('src');
+          window.openLightbox(src);
+        });
+      });
+
+      document.querySelectorAll('.phone-img-wrap').forEach(wrap => {
+        wrap.addEventListener('click', () => {
+          const src = wrap.getAttribute('data-src');
+          window.openLightbox(src);
+        });
+      });
+
+      if (lightboxClose) {
+        lightboxClose.addEventListener('click', closeLightbox);
+      }
+
+      if (lightbox) {
+        lightbox.addEventListener('click', (e) => {
+          if (e.target === lightbox) {
+            closeLightbox();
+          }
+        });
+      }
+
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && lightbox && lightbox.classList.contains('active')) {
+          closeLightbox();
+        }
+      });
+
+      // 3. ScrollSpy for Floating Chapter TOC Dock
+      const tocLinks = document.querySelectorAll('.cs-toc-item a');
+      const sections = document.querySelectorAll('header.cs-hero, section.cs-section');
+
+      window.addEventListener('scroll', () => {
+        let currentSection = '';
+        const scrollPosition = window.scrollY + 180;
+
+        sections.forEach(section => {
+          const sectionTop = section.offsetTop;
+          const sectionHeight = section.offsetHeight;
+          if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+            currentSection = section.getAttribute('id');
+          }
+        });
+
+        if (currentSection) {
+          tocLinks.forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('href') === '#' + currentSection) {
+              link.classList.add('active');
+            }
+          });
+        }
+      }, { passive: true });
+    })();
+  </script>
+  <script src="mobile-nav.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,16 @@
+# OS & IDE files
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# Large design source files (kept locally)
+*.psd
+*.ai
+
+# Heavy raw video recordings (web-optimized .mp4 versions used instead)
+*.mov
+
+# Temporary / Scratch
+scratch/
+*.log

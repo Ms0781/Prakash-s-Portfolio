@@ -1,0 +1,1187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Bhatu Prakash — Hire UI/UX, Motion & Video Specialist</title>
+  <meta name="description" content="Get in touch with Bhatu Prakash for UI/UX Design, 3D Logo Animation, Commercial Video Editing, and Custom Web Projects. Available for freelance & remote contracts.">
+  
+  <!-- Favicon & Fonts - Matching Homepage -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800;12..96,900&family=Caveat:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="responsive.css">
+
+  <style>
+    :root {
+      --font-heading: 'Bricolage Grotesque', -apple-system, sans-serif;
+      --font-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-script: 'Caveat', cursive;
+      --color-bg: #08090b;
+      --color-surface: #111317;
+      --color-surface-hover: #16181f;
+      --color-green: #6abf28;
+      --color-green-light: #84db3a;
+      --color-border: rgba(255, 255, 255, 0.09);
+      --color-border-hover: rgba(255, 255, 255, 0.22);
+      --color-text-main: #ffffff;
+      --color-text-muted: rgba(255, 255, 255, 0.65);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      background-color: var(--color-bg);
+      color: var(--color-text-main);
+      font-family: var(--font-body);
+      min-height: 100vh;
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+    }
+
+    h1, h2, h3, h4, h5, h6,
+    .logo-text,
+    .btn-cta,
+    .btn-back,
+    .contact-heading-title,
+    .contact-card-title,
+    .service-chip-title,
+    .faq-question {
+      font-family: var(--font-heading);
+    }
+
+    /* =========================================================
+       TOP NAVBAR
+       ========================================================= */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 clamp(1.5rem, 4vw, 4rem);
+      background: rgba(8, 9, 11, 0.85);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--color-border);
+      z-index: 1000;
+      transition: transform 0.3s ease;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: #ffffff;
+    }
+
+    .dp-wrapper {
+      position: relative;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 2px solid rgba(255, 255, 255, 0.2);
+      background: #111;
+    }
+
+    .dp-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .dp-status-dot {
+      position: absolute;
+      bottom: 1px;
+      right: 1px;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #6abf28;
+      border: 2px solid #08090b;
+      box-shadow: 0 0 6px #6abf28;
+    }
+
+    .logo-text {
+      font-family: var(--font-heading);
+      font-weight: 800;
+      font-size: 1.15rem;
+      letter-spacing: -0.02em;
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 1.6rem;
+      list-style: none;
+    }
+
+    .nav-link {
+      color: rgba(255, 255, 255, 0.7);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 600;
+      transition: color 0.2s ease;
+    }
+
+    .nav-link:hover,
+    .nav-link.active {
+      color: #ffffff;
+    }
+
+    .nav-link.active {
+      color: var(--color-green);
+    }
+
+    .btn-nav-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #ffffff;
+      padding: 8px 18px;
+      border-radius: 9999px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-decoration: none;
+      transition: all 0.25s ease;
+    }
+
+    .btn-nav-back:hover {
+      background: #ffffff;
+      color: #08090b;
+      border-color: #ffffff;
+    }
+
+    @media (max-width: 860px) {
+      .nav-links {
+        display: none;
+      }
+    }
+
+    /* =========================================================
+       HERO & PAGE HEADER
+       ========================================================= */
+    .contact-page-wrapper {
+      padding-top: 110px;
+      width: 100%;
+      min-height: 100vh;
+      background: radial-gradient(ellipse at 50% 0%, rgba(106, 191, 40, 0.15) 0%, rgba(8, 9, 11, 0) 60%), #08090b;
+      position: relative;
+    }
+
+    .contact-main-container {
+      width: 100%;
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: clamp(2rem, 4vw, 4rem) clamp(1.5rem, 3.5vw, 3.5rem);
+    }
+
+    .contact-header {
+      margin-bottom: clamp(3rem, 5vw, 4.5rem);
+      max-width: 900px;
+    }
+
+    .contact-status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      background: rgba(106, 191, 40, 0.14);
+      border: 1px solid rgba(106, 191, 40, 0.35);
+      padding: 6px 15px;
+      border-radius: 9999px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--color-green-light);
+      margin-bottom: 1.4rem;
+      letter-spacing: 0.02em;
+    }
+
+    .status-dot-pulse {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--color-green);
+      box-shadow: 0 0 10px var(--color-green);
+      animation: vsDotPulse 1.8s infinite;
+    }
+
+    @keyframes vsDotPulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.85); }
+    }
+
+    .contact-script-tag {
+      font-family: var(--font-script);
+      font-size: clamp(2rem, 3vw, 2.8rem);
+      font-weight: 700;
+      color: var(--color-green);
+      transform: rotate(-1.5deg);
+      display: block;
+      margin-bottom: -0.2rem;
+    }
+
+    .contact-heading-title {
+      font-family: var(--font-heading);
+      font-size: clamp(2.8rem, 5.5vw, 5rem);
+      font-weight: 900;
+      letter-spacing: -0.04em;
+      line-height: 1.05;
+      color: #ffffff;
+      margin: 0 0 1.2rem 0;
+    }
+
+    .contact-lead-desc {
+      color: var(--color-text-muted);
+      font-size: clamp(1.05rem, 1.25vw, 1.28rem);
+      line-height: 1.65;
+      max-width: 780px;
+    }
+
+    /* =========================================================
+       2-COLUMN LAYOUT (LEFT DETAILS + RIGHT INQUIRY FORM)
+       ========================================================= */
+    .contact-grid-layout {
+      display: grid;
+      grid-template-columns: 1fr 1.35fr;
+      gap: clamp(30px, 4vw, 55px);
+      width: 100%;
+      margin-bottom: 5rem;
+    }
+
+    @media (max-width: 980px) {
+      .contact-grid-layout {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* LEFT COLUMN: CARDS & INFO */
+    .contact-info-col {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .info-card {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: 20px;
+      padding: 26px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .info-card:hover {
+      border-color: var(--color-border-hover);
+      transform: translateY(-3px);
+      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.6);
+    }
+
+    .info-card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .info-card-label {
+      font-size: 0.76rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: rgba(255, 255, 255, 0.45);
+    }
+
+    .info-card-badge {
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 9999px;
+      background: rgba(106, 191, 40, 0.12);
+      color: var(--color-green);
+      border: 1px solid rgba(106, 191, 40, 0.25);
+    }
+
+    .info-card-main {
+      font-family: var(--font-heading);
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: #ffffff;
+      letter-spacing: -0.02em;
+      word-break: break-all;
+    }
+
+    .btn-copy-email {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #ffffff;
+      padding: 10px 20px;
+      border-radius: 9999px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: all 0.25s ease;
+      width: fit-content;
+    }
+
+    .btn-copy-email:hover {
+      background: var(--color-green);
+      color: #08090b;
+      border-color: var(--color-green);
+    }
+
+    .btn-whatsapp-large {
+      background: linear-gradient(135deg, #25d366, #128c7e);
+      color: #ffffff;
+      border: none;
+      padding: 16px 26px;
+      border-radius: 16px;
+      font-size: 1rem;
+      font-weight: 800;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      box-shadow: 0 10px 30px rgba(37, 211, 102, 0.35);
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .btn-whatsapp-large:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 15px 35px rgba(37, 211, 102, 0.5);
+    }
+
+    .live-time-box {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.88rem;
+      color: rgba(255, 255, 255, 0.85);
+      font-weight: 600;
+    }
+
+    .live-clock-pill {
+      font-family: monospace;
+      font-weight: 700;
+      color: var(--color-green);
+      background: rgba(106, 191, 40, 0.12);
+      padding: 2px 8px;
+      border-radius: 6px;
+    }
+
+    .social-links-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+
+    .social-btn {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.09);
+      padding: 12px 16px;
+      border-radius: 12px;
+      color: rgba(255, 255, 255, 0.85);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: all 0.2s ease;
+    }
+
+    .social-btn:hover {
+      background: rgba(255, 255, 255, 0.12);
+      border-color: rgba(255, 255, 255, 0.22);
+      color: #ffffff;
+      transform: translateY(-2px);
+    }
+
+    /* RIGHT COLUMN: INTERACTIVE FORM */
+    .form-wrapper-box {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: 28px;
+      padding: clamp(28px, 3.8vw, 48px);
+      box-shadow: 0 25px 70px rgba(0, 0, 0, 0.7);
+    }
+
+    .inquiry-form {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .form-row-2col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    @media (max-width: 600px) {
+      .form-row-2col {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .form-field {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .field-label {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: rgba(255, 255, 255, 0.8);
+      letter-spacing: 0.01em;
+    }
+
+    .field-label span {
+      color: var(--color-green);
+    }
+
+    .field-input,
+    .field-textarea {
+      background: #161820;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: #ffffff;
+      padding: 14px 18px;
+      border-radius: 14px;
+      font-family: var(--font-body);
+      font-size: 0.98rem;
+      outline: none;
+      transition: all 0.25s ease;
+    }
+
+    .field-input:focus,
+    .field-textarea:focus {
+      border-color: var(--color-green);
+      background: #1a1c26;
+      box-shadow: 0 0 0 3px rgba(106, 191, 40, 0.2);
+    }
+
+    .field-textarea {
+      resize: vertical;
+      min-height: 120px;
+      line-height: 1.6;
+    }
+
+    .pill-selector-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .pill-toggle-btn {
+      background: #161820;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: rgba(255, 255, 255, 0.8);
+      padding: 9px 16px;
+      border-radius: 9999px;
+      font-size: 0.84rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      user-select: none;
+    }
+
+    .pill-toggle-btn:hover {
+      border-color: rgba(255, 255, 255, 0.35);
+      color: #ffffff;
+    }
+
+    .pill-toggle-btn.active {
+      background: #ffffff;
+      color: #08090b;
+      border-color: #ffffff;
+      font-weight: 800;
+      box-shadow: 0 4px 15px rgba(255, 255, 255, 0.2);
+    }
+
+    .btn-submit-main {
+      background: var(--color-green);
+      color: #08090b;
+      border: none;
+      padding: 18px 32px;
+      border-radius: 16px;
+      font-family: var(--font-heading);
+      font-size: 1.1rem;
+      font-weight: 900;
+      letter-spacing: -0.01em;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      box-shadow: 0 12px 35px rgba(106, 191, 40, 0.4);
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      margin-top: 8px;
+    }
+
+    .btn-submit-main:hover {
+      background: var(--color-green-light);
+      transform: translateY(-2px);
+      box-shadow: 0 18px 45px rgba(106, 191, 40, 0.55);
+    }
+
+    .form-success-banner {
+      display: none;
+      background: rgba(106, 191, 40, 0.16);
+      border: 1px solid rgba(106, 191, 40, 0.45);
+      color: var(--color-green-light);
+      padding: 16px 20px;
+      border-radius: 14px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      text-align: center;
+      line-height: 1.5;
+    }
+
+    .form-success-banner.is-active {
+      display: block;
+      animation: fadeIn 0.4s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* =========================================================
+       TRUST HIGHLIGHTS (3 CARDS)
+       ========================================================= */
+    .trust-highlights-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      width: 100%;
+      margin-bottom: 5rem;
+    }
+
+    @media (max-width: 860px) {
+      .trust-highlights-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .trust-highlight-card {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: 20px;
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .trust-icon-pill {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: rgba(106, 191, 40, 0.12);
+      border: 1px solid rgba(106, 191, 40, 0.3);
+      color: var(--color-green);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.25rem;
+    }
+
+    .trust-card-title {
+      font-family: var(--font-heading);
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: #ffffff;
+      letter-spacing: -0.02em;
+    }
+
+    .trust-card-text {
+      color: var(--color-text-muted);
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    /* =========================================================
+       MINI CONTACT FAQ ACCORDION
+       ========================================================= */
+    .contact-faq-wrap {
+      max-width: 900px;
+      margin: 0 auto 5rem;
+      width: 100%;
+    }
+
+    .contact-faq-header {
+      text-align: center;
+      margin-bottom: 2.5rem;
+    }
+
+    .faq-accordion-item {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: 16px;
+      margin-bottom: 12px;
+      overflow: hidden;
+      transition: all 0.25s ease;
+    }
+
+    .faq-accordion-item.is-open {
+      border-color: rgba(255, 255, 255, 0.22);
+      background: #141720;
+    }
+
+    .faq-q-btn {
+      width: 100%;
+      background: transparent;
+      border: none;
+      padding: 20px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      cursor: pointer;
+      color: #ffffff;
+      font-family: var(--font-heading);
+      font-size: 1.05rem;
+      font-weight: 700;
+      text-align: left;
+    }
+
+    .faq-rotator {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: transform 0.3s ease, background 0.2s ease;
+    }
+
+    .faq-accordion-item.is-open .faq-rotator {
+      transform: rotate(45deg);
+      background: var(--color-green);
+      color: #08090b;
+    }
+
+    .faq-a-body {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.35s cubic-bezier(0.16, 1, 0.3, 1), padding 0.25s ease;
+      padding: 0 24px;
+      color: var(--color-text-muted);
+      font-size: 0.95rem;
+      line-height: 1.65;
+    }
+
+    .faq-accordion-item.is-open .faq-a-body {
+      max-height: 250px;
+      padding: 0 24px 20px 24px;
+    }
+
+    /* =========================================================
+       FOOTER
+       ========================================================= */
+    .site-footer {
+      background: #08090b;
+      border-top: 1px solid var(--color-border);
+      padding: 40px clamp(1.5rem, 4vw, 4rem);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .footer-copy {
+      color: rgba(255, 255, 255, 0.5);
+      font-size: 0.88rem;
+    }
+
+    .footer-links {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      list-style: none;
+    }
+
+    .footer-link {
+      color: rgba(255, 255, 255, 0.65);
+      text-decoration: none;
+      font-size: 0.88rem;
+      font-weight: 600;
+      transition: color 0.2s ease;
+    }
+
+    .footer-link:hover {
+      color: #ffffff;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- TOP NAVBAR -->
+  <header>
+    <nav class="navbar" aria-label="Main Navigation">
+      <a href="index.html" class="nav-logo">
+        <div class="dp-wrapper">
+          <img src="prakash-portfolio_00239.webp" alt="Bhatu Prakash" class="dp-img">
+          <span class="dp-status-dot"></span>
+        </div>
+        <span class="logo-text">Bhatu Prakash</span>
+      </a>
+
+      <div class="nav-right">
+        <ul class="nav-links">
+          <li><a href="index.html#home" class="nav-link">Home</a></li>
+          <li><a href="index.html#contents" class="nav-link">Services</a></li>
+          <li><a href="index.html#projects" class="nav-link">Projects</a></li>
+          <li><a href="index.html#video-showcase" class="nav-link">Motion &amp; Reels</a></li>
+          <li><a href="index.html#testimonials" class="nav-link">Reviews</a></li>
+          <li><a href="contact.html" class="nav-link active">Contact</a></li>
+        </ul>
+        <a href="index.html" class="btn-nav-back">
+          <span>← Back to Portfolio</span>
+        </a>
+        <button id="mobileNavToggle" class="mobile-nav-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobileNavDrawer">
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <!-- MOBILE NAV DRAWER -->
+  <div id="mobileNavDrawer" class="mobile-nav-drawer" aria-hidden="true">
+    <div class="mobile-nav-backdrop"></div>
+    <div class="mobile-nav-panel">
+      <div class="mobile-nav-header">
+        <div class="mobile-nav-brand">
+          <img src="prakash-portfolio_00239.webp" alt="Bhatu Prakash" class="mobile-dp-img" width="44" height="44">
+          <div class="mobile-brand-meta">
+            <span class="mobile-brand-name">Bhatu Prakash</span>
+            <span class="mobile-brand-status"><span class="dot"></span> Available for work</span>
+          </div>
+        </div>
+        <button id="mobileNavClose" class="mobile-nav-close" type="button" aria-label="Close navigation">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
+      </div>
+      <ul class="mobile-nav-list">
+        <li><a href="index.html#home" class="mobile-nav-item"><span class="mn-num">01</span><span class="mn-text">Home</span><span class="mn-arrow">↗</span></a></li>
+        <li><a href="index.html#contents" class="mobile-nav-item"><span class="mn-num">02</span><span class="mn-text">Services</span><span class="mn-arrow">↗</span></a></li>
+        <li><a href="index.html#projects" class="mobile-nav-item"><span class="mn-num">03</span><span class="mn-text">Featured Projects</span><span class="mn-arrow">↗</span></a></li>
+        <li><a href="index.html#logos-banner" class="mobile-nav-item"><span class="mn-num">04</span><span class="mn-text">Brand Logos</span><span class="mn-arrow">↗</span></a></li>
+        <li><a href="index.html#video-showcase" class="mobile-nav-item"><span class="mn-num">05</span><span class="mn-text">Motion &amp; Reels</span><span class="mn-arrow">↗</span></a></li>
+        <li><a href="index.html#testimonials" class="mobile-nav-item"><span class="mn-num">06</span><span class="mn-text">Client Reviews</span><span class="mn-arrow">↗</span></a></li>
+        <li><a href="contact.html" class="mobile-nav-item highlight"><span class="mn-num">07</span><span class="mn-text">Contact / Hire</span><span class="mn-arrow">↗</span></a></li>
+      </ul>
+      <div class="mobile-nav-footer">
+        <a href="index.html" class="mobile-nav-cta">
+          <span>← Back to Portfolio</span>
+        </a>
+        <div class="mobile-nav-socials">
+          <span>Ahmedabad, India • Remote Worldwide</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MAIN CONTACT PAGE CONTENT -->
+  <main class="contact-page-wrapper">
+    <div class="contact-main-container">
+      
+      <!-- HERO HEADER -->
+      <div class="contact-header">
+        <div class="contact-status-pill">
+          <span class="status-dot-pulse"></span>
+          <span>Available for New Projects • Q4 / 2026 (Immediate Onboarding)</span>
+        </div>
+        <span class="contact-script-tag">Get in Touch</span>
+        <h1 class="contact-heading-title">Let&rsquo;s Build Something Meaningful Together.</h1>
+        <p class="contact-lead-desc">
+          Have an idea for a high-converting web product, 3D logo animation ident, viral video reel campaign, or full-scale design system? Drop a line and let&rsquo;s craft something unforgettable.
+        </p>
+      </div>
+
+      <!-- 2-COLUMN MAIN CONTACT SECTION -->
+      <div class="contact-grid-layout">
+        
+        <!-- LEFT COLUMN: DIRECT CHANNELS & WORKING DETAILS -->
+        <aside class="contact-info-col">
+          
+          <!-- Email Box -->
+          <div class="info-card">
+            <div class="info-card-header">
+              <span class="info-card-label">Direct Email</span>
+              <span class="info-card-badge">Instant Copy</span>
+            </div>
+            <div class="info-card-main" id="contact-email-addr">prakashbhatu.design@gmail.com</div>
+            <button type="button" id="btn-copy-email-main" class="btn-copy-email" aria-label="Copy email address">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+              <span id="copy-email-text">Copy Email Address</span>
+            </button>
+          </div>
+
+          <!-- WhatsApp Connect Box -->
+          <div class="info-card">
+            <div class="info-card-header">
+              <span class="info-card-label">Fastest Response</span>
+              <span class="info-card-badge" style="background: rgba(37, 211, 102, 0.15); color: #25d366; border-color: rgba(37, 211, 102, 0.3);">⚡ &lt; 1 Hour</span>
+            </div>
+            <div class="info-card-main" style="font-size: 1.15rem;">Prefer instant chatting? Message directly on WhatsApp:</div>
+            <a href="https://wa.me/919999999999?text=Hi%20Prakash,%20I%20saw%20your%20portfolio%20and%20would%20like%20to%20hire%20you%20for%20a%20project!" target="_blank" rel="noopener noreferrer" class="btn-whatsapp-large">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.007c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.275.072.376-.044c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.086s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.099.824z"/></svg>
+              <span>Chat on WhatsApp ↗</span>
+            </a>
+          </div>
+
+          <!-- Location & Working Hours Box with Live Clock -->
+          <div class="info-card">
+            <div class="info-card-header">
+              <span class="info-card-label">Location &amp; Working Time</span>
+              <span class="info-card-badge">Remote Worldwide</span>
+            </div>
+            <div style="font-size: 1.05rem; font-weight: 700;">Ahmedabad, Gujarat, India</div>
+            <div class="live-time-box">
+              <span>Local Time:</span>
+              <span class="live-clock-pill" id="live-ist-clock">Loading...</span>
+              <span id="live-work-status" style="font-size: 0.8rem; color: #6abf28;">• Active</span>
+            </div>
+            <p style="font-size: 0.84rem; color: var(--color-text-muted); line-height: 1.5; margin: 0;">
+              Overlapping effortlessly with clients in the US (EST/PST), UK (GMT), Europe (CET), and Middle East (GST).
+            </p>
+          </div>
+
+          <!-- Social Profiles -->
+          <div class="social-links-grid">
+            <a href="#" class="social-btn"><span>LinkedIn</span> <span>↗</span></a>
+            <a href="#" class="social-btn"><span>Twitter / X</span> <span>↗</span></a>
+            <a href="#" class="social-btn"><span>Dribbble</span> <span>↗</span></a>
+            <a href="#" class="social-btn"><span>GitHub</span> <span>↗</span></a>
+          </div>
+        </aside>
+
+        <!-- RIGHT COLUMN: INTERACTIVE DETAILED PROJECT INQUIRY FORM -->
+        <section class="form-wrapper-box" aria-labelledby="form-heading">
+          <form id="dedicated-inquiry-form" class="inquiry-form">
+            <div class="form-row-2col">
+              <div class="form-field">
+                <label for="form-name" class="field-label">Your Name <span>*</span></label>
+                <input type="text" id="form-name" class="field-input" placeholder="e.g. Alex Vance" required>
+              </div>
+              <div class="form-field">
+                <label for="form-company" class="field-label">Company / Brand Name</label>
+                <input type="text" id="form-company" class="field-input" placeholder="e.g. CyberScale Studio">
+              </div>
+            </div>
+
+            <div class="form-row-2col">
+              <div class="form-field">
+                <label for="form-email" class="field-label">Email Address <span>*</span></label>
+                <input type="email" id="form-email" class="field-input" placeholder="e.g. alex@company.com" required>
+              </div>
+              <div class="form-field">
+                <label for="form-phone" class="field-label">Phone / WhatsApp (Optional)</label>
+                <input type="tel" id="form-phone" class="field-input" placeholder="+1 (555) 000-0000">
+              </div>
+            </div>
+
+            <!-- Service Selection Multi-Pills -->
+            <div class="form-field">
+              <label class="field-label">What service(s) are you looking for? (Select all that apply) <span>*</span></label>
+              <div class="pill-selector-group" id="services-group">
+                <button type="button" class="pill-toggle-btn active" data-val="UI/UX Design">UI/UX Design</button>
+                <button type="button" class="pill-toggle-btn active" data-val="3D Logo Animation">3D Logo Animation</button>
+                <button type="button" class="pill-toggle-btn" data-val="Commercial Video Editing">Commercial Video</button>
+                <button type="button" class="pill-toggle-btn" data-val="Viral 9:16 Reels">Viral 9:16 Reels</button>
+                <button type="button" class="pill-toggle-btn" data-val="Shopify & Liquid">Shopify Store</button>
+                <button type="button" class="pill-toggle-btn" data-val="Graphic Design">Graphic &amp; Social</button>
+              </div>
+            </div>
+
+            <!-- Budget Selection -->
+            <div class="form-field">
+              <label class="field-label">Project Budget (USD)</label>
+              <div class="pill-selector-group" id="budget-group">
+                <button type="button" class="pill-toggle-btn" data-val="< $500">&lt; $500</button>
+                <button type="button" class="pill-toggle-btn active" data-val="$500 - $1.5K">$500 – $1.5K</button>
+                <button type="button" class="pill-toggle-btn" data-val="$1.5K - $3K">$1.5K – $3K</button>
+                <button type="button" class="pill-toggle-btn" data-val="$3K+">$3K+</button>
+              </div>
+            </div>
+
+            <!-- Project Timeline -->
+            <div class="form-field">
+              <label class="field-label">Estimated Timeline</label>
+              <div class="pill-selector-group" id="timeline-group">
+                <button type="button" class="pill-toggle-btn" data-val="Urgent">⚡ Urgent (&lt; 1 Week)</button>
+                <button type="button" class="pill-toggle-btn active" data-val="1-2 Weeks">1–2 Weeks</button>
+                <button type="button" class="pill-toggle-btn" data-val="2-4 Weeks">2–4 Weeks</button>
+                <button type="button" class="pill-toggle-btn" data-val="Flexible">Flexible</button>
+              </div>
+            </div>
+
+            <!-- Message Field -->
+            <div class="form-field">
+              <label for="form-message" class="field-label">Tell me about your project &amp; goals <span>*</span></label>
+              <textarea id="form-message" class="field-textarea" placeholder="Share your vision, references, deliverables needed, or any questions..." required></textarea>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" id="btn-submit-contact" class="btn-submit-main">
+              <span>Send Project Inquiry</span>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+            </button>
+
+            <!-- Success Alert Banner -->
+            <div class="form-success-banner" id="contact-success-banner">
+              🎉 <strong>Thank you for reaching out!</strong> Your project inquiry has been received. I will review your requirements and respond within 24 hours with next steps!
+            </div>
+          </form>
+        </section>
+
+      </div>
+
+      <!-- TRUST & WORKFLOW HIGHLIGHTS -->
+      <section class="trust-highlights-grid" aria-label="Working With Bhatu Prakash Highlights">
+        <div class="trust-highlight-card">
+          <div class="trust-icon-pill">⚡</div>
+          <h3 class="trust-card-title">48-Hour Rapid Kickoff</h3>
+          <p class="trust-card-text">Once we align on the scope and design brief, sprints begin immediately with initial concepts or storyboards ready within 48 hours.</p>
+        </div>
+        <div class="trust-highlight-card">
+          <div class="trust-icon-pill">📂</div>
+          <h3 class="trust-card-title">100% Source File Ownership</h3>
+          <p class="trust-card-text">You receive all master source files: structured Figma design systems, After Effects .aep projects, Premiere Pro timelines, and 4K ProRes exports.</p>
+        </div>
+        <div class="trust-highlight-card">
+          <div class="trust-icon-pill">🤝</div>
+          <h3 class="trust-card-title">Milestone-Based Security</h3>
+          <p class="trust-card-text">Work with complete peace of mind through clear milestone phases, regular video check-ins, and flexible payment terms.</p>
+        </div>
+      </section>
+
+      <!-- FREQUENTLY ASKED QUESTIONS (MINI ACCORDION) -->
+      <section class="contact-faq-wrap">
+        <div class="contact-faq-header">
+          <span class="contact-script-tag" style="font-size: 2rem;">Common Inquiries</span>
+          <h2 style="font-family: var(--font-heading); font-size: 2.2rem; font-weight: 900; letter-spacing: -0.03em; color: #ffffff;">Quick Answers Before You Reach Out</h2>
+        </div>
+
+        <div class="faq-accordion-item">
+          <button class="faq-q-btn" type="button" aria-expanded="false">
+            <span>What happens immediately after I submit this form?</span>
+            <div class="faq-rotator">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+            </div>
+          </button>
+          <div class="faq-a-body">
+            I review your project goals, references, and budget within 12–24 hours. You'll receive a detailed email with a proposed project timeline, estimated deliverables, and a link to schedule a quick 15-minute alignment call if needed.
+          </div>
+        </div>
+
+        <div class="faq-accordion-item">
+          <button class="faq-q-btn" type="button" aria-expanded="false">
+            <span>Can we sign a Non-Disclosure Agreement (NDA)?</span>
+            <div class="faq-rotator">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+            </div>
+          </button>
+          <div class="faq-a-body">
+            Yes, absolutely. I frequently work with high-growth startups and confidential brand launches. I am happy to sign your standard mutual NDA prior to receiving proprietary documents or assets.
+          </div>
+        </div>
+
+        <div class="faq-accordion-item">
+          <button class="faq-q-btn" type="button" aria-expanded="false">
+            <span>How do you handle revisions and client feedback?</span>
+            <div class="faq-rotator">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+            </div>
+          </button>
+          <div class="faq-a-body">
+            Every project includes 2–3 rounds of collaborative revision sprints. We use direct Figma pin comments, frame-accurate video review timestamps, and quick Loom video async updates to make feedback swift and stress-free.
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="footer-copy">
+      © 2026 Bhatu Prakash. All rights reserved. Ahmedabad, India.
+    </div>
+
+    <ul class="footer-links">
+      <li><a href="index.html#home" class="footer-link">Home</a></li>
+      <li><a href="index.html#projects" class="footer-link">Projects</a></li>
+      <li><a href="index.html#video-showcase" class="footer-link">Motion &amp; Reels</a></li>
+      <li><a href="contact.html" class="footer-link" style="color: #6abf28;">Contact</a></li>
+    </ul>
+  </footer>
+
+  <!-- INTERACTIVE SCRIPTS -->
+  <script>
+    (function () {
+      // 1. Live IST Clock Calculator
+      function updateISTClock() {
+        const clockEl = document.getElementById('live-ist-clock');
+        const statusEl = document.getElementById('live-work-status');
+        if (!clockEl) return;
+
+        const now = new Date();
+        const options = {
+          timeZone: 'Asia/Kolkata',
+          hour: '2-digit',
+          minute: '2-digit',
+          second: '2-digit',
+          hour12: true
+        };
+        const istTimeString = now.toLocaleTimeString('en-US', options);
+        clockEl.textContent = `${istTimeString} IST`;
+
+        // Check if IST time is working hours (9 AM - 9 PM)
+        const istHour = parseInt(now.toLocaleTimeString('en-US', { timeZone: 'Asia/Kolkata', hour: '2-digit', hour12: false }), 10);
+        if (statusEl) {
+          if (istHour >= 9 && istHour < 21) {
+            statusEl.textContent = '• Active & Online';
+            statusEl.style.color = '#6abf28';
+          } else {
+            statusEl.textContent = '• Available (Will reply morning)';
+            statusEl.style.color = 'rgba(255, 255, 255, 0.6)';
+          }
+        }
+      }
+      setInterval(updateISTClock, 1000);
+      updateISTClock();
+
+      // 2. 1-Click Copy Email to Clipboard
+      const copyBtn = document.getElementById('btn-copy-email-main');
+      const copyText = document.getElementById('copy-email-text');
+      const emailAddr = document.getElementById('contact-email-addr');
+
+      if (copyBtn && copyText && emailAddr) {
+        copyBtn.addEventListener('click', function () {
+          const email = emailAddr.textContent.trim();
+          navigator.clipboard.writeText(email).then(() => {
+            copyText.textContent = 'Copied to Clipboard! ✓';
+            copyBtn.style.background = '#6abf28';
+            copyBtn.style.color = '#08090b';
+            setTimeout(() => {
+              copyText.textContent = 'Copy Email Address';
+              copyBtn.style.background = '';
+              copyBtn.style.color = '';
+            }, 2500);
+          }).catch(() => {
+            copyText.textContent = 'Copied! ✓';
+          });
+        });
+      }
+
+      // 3. Multi-Select Service Pills
+      document.querySelectorAll('#services-group .pill-toggle-btn').forEach(btn => {
+        btn.addEventListener('click', function () {
+          this.classList.toggle('active');
+        });
+      });
+
+      // 4. Single-Select Budget Pills
+      document.querySelectorAll('#budget-group .pill-toggle-btn').forEach(btn => {
+        btn.addEventListener('click', function () {
+          document.querySelectorAll('#budget-group .pill-toggle-btn').forEach(b => b.classList.remove('active'));
+          this.classList.add('active');
+        });
+      });
+
+      // 5. Single-Select Timeline Pills
+      document.querySelectorAll('#timeline-group .pill-toggle-btn').forEach(btn => {
+        btn.addEventListener('click', function () {
+          document.querySelectorAll('#timeline-group .pill-toggle-btn').forEach(b => b.classList.remove('active'));
+          this.classList.add('active');
+        });
+      });
+
+      // 6. Interactive Contact Form Submission
+      const form = document.getElementById('dedicated-inquiry-form');
+      const banner = document.getElementById('contact-success-banner');
+      const submitBtn = document.getElementById('btn-submit-contact');
+
+      if (form && banner && submitBtn) {
+        form.addEventListener('submit', function (e) {
+          e.preventDefault();
+          submitBtn.disabled = true;
+          submitBtn.style.opacity = '0.7';
+          submitBtn.innerHTML = '<span>Transmitting Inquiry...</span>';
+
+          setTimeout(() => {
+            submitBtn.disabled = false;
+            submitBtn.style.opacity = '1';
+            submitBtn.innerHTML = '<span>Send Project Inquiry</span> <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>';
+            banner.classList.add('is-active');
+            form.reset();
+
+            // Re-apply default pills
+            document.querySelectorAll('#budget-group .pill-toggle-btn').forEach((b, i) => {
+              if (i === 1) b.classList.add('active');
+              else b.classList.remove('active');
+            });
+
+            setTimeout(() => {
+              banner.classList.remove('is-active');
+            }, 8000);
+          }, 850);
+        });
+      }
+
+      // 7. Mini FAQ Accordion Toggle
+      const faqItems = document.querySelectorAll('.faq-accordion-item');
+      faqItems.forEach(item => {
+        const btn = item.querySelector('.faq-q-btn');
+        if (btn) {
+          btn.addEventListener('click', function () {
+            const isOpen = item.classList.contains('is-open');
+            faqItems.forEach(i => {
+              i.classList.remove('is-open');
+              const b = i.querySelector('.faq-q-btn');
+              if (b) b.setAttribute('aria-expanded', 'false');
+            });
+            if (!isOpen) {
+              item.classList.add('is-open');
+              btn.setAttribute('aria-expanded', 'true');
+            }
+          });
+        }
+      });
+    })();
+  </script>
+  <script src="mobile-nav.js"></script>
+</body>
+</html>

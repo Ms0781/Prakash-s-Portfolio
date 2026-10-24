@@ -1,0 +1,2362 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>StaySaver — Flexible Hourly &amp; Day-Use Hospitality Platform Case Study | Bhatu Prakash</title>
+  <meta name="description"
+    content="Comprehensive UI/UX &amp; Motion Design Case Study for StaySaver (staysaver.app) by Bhatu Prakash. Hourly micro-stays, flexible day-use hotel booking, keyless check-in, and 3D kinetic launch film.">
+
+  <!-- Google Fonts: Bricolage Grotesque, Inter, Plus Jakarta Sans, Caveat & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800;12..96,900&family=Caveat:wght@600;700&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="responsive.css">
+
+  <style>
+    /* ==========================================================================
+       STAYSAVER — LUXURY HOSPITALITY SAAS DESIGN SYSTEM
+       Designer: Bhatu Prakash
+       Palette: Heritage Navy (#0E2A47), Champagne Gold (#C1A364), Alabaster (#FAF7F2)
+       Typography: Bricolage Grotesque (Display), Inter / Plus Jakarta Sans (Body)
+       ========================================================================== */
+    :root {
+      /* Brand Heritage Neutrals */
+      --navy-950: #061321;
+      --navy-900: #0e2a47;
+      --navy-850: #133557;
+      --navy-800: #1a426a;
+      --navy-700: #255280;
+      --slate-600: #475569;
+      --slate-500: #64748b;
+      --slate-400: #94a3b8;
+      --slate-300: #cbd5e1;
+      --slate-200: #e2e8f0;
+      --slate-100: #f1f5f9;
+      --slate-50: #faf7f2;
+      --white: #ffffff;
+
+      /* Champagne Gold Luxury Brand Tokens */
+      --gold-800: #85672b;
+      --gold-700: #9e7d37;
+      --gold-600: #af8d45;
+      --gold-500: #c1a364;
+      --gold-400: #d4b87c;
+      --gold-300: #e6ce9d;
+      --gold-100: #f7eedb;
+      --gold-50: #fbf8f1;
+
+      /* Status & Accent Tokens */
+      --status-emerald: #10b981;
+      --status-emerald-50: #ecfdf5;
+      --status-amber: #f59e0b;
+      --status-amber-50: #fffbeb;
+      --status-blue: #0284c7;
+      --status-blue-50: #f0f9ff;
+
+      /* Semantic Surface Tokens */
+      --bg-body: #faf7f2;
+      --bg-surface: #ffffff;
+      --bg-subtle: #f5f1e8;
+      --text-primary: var(--navy-900);
+      --text-secondary: var(--slate-600);
+      --text-muted: var(--slate-500);
+      --border-subtle: #e8e2d5;
+      --border-strong: #dcd4c3;
+      --border-gold: var(--gold-500);
+
+      /* Shadows */
+      --shadow-xs: 0 1px 2px 0 rgba(14, 42, 71, 0.04);
+      --shadow-sm: 0 1px 3px 0 rgba(14, 42, 71, 0.06), 0 1px 2px -1px rgba(14, 42, 71, 0.04);
+      --shadow-md: 0 4px 6px -1px rgba(14, 42, 71, 0.06), 0 2px 4px -2px rgba(14, 42, 71, 0.04);
+      --shadow-lg: 0 10px 15px -3px rgba(14, 42, 71, 0.07), 0 4px 6px -4px rgba(14, 42, 71, 0.03);
+      --shadow-xl: 0 20px 25px -5px rgba(14, 42, 71, 0.08), 0 8px 10px -6px rgba(14, 42, 71, 0.04);
+
+      /* Typography Tokens */
+      --font-heading: 'Bricolage Grotesque', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      --font-body: 'Inter', 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+      --font-script: 'Caveat', cursive;
+
+      --radius-sm: 6px;
+      --radius-md: 10px;
+      --radius-lg: 16px;
+      --radius-xl: 22px;
+    }
+
+    /* Reset & Base Styles */
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      color-scheme: light;
+    }
+
+    body {
+      background-color: var(--bg-body);
+      color: var(--text-primary);
+      font-family: var(--font-body);
+      font-size: 1rem;
+      line-height: 1.68;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+      font-family: var(--font-heading);
+      color: var(--navy-900);
+      font-weight: 700;
+      line-height: 1.25;
+      letter-spacing: -0.02em;
+    }
+
+    p {
+      color: var(--text-secondary);
+      line-height: 1.7;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* READING PROGRESS BAR */
+    .reading-progress-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--gold-600), var(--gold-400), #e6ce9d);
+      width: 0%;
+      z-index: 1000;
+      transition: width 0.1s linear;
+    }
+
+    /* TOP NAVBAR */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.9rem clamp(1.25rem, 4vw, 5rem);
+      background: rgba(255, 255, 255, 0.94);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border-subtle);
+      z-index: 100;
+      transition: all 0.25s ease;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+      text-decoration: none;
+      color: var(--navy-900);
+    }
+
+    .dp-wrapper {
+      position: relative;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      padding: 2px;
+      background: linear-gradient(135deg, var(--gold-500), #f7eedb);
+      flex-shrink: 0;
+    }
+
+    .dp-img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+      display: block;
+      background-color: var(--slate-100);
+    }
+
+    .dp-status-dot {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      width: 11px;
+      height: 11px;
+      border-radius: 50%;
+      background-color: var(--gold-500);
+      border: 2px solid var(--white);
+    }
+
+    .logo-text {
+      font-family: var(--font-heading);
+      font-size: 1.18rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: var(--navy-900);
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.75rem;
+      list-style: none;
+    }
+
+    .nav-link {
+      color: var(--slate-600);
+      text-decoration: none;
+      font-size: 0.92rem;
+      font-weight: 600;
+      transition: color 0.2s ease;
+    }
+
+    .nav-link:hover {
+      color: var(--gold-700);
+    }
+
+    .btn-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      background: var(--white);
+      border: 1px solid var(--border-strong);
+      color: var(--navy-800);
+      font-size: 0.88rem;
+      font-weight: 600;
+      padding: 0.55rem 1.15rem;
+      border-radius: var(--radius-md);
+      transition: all 0.2s ease;
+    }
+
+    .btn-back:hover {
+      background: var(--slate-50);
+      border-color: var(--gold-500);
+      color: var(--gold-800);
+      transform: translateX(-2px);
+    }
+
+    .btn-staging {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--gold-50);
+      color: var(--gold-800);
+      border: 1px solid var(--gold-100);
+      font-family: var(--font-heading);
+      font-size: 0.88rem;
+      font-weight: 700;
+      padding: 0.55rem 1.15rem;
+      border-radius: var(--radius-md);
+      transition: all 0.2s ease;
+      white-space: nowrap;
+    }
+
+    .btn-staging:hover {
+      background: var(--gold-500);
+      color: var(--white);
+      box-shadow: 0 4px 12px rgba(193, 163, 100, 0.3);
+    }
+
+    .mobile-nav-toggle {
+      display: none;
+      background: var(--slate-100);
+      border: 1px solid var(--border-strong);
+      border-radius: 8px;
+      cursor: pointer;
+      width: 40px;
+      height: 40px;
+      padding: 0;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 5px;
+      transition: background 0.2s ease, border-color 0.2s ease;
+    }
+
+    .mobile-nav-toggle:hover {
+      background: var(--slate-200);
+      border-color: var(--gold-500);
+    }
+
+    .hamburger-line {
+      display: block;
+      width: 20px;
+      height: 2px;
+      background-color: var(--navy-900) !important;
+      border-radius: 2px;
+      transition: all 0.2s ease;
+    }
+
+    /* FLOATING TABLE OF CONTENTS DOCK */
+    .cs-toc-wrapper {
+      position: sticky;
+      top: 74px;
+      z-index: 90;
+      display: flex;
+      justify-content: center;
+      padding: 0.6rem 1rem;
+      pointer-events: none;
+    }
+
+    .cs-toc-inner {
+      pointer-events: auto;
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+      background: rgba(255, 255, 255, 0.95);
+      border: 1px solid var(--border-subtle);
+      box-shadow: var(--shadow-md);
+      border-radius: 999px;
+      padding: 0.35rem 0.65rem;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      max-width: 95vw;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+
+    .cs-toc-inner::-webkit-scrollbar {
+      display: none;
+    }
+
+    .cs-toc-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 0.74rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--slate-500);
+      padding: 0 0.5rem;
+      white-space: nowrap;
+    }
+
+    .cs-toc-list {
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+      list-style: none;
+    }
+
+    .cs-toc-item a {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--slate-600);
+      padding: 0.35rem 0.85rem;
+      border-radius: 999px;
+      white-space: nowrap;
+      transition: all 0.2s ease;
+    }
+
+    .cs-toc-item a:hover {
+      color: var(--gold-800);
+      background: var(--slate-100);
+    }
+
+    .cs-toc-item a.active {
+      color: var(--gold-800);
+      background: var(--gold-50);
+      border: 1px solid var(--gold-100);
+      font-weight: 700;
+    }
+
+    /* MAIN CONTAINER */
+    .cs-wrapper {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 2.5rem clamp(1.25rem, 4vw, 3rem) 5rem;
+    }
+
+    /* BREADCRUMB */
+    .cs-breadcrumb {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.84rem;
+      color: var(--slate-500);
+      margin-bottom: 2rem;
+    }
+
+    .cs-breadcrumb a {
+      color: var(--slate-500);
+      transition: color 0.2s;
+    }
+
+    .cs-breadcrumb a:hover {
+      color: var(--gold-700);
+    }
+
+    .cs-breadcrumb .sep {
+      color: var(--slate-300);
+    }
+
+    .cs-breadcrumb .current {
+      color: var(--navy-800);
+      font-weight: 600;
+    }
+
+    /* ==========================================================================
+       SECTION 01: HERO & METADATA
+       ========================================================================== */
+    .cs-hero {
+      margin-bottom: 4.5rem;
+      scroll-margin-top: 130px;
+    }
+
+    .cs-hero-header {
+      text-align: center;
+      max-width: 980px;
+      margin: 0 auto 2.5rem;
+    }
+
+    .cs-badge-row {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .cs-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      padding: 0.35rem 0.85rem;
+      border-radius: 999px;
+      background: var(--slate-100);
+      color: var(--slate-600);
+      border: 1px solid var(--border-subtle);
+      letter-spacing: 0.02em;
+    }
+
+    .cs-pill-hotel {
+      background: var(--gold-50);
+      color: var(--gold-800);
+      border-color: var(--gold-100);
+    }
+
+    .cs-pill-dev {
+      background: #eff6ff;
+      color: #1d4ed8;
+      border-color: #dbeafe;
+    }
+
+    .cs-script {
+      display: block;
+      font-family: var(--font-script);
+      font-size: 1.45rem;
+      color: var(--gold-700);
+      margin-bottom: 0.5rem;
+    }
+
+    .cs-title {
+      font-size: clamp(2.2rem, 4.2vw, 3.5rem);
+      line-height: 1.15;
+      font-weight: 800;
+      color: var(--navy-950);
+      margin-bottom: 1.25rem;
+      letter-spacing: -0.03em;
+    }
+
+    .cs-title .highlight {
+      color: var(--gold-700);
+      background: linear-gradient(120deg, var(--gold-700), #9e7d37);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .cs-tagline {
+      font-size: clamp(1.05rem, 1.8vw, 1.2rem);
+      color: var(--navy-700);
+      line-height: 1.7;
+      max-width: 880px;
+      margin: 0 auto;
+    }
+
+    /* METADATA MATRIX */
+    .cs-meta-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.25rem;
+      background: var(--white);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 1.5rem 1.75rem;
+      box-shadow: var(--shadow-sm);
+      margin-bottom: 2.5rem;
+    }
+
+    .meta-item {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+
+    .meta-label {
+      font-size: 0.74rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--slate-400);
+    }
+
+    .meta-value {
+      font-family: var(--font-heading);
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--navy-900);
+      line-height: 1.35;
+    }
+
+    .meta-sub {
+      font-size: 0.8rem;
+      color: var(--slate-500);
+    }
+
+    .live-ref-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      color: var(--gold-700);
+      font-weight: 700;
+      transition: color 0.2s;
+    }
+
+    .live-ref-link:hover {
+      color: var(--gold-800);
+      text-decoration: underline;
+    }
+
+    /* PRE-LAUNCH NOTICE BANNER */
+    .dev-banner {
+      background: linear-gradient(135deg, #fefce8, #fef9c3);
+      border: 1px solid #fef08a;
+      border-radius: var(--radius-lg);
+      padding: 1.5rem 1.75rem;
+      margin-bottom: 2.5rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 1.25rem;
+      box-shadow: var(--shadow-xs);
+    }
+
+    .dev-banner-icon {
+      font-size: 1.5rem;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .dev-banner-body h3 {
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: #854d0e;
+      margin-bottom: 0.35rem;
+    }
+
+    .dev-banner-body p {
+      font-size: 0.92rem;
+      color: #713f12;
+      line-height: 1.6;
+    }
+
+    /* HERO SHOWCASE FRAME */
+    .cs-hero-mockup-frame {
+      position: relative;
+      background: var(--white);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-xl);
+      padding: 0.85rem;
+      box-shadow: var(--shadow-xl);
+      overflow: hidden;
+      margin-bottom: 2.5rem;
+      cursor: zoom-in;
+    }
+
+    .cs-hero-mockup-frame img {
+      width: 100%;
+      height: auto;
+      border-radius: calc(var(--radius-xl) - 4px);
+      border: 1px solid var(--border-subtle);
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .cs-hero-mockup-frame:hover img {
+      transform: scale(1.008);
+    }
+
+    .cs-mockup-overlay-pill {
+      position: absolute;
+      bottom: 1.75rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(14, 42, 71, 0.9);
+      color: var(--white);
+      font-size: 0.82rem;
+      font-weight: 600;
+      padding: 0.5rem 1.25rem;
+      border-radius: 999px;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+      pointer-events: none;
+    }
+
+    .status-pulse-gold {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background-color: var(--gold-400);
+      box-shadow: 0 0 0 3px rgba(193, 163, 100, 0.35);
+      display: inline-block;
+    }
+
+    /* ARCHITECTURAL HIGHLIGHT PILLARS */
+    .arch-pillars-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.25rem;
+    }
+
+    .pillar-card {
+      background: var(--white);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 1.5rem;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .pillar-card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+      border-color: var(--gold-500);
+    }
+
+    .pillar-icon-wrap {
+      width: 40px;
+      height: 40px;
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--slate-100);
+      color: var(--gold-700);
+      margin-bottom: 0.25rem;
+    }
+
+    .pillar-icon-wrap.gold {
+      background: var(--gold-50);
+      color: var(--gold-800);
+    }
+
+    .pillar-icon-wrap.navy {
+      background: #eff6ff;
+      color: #1e40af;
+    }
+
+    .pillar-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--navy-900);
+    }
+
+    .pillar-desc {
+      font-size: 0.88rem;
+      color: var(--slate-600);
+      line-height: 1.6;
+    }
+
+    /* ==========================================================================
+       SECTION COMMON PATTERNS
+       ========================================================================== */
+    .cs-section {
+      margin-bottom: 5.5rem;
+      scroll-margin-top: 130px;
+    }
+
+    .cs-section-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.76rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--gold-800);
+      background: var(--gold-50);
+      border: 1px solid var(--gold-100);
+      padding: 0.35rem 0.85rem;
+      border-radius: 999px;
+      margin-bottom: 0.85rem;
+    }
+
+    .cs-section-heading {
+      font-size: clamp(1.85rem, 3.2vw, 2.5rem);
+      font-weight: 800;
+      color: var(--navy-950);
+      letter-spacing: -0.025em;
+      line-height: 1.22;
+      margin-bottom: 1rem;
+    }
+
+    .cs-body-p {
+      font-size: 1.05rem;
+      color: var(--slate-600);
+      line-height: 1.75;
+      margin-bottom: 1.5rem;
+      max-width: 940px;
+    }
+
+    /* ==========================================================================
+       SECTION 02: DEVELOPMENT MILESTONES ROADMAP
+       ========================================================================== */
+    .roadmap-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.25rem;
+      margin-top: 1.75rem;
+    }
+
+    .roadmap-card {
+      background: var(--white);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 1.5rem;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .roadmap-card.completed {
+      border-top: 3px solid var(--status-emerald);
+    }
+
+    .roadmap-card.in-progress {
+      border-top: 3px solid var(--gold-500);
+    }
+
+    .badge-status {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 4px;
+      align-self: flex-start;
+    }
+
+    .badge-status.done {
+      background: var(--status-emerald-50);
+      color: #047857;
+    }
+
+    .badge-status.active {
+      background: var(--gold-50);
+      color: var(--gold-800);
+    }
+
+    .roadmap-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--navy-900);
+    }
+
+    .roadmap-desc {
+      font-size: 0.88rem;
+      color: var(--slate-600);
+      line-height: 1.55;
+    }
+
+    /* ==========================================================================
+       SECTION 03: THE HOSPITALITY CHALLENGE
+       ========================================================================== */
+    .problem-solution-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin-top: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .ps-card {
+      background: var(--white);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    .ps-card.solution {
+      border: 2px solid var(--gold-500);
+      background: linear-gradient(180deg, #ffffff 0%, var(--gold-50) 100%);
+    }
+
+    .ps-badge {
+      display: inline-block;
+      font-size: 0.74rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: 0.35rem 0.75rem;
+      border-radius: 999px;
+      align-self: flex-start;
+    }
+
+    .ps-badge.problem {
+      background: #fee2e2;
+      color: #991b1b;
+    }
+
+    .ps-badge.solution {
+      background: var(--gold-500);
+      color: var(--white);
+    }
+
+    .ps-title {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--navy-900);
+    }
+
+    .ps-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.9rem;
+    }
+
+    .ps-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      font-size: 0.94rem;
+      color: var(--slate-600);
+      line-height: 1.55;
+    }
+
+    .ps-list .bullet {
+      flex-shrink: 0;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      font-weight: 800;
+      margin-top: 2px;
+    }
+
+    .ps-list .bullet.cross {
+      background: #fee2e2;
+      color: #b91c1c;
+    }
+
+    .ps-list .bullet.check {
+      background: var(--gold-100);
+      color: var(--gold-800);
+    }
+
+    /* ==========================================================================
+       SECTION 04: BRAND IDENTITY & LOGO ARCHITECTURE
+       ========================================================================== */
+    .brand-identity-box {
+      background: var(--white);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-xl);
+      padding: 2.5rem;
+      box-shadow: var(--shadow-sm);
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 2.5rem;
+      align-items: center;
+      margin-top: 1.75rem;
+    }
+
+    .brand-logo-preview {
+      background: var(--slate-50);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: zoom-in;
+    }
+
+    .brand-logo-preview img {
+      max-width: 100%;
+      height: auto;
+      transition: transform 0.3s ease;
+    }
+
+    .brand-logo-preview:hover img {
+      transform: scale(1.04);
+    }
+
+    .brand-details {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .brand-title {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--navy-900);
+    }
+
+    .brand-symbols-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .brand-symbols-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      font-size: 0.94rem;
+      color: var(--slate-600);
+      line-height: 1.55;
+    }
+
+    .brand-symbols-list strong {
+      color: var(--navy-900);
+    }
+
+    /* ==========================================================================
+       SECTION 05: 3D KINETIC MOTION FILM (VIDEO)
+       ========================================================================== */
+    .hero-mockup-wrapper {
+      background: var(--white);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      box-shadow: var(--shadow-xl);
+      margin-top: 1.5rem;
+    }
+
+    .mockup-topbar {
+      background: var(--slate-100);
+      border-bottom: 1px solid var(--border-subtle);
+      padding: 0.75rem 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .mac-window-controls {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .dot {
+      width: 11px;
+      height: 11px;
+      border-radius: 50%;
+    }
+
+    .dot-red { background: #ff5f56; }
+    .dot-yellow { background: #ffbd2e; }
+    .dot-green { background: #27c93f; }
+
+    .mac-url-bar {
+      background: var(--white);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-sm);
+      padding: 3px 14px;
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      color: var(--slate-600);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .mac-actions {
+      font-size: 0.74rem;
+      color: var(--slate-400);
+      font-family: var(--font-mono);
+    }
+
+    .hero-mockup-video {
+      width: 100%;
+      height: auto;
+      max-height: 700px;
+      display: block;
+      background: #000;
+    }
+
+    .mockup-caption-bar {
+      padding: 0.85rem 1.25rem;
+      background: var(--slate-50);
+      border-top: 1px solid var(--border-subtle);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.82rem;
+      color: var(--slate-600);
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .mockup-badge {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      background: var(--gold-50);
+      color: var(--gold-800);
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-weight: 700;
+    }
+
+    /* ==========================================================================
+       SECTION 06: PRODUCT ARCHITECTURE & TIME-SLICE SLIDER
+       ========================================================================== */
+    .feature-spotlight-box {
+      background: var(--white);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-xl);
+      padding: 2.25rem;
+      box-shadow: var(--shadow-sm);
+      display: grid;
+      grid-template-columns: 1fr 1.15fr;
+      gap: 2.5rem;
+      align-items: center;
+      margin-top: 2rem;
+    }
+
+    .spotlight-text {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .spotlight-title {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--navy-900);
+      letter-spacing: -0.02em;
+    }
+
+    .spotlight-desc {
+      font-size: 0.98rem;
+      color: var(--slate-600);
+      line-height: 1.7;
+    }
+
+    .spotlight-specs-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    .spotlight-specs-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      font-size: 0.92rem;
+      color: var(--slate-600);
+      line-height: 1.55;
+    }
+
+    .spotlight-specs-list .check {
+      color: var(--gold-700);
+      font-weight: 800;
+      flex-shrink: 0;
+    }
+
+    .spotlight-media {
+      background: var(--slate-100);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 0.6rem;
+      overflow: hidden;
+      cursor: zoom-in;
+    }
+
+    .spotlight-media img {
+      width: 100%;
+      height: 380px;
+      object-fit: cover;
+      object-position: top center;
+      border-radius: calc(var(--radius-lg) - 4px);
+      border: 1px solid var(--border-subtle);
+      transition: transform 0.3s ease;
+    }
+
+    .spotlight-media:hover img {
+      transform: scale(1.02);
+    }
+
+    /* ==========================================================================
+       SECTION 07: DESIGN TOKENS & SYSTEM
+       ========================================================================== */
+    .token-system-container {
+      background: var(--white);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 2.25rem;
+      box-shadow: var(--shadow-sm);
+      margin-top: 1.75rem;
+    }
+
+    .token-header-strip {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--border-subtle);
+      padding-bottom: 1.25rem;
+      margin-bottom: 1.75rem;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .token-heading-title {
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: var(--navy-950);
+    }
+
+    .token-badge-tech {
+      font-family: var(--font-mono);
+      font-size: 0.76rem;
+      background: var(--gold-50);
+      color: var(--gold-800);
+      padding: 4px 10px;
+      border-radius: 4px;
+      border: 1px solid var(--gold-100);
+    }
+
+    .swatch-grid {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .swatch-card {
+      background: var(--slate-50);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .swatch-preview {
+      width: 100%;
+      height: 48px;
+      border-radius: var(--radius-sm);
+      margin-bottom: 0.25rem;
+    }
+
+    .swatch-token-name {
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--navy-900);
+    }
+
+    .swatch-hex {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--slate-500);
+    }
+
+    /* CODE INSPECTOR BLOCK */
+    .code-inspector-block {
+      background: var(--navy-950);
+      border: 1px solid var(--navy-850);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-lg);
+      margin-top: 2rem;
+    }
+
+    .code-topbar {
+      background: rgba(255, 255, 255, 0.04);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 0.75rem 1.25rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      color: var(--slate-400);
+    }
+
+    .code-filename {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--gold-400);
+      font-weight: 600;
+    }
+
+    .code-pre {
+      padding: 1.5rem;
+      font-family: var(--font-mono);
+      font-size: 0.88rem;
+      line-height: 1.7;
+      color: #e2e8f0;
+      overflow-x: auto;
+    }
+
+    .c-prop { color: #d4b87c; }
+    .c-val { color: #54e4a6; }
+    .c-comment { color: #64748b; font-style: italic; }
+
+    /* ==========================================================================
+       SECTION 08 & 09: ECONOMIC MODELING & RETROSPECTIVE
+       ========================================================================== */
+    .retro-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .retro-card {
+      background: var(--white);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 2rem 1.75rem;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .retro-num {
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--gold-800);
+      background: var(--gold-50);
+      padding: 2px 8px;
+      border-radius: 4px;
+      align-self: flex-start;
+    }
+
+    .retro-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--navy-900);
+    }
+
+    .retro-desc {
+      font-size: 0.92rem;
+      color: var(--slate-600);
+      line-height: 1.65;
+    }
+
+    /* ==========================================================================
+       NEXT PROJECT CROSS-NAVIGATION BANNER
+       ========================================================================== */
+    .cs-next-banner {
+      margin-top: 4rem;
+      background: linear-gradient(135deg, var(--navy-950), var(--navy-900));
+      border-radius: var(--radius-xl);
+      padding: 3rem clamp(1.5rem, 4vw, 3.5rem);
+      color: var(--white);
+      box-shadow: var(--shadow-xl);
+    }
+
+    .next-card {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 2.5rem;
+      flex-wrap: wrap;
+    }
+
+    .next-info {
+      max-width: 620px;
+    }
+
+    .next-script {
+      display: block;
+      font-family: var(--font-script);
+      font-size: 1.4rem;
+      color: var(--gold-400);
+      margin-bottom: 0.35rem;
+    }
+
+    .next-title {
+      font-size: clamp(1.6rem, 2.8vw, 2.2rem);
+      font-weight: 800;
+      color: var(--white);
+      margin-bottom: 0.75rem;
+      letter-spacing: -0.02em;
+    }
+
+    .next-desc {
+      font-size: 1rem;
+      color: var(--slate-300);
+      line-height: 1.65;
+    }
+
+    .next-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      min-width: 260px;
+    }
+
+    .next-actions .btn-cta {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      background: var(--gold-500);
+      color: var(--navy-950);
+      font-family: var(--font-heading);
+      font-size: 0.92rem;
+      font-weight: 800;
+      padding: 0.8rem 1.5rem;
+      border-radius: var(--radius-md);
+      transition: all 0.2s ease;
+      box-shadow: 0 4px 15px rgba(193, 163, 100, 0.35);
+    }
+
+    .next-actions .btn-cta:hover {
+      background: var(--gold-400);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(193, 163, 100, 0.45);
+    }
+
+    .next-actions .btn-subtle {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      background: rgba(255, 255, 255, 0.08);
+      color: var(--white);
+      font-size: 0.86rem;
+      font-weight: 600;
+      padding: 0.65rem 1.25rem;
+      border-radius: var(--radius-md);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      transition: all 0.2s ease;
+    }
+
+    .next-actions .btn-subtle:hover {
+      background: rgba(255, 255, 255, 0.15);
+      border-color: rgba(255, 255, 255, 0.3);
+      transform: translateY(-1px);
+    }
+
+    /* ==========================================================================
+       SITE FOOTER
+       ========================================================================== */
+    .site-footer {
+      max-width: 1240px;
+      margin: 4rem auto 0;
+      padding: 2.5rem clamp(1.25rem, 4vw, 3rem) 3rem;
+      border-top: 1px solid var(--border-subtle);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      color: var(--slate-500);
+      font-size: 0.88rem;
+    }
+
+    .footer-links {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      list-style: none;
+    }
+
+    .footer-link {
+      color: var(--slate-600);
+      font-weight: 600;
+      transition: color 0.2s;
+    }
+
+    .footer-link:hover {
+      color: var(--gold-700);
+    }
+
+    .btn-top {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--white);
+      border: 1px solid var(--border-strong);
+      color: var(--navy-800);
+      font-size: 0.84rem;
+      font-weight: 600;
+      padding: 0.5rem 1rem;
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .btn-top:hover {
+      background: var(--slate-100);
+      color: var(--gold-800);
+      border-color: var(--gold-500);
+    }
+
+    /* ==========================================================================
+       IMAGE LIGHTBOX MODAL
+       ========================================================================== */
+    .lightbox-modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(6, 19, 33, 0.94);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      z-index: 99999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s ease;
+    }
+
+    .lightbox-modal.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .lightbox-content {
+      max-width: 92vw;
+      max-height: 90vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+    }
+
+    .lightbox-img {
+      max-width: 100%;
+      max-height: 86vh;
+      object-fit: contain;
+      border-radius: var(--radius-md);
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: 1.5rem;
+      right: 2rem;
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: var(--white);
+      font-size: 1.5rem;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.2s;
+      z-index: 100000;
+    }
+
+    .lightbox-close:hover {
+      background: rgba(255, 255, 255, 0.25);
+      transform: scale(1.05);
+    }
+
+    /* ==========================================================================
+       RESPONSIVE BREAKPOINTS
+       ========================================================================== */
+    @media (max-width: 1024px) {
+      .cs-meta-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .arch-pillars-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .roadmap-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .problem-solution-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .brand-identity-box {
+        grid-template-columns: 1fr;
+      }
+
+      .feature-spotlight-box {
+        grid-template-columns: 1fr;
+      }
+
+      .swatch-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .retro-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+      }
+
+      .mobile-nav-toggle {
+        display: flex;
+      }
+
+      .cs-toc-wrapper {
+        top: 66px;
+      }
+
+      .cs-toc-label {
+        display: none;
+      }
+
+      .cs-meta-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .arch-pillars-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .roadmap-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .swatch-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .next-card {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .site-footer {
+        flex-direction: column;
+        text-align: center;
+        gap: 1.25rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- READING PROGRESS BAR -->
+  <div class="reading-progress-bar" id="progressBar"></div>
+
+  <!-- TOP NAVBAR -->
+  <nav class="navbar" id="navbar">
+    <a href="index.html" class="nav-logo">
+      <div class="dp-wrapper">
+        <img src="prakash-portfolio_00239.webp" alt="Bhatu Prakash" class="dp-img" width="40" height="40">
+        <span class="dp-status-dot"></span>
+      </div>
+      <span class="logo-text">Bhatu Prakash</span>
+    </a>
+
+    <div class="nav-right">
+      <ul class="nav-links">
+        <li><a href="index.html#home" class="nav-link">Home</a></li>
+        <li><a href="index.html#projects" class="nav-link">Selected Work</a></li>
+        <li><a href="case-study-flyfi.html" class="nav-link">FlyFi Mobile</a></li>
+        <li><a href="case-study-pms.html" class="nav-link">PMS Web</a></li>
+        <li><a href="case-study-uk.html" class="nav-link">UK NHS</a></li>
+      </ul>
+
+      <a href="index.html#projects" class="btn-back">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+          stroke-linecap="round" stroke-linejoin="round">
+          <line x1="19" y1="12" x2="5" y2="12"></line>
+          <polyline points="12 19 5 12 12 5"></polyline>
+        </svg>
+        Back to Projects
+      </a>
+
+      <a href="https://staysaver.app/" target="_blank" rel="noopener noreferrer" class="btn-staging">
+        <span>staysaver.app (Staging) ↗</span>
+      </a>
+
+      <button id="mobileNavToggle" class="mobile-nav-toggle" type="button" aria-label="Open menu" aria-expanded="false"
+        aria-controls="mobileNavDrawer">
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- MOBILE NAV DRAWER -->
+  <div id="mobileNavDrawer" class="mobile-nav-drawer" aria-hidden="true">
+    <div class="mobile-nav-backdrop"></div>
+    <div class="mobile-nav-panel">
+      <div class="mobile-nav-header">
+        <div class="mobile-nav-brand">
+          <img src="prakash-portfolio_00239.webp" alt="Bhatu Prakash" class="mobile-dp-img" width="44" height="44">
+          <div class="mobile-brand-meta">
+            <span class="mobile-brand-name">Bhatu Prakash</span>
+            <span class="mobile-brand-status"><span class="dot"></span> Available for work</span>
+          </div>
+        </div>
+        <button id="mobileNavClose" class="mobile-nav-close" type="button" aria-label="Close navigation">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+      <ul class="mobile-nav-list">
+        <li><a href="index.html#home" class="mobile-nav-item"><span class="mn-num">01</span><span
+              class="mn-text">Home</span><span class="mn-arrow">↗</span></a></li>
+        <li><a href="index.html#projects" class="mobile-nav-item"><span class="mn-num">02</span><span
+              class="mn-text">← All Projects</span><span class="mn-arrow">↗</span></a></li>
+        <li><a href="case-study-staysaver.html" class="mobile-nav-item highlight"><span class="mn-num">03</span><span
+              class="mn-text">StaySaver (In Dev)</span><span class="mn-arrow">↗</span></a></li>
+        <li><a href="case-study-flyfi.html" class="mobile-nav-item"><span class="mn-num">04</span><span
+              class="mn-text">FlyFi Mobile App</span><span class="mn-arrow">↗</span></a></li>
+        <li><a href="case-study-flyfi-web.html" class="mobile-nav-item"><span class="mn-num">05</span><span
+              class="mn-text">FlyFi Web Redesign</span><span class="mn-arrow">↗</span></a></li>
+        <li><a href="case-study-pms.html" class="mobile-nav-item"><span class="mn-num">06</span><span
+              class="mn-text">PMS Web SaaS</span><span class="mn-arrow">↗</span></a></li>
+        <li><a href="case-study-uk.html" class="mobile-nav-item"><span class="mn-num">07</span><span
+              class="mn-text">UK NHS Edition</span><span class="mn-arrow">↗</span></a></li>
+        <li><a href="contact.html" class="mobile-nav-item"><span class="mn-num">08</span><span
+              class="mn-text">Contact / Hire</span><span class="mn-arrow">↗</span></a></li>
+      </ul>
+      <div class="mobile-nav-footer">
+        <a href="https://staysaver.app/" target="_blank" rel="noopener noreferrer" class="mobile-nav-cta">
+          <span>Explore staysaver.app ↗</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- STICKY FLOATING CHAPTER TOC DOCK -->
+  <div class="cs-toc-wrapper" id="stickyToc">
+    <div class="cs-toc-inner">
+      <span class="cs-toc-label">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <path d="M4 6h16M4 12h16M4 18h7"></path>
+        </svg>
+        StaySaver Chapters:
+      </span>
+      <ul class="cs-toc-list">
+        <li class="cs-toc-item"><a href="#overview" class="active">01. Overview</a></li>
+        <li class="cs-toc-item"><a href="#roadmap">02. Roadmap</a></li>
+        <li class="cs-toc-item"><a href="#market-need">03. Market Need</a></li>
+        <li class="cs-toc-item"><a href="#brand-identity">04. Brand Identity</a></li>
+        <li class="cs-toc-item"><a href="#motion-film">05. 3D Launch Film</a></li>
+        <li class="cs-toc-item"><a href="#product-architecture">06. Slot Engine</a></li>
+        <li class="cs-toc-item"><a href="#design-tokens">07. Design Tokens</a></li>
+        <li class="cs-toc-item"><a href="#economic-impact">08. Target Economics</a></li>
+        <li class="cs-toc-item"><a href="#retrospective">09. Retrospective</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- MAIN CASE STUDY WRAPPER -->
+  <div class="cs-wrapper">
+
+    <!-- BREADCRUMB -->
+    <nav class="cs-breadcrumb" aria-label="Breadcrumb">
+      <a href="index.html">Home</a>
+      <span class="sep">/</span>
+      <a href="index.html#projects">Case Studies</a>
+      <span class="sep">/</span>
+      <span class="current">StaySaver Hospitality Platform</span>
+    </nav>
+
+    <!-- ==========================================================================
+         SECTION 01: HERO & METADATA
+         ========================================================================== -->
+    <header class="cs-hero" id="overview">
+      <div class="cs-hero-header">
+        <div class="cs-badge-row">
+          <span class="cs-pill cs-pill-hotel">🏨 Hospitality &amp; Micro-Stay SaaS</span>
+          <span class="cs-pill cs-pill-dev"><span class="status-pulse-gold"></span> In Active Staging Phase</span>
+          <span class="cs-pill cs-pill-hotel">🎬 3D Kinetic Film &amp; Motion Direction</span>
+          <span class="cs-pill">🔑 Keyless IoT Room Entry</span>
+        </div>
+
+        <span class="cs-script">Hospitality SaaS UX &amp; 3D Kinetic Film</span>
+        <h1 class="cs-title">
+          StaySaver: <br>
+          <span class="highlight">Hourly Hotel Rooms &amp; Flexible Micro-Stay Booking Platform</span>
+        </h1>
+        <p class="cs-tagline">
+          A transformative hospitality platform designed to liberate travelers, executives, and transit commuters from rigid 24-hour booking windows. StaySaver (<a href="https://staysaver.app/" target="_blank" rel="noopener noreferrer" style="color: var(--gold-700); text-decoration: underline;">staysaver.app</a>) enables on-demand booking for 3-hour layovers, executive day-use suites, and full-day workations. <strong>Currently in active staging development prior to official public rollout.</strong>
+        </p>
+      </div>
+
+      <!-- METADATA MATRIX -->
+      <div class="cs-meta-grid">
+        <div class="meta-item">
+          <span class="meta-label">My Role</span>
+          <span class="meta-value">Lead Product Designer &amp; Motion Director</span>
+          <span class="meta-sub">Figma UX System, Brand Identity &amp; 3D Launch Film</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-label">Platform URL</span>
+          <span class="meta-value">staysaver.app</span>
+          <span class="meta-sub">
+            <a href="https://staysaver.app/" target="_blank" rel="noopener noreferrer" class="live-ref-link">
+              Visit Staging Server ↗
+            </a>
+          </span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-label">Project Status</span>
+          <span class="meta-value" style="color: var(--gold-800);">🚧 Active Development (Staging)</span>
+          <span class="meta-sub">PMS &amp; Keyless Lock API Integration In Progress</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-label">Core Deliverables</span>
+          <span class="meta-value">Web Platform UX, Brand Motion, Tokens</span>
+          <span class="meta-sub">3D Launch Film, UI Kit, Keyless IoT Architecture</span>
+        </div>
+      </div>
+
+      <!-- DEVELOPMENT SPRINT BANNER -->
+      <div class="dev-banner">
+        <div class="dev-banner-icon">⚡</div>
+        <div class="dev-banner-body">
+          <h3>Development Status Notice — Pre-Launch Staging Phase</h3>
+          <p>
+            The production domain <strong>https://staysaver.app/</strong> is currently configured on our cloud staging infrastructure. While the product design system, user flows, and 3D kinetic campaign are 100% complete, engineering teams are actively implementing real-time hotel PMS APIs (Opera, Cloudbeds) and automated digital keycard integrations. Public access and early-bird beta registration will launch upon conclusion of the pilot hotel partner onboarding phase.
+          </p>
+        </div>
+      </div>
+
+      <!-- HERO SHOWCASE FRAME -->
+      <div class="cs-hero-mockup-frame zoomable" onclick="openLightbox('stay-saver.webp')">
+        <img src="stay-saver.webp" alt="StaySaver Web Platform Desktop Interface" width="1240" height="720">
+        <div class="cs-mockup-overlay-pill">
+          <span class="status-pulse-gold"></span>
+          StaySaver Web Platform · staysaver.app · Click to Zoom
+        </div>
+      </div>
+
+      <!-- ARCHITECTURAL VALUE PILLARS -->
+      <div class="arch-pillars-grid">
+        <div class="pillar-card">
+          <div class="pillar-icon-wrap gold">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+              <circle cx="12" cy="12" r="10"></circle>
+              <polyline points="12 6 12 12 16 14"></polyline>
+            </svg>
+          </div>
+          <h4 class="pillar-title">Precision Time-Slice Slider</h4>
+          <p class="pillar-desc">Select exact check-in hours and stay lengths (3h, 6h, 12h, or Day-Use) with transparent per-hour pricing calculations.</p>
+        </div>
+
+        <div class="pillar-card">
+          <div class="pillar-icon-wrap navy">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+              <line x1="12" y1="1" x2="12" y2="23"></line>
+              <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+            </svg>
+          </div>
+          <h4 class="pillar-title">RevPAR Monetization</h4>
+          <p class="pillar-desc">Monetizing empty daytime hotel rooms between 9:00 AM and 6:00 PM without increasing housekeeping staff overhead.</p>
+        </div>
+
+        <div class="pillar-card">
+          <div class="pillar-icon-wrap gold">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+              <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+              <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+            </svg>
+          </div>
+          <h4 class="pillar-title">Keyless IoT Entry</h4>
+          <p class="pillar-desc">Instant mobile digital pass generated upon booking, allowing guests to bypass the reception desk directly to room doors.</p>
+        </div>
+
+        <div class="pillar-card">
+          <div class="pillar-icon-wrap navy">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+            </svg>
+          </div>
+          <h4 class="pillar-title">Curated 4 &amp; 5-Star Hotels</h4>
+          <p class="pillar-desc">Handpicked hotel inventory featuring guaranteed high-speed fiber Wi-Fi, executive desks, soundproofing, and pool access.</p>
+        </div>
+      </div>
+    </header>
+
+    <!-- ==========================================================================
+         SECTION 02: DEVELOPMENT MILESTONES ROADMAP
+         ========================================================================== -->
+    <section class="cs-section" id="roadmap">
+      <span class="cs-section-badge">02 · Engineering Roadmap</span>
+      <h2 class="cs-section-heading">Development Milestones &amp; Launch Timeline</h2>
+      <p class="cs-body-p">
+        A structured overview of how StaySaver is transitioning from research, prototyping, and brand motion into production-grade infrastructure on staysaver.app:
+      </p>
+
+      <div class="roadmap-grid">
+        <div class="roadmap-card completed">
+          <span class="badge-status done">✓ 100% Completed</span>
+          <h4 class="roadmap-title">Phase 01: UX &amp; Architecture</h4>
+          <p class="roadmap-desc">Market validation with transit travelers, journey mapping for 3h/6h/12h bookings, and wireframing frictionless booking checkout.</p>
+        </div>
+
+        <div class="roadmap-card completed">
+          <span class="badge-status done">✓ 100% Completed</span>
+          <h4 class="roadmap-title">Phase 02: Brand Motion Identity</h4>
+          <p class="roadmap-desc">SaaS launch kinetic film engineered in After Effects (<code>BrandMotion.aep</code>) and Cinema 4D for investor presentations and partners.</p>
+        </div>
+
+        <div class="roadmap-card in-progress">
+          <span class="badge-status active">⚙ In Active Sprint (75%)</span>
+          <h4 class="roadmap-title">Phase 03: Booking Engine Staging</h4>
+          <p class="roadmap-desc">Frontend responsive client implementation, dynamic price-per-hour calculator, and staging deployment to staysaver.app.</p>
+        </div>
+
+        <div class="roadmap-card in-progress">
+          <span class="badge-status active">⚙ In Progress (50%)</span>
+          <h4 class="roadmap-title">Phase 04: PMS &amp; IoT Keyless API</h4>
+          <p class="roadmap-desc">Bi-directional room turnover sync with hotel Property Management Systems (Opera, Cloudbeds) and mobile keycard unlocks.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         SECTION 03: THE HOSPITALITY CHALLENGE
+         ========================================================================== -->
+    <section class="cs-section" id="market-need">
+      <span class="cs-section-badge">03 · Market Need</span>
+      <h2 class="cs-section-heading">Challenging the Obsolete 24-Hour Hospitality Model</h2>
+      <p class="cs-body-p">
+        The global hotel industry has historically forced guests into a rigid 24-hour cycle: check in after 3:00 PM, check out before 11:00 AM. In today's hyper-mobile world of delayed flights, remote workation sprints, and international layovers, this binary model creates heavy friction for both travelers and hoteliers:
+      </p>
+
+      <div class="problem-solution-grid">
+        <div class="ps-card">
+          <span class="ps-badge problem">The Legacy Friction</span>
+          <h3 class="ps-title">Rigid Overnight Lock-In</h3>
+          <ul class="ps-list">
+            <li>
+              <span class="bullet cross">✕</span>
+              <span><strong>Full Price for Brief Stays:</strong> Transit passengers on 5-hour layovers forced to pay full $200–$400 overnight rates for 3 hours of rest.</span>
+            </li>
+            <li>
+              <span class="bullet cross">✕</span>
+              <span><strong>Daytime Room Vacancy:</strong> Hotels face 35%–45% unoccupied room vacancy between 9:00 AM and 6:00 PM with zero daytime monetization.</span>
+            </li>
+            <li>
+              <span class="bullet cross">✕</span>
+              <span><strong>Remote Commuter Barrier:</strong> Business commuters unable to book quiet executive rooms for client video calls without overnight commitments.</span>
+            </li>
+            <li>
+              <span class="bullet cross">✕</span>
+              <span><strong>Reception Desk Queues:</strong> Cumbersome paper check-in queues causing friction during morning rush hours.</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="ps-card solution">
+          <span class="ps-badge solution">The StaySaver Solution</span>
+          <h3 class="ps-title">Granular Micro-Stay Flexibility</h3>
+          <ul class="ps-list">
+            <li>
+              <span class="bullet check">✓</span>
+              <span><strong>Precision Time-Slice Slider:</strong> Select exact check-in hours and stay durations (3h, 6h, 12h, or Day-Use) with transparent per-hour rates.</span>
+            </li>
+            <li>
+              <span class="bullet check">✓</span>
+              <span><strong>Up to 65% Guest Savings:</strong> Travelers pay strictly for the hours used, opening luxury hotels to transit commuters and daytime remote workers.</span>
+            </li>
+            <li>
+              <span class="bullet check">✓</span>
+              <span><strong>New RevPAR Stream for Hotels:</strong> Properties monetize clean vacant rooms between checkout and evening check-ins without extra overhead.</span>
+            </li>
+            <li>
+              <span class="bullet check">✓</span>
+              <span><strong>Instant Digital Keycard:</strong> Frictionless mobile check-in bypassing hotel reception desks directly to room doors.</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         SECTION 04: BRAND IDENTITY & LOGO ARCHITECTURE
+         ========================================================================== -->
+    <section class="cs-section" id="brand-identity">
+      <span class="cs-section-badge">04 · Visual Identity</span>
+      <h2 class="cs-section-heading">Heritage Brand Mark &amp; Luxury Identity System</h2>
+      <p class="cs-body-p">
+        StaySaver's brand identity was created to bridge high-end hospitality heritage with modern digital convenience. The logo reflects comfort, architectural prestige, and trustworthy service:
+      </p>
+
+      <div class="brand-identity-box">
+        <div class="brand-logo-preview zoomable" onclick="openLightbox('logos/stay-saver-logo.svg')">
+          <img src="logos/stay-saver-logo.svg" alt="StaySaver Luxury Hospitality Brand Logo" width="480">
+        </div>
+
+        <div class="brand-details">
+          <h3 class="brand-title">Architectural Symbolism &amp; Color Philosophy</h3>
+          <ul class="brand-symbols-list">
+            <li>
+              <span class="check">✓</span>
+              <span><strong>The Hospitality Archway:</strong> Outlines a classical hotel portal in Deep Heritage Navy (<code>#0E2A47</code>), symbolizing warmth, shelter, and security.</span>
+            </li>
+            <li>
+              <span class="check">✓</span>
+              <span><strong>The Serif Monogram:</strong> An elegant 'S' monogram nestled within the headboard arch, invoking boutique hotel prestige.</span>
+            </li>
+            <li>
+              <span class="check">✓</span>
+              <span><strong>The Golden Cushion:</strong> A warm champagne gold pillow (<code>#C1A364</code>) providing an immediate visual cue of restful luxury and micro-stay relaxation.</span>
+            </li>
+            <li>
+              <span class="check">✓</span>
+              <span><strong>Ornamental Filigree:</strong> Fine-line gold flourishes at the base that ground the brand mark across stationery, keycards, and digital passes.</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         SECTION 05: 3D KINETIC LAUNCH FILM
+         ========================================================================== -->
+    <section class="cs-section" id="motion-film">
+      <span class="cs-section-badge">05 · 3D Motion Film</span>
+      <h2 class="cs-section-heading">BrandMotion.aep: 3D Kinetic SaaS Launch Film</h2>
+      <p class="cs-body-p">
+        To launch StaySaver across digital channels and onboard premier hotel operators, we conceived an immersive 3D promotional film crafted with Adobe After Effects and Cinema 4D. Watch the live high-resolution recording below:
+      </p>
+
+      <div class="hero-mockup-wrapper">
+        <div class="mockup-topbar">
+          <div class="mac-window-controls">
+            <span class="dot dot-red"></span>
+            <span class="dot dot-yellow"></span>
+            <span class="dot dot-green"></span>
+          </div>
+          <div class="mac-url-bar">
+            <span>🔒</span> https://staysaver.app
+            <span class="dev-indicator" style="font-family: var(--font-mono); font-size: 0.7rem; background: var(--gold-50); color: var(--gold-800); padding: 2px 6px; border-radius: 4px; font-weight: 700;">STAGING</span>
+          </div>
+          <div class="mac-actions">MacBook Pro 16" · 3D Motion Film</div>
+        </div>
+
+        <video class="hero-mockup-video" autoplay loop muted playsinline controls poster="Staysaver-video-moc.webp" preload="metadata">
+          <source src="stay-saver.mp4" type="video/mp4">
+          Your browser does not support HTML5 video playback.
+        </video>
+
+        <div class="mockup-caption-bar">
+          <span>BrandMotion.aep: SaaS launch kinetic film highlighting granular hourly time-slice booking and luxury suites.</span>
+          <span class="mockup-badge">🎬 Live Interactive Video</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         SECTION 06: PRODUCT ARCHITECTURE & SLOT ENGINE
+         ========================================================================== -->
+    <section class="cs-section" id="product-architecture">
+      <span class="cs-section-badge">06 · Product Architecture</span>
+      <h2 class="cs-section-heading">Engineered for Frictionless Micro-Stay Discovery</h2>
+      <p class="cs-body-p">
+        Every interaction was refined to eliminate traditional booking friction and enable complete reservation in under 45 seconds:
+      </p>
+
+      <div class="feature-spotlight-box">
+        <div class="spotlight-text">
+          <h3 class="spotlight-title">Dynamic Hour-Slice Selector &amp; Instant IoT Pass</h3>
+          <p class="spotlight-desc">
+            An interactive duration scrubber allows guests to pick exact check-in hours and stay durations with dynamic live price re-calculation in real time.
+          </p>
+          <ul class="spotlight-specs-list">
+            <li><span class="check">✓</span> <strong>Hourly Slot Scrubber:</strong> 3-hour layovers, 6-hour work sessions, 12-hour day-use, or overnight extensions.</li>
+            <li><span class="check">✓</span> <strong>Vetted 4 &amp; 5-Star Hotels:</strong> Curated properties with soundproofing, executive desks, and fiber Wi-Fi.</li>
+            <li><span class="check">✓</span> <strong>Instant Mobile Digital Keycard:</strong> Automated BLE/NFC mobile pass bypassing reception lines directly to doors.</li>
+          </ul>
+        </div>
+        <div class="spotlight-media" onclick="openLightbox('stay-saver.webp')">
+          <img src="stay-saver.webp" alt="StaySaver Web Interface Time-Slice Selector" loading="lazy">
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         SECTION 07: DESIGN TOKENS & SYSTEM
+         ========================================================================== -->
+    <section class="cs-section" id="design-tokens">
+      <span class="cs-section-badge">07 · Design Tokens</span>
+      <h2 class="cs-section-heading">Heritage Navy &amp; Champagne Gold Design Tokens</h2>
+      <p class="cs-body-p">
+        The design language blends the precision of Bhatu Prakash's signature CSS token architecture with luxury hospitality warmth:
+      </p>
+
+      <div class="token-system-container">
+        <div class="token-header-strip">
+          <div class="token-heading-title">StaySaver Token Hierarchy</div>
+          <div class="token-badge-tech">:root tokens enabled</div>
+        </div>
+
+        <div class="swatch-grid">
+          <div class="swatch-card">
+            <div class="swatch-preview" style="background: #0e2a47;"></div>
+            <div class="swatch-token-name">--navy-900</div>
+            <div class="swatch-hex">#0E2A47 · Heritage</div>
+          </div>
+          <div class="swatch-card">
+            <div class="swatch-preview" style="background: #c1a364; box-shadow: 0 0 10px rgba(193,163,100,0.3);"></div>
+            <div class="swatch-token-name">--gold-500</div>
+            <div class="swatch-hex">#C1A364 · Gold</div>
+          </div>
+          <div class="swatch-card">
+            <div class="swatch-preview" style="background: #faf7f2; border: 1px solid #dcd4c3;"></div>
+            <div class="swatch-token-name">--slate-50</div>
+            <div class="swatch-hex">#FAF7F2 · Alabaster</div>
+          </div>
+          <div class="swatch-card">
+            <div class="swatch-preview" style="background: #d4b87c;"></div>
+            <div class="swatch-token-name">--gold-400</div>
+            <div class="swatch-hex">#D4B87C · Accent</div>
+          </div>
+          <div class="swatch-card">
+            <div class="swatch-preview" style="background: #10b981;"></div>
+            <div class="swatch-token-name">--status-emerald</div>
+            <div class="swatch-hex">#10B981 · Confirmed</div>
+          </div>
+          <div class="swatch-card">
+            <div class="swatch-preview" style="background: #ffffff; border: 1px solid #e2e8f0;"></div>
+            <div class="swatch-token-name">--white</div>
+            <div class="swatch-hex">#FFFFFF · Card Surface</div>
+          </div>
+        </div>
+
+        <!-- Live Code Block -->
+        <div class="code-inspector-block">
+          <div class="code-topbar">
+            <span class="code-filename">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="16 18 22 12 16 6"></polyline>
+                <polyline points="8 6 2 12 8 18"></polyline>
+              </svg>
+              staysaver-tokens.css
+            </span>
+            <span>CSS Variables System</span>
+          </div>
+          <pre class="code-pre"><code><span class="c-prop">:root</span> {
+  <span class="c-comment">/* Heritage Hospitality Neutrals */</span>
+  <span class="c-prop">--navy-900</span>: <span class="c-val">#0e2a47</span>; <span class="c-comment">/* Primary Heritage Navy */</span>
+  <span class="c-prop">--navy-850</span>: <span class="c-val">#133557</span>;
+  <span class="c-prop">--slate-50</span>: <span class="c-val">#faf7f2</span>; <span class="c-comment">/* Alabaster Base Canvas */</span>
+  <span class="c-prop">--white</span>: <span class="c-val">#ffffff</span>;
+
+  <span class="c-comment">/* Champagne Gold Luxury Accents */</span>
+  <span class="c-prop">--gold-600</span>: <span class="c-val">#af8d45</span>;
+  <span class="c-prop">--gold-500</span>: <span class="c-val">#c1a364</span>; <span class="c-comment">/* Primary Brand Gold */</span>
+  <span class="c-prop">--gold-400</span>: <span class="c-val">#d4b87c</span>;
+  <span class="c-prop">--gold-50</span>: <span class="c-val">#faf7f2</span>;
+
+  <span class="c-comment">/* Radii & Elevation */</span>
+  <span class="c-prop">--radius-md</span>: <span class="c-val">10px</span>;
+  <span class="c-prop">--radius-lg</span>: <span class="c-val">16px</span>;
+  <span class="c-prop">--radius-xl</span>: <span class="c-val">22px</span>;
+
+  <span class="c-comment">/* Typography Stack */</span>
+  <span class="c-prop">--font-heading</span>: <span class="c-val">"Bricolage Grotesque", system-ui, sans-serif</span>;
+  <span class="c-prop">--font-body</span>: <span class="c-val">"Inter", "Plus Jakarta Sans", sans-serif</span>;
+  <span class="c-prop">--font-mono</span>: <span class="c-val">"JetBrains Mono", monospace</span>;
+}</code></pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         SECTION 08: TARGET ECONOMICS & MODELING
+         ========================================================================== -->
+    <section class="cs-section" id="economic-impact">
+      <span class="cs-section-badge">08 · Economic Modeling</span>
+      <h2 class="cs-section-heading">Anticipated Performance &amp; Economic Value Modeling</h2>
+      <p class="cs-body-p">
+        Target economics projected from early pilot feedback with metro boutique hotels and airport transit commuters:
+      </p>
+
+      <div class="arch-pillars-grid">
+        <div class="pillar-card">
+          <div class="pillar-icon-wrap gold">
+            <span style="font-family: var(--font-heading); font-size: 1.2rem; font-weight: 800;">65%</span>
+          </div>
+          <h4 class="pillar-title">Average Traveler Savings</h4>
+          <p class="pillar-desc">Estimated guest cost reduction compared to paying a full 24-hour overnight rate for daytime rests.</p>
+        </div>
+
+        <div class="pillar-card">
+          <div class="pillar-icon-wrap navy">
+            <span style="font-family: var(--font-mono); font-size: 1.1rem; font-weight: 800;">&lt; 45s</span>
+          </div>
+          <h4 class="pillar-title">Search to Digital Key</h4>
+          <p class="pillar-desc">Streamlined checkout flow generating an encrypted mobile room keycard in under 45 seconds.</p>
+        </div>
+
+        <div class="pillar-card">
+          <div class="pillar-icon-wrap gold">
+            <span style="font-family: var(--font-heading); font-size: 1.2rem; font-weight: 800;">+38%</span>
+          </div>
+          <h4 class="pillar-title">Target RevPAR Lift</h4>
+          <p class="pillar-desc">Projected incremental daytime revenue for participating partner hotels utilizing unoccupied rooms.</p>
+        </div>
+
+        <div class="pillar-card">
+          <div class="pillar-icon-wrap navy">
+            <span style="font-family: var(--font-mono); font-size: 1.1rem; font-weight: 800;">500+</span>
+          </div>
+          <h4 class="pillar-title">Launch Pipeline Rooms</h4>
+          <p class="pillar-desc">Projected initial room pipeline across major airport transit corridors and central business hubs.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         SECTION 09: RETROSPECTIVE & LEARNINGS
+         ========================================================================== -->
+    <section class="cs-section" id="retrospective">
+      <span class="cs-section-badge">09 · Retrospective</span>
+      <h2 class="cs-section-heading">Design Retrospective &amp; Staging Takeaways</h2>
+      <p class="cs-body-p">
+        Transitioning StaySaver through active staging revealed critical insights on brand perception, hotel operational realities, and mobile-first transit travelers:
+      </p>
+
+      <div class="retro-grid">
+        <div class="retro-card">
+          <span class="retro-num">Takeaway 01</span>
+          <h4 class="retro-title">Overcoming "Hourly" Stigma Through Luxury</h4>
+          <p class="retro-desc">
+            Hourly room bookings historically faced negative connotations. Anchoring the brand in regal Heritage Navy, Champagne Gold, and partnering strictly with vetted 4-star and 5-star properties re-contextualized the product into a luxury convenience utility.
+          </p>
+        </div>
+
+        <div class="retro-card">
+          <span class="retro-num">Takeaway 02</span>
+          <h4 class="retro-title">Respecting Hotel Housekeeping Cycles</h4>
+          <p class="retro-desc">
+            Early hotel interviews revealed that room turnaround between 11:00 AM and 3:00 PM is sacred. The slot engine was engineered with automated buffer windows to guarantee that housekeeping teams never experience turnover panic.
+          </p>
+        </div>
+
+        <div class="retro-card">
+          <span class="retro-num">Takeaway 03</span>
+          <h4 class="retro-title">Keyless Entry Is the Real Magic Moment</h4>
+          <p class="retro-desc">
+            A tired traveler landing at 6:00 AM does not want to stand in a hotel lobby queue explaining a 4-hour booking. Instant mobile digital key issuance directly upon payment makes the experience feel modern and empowering.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         NEXT PROJECT CROSS-NAVIGATION BANNER
+         ========================================================================== -->
+    <section class="cs-next-banner">
+      <div class="next-card">
+        <div class="next-info">
+          <span class="next-script">Connected Portfolio Projects</span>
+          <h3 class="next-title">Explore FlyFi Mobile Companion App</h3>
+          <p class="next-desc">
+            Inspect the complete 22-screen iOS and Android mobile app designed in Figma across live radar telemetry, one-thumb drawers, and terminal Wi-Fi keychains.
+          </p>
+        </div>
+        <div class="next-actions">
+          <a href="case-study-flyfi.html" class="btn-cta">
+            View FlyFi Mobile App Study →
+          </a>
+          <a href="case-study-flyfi-web.html" class="btn-subtle">
+            FlyFi Web Portal Redesign ↗
+          </a>
+          <a href="case-study-pms.html" class="btn-subtle">
+            PMS Web SaaS Platform ↗
+          </a>
+          <a href="case-study-uk.html" class="btn-subtle">
+            iTranscript360 UK NHS Edition ↗
+          </a>
+          <a href="index.html#projects" class="btn-subtle">
+            ← All Selected Projects
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- SITE FOOTER -->
+  <footer class="site-footer">
+    <div class="footer-left">
+      © 2026 Bhatu Prakash • Senior UI/UX Designer &amp; Motion Director. Ahmedabad, India.
+    </div>
+
+    <ul class="footer-links">
+      <li><a href="index.html#projects" class="footer-link">Selected Work</a></li>
+      <li><a href="case-study-staysaver.html" class="footer-link" style="color: var(--gold-800); font-weight: 700;">StaySaver (In Dev)</a></li>
+      <li><a href="case-study-flyfi.html" class="footer-link">FlyFi Mobile App</a></li>
+      <li><a href="case-study-pms.html" class="footer-link">PMS Web SaaS</a></li>
+      <li><a href="case-study-uk.html" class="footer-link">UK NHS Edition</a></li>
+    </ul>
+
+    <button class="btn-top" type="button" onclick="window.scrollTo({top: 0, behavior: 'smooth'});">
+      <span>Back to Top</span>
+      <span>↑</span>
+    </button>
+  </footer>
+
+  <!-- IMAGE LIGHTBOX MODAL -->
+  <div class="lightbox-modal" id="lightbox" role="dialog" aria-modal="true" aria-label="Expanded interface preview">
+    <button class="lightbox-close" id="lightbox-close" aria-label="Close image preview">&times;</button>
+    <div class="lightbox-content">
+      <img src="" alt="Enlarged Platform Screen" class="lightbox-img" id="lightbox-img">
+    </div>
+  </div>
+
+  <!-- INTERACTION SCRIPTS -->
+  <script>
+    (function () {
+      'use strict';
+
+      // 1. Reading Progress Bar
+      const progressBar = document.getElementById('progressBar');
+      window.addEventListener('scroll', () => {
+        const scrollTop = window.scrollY || document.documentElement.scrollTop;
+        const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        if (progressBar && scrollHeight > 0) {
+          const progress = (scrollTop / scrollHeight) * 100;
+          progressBar.style.width = progress + '%';
+        }
+      }, { passive: true });
+
+      // 2. Image Lightbox Modal
+      const lightbox = document.getElementById('lightbox');
+      const lightboxImg = document.getElementById('lightbox-img');
+      const lightboxClose = document.getElementById('lightbox-close');
+
+      window.openLightbox = function (src) {
+        if (!src || !lightbox || !lightboxImg) return;
+        lightboxImg.src = src;
+        lightbox.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      };
+
+      function closeLightbox() {
+        if (!lightbox || !lightboxImg) return;
+        lightbox.classList.remove('active');
+        lightboxImg.src = '';
+        document.body.style.overflow = '';
+      }
+
+      document.querySelectorAll('.zoomable').forEach(el => {
+        el.addEventListener('click', () => {
+          const img = el.tagName === 'IMG' ? el : el.querySelector('img');
+          if (img) {
+            const src = img.getAttribute('src');
+            window.openLightbox(src);
+          }
+        });
+      });
+
+      if (lightboxClose) {
+        lightboxClose.addEventListener('click', closeLightbox);
+      }
+
+      if (lightbox) {
+        lightbox.addEventListener('click', (e) => {
+          if (e.target === lightbox) {
+            closeLightbox();
+          }
+        });
+      }
+
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && lightbox && lightbox.classList.contains('active')) {
+          closeLightbox();
+        }
+      });
+
+      // 3. ScrollSpy for Sticky Chapter TOC Dock
+      const tocLinks = document.querySelectorAll('.cs-toc-item a');
+      const sections = document.querySelectorAll('header.cs-hero, section.cs-section');
+
+      window.addEventListener('scroll', () => {
+        let currentSection = '';
+        const scrollPosition = window.scrollY + 180;
+
+        sections.forEach(section => {
+          const sectionTop = section.offsetTop;
+          const sectionHeight = section.offsetHeight;
+          if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+            currentSection = section.getAttribute('id');
+          }
+        });
+
+        if (currentSection) {
+          tocLinks.forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('href') === '#' + currentSection) {
+              link.classList.add('active');
+            }
+          });
+        }
+      }, { passive: true });
+    })();
+  </script>
+  <script src="mobile-nav.js"></script>
+</body>
+
+</html>

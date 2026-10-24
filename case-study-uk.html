@@ -1,0 +1,3077 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>iTranscript360 UK NHS Edition Case Study — Bhatu Prakash</title>
+  <meta name="description"
+    content="UI/UX Case Study: Designing the UK NHS Edition of iTranscript360. Direct EMIS Web and SystmOne integration, UK sovereign data storage, and AI-powered British medical transcription.">
+
+  <!-- Fonts: Bricolage Grotesque (Headings), Inter & Plus Jakarta Sans (Body), JetBrains Mono (Specs), Caveat (Accents) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800;12..96,900&family=Caveat:wght@600;700&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="responsive.css">
+
+  <style>
+    /* ==========================================================================
+       ITRANSCRIPT360 UK NHS EDITION — LIGHT HEALTHCARE SAAS DESIGN SYSTEM
+       Designer: Bhatu Prakash
+       Palette: Deep Navy (#142033), Healthcare Teal (#147D70 / #3EC5AA), NHS Trust Blue (#005EB8), Neutral (#F7F9FC)
+       Typography: Bricolage Grotesque (Headings), Inter / Plus Jakarta Sans (Body), JetBrains Mono (Specs)
+       ========================================================================== */
+    :root {
+      /* Brand Neutrals */
+      --navy-950: #0a101d;
+      --navy-900: #142033;
+      --navy-850: #1a2940;
+      --navy-800: #24344d;
+      --navy-700: #33445e;
+      --slate-600: #475569;
+      --slate-500: #64748b;
+      --slate-400: #94a3b8;
+      --slate-300: #cbd5e1;
+      --slate-200: #e2e8f0;
+      --slate-100: #f1f5f9;
+      --slate-50: #f7f9fc;
+      --white: #ffffff;
+
+      /* Healthcare Teal Brand Tokens */
+      --teal-800: #0d5e54;
+      --teal-700: #147d70;
+      --teal-600: #1a9e8e;
+      --teal-500: #3ec5aa;
+      --teal-400: #5fe0c7;
+      --teal-100: #ccfbf1;
+      --teal-50: #eaf9f5;
+
+      /* NHS Trust Blue Tokens */
+      --nhs-blue: #005eb8;
+      --nhs-blue-dark: #003087;
+      --nhs-blue-light: #41b6e6;
+      --nhs-blue-50: #f0f7ff;
+      --nhs-blue-100: #e0f0fe;
+
+      /* Functional Accents */
+      --emerald-700: #047857;
+      --emerald-600: #059669;
+      --emerald-50: #ecfdf5;
+      --amber-700: #b45309;
+      --amber-600: #d97706;
+      --amber-50: #fffbeb;
+      --rose-700: #be123c;
+      --rose-600: #e11d48;
+      --rose-50: #fff1f2;
+
+      /* Semantic Surface Tokens */
+      --bg-body: #f7f9fc;
+      --bg-surface: #ffffff;
+      --bg-subtle: #f1f5f9;
+      --text-primary: var(--navy-900);
+      --text-secondary: var(--slate-600);
+      --text-muted: var(--slate-500);
+      --border-subtle: #e2e8f0;
+      --border-strong: #cbd5e1;
+      --border-accent: var(--teal-500);
+      --border-nhs: rgba(0, 94, 184, 0.25);
+
+      /* Shadows */
+      --shadow-xs: 0 1px 2px 0 rgba(20, 32, 51, 0.04);
+      --shadow-sm: 0 1px 3px 0 rgba(20, 32, 51, 0.06), 0 1px 2px -1px rgba(20, 32, 51, 0.04);
+      --shadow-md: 0 4px 6px -1px rgba(20, 32, 51, 0.06), 0 2px 4px -2px rgba(20, 32, 51, 0.04);
+      --shadow-lg: 0 10px 15px -3px rgba(20, 32, 51, 0.07), 0 4px 6px -4px rgba(20, 32, 51, 0.03);
+      --shadow-xl: 0 20px 25px -5px rgba(20, 32, 51, 0.08), 0 8px 10px -6px rgba(20, 32, 51, 0.04);
+
+      /* Typography Tokens */
+      --font-heading: 'Bricolage Grotesque', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      --font-body: 'Inter', 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+      --font-script: 'Caveat', cursive;
+
+      --radius-sm: 6px;
+      --radius-md: 10px;
+      --radius-lg: 14px;
+      --radius-xl: 20px;
+    }
+
+    /* Reset & Base Styles */
+    *,
+    *::before,
+    *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      color-scheme: light;
+    }
+
+    body {
+      background-color: var(--bg-body);
+      color: var(--text-primary);
+      font-family: var(--font-body);
+      font-size: 1rem;
+      line-height: 1.68;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      font-family: var(--font-heading);
+      color: var(--navy-900);
+      font-weight: 700;
+      line-height: 1.25;
+      letter-spacing: -0.02em;
+    }
+
+    p {
+      color: var(--text-secondary);
+      line-height: 1.7;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* READING PROGRESS BAR */
+    .reading-progress-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--nhs-blue), var(--teal-600), var(--teal-400));
+      width: 0%;
+      z-index: 1000;
+      transition: width 0.1s linear;
+    }
+
+    /* TOP NAVBAR */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.9rem clamp(1.25rem, 4vw, 5rem);
+      background: rgba(255, 255, 255, 0.94);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border-subtle);
+      z-index: 100;
+      transition: all 0.25s ease;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+      text-decoration: none;
+      color: var(--navy-900);
+    }
+
+    .dp-wrapper {
+      position: relative;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      padding: 2px;
+      background: linear-gradient(135deg, var(--nhs-blue), var(--teal-500));
+      flex-shrink: 0;
+    }
+
+    .dp-img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+      display: block;
+      background-color: var(--slate-100);
+    }
+
+    .dp-status-dot {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      width: 11px;
+      height: 11px;
+      border-radius: 50%;
+      background-color: var(--emerald-600);
+      border: 2px solid var(--white);
+    }
+
+    .logo-text {
+      font-family: var(--font-heading);
+      font-size: 1.18rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: var(--navy-900);
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.75rem;
+      list-style: none;
+    }
+
+    .nav-link {
+      color: var(--slate-600);
+      text-decoration: none;
+      font-size: 0.92rem;
+      font-weight: 600;
+      transition: color 0.2s ease;
+    }
+
+    .nav-link:hover {
+      color: var(--teal-700);
+    }
+
+    .btn-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      background: var(--white);
+      border: 1px solid var(--border-strong);
+      color: var(--navy-800);
+      font-size: 0.88rem;
+      font-weight: 600;
+      padding: 0.55rem 1.15rem;
+      border-radius: var(--radius-md);
+      transition: all 0.2s ease;
+    }
+
+    .btn-back:hover {
+      background: var(--slate-50);
+      border-color: var(--teal-600);
+      color: var(--teal-800);
+      transform: translateX(-2px);
+    }
+
+    .btn-live-out {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--nhs-blue-50);
+      color: var(--nhs-blue);
+      border: 1px solid var(--nhs-blue-100);
+      font-family: var(--font-heading);
+      font-size: 0.88rem;
+      font-weight: 700;
+      padding: 0.55rem 1.15rem;
+      border-radius: var(--radius-md);
+      transition: all 0.2s ease;
+      white-space: nowrap;
+    }
+
+    .btn-live-out:hover {
+      background: var(--nhs-blue);
+      color: var(--white);
+      box-shadow: 0 4px 12px rgba(0, 94, 184, 0.25);
+    }
+
+    .mobile-nav-toggle {
+      display: none;
+      background: var(--slate-100);
+      border: 1px solid var(--border-strong);
+      border-radius: 8px;
+      cursor: pointer;
+      width: 40px;
+      height: 40px;
+      padding: 0;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 5px;
+      transition: background 0.2s ease, border-color 0.2s ease;
+    }
+
+    .mobile-nav-toggle:hover {
+      background: var(--slate-200);
+      border-color: var(--teal-600);
+    }
+
+    .hamburger-line {
+      display: block;
+      width: 20px;
+      height: 2px;
+      background-color: var(--navy-900) !important;
+      border-radius: 2px;
+      transition: all 0.2s ease;
+    }
+
+    /* FLOATING TABLE OF CONTENTS DOCK */
+    .cs-toc-wrapper {
+      position: sticky;
+      top: 74px;
+      z-index: 90;
+      display: flex;
+      justify-content: center;
+      padding: 0.6rem 1rem;
+      pointer-events: none;
+    }
+
+    .cs-toc-inner {
+      pointer-events: auto;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: rgba(255, 255, 255, 0.95);
+      border: 1px solid var(--border-subtle);
+      box-shadow: var(--shadow-md);
+      border-radius: 999px;
+      padding: 0.35rem 0.65rem;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      max-width: 95vw;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+
+    .cs-toc-inner::-webkit-scrollbar {
+      display: none;
+    }
+
+    .cs-toc-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 0.74rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--slate-500);
+      padding: 0 0.5rem;
+      white-space: nowrap;
+    }
+
+    .cs-toc-list {
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+      list-style: none;
+    }
+
+    .cs-toc-item a {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--slate-600);
+      padding: 0.35rem 0.85rem;
+      border-radius: 999px;
+      white-space: nowrap;
+      transition: all 0.2s ease;
+    }
+
+    .cs-toc-item a:hover {
+      color: var(--teal-700);
+      background: var(--slate-100);
+    }
+
+    .cs-toc-item a.active {
+      color: var(--nhs-blue);
+      background: var(--nhs-blue-50);
+      border: 1px solid var(--nhs-blue-100);
+      font-weight: 700;
+    }
+
+    /* MAIN CONTAINER */
+    .cs-wrapper {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 2.5rem clamp(1.25rem, 4vw, 3rem) 5rem;
+    }
+
+    /* BREADCRUMB */
+    .cs-breadcrumb {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.84rem;
+      color: var(--slate-500);
+      margin-bottom: 2rem;
+    }
+
+    .cs-breadcrumb a {
+      color: var(--slate-500);
+      transition: color 0.2s;
+    }
+
+    .cs-breadcrumb a:hover {
+      color: var(--teal-700);
+    }
+
+    .cs-breadcrumb .sep {
+      color: var(--slate-300);
+    }
+
+    .cs-breadcrumb .current {
+      color: var(--navy-800);
+      font-weight: 600;
+    }
+
+    /* ==========================================================================
+       SECTION 01: HERO & METADATA
+       ========================================================================== */
+    .cs-hero {
+      margin-bottom: 4.5rem;
+      scroll-margin-top: 130px;
+    }
+
+    .cs-hero-header {
+      text-align: center;
+      max-width: 980px;
+      margin: 0 auto 2.5rem;
+    }
+
+    .cs-badge-row {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .cs-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      padding: 0.35rem 0.85rem;
+      border-radius: 999px;
+      background: var(--slate-100);
+      color: var(--slate-600);
+      border: 1px solid var(--border-subtle);
+      letter-spacing: 0.02em;
+    }
+
+    .cs-pill-uk {
+      background: #fef2f2;
+      color: #991b1b;
+      border-color: #fee2e2;
+    }
+
+    .cs-pill-nhs {
+      background: var(--nhs-blue-50);
+      color: var(--nhs-blue);
+      border-color: var(--nhs-blue-100);
+    }
+
+    .cs-pill-teal {
+      background: var(--teal-50);
+      color: var(--teal-800);
+      border-color: var(--teal-100);
+    }
+
+    .cs-script {
+      display: block;
+      font-family: var(--font-script);
+      font-size: 1.45rem;
+      color: var(--teal-700);
+      margin-bottom: 0.5rem;
+    }
+
+    .cs-title {
+      font-size: clamp(2.2rem, 4.2vw, 3.5rem);
+      line-height: 1.15;
+      font-weight: 800;
+      color: var(--navy-950);
+      margin-bottom: 1.25rem;
+      letter-spacing: -0.03em;
+    }
+
+    .cs-title .highlight {
+      color: var(--nhs-blue);
+      background: linear-gradient(120deg, var(--nhs-blue), var(--teal-700));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .cs-tagline {
+      font-size: clamp(1.05rem, 1.8vw, 1.2rem);
+      color: var(--navy-700);
+      line-height: 1.7;
+      max-width: 880px;
+      margin: 0 auto;
+    }
+
+    /* METADATA MATRIX */
+    .cs-meta-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.25rem;
+      background: var(--white);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 1.5rem 1.75rem;
+      box-shadow: var(--shadow-sm);
+      margin-bottom: 2.5rem;
+    }
+
+    .meta-item {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+
+    .meta-label {
+      font-size: 0.74rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--slate-400);
+    }
+
+    .meta-value {
+      font-family: var(--font-heading);
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--navy-900);
+      line-height: 1.35;
+    }
+
+    .meta-sub {
+      font-size: 0.8rem;
+      color: var(--slate-500);
+    }
+
+    .live-ref-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      color: var(--teal-700);
+      font-weight: 700;
+      transition: color 0.2s;
+    }
+
+    .live-ref-link:hover {
+      color: var(--teal-800);
+      text-decoration: underline;
+    }
+
+    /* HERO SHOWCASE FRAME */
+    .cs-hero-mockup-frame {
+      position: relative;
+      background: var(--white);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-xl);
+      padding: 0.85rem;
+      box-shadow: var(--shadow-xl);
+      overflow: hidden;
+      margin-bottom: 2.5rem;
+      cursor: zoom-in;
+    }
+
+    .cs-hero-mockup-frame img {
+      width: 100%;
+      height: auto;
+      border-radius: calc(var(--radius-xl) - 4px);
+      border: 1px solid var(--border-subtle);
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .cs-hero-mockup-frame:hover img {
+      transform: scale(1.008);
+    }
+
+    .cs-mockup-overlay-pill {
+      position: absolute;
+      bottom: 1.75rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(20, 32, 51, 0.88);
+      color: var(--white);
+      font-size: 0.82rem;
+      font-weight: 600;
+      padding: 0.5rem 1.25rem;
+      border-radius: 999px;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+      pointer-events: none;
+    }
+
+    .status-pulse {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background-color: var(--teal-400);
+      box-shadow: 0 0 0 3px rgba(62, 197, 170, 0.3);
+      display: inline-block;
+    }
+
+    /* ARCHITECTURAL HIGHLIGHT PILLARS (VERIFIED) */
+    .arch-pillars-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.25rem;
+    }
+
+    .pillar-card {
+      background: var(--white);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 1.5rem;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .pillar-card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+      border-color: var(--teal-500);
+    }
+
+    .pillar-icon-wrap {
+      width: 40px;
+      height: 40px;
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--slate-100);
+      color: var(--teal-700);
+      margin-bottom: 0.25rem;
+    }
+
+    .pillar-icon-wrap.nhs {
+      background: var(--nhs-blue-50);
+      color: var(--nhs-blue);
+    }
+
+    .pillar-icon-wrap.teal {
+      background: var(--teal-50);
+      color: var(--teal-700);
+    }
+
+    .pillar-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--navy-900);
+    }
+
+    .pillar-desc {
+      font-size: 0.88rem;
+      color: var(--slate-600);
+      line-height: 1.6;
+    }
+
+    /* ==========================================================================
+       SECTION COMMON PATTERNS
+       ========================================================================== */
+    .cs-section {
+      margin-bottom: 5.5rem;
+      scroll-margin-top: 130px;
+    }
+
+    .cs-section-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.76rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--teal-700);
+      background: var(--teal-50);
+      border: 1px solid var(--teal-100);
+      padding: 0.35rem 0.85rem;
+      border-radius: 999px;
+      margin-bottom: 0.85rem;
+    }
+
+    .cs-section-badge.nhs {
+      color: var(--nhs-blue);
+      background: var(--nhs-blue-50);
+      border-color: var(--nhs-blue-100);
+    }
+
+    .cs-section-heading {
+      font-size: clamp(1.85rem, 3.2vw, 2.5rem);
+      font-weight: 800;
+      color: var(--navy-950);
+      letter-spacing: -0.025em;
+      line-height: 1.22;
+      margin-bottom: 1rem;
+    }
+
+    .cs-body-p {
+      font-size: 1.05rem;
+      color: var(--slate-600);
+      line-height: 1.75;
+      margin-bottom: 1.5rem;
+      max-width: 940px;
+    }
+
+    .cs-card {
+      background: var(--white);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      box-shadow: var(--shadow-sm);
+    }
+
+    /* ==========================================================================
+       SECTION 02: REGIONAL HEALTHCARE STRATEGY & PROBLEM
+       ========================================================================== */
+    .comp-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin-top: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .comp-card {
+      background: var(--white);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    .comp-card.uk-focus {
+      border: 2px solid var(--nhs-blue);
+      background: linear-gradient(180deg, #ffffff 0%, var(--nhs-blue-50) 100%);
+    }
+
+    .comp-badge {
+      display: inline-block;
+      font-size: 0.74rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: 0.35rem 0.75rem;
+      border-radius: 999px;
+      align-self: flex-start;
+    }
+
+    .comp-badge.global {
+      background: var(--slate-100);
+      color: var(--slate-600);
+    }
+
+    .comp-badge.uk {
+      background: var(--nhs-blue);
+      color: var(--white);
+    }
+
+    .comp-title {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--navy-900);
+    }
+
+    .comp-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.9rem;
+    }
+
+    .comp-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      font-size: 0.94rem;
+      color: var(--slate-600);
+      line-height: 1.55;
+    }
+
+    .comp-list .bullet {
+      flex-shrink: 0;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      font-weight: 800;
+      margin-top: 2px;
+    }
+
+    .comp-list .bullet.cross {
+      background: #fee2e2;
+      color: #b91c1c;
+    }
+
+    .comp-list .bullet.check {
+      background: #dcfce7;
+      color: #15803d;
+    }
+
+    /* EHR CALLOUT BANNER */
+    .ehr-callout-banner {
+      background: linear-gradient(135deg, var(--teal-800), var(--navy-900));
+      color: var(--white);
+      border-radius: var(--radius-lg);
+      padding: 2.25rem;
+      box-shadow: var(--shadow-md);
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    .ehr-callout-banner h4 {
+      color: var(--white);
+      font-size: 1.3rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .ehr-callout-banner p {
+      color: #cbd5e1;
+      font-size: 0.98rem;
+      line-height: 1.7;
+    }
+
+    .ehr-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-top: 0.5rem;
+    }
+
+    .ehr-tag {
+      font-size: 0.78rem;
+      font-weight: 700;
+      padding: 0.35rem 0.85rem;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.12);
+      color: var(--white);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .ehr-tag.accent {
+      background: var(--teal-500);
+      color: var(--navy-950);
+      border-color: var(--teal-400);
+    }
+
+    /* ==========================================================================
+       SECTION 03: MY ROLE & FRONTEND ARCHITECTURE
+       ========================================================================== */
+    .fe-split-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.15fr;
+      gap: 2rem;
+      align-items: stretch;
+    }
+
+    .fe-text-pane {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    .ai-assistants-strip {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-top: 0.5rem;
+    }
+
+    .ai-btn-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      padding: 0.55rem 1.15rem;
+      border-radius: 999px;
+      background: var(--white);
+      border: 1px solid var(--border-strong);
+      color: var(--navy-800);
+      box-shadow: var(--shadow-xs);
+      transition: all 0.2s ease;
+    }
+
+    .ai-btn-pill:hover {
+      background: var(--slate-100);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-sm);
+      border-color: var(--teal-600);
+    }
+
+    .ai-btn-pill.chatgpt:hover {
+      border-color: #10a37f;
+      color: #10a37f;
+    }
+
+    .ai-btn-pill.claude:hover {
+      border-color: #d97706;
+      color: #d97706;
+    }
+
+    .ai-btn-pill.perplexity:hover {
+      border-color: #0284c7;
+      color: #0284c7;
+    }
+
+    /* HUD GRAPHIC SIMULATION */
+    .fe-hud-demo {
+      background: var(--navy-950);
+      border: 1px solid var(--navy-800);
+      border-radius: var(--radius-lg);
+      padding: 1.75rem;
+      box-shadow: var(--shadow-lg);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 1.5rem;
+      color: var(--white);
+    }
+
+    .hud-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      padding-bottom: 0.85rem;
+    }
+
+    .hud-title {
+      font-size: 0.86rem;
+      font-weight: 700;
+      color: var(--teal-400);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .hud-typing-box {
+      font-family: var(--font-mono);
+      font-size: 0.94rem;
+      line-height: 1.65;
+      color: #e2e8f0;
+      min-height: 120px;
+      background: rgba(0, 0, 0, 0.35);
+      border-radius: var(--radius-md);
+      padding: 1.25rem;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .hud-typing-box .cursor {
+      display: inline-block;
+      width: 8px;
+      height: 16px;
+      background: var(--teal-400);
+      vertical-align: middle;
+      animation: blink 1s infinite;
+      margin-left: 4px;
+    }
+
+    @keyframes blink {
+
+      0%,
+      100% {
+        opacity: 1;
+      }
+
+      50% {
+        opacity: 0;
+      }
+    }
+
+    .hud-footer-meta {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.78rem;
+      color: var(--slate-400);
+      flex-wrap: wrap;
+      gap: 6px;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      padding-top: 0.85rem;
+    }
+
+    /* ==========================================================================
+       SECTION 04: EHR DIRECT INTEGRATION ARCHITECTURE
+       ========================================================================== */
+    .ehr-workflow-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.25rem;
+      margin-top: 2rem;
+    }
+
+    .workflow-step-card {
+      background: var(--white);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 1.5rem;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      position: relative;
+    }
+
+    .step-number-tag {
+      font-family: var(--font-mono);
+      font-size: 0.74rem;
+      font-weight: 700;
+      color: var(--nhs-blue);
+      background: var(--nhs-blue-50);
+      padding: 2px 8px;
+      border-radius: var(--radius-sm);
+      align-self: flex-start;
+    }
+
+    .step-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--navy-900);
+    }
+
+    .step-desc {
+      font-size: 0.88rem;
+      color: var(--slate-600);
+      line-height: 1.6;
+    }
+
+    /* ==========================================================================
+       SECTION 05: SPECIALIZED UK CLINICAL SERVICES
+       ========================================================================== */
+    .services-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 2.5rem;
+      margin-top: 2rem;
+    }
+
+    .service-module-card {
+      background: var(--white);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-xl);
+      padding: 2rem;
+      box-shadow: var(--shadow-sm);
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .service-module-card:hover {
+      border-color: var(--teal-500);
+      box-shadow: var(--shadow-md);
+    }
+
+    .service-module-inner {
+      display: grid;
+      grid-template-columns: 1fr 1.15fr;
+      gap: 2.5rem;
+      align-items: center;
+    }
+
+    .service-module-inner.reverse {
+      grid-template-columns: 1.15fr 1fr;
+    }
+
+    .service-module-inner.reverse .service-text-pane {
+      order: 2;
+    }
+
+    .service-module-inner.reverse .service-image-pane {
+      order: 1;
+    }
+
+    .service-tag-strip {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .service-tag {
+      font-size: 0.74rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 0.25rem 0.7rem;
+      border-radius: 999px;
+    }
+
+    .service-tag.blue {
+      background: var(--nhs-blue-50);
+      color: var(--nhs-blue);
+    }
+
+    .service-tag.teal {
+      background: var(--teal-50);
+      color: var(--teal-800);
+    }
+
+    .service-title {
+      font-size: 1.45rem;
+      font-weight: 800;
+      color: var(--navy-900);
+      margin-bottom: 0.75rem;
+      letter-spacing: -0.02em;
+    }
+
+    .service-desc {
+      font-size: 0.95rem;
+      color: var(--slate-600);
+      line-height: 1.68;
+      margin-bottom: 1.25rem;
+    }
+
+    .service-specs-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .service-specs-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      font-size: 0.9rem;
+      color: var(--slate-600);
+      line-height: 1.5;
+    }
+
+    .service-specs-list .check {
+      color: var(--teal-700);
+      font-weight: 800;
+      flex-shrink: 0;
+    }
+
+    .btn-zoom-pane {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      background: var(--slate-100);
+      border: 1px solid var(--border-strong);
+      color: var(--navy-900);
+      font-size: 0.84rem;
+      font-weight: 600;
+      padding: 0.5rem 1rem;
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .btn-zoom-pane:hover {
+      background: var(--teal-50);
+      border-color: var(--teal-600);
+      color: var(--teal-800);
+      transform: translateX(2px);
+    }
+
+    .service-image-pane {
+      background: var(--slate-50);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 0.6rem;
+      overflow: hidden;
+      cursor: zoom-in;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .service-image-pane img {
+      width: 100%;
+      height: 380px;
+      object-fit: cover;
+      object-position: top center;
+      border-radius: calc(var(--radius-lg) - 4px);
+      border: 1px solid var(--border-subtle);
+      transition: transform 0.3s ease;
+    }
+
+    .service-image-pane:hover img {
+      transform: scale(1.02);
+    }
+
+    /* ==========================================================================
+       SECTION 06: HIGH-RESOLUTION LIVE PRODUCTION GALLERY
+       ========================================================================== */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .gallery-card {
+      background: var(--white);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+    }
+
+    .gallery-card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-lg);
+      border-color: var(--teal-500);
+    }
+
+    .gallery-thumb-wrap {
+      background: var(--slate-100);
+      padding: 0.6rem;
+      cursor: zoom-in;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .gallery-thumb-wrap img {
+      width: 100%;
+      height: 240px;
+      object-fit: cover;
+      object-position: top center;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-subtle);
+      transition: transform 0.3s ease;
+    }
+
+    .gallery-thumb-wrap:hover img {
+      transform: scale(1.03);
+    }
+
+    .gallery-card-body {
+      padding: 1.25rem 1.4rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+      flex-grow: 1;
+    }
+
+    .gallery-tag {
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: var(--teal-700);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .gallery-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--navy-900);
+    }
+
+    .gallery-desc {
+      font-size: 0.85rem;
+      color: var(--slate-600);
+      line-height: 1.55;
+    }
+
+    /* ==========================================================================
+       SECTION 07: NHS DATA SECURITY & INFORMATION GOVERNANCE
+       ========================================================================== */
+    .security-matrix-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.25rem;
+      margin-top: 2rem;
+    }
+
+    .sec-card {
+      background: var(--white);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 1.75rem 1.5rem;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+
+    .sec-card:hover {
+      transform: translateY(-2px);
+      border-color: var(--teal-600);
+      box-shadow: var(--shadow-md);
+    }
+
+    .sec-icon {
+      font-size: 1.75rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .sec-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--navy-900);
+    }
+
+    .sec-desc {
+      font-size: 0.88rem;
+      color: var(--slate-600);
+      line-height: 1.6;
+    }
+
+    /* ==========================================================================
+       SECTION 08: DESIGN ARCHITECTURE & TYPOGRAPHY
+       ========================================================================== */
+    .ds-spec-block {
+      background: var(--white);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 2.25rem;
+      box-shadow: var(--shadow-sm);
+      margin-bottom: 2rem;
+    }
+
+    .ds-spec-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--border-subtle);
+      padding-bottom: 1.25rem;
+      margin-bottom: 1.75rem;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .type-scale-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .type-row {
+      display: grid;
+      grid-template-columns: 240px 1fr;
+      gap: 2rem;
+      align-items: baseline;
+      padding-bottom: 1.25rem;
+      border-bottom: 1px dashed var(--border-subtle);
+    }
+
+    .type-row:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .type-meta {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+
+    .type-tag {
+      font-size: 0.74rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--teal-700);
+    }
+
+    .type-specs {
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      color: var(--slate-500);
+    }
+
+    .sample-h1 {
+      font-family: var(--font-heading);
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--navy-950);
+      line-height: 1.2;
+    }
+
+    .sample-h2 {
+      font-family: var(--font-heading);
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--navy-900);
+      line-height: 1.3;
+    }
+
+    .sample-h3 {
+      font-family: var(--font-heading);
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--navy-850);
+    }
+
+    .sample-base {
+      font-family: var(--font-body);
+      font-size: 0.98rem;
+      color: var(--slate-600);
+      line-height: 1.7;
+    }
+
+    .sample-caption {
+      font-family: var(--font-body);
+      font-size: 0.85rem;
+      color: var(--slate-500);
+      font-style: italic;
+    }
+
+    .color-tokens-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 1.25rem;
+      margin-top: 1.5rem;
+    }
+
+    .color-token-card {
+      background: var(--white);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 1.25rem;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .color-swatch {
+      width: 100%;
+      height: 52px;
+      border-radius: var(--radius-sm);
+      margin-bottom: 0.35rem;
+    }
+
+    .color-name {
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--navy-900);
+    }
+
+    .color-hex {
+      font-family: var(--font-mono);
+      font-size: 0.76rem;
+      color: var(--slate-500);
+    }
+
+    /* ==========================================================================
+       SECTION 09: ENGINEERING RETROSPECTIVE & REFLECTIONS
+       ========================================================================== */
+    .retro-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .retro-card {
+      background: var(--white);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 2rem 1.75rem;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .retro-num {
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--teal-700);
+      background: var(--teal-50);
+      padding: 2px 8px;
+      border-radius: 4px;
+      align-self: flex-start;
+    }
+
+    .retro-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--navy-900);
+    }
+
+    .retro-desc {
+      font-size: 0.92rem;
+      color: var(--slate-600);
+      line-height: 1.65;
+    }
+
+    /* ==========================================================================
+       NEXT PROJECT CROSS-NAVIGATION BANNER
+       ========================================================================== */
+    .cs-next-banner {
+      margin-top: 4rem;
+      background: linear-gradient(135deg, var(--navy-950), var(--navy-900));
+      border-radius: var(--radius-xl);
+      padding: 3rem clamp(1.5rem, 4vw, 3.5rem);
+      color: var(--white);
+      box-shadow: var(--shadow-xl);
+    }
+
+    .next-card {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 2.5rem;
+      flex-wrap: wrap;
+    }
+
+    .next-info {
+      max-width: 620px;
+    }
+
+    .next-script {
+      display: block;
+      font-family: var(--font-script);
+      font-size: 1.4rem;
+      color: var(--teal-400);
+      margin-bottom: 0.35rem;
+    }
+
+    .next-title {
+      font-size: clamp(1.6rem, 2.8vw, 2.2rem);
+      font-weight: 800;
+      color: var(--white);
+      margin-bottom: 0.75rem;
+      letter-spacing: -0.02em;
+    }
+
+    .next-desc {
+      font-size: 1rem;
+      color: var(--slate-300);
+      line-height: 1.65;
+    }
+
+    .next-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      min-width: 260px;
+    }
+
+    .next-actions .btn-cta {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      background: var(--teal-500);
+      color: var(--navy-950);
+      font-family: var(--font-heading);
+      font-size: 0.92rem;
+      font-weight: 800;
+      padding: 0.8rem 1.5rem;
+      border-radius: var(--radius-md);
+      transition: all 0.2s ease;
+      box-shadow: 0 4px 15px rgba(62, 197, 170, 0.3);
+    }
+
+    .next-actions .btn-cta:hover {
+      background: var(--teal-400);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(62, 197, 170, 0.4);
+    }
+
+    .next-actions .btn-subtle {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      background: rgba(255, 255, 255, 0.08);
+      color: var(--white);
+      font-size: 0.86rem;
+      font-weight: 600;
+      padding: 0.65rem 1.25rem;
+      border-radius: var(--radius-md);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      transition: all 0.2s ease;
+    }
+
+    .next-actions .btn-subtle:hover {
+      background: rgba(255, 255, 255, 0.15);
+      border-color: rgba(255, 255, 255, 0.3);
+      transform: translateY(-1px);
+    }
+
+    /* ==========================================================================
+       SITE FOOTER
+       ========================================================================== */
+    .site-footer {
+      max-width: 1240px;
+      margin: 4rem auto 0;
+      padding: 2.5rem clamp(1.25rem, 4vw, 3rem) 3rem;
+      border-top: 1px solid var(--border-subtle);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      color: var(--slate-500);
+      font-size: 0.88rem;
+    }
+
+    .footer-socials {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      list-style: none;
+    }
+
+    .social-link {
+      color: var(--slate-600);
+      font-weight: 600;
+      transition: color 0.2s;
+    }
+
+    .social-link:hover {
+      color: var(--teal-700);
+    }
+
+    .btn-back-to-top {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--white);
+      border: 1px solid var(--border-strong);
+      color: var(--navy-800);
+      font-size: 0.84rem;
+      font-weight: 600;
+      padding: 0.5rem 1rem;
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .btn-back-to-top:hover {
+      background: var(--slate-100);
+      color: var(--teal-700);
+      border-color: var(--teal-600);
+    }
+
+    /* ==========================================================================
+       IMAGE LIGHTBOX MODAL
+       ========================================================================== */
+    .lightbox-modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(10, 16, 29, 0.92);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      z-index: 99999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s ease;
+    }
+
+    .lightbox-modal.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .lightbox-content {
+      max-width: 92vw;
+      max-height: 90vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+    }
+
+    .lightbox-img {
+      max-width: 100%;
+      max-height: 86vh;
+      object-fit: contain;
+      border-radius: var(--radius-md);
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: 1.5rem;
+      right: 2rem;
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: var(--white);
+      font-size: 1.5rem;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.2s;
+      z-index: 100000;
+    }
+
+    .lightbox-close:hover {
+      background: rgba(255, 255, 255, 0.25);
+      transform: scale(1.05);
+    }
+
+    /* ==========================================================================
+       RESPONSIVE BREAKPOINTS
+       ========================================================================== */
+    @media (max-width: 1024px) {
+      .cs-meta-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .arch-pillars-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .comp-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .fe-split-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .ehr-workflow-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .service-module-inner,
+      .service-module-inner.reverse {
+        grid-template-columns: 1fr;
+      }
+
+      .service-module-inner.reverse .service-text-pane {
+        order: 1;
+      }
+
+      .service-module-inner.reverse .service-image-pane {
+        order: 2;
+      }
+
+      .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .security-matrix-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .retro-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .color-tokens-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+      }
+
+      .mobile-nav-toggle {
+        display: flex;
+      }
+
+      .cs-toc-wrapper {
+        top: 66px;
+      }
+
+      .cs-toc-label {
+        display: none;
+      }
+
+      .cs-meta-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .arch-pillars-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .ehr-workflow-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .gallery-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .security-matrix-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .type-row {
+        grid-template-columns: 1fr;
+        gap: 0.75rem;
+      }
+
+      .color-tokens-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .next-card {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .site-footer {
+        flex-direction: column;
+        text-align: center;
+        gap: 1.25rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- READING PROGRESS BAR -->
+  <div class="reading-progress-bar" id="progressBar"></div>
+
+  <!-- TOP NAVBAR -->
+  <nav class="navbar" id="navbar">
+    <a href="index.html" class="nav-logo">
+      <div class="dp-wrapper">
+        <img src="prakash-portfolio_00239.webp" alt="Bhatu Prakash" class="dp-img" width="40" height="40">
+        <span class="dp-status-dot"></span>
+      </div>
+      <span class="logo-text">Bhatu Prakash</span>
+    </a>
+
+    <div class="nav-right">
+      <ul class="nav-links">
+        <li><a href="index.html#home" class="nav-link">Home</a></li>
+        <li><a href="index.html#projects" class="nav-link">Selected Work</a></li>
+        <li><a href="case-study-pms.html" class="nav-link">PMS Web</a></li>
+        <li><a href="case-study-mobile.html" class="nav-link">PMS Mobile</a></li>
+        <li><a href="case-study.html" class="nav-link">Corporate Web</a></li>
+      </ul>
+
+      <a href="index.html#projects" class="btn-back">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+          stroke-linecap="round" stroke-linejoin="round">
+          <line x1="19" y1="12" x2="5" y2="12"></line>
+          <polyline points="12 19 5 12 12 5"></polyline>
+        </svg>
+        Back to Projects
+      </a>
+
+      <a href="https://uk.itranscript360.com/" target="_blank" rel="noopener noreferrer" class="btn-live-out">
+        Live UK Portal ↗
+      </a>
+
+      <button id="mobileNavToggle" class="mobile-nav-toggle" type="button" aria-label="Open menu" aria-expanded="false"
+        aria-controls="mobileNavDrawer">
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- MOBILE NAV DRAWER -->
+  <div id="mobileNavDrawer" class="mobile-nav-drawer" aria-hidden="true">
+    <div class="mobile-nav-backdrop"></div>
+    <div class="mobile-nav-panel">
+      <div class="mobile-nav-header">
+        <div class="mobile-nav-brand">
+          <img src="prakash-portfolio_00239.webp" alt="Bhatu Prakash" class="mobile-dp-img" width="44" height="44">
+          <div class="mobile-brand-meta">
+            <span class="mobile-brand-name">Bhatu Prakash</span>
+            <span class="mobile-brand-status"><span class="dot"></span> Available for work</span>
+          </div>
+        </div>
+        <button id="mobileNavClose" class="mobile-nav-close" type="button" aria-label="Close navigation">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+      <ul class="mobile-nav-list">
+        <li><a href="index.html#home" class="mobile-nav-item"><span class="mn-num">01</span><span
+              class="mn-text">Home</span><span class="mn-arrow">↗</span></a></li>
+        <li><a href="index.html#projects" class="mobile-nav-item"><span class="mn-num">02</span><span class="mn-text">←
+              All Projects</span><span class="mn-arrow">↗</span></a></li>
+        <li><a href="case-study-uk.html" class="mobile-nav-item highlight"><span class="mn-num">03</span><span
+              class="mn-text">UK NHS Edition</span><span class="mn-arrow">↗</span></a></li>
+        <li><a href="case-study-pms.html" class="mobile-nav-item"><span class="mn-num">04</span><span
+              class="mn-text">PMS Web SaaS</span><span class="mn-arrow">↗</span></a></li>
+        <li><a href="case-study-mobile.html" class="mobile-nav-item"><span class="mn-num">05</span><span
+              class="mn-text">PMS Mobile App</span><span class="mn-arrow">↗</span></a></li>
+        <li><a href="case-study.html" class="mobile-nav-item"><span class="mn-num">06</span><span class="mn-text">Global
+              Corporate Web</span><span class="mn-arrow">↗</span></a></li>
+        <li><a href="contact.html" class="mobile-nav-item"><span class="mn-num">07</span><span class="mn-text">Contact /
+              Hire</span><span class="mn-arrow">↗</span></a></li>
+      </ul>
+      <div class="mobile-nav-footer">
+        <a href="https://uk.itranscript360.com/" target="_blank" rel="noopener noreferrer" class="mobile-nav-cta">
+          <span>Live UK Portal ↗</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- STICKY FLOATING CHAPTER TOC DOCK -->
+  <div class="cs-toc-wrapper" id="stickyToc">
+    <div class="cs-toc-inner">
+      <span class="cs-toc-label">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <path d="M4 6h16M4 12h16M4 18h7"></path>
+        </svg>
+        UK Chapters:
+      </span>
+      <ul class="cs-toc-list">
+        <li class="cs-toc-item"><a href="#overview" class="active">01. Overview</a></li>
+        <li class="cs-toc-item"><a href="#strategy">02. NHS Strategy</a></li>
+        <li class="cs-toc-item"><a href="#role-architecture">03. My Role &amp; HUD</a></li>
+        <li class="cs-toc-item"><a href="#ehr-integration">04. EHR Streaming</a></li>
+        <li class="cs-toc-item"><a href="#services">05. Clinical Services</a></li>
+        <li class="cs-toc-item"><a href="#gallery">06. Live Gallery</a></li>
+        <li class="cs-toc-item"><a href="#security">07. Governance</a></li>
+        <li class="cs-toc-item"><a href="#design-system">08. Design System</a></li>
+        <li class="cs-toc-item"><a href="#reflections">09. Reflections</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- MAIN CASE STUDY WRAPPER -->
+  <div class="cs-wrapper">
+
+    <!-- BREADCRUMB -->
+    <nav class="cs-breadcrumb" aria-label="Breadcrumb">
+      <a href="index.html">Home</a>
+      <span class="sep">/</span>
+      <a href="index.html#projects">Case Studies</a>
+      <span class="sep">/</span>
+      <span class="current">iTranscript360 UK NHS Edition</span>
+    </nav>
+
+    <!-- ==========================================================================
+         SECTION 01: HERO & METADATA
+         ========================================================================== -->
+    <header class="cs-hero" id="overview">
+      <div class="cs-hero-header">
+        <div class="cs-badge-row">
+          <span class="cs-pill cs-pill-uk">🇬🇧 UK Regional Architecture</span>
+          <span class="cs-pill cs-pill-nhs">EMIS Web &amp; SystmOne Ready</span>
+          <span class="cs-pill cs-pill-teal">NHS DSPT &amp; Caldicott Standards</span>
+          <span class="cs-pill">Live Production Portal</span>
+        </div>
+
+        <span class="cs-script">Regional Healthcare Architecture &amp; Frontend Engineering</span>
+        <h1 class="cs-title">
+          iTranscript360 UK Edition: <br>
+          <span class="highlight">Clinical Documentation Built for British Healthcare &amp; NHS Surgeries</span>
+        </h1>
+        <p class="cs-tagline">
+          Architecting a localized healthcare web platform tailored to UK general practices, acute hospital trusts, and
+          private clinics — integrating with British primary care EHRs, enforcing UK sovereign data residency, and
+          adapting medical transcription workflows to British clinical terminology.
+        </p>
+      </div>
+
+      <!-- METADATA MATRIX -->
+      <div class="cs-meta-grid">
+        <div class="meta-item">
+          <span class="meta-label">My Role</span>
+          <span class="meta-value">UI/UX Designer &amp; Frontend Dev</span>
+          <span class="meta-sub">Figma Design, Responsive HTML5/CSS3, Neural HUD</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-label">Target Healthcare Market</span>
+          <span class="meta-value">United Kingdom (NHS &amp; Private)</span>
+          <span class="meta-sub">GPs, Hospital Trusts, Imaging Centres &amp; Legal</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-label">Regional Compliance</span>
+          <span class="meta-value">UK GDPR &amp; Caldicott Standards</span>
+          <span class="meta-sub">NHS DSPT Toolkit · London eu-west-2 Hosting</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-label">Live Platform</span>
+          <span class="meta-value">uk.itranscript360.com</span>
+          <span class="meta-sub">
+            <a href="https://uk.itranscript360.com/" target="_blank" rel="noopener noreferrer" class="live-ref-link">
+              Visit Live UK Portal ↗
+            </a>
+          </span>
+        </div>
+      </div>
+
+      <!-- HERO SHOWCASE FRAME -->
+      <div class="cs-hero-mockup-frame zoomable" onclick="openLightbox('uk-website/uk-home.webp')">
+        <img src="uk-website/uk-home.webp" alt="iTranscript360 UK Edition Production Website Showcase" width="1240"
+          height="800">
+        <div class="cs-mockup-overlay-pill">
+          <span class="status-pulse"></span>
+          Live Production UK Portal · uk.itranscript360.com · Click to Zoom
+        </div>
+      </div>
+
+      <!-- ARCHITECTURAL VALUE PILLARS (VERIFIED & AUTHENTIC) -->
+      <div class="arch-pillars-grid">
+        <div class="pillar-card">
+          <div class="pillar-icon-wrap nhs">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+            </svg>
+          </div>
+          <h4 class="pillar-title">Direct EHR Streaming</h4>
+          <p class="pillar-desc">Designed for seamless ingestion into EMIS Web and SystmOne (TPP) to eliminate manual
+            clerical copy-pasting for practice staff.</p>
+        </div>
+
+        <div class="pillar-card">
+          <div class="pillar-icon-wrap teal">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+              <circle cx="12" cy="12" r="10"></circle>
+              <polyline points="12 6 12 12 16 14"></polyline>
+            </svg>
+          </div>
+          <h4 class="pillar-title">Dual Turnaround Choice</h4>
+          <p class="pillar-desc">Instant speech AI draft generated in 60 seconds, or specialist human quality-assurance
+            completed within 6 hours.</p>
+        </div>
+
+        <div class="pillar-card">
+          <div class="pillar-icon-wrap">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+              <rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect>
+              <rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect>
+              <line x1="6" y1="6" x2="6.01" y2="6"></line>
+              <line x1="6" y1="18" x2="6.01" y2="18"></line>
+            </svg>
+          </div>
+          <h4 class="pillar-title">100% UK Data Sovereignty</h4>
+          <p class="pillar-desc">Strict zero offshore transfer boundary. Voice files and clinical notes reside securely
+            in AWS London (eu-west-2).</p>
+        </div>
+
+        <div class="pillar-card">
+          <div class="pillar-icon-wrap teal">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+              <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+              <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+            </svg>
+          </div>
+          <h4 class="pillar-title">British Medical Lexicon</h4>
+          <p class="pillar-desc">Trained on the British National Formulary (BNF), UK drug dosages, and multi-regional
+            British speech dialects.</p>
+        </div>
+      </div>
+    </header>
+
+    <!-- ==========================================================================
+         SECTION 02: REGIONAL HEALTHCARE STRATEGY
+         ========================================================================== -->
+    <section class="cs-section" id="strategy">
+      <span class="cs-section-badge nhs">02 · Regional Strategy</span>
+      <h2 class="cs-section-heading">Why a Dedicated UK NHS Platform Was Essential</h2>
+      <p class="cs-body-p">
+        While the first edition of iTranscript360 was built primarily around US commercial billing and international
+        healthcare protocols, the United Kingdom healthcare landscape operates on fundamentally distinct clinical,
+        regulatory, and technological foundations. Designing a localized UK experience required building deep
+        architectural respect for the National Health Service (NHS).
+      </p>
+
+      <div class="comp-grid">
+        <!-- US / Global Platform -->
+        <div class="comp-card">
+          <span class="comp-badge global">US &amp; International Edition</span>
+          <h3 class="comp-title">Billing-Driven Clinical Architecture</h3>
+          <ul class="comp-list">
+            <li>
+              <span class="bullet cross">✕</span>
+              <span><strong>Insurance Reimbursement Focus:</strong> Built around US commercial insurance billing,
+                ICD-10-CM codes, and CPT charge-capture protocols.</span>
+            </li>
+            <li>
+              <span class="bullet cross">✕</span>
+              <span><strong>US Compliance Mandates:</strong> Centered on HIPAA compliance, BAA legal frameworks, and
+                Medicare/Medicaid documentation rules.</span>
+            </li>
+            <li>
+              <span class="bullet cross">✕</span>
+              <span><strong>American Drug Nomenclature:</strong> Speech engine tuned for US drug names (e.g.,
+                Acetaminophen, Albuterol, Tylenol).</span>
+            </li>
+            <li>
+              <span class="bullet cross">✕</span>
+              <span><strong>US Hospital EHR Ecosystem:</strong> Designed for Epic Systems, Cerner Millennium, and
+                Athenahealth workflows.</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- UK Dedicated NHS Edition -->
+        <div class="comp-card uk-focus">
+          <span class="comp-badge uk">🇬🇧 UK Dedicated NHS Edition</span>
+          <h3 class="comp-title">NHS Patient Care &amp; Clinical Audit</h3>
+          <ul class="comp-list">
+            <li>
+              <span class="bullet check">✓</span>
+              <span><strong>Direct Primary Care Sync:</strong> Native streaming readiness for <strong>EMIS Web</strong>
+                and <strong>SystmOne (TPP)</strong>, reducing admin copy-pasting.</span>
+            </li>
+            <li>
+              <span class="bullet check">✓</span>
+              <span><strong>British Medical Lexicon:</strong> Fine-tuned on the British National Formulary (BNF), UK
+                drug dosages (Paracetamol, Salbutamol), and regional accents.</span>
+            </li>
+            <li>
+              <span class="bullet check">✓</span>
+              <span><strong>NHS Data Security Standards:</strong> Engineered around the NHS Data Security &amp;
+                Protection Toolkit (DSPT), Caldicott Principles, and ICO registration.</span>
+            </li>
+            <li>
+              <span class="bullet check">✓</span>
+              <span><strong>Strict UK Data Sovereignty:</strong> Patient recordings and transcriptions strictly reside
+                on UK cloud servers (London eu-west-2).</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- EHR DIRECT INTEGRATION CALLOUT -->
+      <div class="ehr-callout-banner">
+        <div>
+          <h4>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+              color="#3EC5AA">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+            </svg>
+            Automating Clerical Workflow into EMIS Web &amp; SystmOne
+          </h4>
+          <p>
+            General practice surgeries across England, Scotland, and Wales face severe clerical pressures, with
+            administrative staff dedicating substantial hours each week to transcribing, verifying, and copy-pasting
+            consultation notes and referral letters into clinical software. The UK platform presentation was architected
+            to communicate direct integration paths into primary care electronic journals.
+          </p>
+        </div>
+        <div class="ehr-tags">
+          <span class="ehr-tag accent">✓ EMIS Web Integrated</span>
+          <span class="ehr-tag accent">✓ SystmOne Synced</span>
+          <span class="ehr-tag">✓ NHS DSPT Standards</span>
+          <span class="ehr-tag">✓ UK Cloud Servers (London)</span>
+          <span class="ehr-tag">✓ Caldicott Principles 1–7</span>
+          <span class="ehr-tag">✓ ICO Registered</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         SECTION 03: MY ROLE & FRONTEND ARCHITECTURE
+         ========================================================================== -->
+    <section class="cs-section" id="role-architecture">
+      <span class="cs-section-badge teal">03 · Frontend Architecture</span>
+      <h2 class="cs-section-heading">My Responsibilities &amp; Live AI Neural HUD</h2>
+      <p class="cs-body-p">
+        As the Lead UI/UX Designer and Frontend Developer, my responsibilities encompassed the entire digital
+        presentation layer: establishing the regional design system in Figma, architecting responsive layouts in
+        semantic HTML5/CSS3, and engineering interactive frontend demonstrations:
+      </p>
+
+      <div class="fe-split-grid">
+        <div class="fe-text-pane">
+          <div class="cs-card">
+            <h3 style="font-size: 1.25rem; font-weight: 800; color: var(--navy-900); margin-bottom: 0.75rem;">
+              Demonstrating Clinical AI Intelligence
+            </h3>
+            <p class="cs-body-p" style="font-size: 0.95rem; margin-bottom: 1rem;">
+              To make speech intelligence tangible for prospective NHS clinical directors and practice managers, the
+              website features an interactive clinical HUD that cycles through authentic British medical consultation
+              scenarios in real time.
+            </p>
+            <p class="cs-body-p" style="font-size: 0.95rem; margin-bottom: 1.25rem;">
+              Prospective practice managers can also trigger automated prompt launchers for <strong>ChatGPT</strong>,
+              <strong>Claude</strong>, or <strong>Perplexity</strong> to evaluate transcription onboarding protocols.
+            </p>
+
+            <div class="ai-assistants-strip">
+              <a class="ai-btn-pill chatgpt"
+                href="https://chat.openai.com/?q=I have medical audio files that need transcription. Please check https://uk.itranscript360.com and guide me through your UK NHS onboarding process."
+                target="_blank" rel="noopener noreferrer">
+                <span>Open in ChatGPT ↗</span>
+              </a>
+              <a class="ai-btn-pill claude"
+                href="https://claude.ai/new?q=I have medical audio files that need transcription. Please check https://uk.itranscript360.com and guide me through your UK NHS onboarding process."
+                target="_blank" rel="noopener noreferrer">
+                <span>Open in Claude ↗</span>
+              </a>
+              <a class="ai-btn-pill perplexity"
+                href="https://www.perplexity.ai/?q=I have medical audio files that need transcription. Please check https://uk.itranscript360.com and guide me through your UK NHS onboarding process."
+                target="_blank" rel="noopener noreferrer">
+                <span>Open in Perplexity ↗</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- HUD GRAPHIC SIMULATION -->
+        <div class="fe-hud-demo">
+          <div class="hud-header">
+            <span class="hud-title">
+              <span class="status-pulse"></span>
+              Neural Speech Scribe Engine Active
+            </span>
+            <span style="font-size: 0.76rem; color: #94a3b8; font-family: var(--font-mono);">Model:
+              Clinical-v4.2-UK</span>
+          </div>
+
+          <div class="hud-typing-box" id="hudTypingBox">
+            <span style="color: var(--teal-400); font-weight: 700;">AI Is Processing:</span>
+            <span id="hudDynamicText"> "Patient presents with persistent atrial fibrillation; BP 138/84. Initiating
+              apixaban 5mg BD and scheduling 24h Holter monitor..."</span>
+            <span class="cursor"></span>
+          </div>
+
+          <div class="hud-footer-meta">
+            <span>Accuracy: High (Human QA Verified)</span>
+            <span>EMIS Sync: Ready</span>
+            <span>Server: London (eu-west-2)</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         SECTION 04: PRIMARY CARE EHR INTEGRATION ARCHITECTURE
+         ========================================================================== -->
+    <section class="cs-section" id="ehr-integration">
+      <span class="cs-section-badge nhs">04 · Clinical Workflow</span>
+      <h2 class="cs-section-heading">Primary Care EHR Direct Ingestion Architecture</h2>
+      <p class="cs-body-p">
+        The core technical differentiator for the UK edition is its alignment with British GP software. Over 95% of UK
+        general practices rely on either EMIS Web or SystmOne (TPP). The end-to-end documentation pathway was designed
+        to bridge mobile recording and native EHR consultation records:
+      </p>
+
+      <div class="ehr-workflow-grid">
+        <div class="workflow-step-card">
+          <span class="step-number-tag">Step 01</span>
+          <h4 class="step-title">Multi-Device Capture</h4>
+          <p class="step-desc">GPs and hospital consultants dictate using an iOS/Android smartphone app, dedicated
+            Olympus digital dictaphone, or encrypted web portal.</p>
+        </div>
+
+        <div class="workflow-step-card">
+          <span class="step-number-tag">Step 02</span>
+          <h4 class="step-title">Dual-Engine Transcription</h4>
+          <p class="step-desc">Audio is processed through speech AI calibrated for British accents, with optional
+            high-precision QA verification by certified UK transcriptionists.</p>
+        </div>
+
+        <div class="workflow-step-card">
+          <span class="step-number-tag">Step 03</span>
+          <h4 class="step-title">Clinical Formatting</h4>
+          <p class="step-desc">Structured into standardized RCGP outpatient consultation letters, SOAP clinical
+            summaries, or acute referral packages with BNF drug verification.</p>
+        </div>
+
+        <div class="workflow-step-card">
+          <span class="step-number-tag">Step 04</span>
+          <h4 class="step-title">Direct EHR Ingestion</h4>
+          <p class="step-desc">Final approved notes stream into patient electronic journals in EMIS Web or SystmOne,
+            eliminating clerical copy-pasting for practice managers.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         SECTION 05: SPECIALIZED UK CLINICAL SERVICES
+         ========================================================================== -->
+    <section class="cs-section" id="services">
+      <span class="cs-section-badge teal">05 · Clinical Services</span>
+      <h2 class="cs-section-heading">Multi-Specialty Healthcare Services Built for Britain</h2>
+      <p class="cs-body-p">
+        Every medical specialty in the UK operates under specific documentation standards and regulatory expectations.
+        The UK platform is organized into 6 dedicated service lines pairing high-speed speech AI with certified
+        UK-trained medical transcription specialists:
+      </p>
+
+      <div class="services-stack">
+
+        <!-- Service 1: Primary Care GPs -->
+        <div class="service-module-card">
+          <div class="service-module-inner">
+            <div class="service-text-pane">
+              <div class="service-tag-strip">
+                <span class="service-tag blue">Service 01</span>
+                <span class="service-tag teal">Primary Care &amp; NHS GPs</span>
+              </div>
+              <h3 class="service-title">Medical Transcription for UK GPs &amp; Practices</h3>
+              <p class="service-desc">
+                Instant consultation summaries, outpatient letters, and referral packages formatted strictly to Royal
+                College of General Practitioners (RCGP) standards. Dictations stream directly into EMIS Web and SystmOne
+                patient journals.
+              </p>
+              <ul class="service-specs-list">
+                <li><span class="check">✓</span> <strong>Dual Turnaround:</strong> 60-second AI draft or certified human
+                  QA within 6 hours.</li>
+                <li><span class="check">✓</span> <strong>BNF Terminology:</strong> Complete recognition of British
+                  National Formulary drug dosages and brand names.</li>
+                <li><span class="check">✓</span> <strong>Clerical Burden Reduction:</strong> Eliminates manual
+                  copy-pasting for practice managers.</li>
+              </ul>
+              <button class="btn-zoom-pane" type="button"
+                onclick="openLightbox('uk-website/uk-medical-transcription.webp')">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <circle cx="11" cy="11" r="8"></circle>
+                  <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+                View Full-Res Medical Transcription Screen
+              </button>
+            </div>
+            <div class="service-image-pane" onclick="openLightbox('uk-website/uk-medical-transcription.webp')">
+              <img src="uk-website/uk-medical-transcription.webp" alt="Medical Transcription Services UK Web Page"
+                loading="lazy">
+            </div>
+          </div>
+        </div>
+
+        <!-- Service 2: Speech AI Scribe -->
+        <div class="service-module-card">
+          <div class="service-module-inner reverse">
+            <div class="service-image-pane" onclick="openLightbox('uk-website/uk-ai-transcription.webp')">
+              <img src="uk-website/uk-ai-transcription.webp" alt="AI Transcription Services UK Web Page" loading="lazy">
+            </div>
+            <div class="service-text-pane">
+              <div class="service-tag-strip">
+                <span class="service-tag blue">Service 02</span>
+                <span class="service-tag teal">Speech AI &amp; Ambient Scribe</span>
+              </div>
+              <h3 class="service-title">AI Transcription Services (Notes in 5 Minutes)</h3>
+              <p class="service-desc">
+                Powered by clinical speech models trained on British medical audio. Delivers structured SOAP encounter
+                notes rapidly while accommodating regional speech variations.
+              </p>
+              <ul class="service-specs-list">
+                <li><span class="check">✓</span> <strong>Accent Normalization:</strong> High comprehension of Scottish,
+                  Welsh, Northern Irish, and regional English accents.</li>
+                <li><span class="check">✓</span> <strong>Ambient Mode:</strong> Extracts clinical vitals and treatment
+                  plans from doctor-patient dialogues.</li>
+                <li><span class="check">✓</span> <strong>Multi-Device Capture:</strong> Dictate via iOS/Android
+                  smartphone, digital dictaphone, or web browser.</li>
+              </ul>
+              <button class="btn-zoom-pane" type="button" onclick="openLightbox('uk-website/uk-ai-transcription.webp')">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <circle cx="11" cy="11" r="8"></circle>
+                  <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+                View Full-Res AI Transcription Screen
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Service 3: Radiology -->
+        <div class="service-module-card">
+          <div class="service-module-inner">
+            <div class="service-text-pane">
+              <div class="service-tag-strip">
+                <span class="service-tag blue">Service 03</span>
+                <span class="service-tag teal">Hospital Imaging &amp; Diagnostics</span>
+              </div>
+              <h3 class="service-title">Radiology Transcription (CT, MRI &amp; X-Ray)</h3>
+              <p class="service-desc">
+                High-velocity report generation for NHS hospital diagnostic imaging departments, acute trusts, and
+                private scanning centres, alleviating reporting backlogs.
+              </p>
+              <ul class="service-specs-list">
+                <li><span class="check">✓</span> <strong>PACS / RIS Integration:</strong> Structural alignment with
+                  hospital Radiology Information Systems.</li>
+                <li><span class="check">✓</span> <strong>Subspecialty Precision:</strong> Neuroradiology,
+                  musculoskeletal (MSK), and interventional radiology terms.</li>
+                <li><span class="check">✓</span> <strong>Urgent STAT Triage:</strong> Priority delivery paths for acute
+                  emergency admissions and trauma cases.</li>
+              </ul>
+              <button class="btn-zoom-pane" type="button" onclick="openLightbox('uk-website/uk-radiology.webp')">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <circle cx="11" cy="11" r="8"></circle>
+                  <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+                View Full-Res Radiology Transcription Screen
+              </button>
+            </div>
+            <div class="service-image-pane" onclick="openLightbox('uk-website/uk-radiology.webp')">
+              <img src="uk-website/uk-radiology.webp" alt="Radiology Transcription Services UK Web Page" loading="lazy">
+            </div>
+          </div>
+        </div>
+
+        <!-- Service 4: Cardiology -->
+        <div class="service-module-card">
+          <div class="service-module-inner reverse">
+            <div class="service-image-pane" onclick="openLightbox('uk-website/uk-cardiology.webp')">
+              <img src="uk-website/uk-cardiology.webp" alt="Cardiology Transcription Services UK Web Page"
+                loading="lazy">
+            </div>
+            <div class="service-text-pane">
+              <div class="service-tag-strip">
+                <span class="service-tag blue">Service 04</span>
+                <span class="service-tag teal">Cardiovascular Specialists</span>
+              </div>
+              <h3 class="service-title">Cardiology Transcription &amp; MDT Reporting</h3>
+              <p class="service-desc">
+                Clinical documentation for consultant cardiologists, heart clinics, and catheterisation labs.
+                Translating complex hemodynamics, echocardiography measurements, and Holter monitors into formatted
+                letters.
+              </p>
+              <ul class="service-specs-list">
+                <li><span class="check">✓</span> <strong>Diagnostic Terminology:</strong> Ejection fraction, valve
+                  regurgitation, coronary angiography findings, and arrhythmias.</li>
+                <li><span class="check">✓</span> <strong>MDT Clinic Summaries:</strong> Structured multi-disciplinary
+                  team meeting write-ups for surgical referrals.</li>
+                <li><span class="check">✓</span> <strong>Private &amp; NHS Practice:</strong> Tailored for London Harley
+                  Street practices and NHS Trust heart clinics.</li>
+              </ul>
+              <button class="btn-zoom-pane" type="button" onclick="openLightbox('uk-website/uk-cardiology.webp')">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <circle cx="11" cy="11" r="8"></circle>
+                  <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+                View Full-Res Cardiology Transcription Screen
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Service 5: Medico-Legal -->
+        <div class="service-module-card">
+          <div class="service-module-inner">
+            <div class="service-text-pane">
+              <div class="service-tag-strip">
+                <span class="service-tag blue">Service 05</span>
+                <span class="service-tag teal">Legal &amp; Expert Witness</span>
+              </div>
+              <h3 class="service-title">Medico-Legal Transcription for UK Solicitors &amp; Courts</h3>
+              <p class="service-desc">
+                Verbatim medical transcription for expert witness reports, personal injury litigation, clinical
+                negligence claims, and General Medical Council (GMC) tribunal hearings across England, Wales, and
+                Scotland.
+              </p>
+              <ul class="service-specs-list">
+                <li><span class="check">✓</span> <strong>Civil Procedure Rules (CPR 35):</strong> Formatted in
+                  compliance with UK court expert witness criteria.</li>
+                <li><span class="check">✓</span> <strong>Verbatim Precision:</strong> Captures exact clinical nuance,
+                  timestamps, and cross-examinations without omission.</li>
+                <li><span class="check">✓</span> <strong>Encrypted Transfer:</strong> End-to-end encrypted file handoffs
+                  protected under solicitor-client privilege.</li>
+              </ul>
+              <button class="btn-zoom-pane" type="button" onclick="openLightbox('uk-website/uk-medico-legal.webp')">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <circle cx="11" cy="11" r="8"></circle>
+                  <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+                View Full-Res Medico-Legal Screen
+              </button>
+            </div>
+            <div class="service-image-pane" onclick="openLightbox('uk-website/uk-medico-legal.webp')">
+              <img src="uk-website/uk-medico-legal.webp" alt="Medico-Legal Transcription Services UK Web Page"
+                loading="lazy">
+            </div>
+          </div>
+        </div>
+
+        <!-- Service 6: Ophthalmology -->
+        <div class="service-module-card">
+          <div class="service-module-inner reverse">
+            <div class="service-image-pane" onclick="openLightbox('uk-website/uk-ophthalmology.webp')">
+              <img src="uk-website/uk-ophthalmology.webp" alt="Ophthalmology Transcription Services UK Web Page"
+                loading="lazy">
+            </div>
+            <div class="service-text-pane">
+              <div class="service-tag-strip">
+                <span class="service-tag blue">Service 06</span>
+                <span class="service-tag teal">Ophthalmic Surgery &amp; Eye Clinics</span>
+              </div>
+              <h3 class="service-title">Ophthalmology Transcription &amp; Retinal Reporting</h3>
+              <p class="service-desc">
+                Documentation for specialist eye hospitals, refractive clinics, and cataract surgical units. Precision
+                transcription of OCT scans, fundus photography notes, intraocular pressures, and surgical operative
+                records.
+              </p>
+              <ul class="service-specs-list">
+                <li><span class="check">✓</span> <strong>Subspecialty Terminology:</strong> Retinal detachment, glaucoma
+                  visual fields, diabetic macular edema, and LASIK/SMILE.</li>
+                <li><span class="check">✓</span> <strong>Ophthalmic Acronyms:</strong> Accurate transcription of OD, OS,
+                  OU, IOP, BCVA, and anterior segment findings.</li>
+                <li><span class="check">✓</span> <strong>Rapid Operative Letters:</strong> Post-operative letters
+                  dispatched to referring optometrists promptly.</li>
+              </ul>
+              <button class="btn-zoom-pane" type="button" onclick="openLightbox('uk-website/uk-ophthalmology.webp')">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <circle cx="11" cy="11" r="8"></circle>
+                  <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+                View Full-Res Ophthalmology Screen
+              </button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         SECTION 06: HIGH-RESOLUTION LIVE PRODUCTION GALLERY
+         ========================================================================== -->
+    <section class="cs-section" id="gallery">
+      <span class="cs-section-badge nhs">06 · Live Production Gallery</span>
+      <h2 class="cs-section-heading">High-Resolution UK Website Screen Gallery</h2>
+      <p class="cs-body-p">
+        All 9 verified production captures from the live UK platform (<strong>uk.itranscript360.com</strong>). Each
+        interface was designed to build institutional trust with NHS decision-makers, highlight British compliance, and
+        convert practice managers:
+      </p>
+
+      <div class="gallery-grid">
+
+        <!-- Screen 1: Home -->
+        <div class="gallery-card">
+          <div class="gallery-thumb-wrap" onclick="openLightbox('uk-website/uk-home.webp')">
+            <img src="uk-website/uk-home.webp" alt="UK Homepage Screen" loading="lazy">
+          </div>
+          <div class="gallery-card-body">
+            <span class="gallery-tag">Screen 01 · Hero Command Center</span>
+            <h4 class="gallery-title">UK Homepage &amp; Live AI Typewriter HUD</h4>
+            <p class="gallery-desc">Hero section featuring NHS trust badges, healthcare social proof, and multi-LLM
+              launch buttons.</p>
+          </div>
+        </div>
+
+        <!-- Screen 2: Medical Transcription -->
+        <div class="gallery-card">
+          <div class="gallery-thumb-wrap" onclick="openLightbox('uk-website/uk-medical-transcription.webp')">
+            <img src="uk-website/uk-medical-transcription.webp" alt="Medical Transcription Screen" loading="lazy">
+          </div>
+          <div class="gallery-card-body">
+            <span class="gallery-tag">Screen 02 · Primary Care</span>
+            <h4 class="gallery-title">Medical Transcription for UK GPs</h4>
+            <p class="gallery-desc">Comprehensive GP surgery transcription, RCGP outpatient letter formatting, and EMIS
+              Web syncing.</p>
+          </div>
+        </div>
+
+        <!-- Screen 3: AI Transcription -->
+        <div class="gallery-card">
+          <div class="gallery-thumb-wrap" onclick="openLightbox('uk-website/uk-ai-transcription.webp')">
+            <img src="uk-website/uk-ai-transcription.webp" alt="AI Transcription Screen" loading="lazy">
+          </div>
+          <div class="gallery-card-body">
+            <span class="gallery-tag">Screen 03 · Speech Intelligence</span>
+            <h4 class="gallery-title">AI Transcription Services (5-Min Notes)</h4>
+            <p class="gallery-desc">AI clinical scribe engine details, British accent processing, and automated SOAP
+              formatting.</p>
+          </div>
+        </div>
+
+        <!-- Screen 4: Radiology -->
+        <div class="gallery-card">
+          <div class="gallery-thumb-wrap" onclick="openLightbox('uk-website/uk-radiology.webp')">
+            <img src="uk-website/uk-radiology.webp" alt="Radiology Transcription Screen" loading="lazy">
+          </div>
+          <div class="gallery-card-body">
+            <span class="gallery-tag">Screen 04 · Imaging Diagnostics</span>
+            <h4 class="gallery-title">Hospital Radiology &amp; PACS Reporting</h4>
+            <p class="gallery-desc">CT, MRI, ultrasound, and X-ray dictation workflow for hospital scanning departments.
+            </p>
+          </div>
+        </div>
+
+        <!-- Screen 5: Cardiology -->
+        <div class="gallery-card">
+          <div class="gallery-thumb-wrap" onclick="openLightbox('uk-website/uk-cardiology.webp')">
+            <img src="uk-website/uk-cardiology.webp" alt="Cardiology Transcription Screen" loading="lazy">
+          </div>
+          <div class="gallery-card-body">
+            <span class="gallery-tag">Screen 05 · Cardiovascular Specialist</span>
+            <h4 class="gallery-title">Cardiology &amp; MDT Consultation Letters</h4>
+            <p class="gallery-desc">Echocardiography measurements, cath lab records, and multidisciplinary heart team
+              findings.</p>
+          </div>
+        </div>
+
+        <!-- Screen 6: Medico-Legal -->
+        <div class="gallery-card">
+          <div class="gallery-thumb-wrap" onclick="openLightbox('uk-website/uk-medico-legal.webp')">
+            <img src="uk-website/uk-medico-legal.webp" alt="Medico-Legal Transcription Screen" loading="lazy">
+          </div>
+          <div class="gallery-card-body">
+            <span class="gallery-tag">Screen 06 · Legal &amp; Courts</span>
+            <h4 class="gallery-title">Medico-Legal Expert Witness Documentation</h4>
+            <p class="gallery-desc">CPR 35 compliant expert witness reports, GMC tribunal hearings, and personal injury
+              depositions.</p>
+          </div>
+        </div>
+
+        <!-- Screen 7: Ophthalmology -->
+        <div class="gallery-card">
+          <div class="gallery-thumb-wrap" onclick="openLightbox('uk-website/uk-ophthalmology.webp')">
+            <img src="uk-website/uk-ophthalmology.webp" alt="Ophthalmology Transcription Screen" loading="lazy">
+          </div>
+          <div class="gallery-card-body">
+            <span class="gallery-tag">Screen 07 · Eye Care Specialist</span>
+            <h4 class="gallery-title">Ophthalmology &amp; Retinal Surgery Records</h4>
+            <p class="gallery-desc">OCT scan notes, fundus findings, cataract surgical operations, and post-op clinic
+              letters.</p>
+          </div>
+        </div>
+
+        <!-- Screen 8: About Us -->
+        <div class="gallery-card">
+          <div class="gallery-thumb-wrap" onclick="openLightbox('uk-website/uk-about.webp')">
+            <img src="uk-website/uk-about.webp" alt="About Us Screen" loading="lazy">
+          </div>
+          <div class="gallery-card-body">
+            <span class="gallery-tag">Screen 08 · Corporate Heritage</span>
+            <h4 class="gallery-title">Heritage &amp; UK Specialist Fleet</h4>
+            <p class="gallery-desc">Company background, dual medical transcriptionist qualifications, and client care
+              ethos.</p>
+          </div>
+        </div>
+
+        <!-- Screen 9: Contact & Demo Booking -->
+        <div class="gallery-card">
+          <div class="gallery-thumb-wrap" onclick="openLightbox('uk-website/uk-contact.webp')">
+            <img src="uk-website/uk-contact.webp" alt="Contact Us Screen" loading="lazy">
+          </div>
+          <div class="gallery-card-body">
+            <span class="gallery-tag">Screen 09 · Conversion &amp; Booking</span>
+            <h4 class="gallery-title">Practice Consultation &amp; Booking Gateway</h4>
+            <p class="gallery-desc">Integrated 30-minute practice consultation booking modal, quote calculator, and
+              trial signups.</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         SECTION 07: NHS DATA SECURITY & INFORMATION GOVERNANCE
+         ========================================================================== -->
+    <section class="cs-section" id="security">
+      <span class="cs-section-badge teal">07 · Information Governance</span>
+      <h2 class="cs-section-heading">NHS Data Security &amp; UK GDPR Compliance</h2>
+      <p class="cs-body-p">
+        In the United Kingdom, medical patient records are classified as special category data under the Data Protection
+        Act 2018. To support procurement confidence across NHS Integrated Care Systems (ICS), the platform was
+        engineered to satisfy strict security benchmarks:
+      </p>
+
+      <div class="security-matrix-grid">
+        <div class="sec-card">
+          <div class="sec-icon">🛡️</div>
+          <h4 class="sec-title">UK Data Sovereignty</h4>
+          <p class="sec-desc">Zero offshore transfer boundary. Audio recordings, transcript drafts, and patient
+            identifiers strictly reside on UK AWS data centres (London eu-west-2).</p>
+        </div>
+
+        <div class="sec-card">
+          <div class="sec-icon">🏥</div>
+          <h4 class="sec-title">NHS DSPT Standards</h4>
+          <p class="sec-desc">Aligned with the NHS Data Security and Protection Toolkit, addressing Caldicott Principles
+            1 through 7 for patient privacy and data handling.</p>
+        </div>
+
+        <div class="sec-card">
+          <div class="sec-icon">🔒</div>
+          <h4 class="sec-title">AES-256 &amp; TLS 1.3</h4>
+          <p class="sec-desc">Standard AES-256 encryption for all stored voice files and documents at rest, with TLS 1.3
+            cryptographic protection in transit.</p>
+        </div>
+
+        <div class="sec-card">
+          <div class="sec-icon">⚖️</div>
+          <h4 class="sec-title">ICO Registered</h4>
+          <p class="sec-desc">Registered with the UK Information Commissioner's Office (ICO) under the Data Protection
+            Act 2018 with routine security auditing.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         SECTION 08: DESIGN SYSTEM & TYPOGRAPHY
+         ========================================================================== -->
+    <section class="cs-section" id="design-system">
+      <span class="cs-section-badge nhs">08 · Design Architecture</span>
+      <h2 class="cs-section-heading">Healthcare Design System &amp; Typography</h2>
+      <p class="cs-body-p">
+        To establish immediate institutional trust, the typography pairs <strong>Bricolage Grotesque</strong> for
+        confident display headlines with <strong>Plus Jakarta Sans</strong> and <strong>Inter</strong> for clear, highly
+        legible clinical data tables and prose:
+      </p>
+
+      <div class="ds-spec-block">
+        <div class="ds-spec-header">
+          <div>
+            <span
+              style="font-size: 0.76rem; font-weight: 700; color: var(--teal-700); text-transform: uppercase; letter-spacing: 0.08em;">Type
+              Architecture</span>
+            <h3 style="font-size: 1.5rem; font-weight: 800; color: var(--navy-950);">Bricolage Grotesque &amp; Plus
+              Jakarta Sans</h3>
+          </div>
+          <div style="display: flex; gap: 0.6rem; flex-wrap: wrap;">
+            <span
+              style="font-size: 0.78rem; padding: 4px 12px; border-radius: 999px; background: var(--nhs-blue-50); border: 1px solid var(--nhs-blue-100); color: var(--nhs-blue); font-weight: 700;">Weights:
+              400 · 500 · 600 · 700 · 800</span>
+            <span
+              style="font-size: 0.78rem; padding: 4px 12px; border-radius: 999px; background: var(--teal-50); border: 1px solid var(--teal-100); color: var(--teal-800); font-weight: 700;">WCAG
+              AAA Contrast Compliant</span>
+          </div>
+        </div>
+
+        <div class="type-scale-list">
+          <div class="type-row">
+            <div class="type-meta">
+              <span class="type-tag">Hero Display H1</span>
+              <span class="type-specs">Bricolage Grotesque · 44px · 800 ExtraBold</span>
+            </div>
+            <div class="sample-h1">Clinical Documentation for UK NHS</div>
+          </div>
+
+          <div class="type-row">
+            <div class="type-meta">
+              <span class="type-tag">Section Header H2</span>
+              <span class="type-specs">Bricolage Grotesque · 32px · 700 Bold</span>
+            </div>
+            <div class="sample-h2">EMIS Web &amp; SystmOne Clinical Integration</div>
+          </div>
+
+          <div class="type-row">
+            <div class="type-meta">
+              <span class="type-tag">Card Header H3</span>
+              <span class="type-specs">Bricolage Grotesque · 22px · 700 Bold</span>
+            </div>
+            <div class="sample-h3">Radiology, Cardiology &amp; Medico-Legal Reporting</div>
+          </div>
+
+          <div class="type-row">
+            <div class="type-meta">
+              <span class="type-tag">Body Text</span>
+              <span class="type-specs">Plus Jakarta Sans · 16px · 400 Regular</span>
+            </div>
+            <div class="sample-base">Patient notes stream into GP surgery systems without manual clerical delay,
+              adhering to UK Information Commissioner's Office guidelines and RCGP standards.</div>
+          </div>
+
+          <div class="type-row">
+            <div class="type-meta">
+              <span class="type-tag">Caption &amp; Metadata</span>
+              <span class="type-specs">Plus Jakarta Sans · 13px · 500 Medium</span>
+            </div>
+            <div class="sample-caption">London Data Centre (eu-west-2) · ISO 27001 Certified Infrastructure · Zero data
+              transfer outside Great Britain.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- COLOR PALETTE TOKENS -->
+      <div class="color-tokens-grid">
+        <div class="color-token-card">
+          <div class="color-swatch" style="background: #005eb8; box-shadow: 0 0 12px rgba(0, 94, 184, 0.25);"></div>
+          <span class="color-name">NHS Trust Blue</span>
+          <span class="color-hex">#005EB8 · Primary Trust</span>
+        </div>
+
+        <div class="color-token-card">
+          <div class="color-swatch" style="background: #147d70;"></div>
+          <span class="color-name">Clinical Deep Teal</span>
+          <span class="color-hex">#147D70 · Healthcare Brand</span>
+        </div>
+
+        <div class="color-token-card">
+          <div class="color-swatch" style="background: #3ec5aa;"></div>
+          <span class="color-name">Medical Mint</span>
+          <span class="color-hex">#3EC5AA · Accent / AI HUD</span>
+        </div>
+
+        <div class="color-token-card">
+          <div class="color-swatch" style="background: #142033;"></div>
+          <span class="color-name">Deep Navy</span>
+          <span class="color-hex">#142033 · Primary Headings</span>
+        </div>
+
+        <div class="color-token-card">
+          <div class="color-swatch" style="background: #f7f9fc; border: 1px solid #cbd5e1;"></div>
+          <span class="color-name">Clinical Neutral</span>
+          <span class="color-hex">#F7F9FC · Soft Surface</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         SECTION 09: ENGINEERING RETROSPECTIVE & REFLECTIONS
+         ========================================================================== -->
+    <section class="cs-section" id="reflections">
+      <span class="cs-section-badge teal">09 · Retrospective</span>
+      <h2 class="cs-section-heading">Engineering Retrospective &amp; Design Reflections</h2>
+      <p class="cs-body-p">
+        Adapting an international healthcare product for the UK market yielded important insights regarding clinical
+        trust, legacy NHS infrastructure, and the balance between automated AI and human QA:
+      </p>
+
+      <div class="retro-grid">
+        <div class="retro-card">
+          <span class="retro-num">Reflection 01</span>
+          <h4 class="retro-title">Designing for Institutional Trust</h4>
+          <p class="retro-desc">
+            UK healthcare decision-makers are inherently skeptical of Silicon Valley-style hyperbole. Adopting
+            restrained typography, muted blues, explicit compliance signifiers (DSPT, Caldicott, ICO), and direct
+            primary care workflow diagrams proved far more persuasive than flashy animations.
+          </p>
+        </div>
+
+        <div class="retro-card">
+          <span class="retro-num">Reflection 02</span>
+          <h4 class="retro-title">The Value of the Hybrid Dual Model</h4>
+          <p class="retro-desc">
+            While pure speech AI is fast, British consultants dealing with complex oncology, surgical, or medico-legal
+            documentation require absolute precision. Highlighting the 6-hour human QA turnaround alongside instant
+            60-second AI drafts established genuine clinical credibility.
+          </p>
+        </div>
+
+        <div class="retro-card">
+          <span class="retro-num">Reflection 03</span>
+          <h4 class="retro-title">Addressing British Accent Diversity</h4>
+          <p class="retro-desc">
+            Standard US speech models routinely fail when processing Scottish, Welsh, or Northern Irish clinical
+            dictations. Explicitly communicating accent normalization and British National Formulary drug mapping
+            directly resolved a major pain point for NHS trust procurement teams.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         NEXT PROJECT CROSS-NAVIGATION BANNER
+         ========================================================================== -->
+    <section class="cs-next-banner">
+      <div class="next-card">
+        <div class="next-info">
+          <span class="next-script">Connected Healthcare Ecosystem</span>
+          <h3 class="next-title">Explore PMS iTranscript360 Web Platform</h3>
+          <p class="next-desc">
+            Inspect the flagship Practice Management System web platform featuring the Master AI Medical Co-Pilot on
+            laptop and multi-role clinical encounter management.
+          </p>
+        </div>
+        <div class="next-actions">
+          <a href="case-study-pms.html" class="btn-cta">
+            View PMS Web SaaS Case Study →
+          </a>
+          <a href="case-study-staysaver.html" class="btn-subtle">
+            StaySaver Hospitality SaaS (In Dev) ↗
+          </a>
+          <a href="case-study-mobile.html" class="btn-subtle">
+            PMS Mobile Companion App ↗
+          </a>
+          <a href="case-study.html" class="btn-subtle">
+            Global Corporate Web Architecture ↗
+          </a>
+          <a href="index.html#projects" class="btn-subtle">
+            ← All Selected Projects
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- SITE FOOTER -->
+  <footer class="site-footer">
+    <div class="footer-copy">
+      © 2026 Bhatu Prakash. All rights reserved. Senior UI/UX Designer &amp; Frontend Architect.
+    </div>
+
+    <ul class="footer-socials">
+      <li><a href="index.html#projects" class="social-link">Selected Work</a></li>
+      <li><a href="case-study-staysaver.html" class="social-link">StaySaver (In Dev)</a></li>
+      <li><a href="case-study-uk.html" class="social-link" style="color: var(--teal-700); font-weight: 700;">UK NHS
+          Edition</a></li>
+      <li><a href="case-study-pms.html" class="social-link">PMS Web Platform</a></li>
+      <li><a href="case-study-mobile.html" class="social-link">PMS Mobile App</a></li>
+      <li><a href="case-study.html" class="social-link">Global Corporate Web</a></li>
+    </ul>
+
+    <button id="back-to-top" class="btn-back-to-top" type="button"
+      onclick="window.scrollTo({top: 0, behavior: 'smooth'});">
+      <span>Back to Top</span>
+      <span>↑</span>
+    </button>
+  </footer>
+
+  <!-- IMAGE LIGHTBOX MODAL -->
+  <div class="lightbox-modal" id="lightbox" role="dialog" aria-modal="true" aria-label="Expanded interface preview">
+    <button class="lightbox-close" id="lightbox-close" aria-label="Close image preview">&times;</button>
+    <div class="lightbox-content">
+      <img src="" alt="Enlarged Platform Screen" class="lightbox-img" id="lightbox-img">
+    </div>
+  </div>
+
+  <!-- INTERACTIVE SCRIPTS -->
+  <script>
+    (function () {
+      'use strict';
+
+      // 1. Reading Progress Bar
+      const progressBar = document.getElementById('progressBar');
+      window.addEventListener('scroll', () => {
+        const scrollTop = window.scrollY || document.documentElement.scrollTop;
+        const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        if (progressBar && scrollHeight > 0) {
+          const progress = (scrollTop / scrollHeight) * 100;
+          progressBar.style.width = progress + '%';
+        }
+      }, { passive: true });
+
+      // 2. Image Lightbox Modal
+      const lightbox = document.getElementById('lightbox');
+      const lightboxImg = document.getElementById('lightbox-img');
+      const lightboxClose = document.getElementById('lightbox-close');
+
+      window.openLightbox = function (src) {
+        if (!src || !lightbox || !lightboxImg) return;
+        lightboxImg.src = src;
+        lightbox.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      };
+
+      function closeLightbox() {
+        if (!lightbox || !lightboxImg) return;
+        lightbox.classList.remove('active');
+        lightboxImg.src = '';
+        document.body.style.overflow = '';
+      }
+
+      document.querySelectorAll('.zoomable').forEach(el => {
+        el.addEventListener('click', () => {
+          const img = el.tagName === 'IMG' ? el : el.querySelector('img');
+          if (img) {
+            const src = img.getAttribute('src');
+            window.openLightbox(src);
+          }
+        });
+      });
+
+      if (lightboxClose) {
+        lightboxClose.addEventListener('click', closeLightbox);
+      }
+
+      if (lightbox) {
+        lightbox.addEventListener('click', (e) => {
+          if (e.target === lightbox) {
+            closeLightbox();
+          }
+        });
+      }
+
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && lightbox && lightbox.classList.contains('active')) {
+          closeLightbox();
+        }
+      });
+
+      // 3. ScrollSpy for Sticky Chapter TOC Dock
+      const tocLinks = document.querySelectorAll('.cs-toc-item a');
+      const sections = document.querySelectorAll('header.cs-hero, section.cs-section');
+
+      window.addEventListener('scroll', () => {
+        let currentSection = '';
+        const scrollPosition = window.scrollY + 180;
+
+        sections.forEach(section => {
+          const sectionTop = section.offsetTop;
+          const sectionHeight = section.offsetHeight;
+          if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+            currentSection = section.getAttribute('id');
+          }
+        });
+
+        if (currentSection) {
+          tocLinks.forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('href') === '#' + currentSection) {
+              link.classList.add('active');
+            }
+          });
+        }
+      }, { passive: true });
+
+      // 4. Clinical Speech AI Typewriter Cycle
+      const dynamicPhrases = [
+        "Patient presents with persistent atrial fibrillation; BP 138/84. Initiating apixaban 5mg BD and scheduling 24h Holter monitor...",
+        "Chest CT Angiogram: Normal pulmonary arterial tree, zero evidence of acute pulmonary embolism or thoracic aortic dissection...",
+        "Diabetic annual review: HbA1c 58 mmol/mol. Bilateral mild background retinopathy on digital fundus photography...",
+        "Right knee osteoarthritis: Kellgren-Lawrence Grade III. Administered 40mg Depo-Medrone with 1% lidocaine intra-articularly..."
+      ];
+      let phraseIdx = 0;
+      let charIdx = 0;
+      let isDeleting = false;
+      const textEl = document.getElementById('hudDynamicText');
+
+      function typeWriter() {
+        if (!textEl) return;
+        const currentPhrase = dynamicPhrases[phraseIdx];
+
+        if (isDeleting) {
+          textEl.textContent = ' "' + currentPhrase.substring(0, charIdx - 1) + '"';
+          charIdx--;
+        } else {
+          textEl.textContent = ' "' + currentPhrase.substring(0, charIdx + 1) + '"';
+          charIdx++;
+        }
+
+        let speed = isDeleting ? 22 : 50;
+
+        if (!isDeleting && charIdx === currentPhrase.length) {
+          speed = 2800; // Pause at end of complete phrase
+          isDeleting = true;
+        } else if (isDeleting && charIdx === 0) {
+          isDeleting = false;
+          phraseIdx = (phraseIdx + 1) % dynamicPhrases.length;
+          speed = 500;
+        }
+
+        setTimeout(typeWriter, speed);
+      }
+      setTimeout(typeWriter, 1000);
+    })();
+  </script>
+  <script src="mobile-nav.js"></script>
+</body>
+
+</html>

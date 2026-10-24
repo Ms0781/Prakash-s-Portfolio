@@ -1,0 +1,2828 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>Bhatu Prakash — Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800;12..96,900&family=Caveat:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --accent: #ccff00;
+      --accent-glow: rgba(204, 255, 0, 0.45);
+      --bg: #0b0c0e;
+      --bg-darker: #07080a;
+      --bg-card: rgba(18, 20, 24, 0.65);
+      --text-white: #ffffff;
+      --text-muted: #828492;
+      --border-subtle: rgba(255, 255, 255, 0.08);
+      --border-accent: rgba(204, 255, 0, 0.28);
+      --font-heading: 'Bricolage Grotesque', -apple-system, sans-serif;
+      --font-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      background-color: var(--bg);
+      color: var(--text-white);
+      font-family: var(--font-body);
+      width: 100%;
+      margin: 0;
+      padding: 0;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+
+    html::-webkit-scrollbar,
+    body::-webkit-scrollbar {
+      display: none;
+    }
+
+    /* TOP NAVBAR */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem clamp(2rem, 4.5vw, 5.5rem);
+      background: rgba(11, 12, 14, 0.85);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      z-index: 100;
+      pointer-events: auto;
+      transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .navbar.nav-hidden {
+      transform: translateY(-100%);
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .dp-wrapper {
+      position: relative;
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      padding: 2px;
+      background: linear-gradient(135deg, var(--accent), rgba(204, 255, 0, 0.25));
+      box-shadow: 0 0 16px rgba(204, 255, 0, 0.35);
+      flex-shrink: 0;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .nav-logo:hover .dp-wrapper {
+      transform: scale(1.06);
+      box-shadow: 0 0 22px rgba(204, 255, 0, 0.55);
+    }
+
+    .dp-img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+      object-position: center 25%;
+      background-color: #1a1a1f;
+      display: block;
+    }
+
+    .dp-status-dot {
+      position: absolute;
+      bottom: 0px;
+      right: 0px;
+      width: 11px;
+      height: 11px;
+      border-radius: 50%;
+      background-color: var(--accent);
+      border: 2px solid var(--bg);
+      box-shadow: 0 0 8px var(--accent);
+    }
+
+    .logo-text {
+      font-family: var(--font-heading);
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: #ffffff;
+      letter-spacing: -0.02em;
+      white-space: nowrap;
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: clamp(1.5rem, 3vw, 3rem);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: clamp(1.2rem, 2vw, 2.2rem);
+      list-style: none;
+    }
+
+    .nav-link {
+      color: #d1d1db;
+      font-size: 0.92rem;
+      font-weight: 500;
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+
+    .nav-link:hover {
+      color: var(--accent);
+    }
+
+    .btn-get-started {
+      background-color: var(--accent);
+      color: #000000;
+      font-family: var(--font-heading);
+      font-size: 0.88rem;
+      font-weight: 800;
+      padding: 0.6rem 1.35rem;
+      border-radius: 8px;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.25s ease;
+      box-shadow: 0 0 16px rgba(204, 255, 0, 0.25);
+      white-space: nowrap;
+    }
+
+    .btn-get-started:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 25px rgba(204, 255, 0, 0.5);
+      background-color: #d8ff33;
+    }
+
+    /* HERO PINNED SECTION CONTAINER (Calibrated height to eliminate empty gap) */
+    .hero-scroll-wrapper {
+      height: 175vh;
+      position: relative;
+      width: 100%;
+      background-color: var(--bg);
+      margin: 0;
+      padding: 0;
+    }
+
+    .hero-sticky {
+      position: sticky;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+      overflow: hidden;
+      z-index: 10;
+    }
+
+    /* Canvas background container */
+    .canvas-container {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      pointer-events: none;
+      background-color: var(--bg);
+      overflow: hidden;
+      z-index: 0;
+    }
+
+    canvas {
+      display: block;
+      width: 100%;
+      height: 100vh;
+    }
+
+    /* "About me" floating badge */
+    .about-me-badge {
+      position: absolute;
+      top: clamp(5.2rem, 8.5vh, 6.8rem);
+      left: 50%;
+      transform: translateX(-50%) rotate(-1.5deg);
+      z-index: 2;
+      pointer-events: none;
+      user-select: none;
+      text-align: center;
+    }
+
+    .about-me-script {
+      font-family: 'Caveat', cursive;
+      font-size: clamp(2.6rem, 3.8vw, 3.8rem);
+      font-weight: 700;
+      color: var(--accent);
+      letter-spacing: 0.02em;
+      text-shadow: 0 0 25px var(--accent-glow);
+    }
+
+    /* Pinned UI Content Overlay */
+    .ui-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: calc(clamp(1.8rem, 3.2vw, 3rem) + 3.5rem) clamp(2.2rem, 5vw, 5.5rem) clamp(1.8rem, 3vw, 2.5rem);
+      pointer-events: none;
+    }
+
+    .sub-header-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+    }
+
+    .portfolio-tag {
+      font-family: var(--font-heading);
+      font-size: clamp(0.82rem, 1vw, 0.95rem);
+      font-weight: 700;
+      letter-spacing: 0.28em;
+      color: var(--text-muted);
+      text-transform: uppercase;
+    }
+
+    .content-body {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      margin: auto 0;
+      position: relative;
+    }
+
+    /* LEFT SECTION */
+    .left-section {
+      width: clamp(320px, 28vw, 430px);
+      pointer-events: auto;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+
+    .hero-title {
+      font-family: var(--font-heading);
+      font-size: clamp(4.4rem, 7vw, 6.8rem);
+      font-weight: 900;
+      line-height: 0.95;
+      letter-spacing: -0.04em;
+      color: var(--text-white);
+      display: inline-flex;
+      align-items: center;
+      margin-bottom: 1.4rem;
+      user-select: none;
+    }
+
+    .custom-o {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      width: 0.82em;
+      height: 0.82em;
+      margin: 0 0.04em;
+      vertical-align: middle;
+    }
+
+    .outer-ring {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      border: 0.17em solid var(--text-white);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .inner-circle {
+      width: 0.28em;
+      height: 0.28em;
+      border-radius: 50%;
+      background-color: var(--text-white);
+    }
+
+    .intro-line {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+      font-size: clamp(1.2rem, 1.5vw, 1.45rem);
+      margin-bottom: 1.4rem;
+    }
+
+    .status-dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background-color: var(--accent);
+      box-shadow: 0 0 12px var(--accent);
+      flex-shrink: 0;
+    }
+
+    .intro-muted {
+      color: #a2a2b0;
+      font-weight: 500;
+    }
+
+    .intro-name {
+      font-family: var(--font-heading);
+      color: var(--text-white);
+      font-weight: 800;
+      letter-spacing: -0.01em;
+    }
+
+    .bio-text {
+      font-size: clamp(1.05rem, 1.25vw, 1.22rem);
+      line-height: 1.65;
+      color: var(--text-muted);
+      margin-bottom: 2rem;
+    }
+
+    .bio-highlight {
+      color: var(--text-white);
+      font-weight: 700;
+    }
+
+    .tags-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.65rem;
+    }
+
+    .tag-pill {
+      padding: 0.55rem 1.25rem;
+      background: rgba(255, 255, 255, 0.045);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      border-radius: 9999px;
+      font-size: clamp(0.9rem, 1.05vw, 1rem);
+      font-weight: 600;
+      color: #dcdce6;
+      backdrop-filter: blur(10px);
+      transition: all 0.25s ease;
+      cursor: default;
+    }
+
+    .tag-pill:hover {
+      border-color: var(--accent);
+      color: var(--text-white);
+      background: rgba(204, 255, 0, 0.12);
+      transform: translateY(-2px);
+    }
+
+    /* RIGHT SECTION */
+    .right-section {
+      width: clamp(330px, 29vw, 440px);
+      pointer-events: auto;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+
+    .vertical-decor {
+      font-family: var(--font-heading);
+      position: absolute;
+      right: -2.8rem;
+      top: 50%;
+      transform: translateY(-50%) rotate(90deg);
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.38em;
+      color: rgba(255, 255, 255, 0.14);
+      text-transform: uppercase;
+      white-space: nowrap;
+      pointer-events: none;
+    }
+
+    .stats-container {
+      display: flex;
+      flex-direction: column;
+      gap: 1.35rem;
+      margin-bottom: 2rem;
+    }
+
+    .stat-row {
+      display: flex;
+      align-items: center;
+      gap: 1.3rem;
+    }
+
+    .stat-digits {
+      font-family: var(--font-heading);
+      font-size: clamp(3.4rem, 4.8vw, 4.6rem);
+      font-weight: 900;
+      line-height: 1;
+      color: var(--text-white);
+      display: inline-flex;
+      align-items: baseline;
+      letter-spacing: -0.04em;
+      min-width: 3.3ch;
+    }
+
+    .stat-symbol {
+      color: var(--accent);
+      font-weight: 900;
+      font-size: 0.8em;
+      margin-left: 2px;
+      text-shadow: 0 0 16px var(--accent-glow);
+    }
+
+    .stat-desc {
+      font-family: var(--font-heading);
+      font-size: clamp(0.78rem, 0.95vw, 0.92rem);
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      color: var(--text-muted);
+      line-height: 1.35;
+      text-transform: uppercase;
+    }
+
+    .skills-wrapper {
+      display: flex;
+      flex-direction: column;
+      gap: 1.05rem;
+      margin-bottom: 2rem;
+    }
+
+    .skill-item {
+      display: flex;
+      flex-direction: column;
+      gap: 0.45rem;
+    }
+
+    .skill-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: clamp(0.96rem, 1.1vw, 1.1rem);
+      font-weight: 600;
+    }
+
+    .skill-title {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      color: var(--text-white);
+      letter-spacing: -0.01em;
+    }
+
+    .skill-pct {
+      font-family: var(--font-heading);
+      color: var(--accent);
+      font-weight: 800;
+      font-size: clamp(0.96rem, 1.1vw, 1.1rem);
+      letter-spacing: 0.02em;
+    }
+
+    .progress-bar-bg {
+      width: 100%;
+      height: 3px;
+      background: rgba(255, 255, 255, 0.12);
+      border-radius: 3px;
+      overflow: hidden;
+    }
+
+    .progress-bar-fill {
+      height: 100%;
+      background: var(--accent);
+      box-shadow: 0 0 12px var(--accent-glow);
+      border-radius: 3px;
+      transition: width 1s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .freelance-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.9rem;
+      padding: 0.95rem 1.65rem;
+      background: var(--bg-card);
+      border: 1px solid var(--border-accent);
+      border-radius: 9999px;
+      backdrop-filter: blur(14px);
+      box-shadow: 0 0 28px rgba(204, 255, 0, 0.12);
+      width: fit-content;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .freelance-pill:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 36px rgba(204, 255, 0, 0.24);
+    }
+
+    .pulse-glow-dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background-color: var(--accent);
+      box-shadow: 0 0 12px var(--accent);
+      position: relative;
+      flex-shrink: 0;
+    }
+
+    .pulse-glow-dot::after {
+      content: '';
+      position: absolute;
+      inset: -4px;
+      border-radius: 50%;
+      border: 1px solid var(--accent);
+      animation: pulseAnimation 2s infinite ease-out;
+    }
+
+    @keyframes pulseAnimation {
+      0% { transform: scale(1); opacity: 1; }
+      100% { transform: scale(2.4); opacity: 0; }
+    }
+
+    .freelance-label {
+      font-family: var(--font-heading);
+      color: #dfff4f;
+      font-size: clamp(0.95rem, 1.1vw, 1.08rem);
+      font-weight: 700;
+      letter-spacing: 0.01em;
+      white-space: nowrap;
+    }
+
+    .footer-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      width: 100%;
+      position: relative;
+    }
+
+    .location-tag, .work-status-tag {
+      font-family: var(--font-heading);
+      font-size: clamp(0.85rem, 1vw, 1.02rem);
+      font-weight: 700;
+      letter-spacing: 0.28em;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      padding-bottom: 0.4rem;
+    }
+
+    .active-badge-center {
+      position: absolute;
+      left: 50%;
+      bottom: 0;
+      transform: translateX(-50%);
+      pointer-events: auto;
+    }
+
+    .active-badge-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 0.95rem 2.5rem;
+      background: var(--bg-card);
+      border: 1px solid var(--border-accent);
+      border-radius: 20px;
+      backdrop-filter: blur(16px);
+      box-shadow: 0 0 40px rgba(204, 255, 0, 0.14);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .active-badge-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 50px rgba(204, 255, 0, 0.25);
+    }
+
+    .badge-years {
+      font-family: var(--font-heading);
+      font-size: clamp(1.2rem, 1.45vw, 1.4rem);
+      font-weight: 900;
+      letter-spacing: 0.22em;
+      color: var(--accent);
+      text-shadow: 0 0 12px var(--accent-glow);
+    }
+
+    .badge-sub {
+      font-family: var(--font-heading);
+      font-size: clamp(0.7rem, 0.85vw, 0.82rem);
+      font-weight: 700;
+      letter-spacing: 0.25em;
+      color: var(--text-muted);
+      margin-top: 0.35rem;
+      text-transform: uppercase;
+    }
+
+    /* =========================================================
+       PAGE CONTENT (Flows seamlessly immediately after hero)
+       ========================================================= */
+    .page-content-wrapper {
+      position: relative;
+      z-index: 20;
+      background-color: var(--bg);
+      width: 100%;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* SKILLS TICKER / MARQUEE (Prominent, Bold & Outlined) */
+    .skills-ticker-wrapper {
+      width: 100%;
+      overflow: hidden;
+      border-top: 1px solid rgba(255, 255, 255, 0.14);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+      background: #08080a;
+      padding: 1.5rem 0;
+      display: flex;
+      user-select: none;
+      margin: 0;
+    }
+
+    .skills-ticker-track {
+      display: flex;
+      width: max-content;
+      animation: tickerLoop 32s linear infinite;
+    }
+
+    .skills-ticker-track:hover {
+      animation-play-state: paused;
+    }
+
+    .ticker-content {
+      display: flex;
+      align-items: center;
+      gap: 3.2rem;
+      padding-right: 3.2rem;
+      font-family: var(--font-heading);
+      font-size: clamp(1.4rem, 1.85vw, 1.85rem);
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      white-space: nowrap;
+    }
+
+    .ticker-item {
+      -webkit-text-stroke: 1.2px rgba(255, 255, 255, 0.55);
+      color: transparent;
+      -webkit-text-fill-color: transparent;
+      transition: all 0.25s ease;
+      cursor: default;
+    }
+
+    .ticker-item:hover {
+      -webkit-text-stroke: 1.2px var(--accent);
+      text-shadow: 0 0 16px var(--accent-glow);
+    }
+
+    .ticker-star {
+      color: var(--accent);
+      font-size: 1.25rem;
+      text-shadow: 0 0 14px var(--accent-glow);
+      display: inline-block;
+      vertical-align: middle;
+    }
+
+    @keyframes tickerLoop {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    /* TABLE OF CONTENTS SECTION - FULL WIDTH */
+    .toc-section {
+      width: 100%;
+      max-width: 100%;
+      margin: 0;
+      padding: 3.5rem clamp(2rem, 4.5vw, 5.5rem) 5.5rem;
+    }
+
+    .toc-header {
+      margin-bottom: 2.5rem;
+    }
+
+    .toc-cursive {
+      font-family: 'Caveat', cursive;
+      font-size: clamp(2.2rem, 3vw, 3.2rem);
+      font-weight: 700;
+      color: var(--accent);
+      letter-spacing: 0.01em;
+      text-shadow: 0 0 16px var(--accent-glow);
+      transform: rotate(-1.5deg);
+      display: inline-block;
+      margin-bottom: -0.35rem;
+    }
+
+    .toc-title {
+      font-family: var(--font-heading);
+      font-size: clamp(4rem, 6.8vw, 6.2rem);
+      font-weight: 900;
+      letter-spacing: -0.04em;
+      color: var(--text-white);
+      line-height: 0.95;
+    }
+
+    /* 3x2 Editorial Grid with full enclosing borders (Left, Right, Top, Bottom) */
+    .toc-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      width: 100%;
+    }
+
+    .toc-card {
+      padding: 3.2rem clamp(1.8rem, 2.6vw, 3rem);
+      border-right: 1px solid rgba(255, 255, 255, 0.14);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      background: transparent;
+      text-decoration: none;
+      color: inherit;
+      transition: background 0.3s ease;
+    }
+
+    .toc-card:hover {
+      background: rgba(255, 255, 255, 0.025);
+    }
+
+    /* Remove right border on 3rd column since grid has outer right border */
+    .toc-card:nth-child(3n) {
+      border-right: none;
+    }
+
+    /* Remove bottom border on row 2 since grid has outer bottom border */
+    .toc-card:nth-child(n + 4) {
+      border-bottom: none;
+    }
+
+    .card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.6rem;
+      width: 100%;
+    }
+
+    .card-num {
+      font-family: var(--font-heading);
+      font-size: clamp(1.65rem, 2vw, 2.1rem);
+      font-weight: 800;
+      color: #2c2f37;
+      line-height: 1;
+      letter-spacing: -0.02em;
+      transition: color 0.3s ease;
+    }
+
+    .toc-card:hover .card-num {
+      color: #555b6c;
+    }
+
+    .card-arrow {
+      font-family: var(--font-heading);
+      font-size: clamp(1.35rem, 1.6vw, 1.75rem);
+      font-weight: 800;
+      color: var(--accent);
+      text-shadow: 0 0 12px var(--accent-glow);
+      line-height: 1;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), text-shadow 0.25s ease;
+      cursor: pointer;
+    }
+
+    .toc-card:hover .card-arrow {
+      transform: translate(5px, -5px);
+      text-shadow: 0 0 20px var(--accent);
+    }
+
+    .card-title-block {
+      margin-bottom: 1.25rem;
+    }
+
+    .card-heading-main {
+      font-family: var(--font-heading);
+      font-size: clamp(1.75rem, 2.3vw, 2.45rem);
+      font-weight: 800;
+      color: var(--text-white);
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+    }
+
+    .card-heading-script {
+      font-family: 'Caveat', cursive;
+      font-size: clamp(1.85rem, 2.5vw, 2.55rem);
+      font-weight: 700;
+      color: var(--accent);
+      letter-spacing: 0.01em;
+      line-height: 1;
+      text-shadow: 0 0 14px var(--accent-glow);
+      transform: rotate(-1deg);
+      display: block;
+      margin-top: 0.2rem;
+    }
+
+    .card-desc {
+      font-family: var(--font-body);
+      font-size: clamp(0.88rem, 1vw, 1.04rem);
+      line-height: 1.6;
+      color: #727684;
+      max-width: 440px;
+    }
+
+    /* FOOTER */
+    .site-footer {
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 2.5rem clamp(2rem, 5vw, 5.5rem);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      background: var(--bg-darker);
+    }
+
+    .footer-copy {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+    }
+
+    .footer-socials {
+      display: flex;
+      gap: 1.5rem;
+      list-style: none;
+    }
+
+    .social-link {
+      font-family: var(--font-heading);
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+
+    .social-link:hover {
+      color: var(--accent);
+    }
+
+    .btn-back-to-top {
+      background: transparent;
+      border: none;
+      color: var(--accent);
+      font-family: var(--font-heading);
+      font-size: 0.88rem;
+      font-weight: 800;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: transform 0.2s ease;
+    }
+
+    .btn-back-to-top:hover {
+      transform: translateY(-3px);
+    }
+
+    /* =========================================================
+       DESIGN SYSTEMS BANNER SECTION (Figma Selection Box)
+       ========================================================= */
+    .design-systems-banner-section {
+      width: 100%;
+      background-color: #0b0c0e;
+      color: #ffffff;
+      padding: clamp(5.5rem, 9vw, 9rem) clamp(1.5rem, 4vw, 4rem);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .ds-banner-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+    }
+
+    /* Figma Text Bounding Box with Prominent Dashed Outline */
+    .ds-figma-box {
+      position: relative;
+      display: inline-block;
+      border: 2px dashed rgba(255, 255, 255, 0.55);
+      padding: clamp(0.9rem, 1.8vw, 1.5rem) clamp(2rem, 4vw, 3.8rem);
+      background: transparent;
+      transition: border-color 0.3s ease;
+    }
+
+    .ds-figma-box:hover {
+      border-color: rgba(187, 244, 38, 0.85);
+    }
+
+    /* 6 Figma Square Resize Handles (Points) - Enlarged & Clearly Visible */
+    .ds-handle {
+      position: absolute;
+      width: 11px;
+      height: 11px;
+      background-color: #ffffff;
+      border: 1.5px solid #0a0b0d;
+      box-shadow: 0 0 3px rgba(0, 0, 0, 0.8);
+      z-index: 3;
+    }
+
+    .ds-handle-tl { top: -6px; left: -6px; }
+    .ds-handle-tc { top: -6px; left: 50%; transform: translateX(-50%); }
+    .ds-handle-tr { top: -6px; right: -6px; }
+    .ds-handle-bl { bottom: -6px; left: -6px; }
+    .ds-handle-bc { bottom: -6px; left: 50%; transform: translateX(-50%); }
+    .ds-handle-br { bottom: -6px; right: -6px; }
+
+    /* Figma Move / Scale Cursor */
+    .ds-cursor-icon {
+      position: absolute;
+      bottom: -22px;
+      right: -22px;
+      color: rgba(255, 255, 255, 0.85);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      pointer-events: none;
+      transition: transform 0.3s ease, color 0.3s ease;
+    }
+
+    .ds-figma-box:hover .ds-cursor-icon {
+      color: #bbf426;
+      transform: translate(2px, 2px);
+    }
+
+    /* Giant Bold Lime Title */
+    .ds-title {
+      font-family: var(--font-heading);
+      font-size: clamp(4rem, 9.5vw, 8.2rem);
+      font-weight: 900;
+      letter-spacing: -0.045em;
+      color: #bbf426;
+      line-height: 1;
+      margin: 0;
+      user-select: none;
+      text-shadow: 0 0 32px rgba(187, 244, 38, 0.22);
+    }
+
+    /* Scalable Figma Description */
+    .ds-desc {
+      margin-top: clamp(2rem, 3.2vw, 3rem);
+      font-family: var(--font-body);
+      font-size: clamp(0.95rem, 1.25vw, 1.15rem);
+      line-height: 1.65;
+      color: rgba(255, 255, 255, 0.72);
+      max-width: 720px;
+      text-align: center;
+      margin-left: auto;
+      margin-right: auto;
+      font-weight: 400;
+    }
+
+    /* =========================================================
+       COMPONENT LIBRARY / DESIGN SYSTEM SECTION
+       (Pixel-Perfect Match with Reference Image)
+       ========================================================= */
+    .component-library-section {
+      width: 100%;
+      background-color: #ededed;
+      color: #111215;
+      padding: clamp(3.8rem, 6vw, 5.5rem) clamp(2rem, 5vw, 6rem) clamp(4.5rem, 7vw, 6.5rem);
+      position: relative;
+    }
+
+    .cl-inner {
+      max-width: 1440px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .cl-header {
+      margin-bottom: 2.8rem;
+    }
+
+    .cl-script {
+      font-family: 'Caveat', cursive;
+      font-size: clamp(1.85rem, 2.5vw, 2.5rem);
+      font-weight: 700;
+      color: #6abf28;
+      letter-spacing: 0.01em;
+      transform: rotate(-1.5deg);
+      display: inline-block;
+      margin-bottom: -0.2rem;
+    }
+
+    .cl-title {
+      font-family: var(--font-heading);
+      font-size: clamp(2.8rem, 4.8vw, 4.4rem);
+      font-weight: 900;
+      letter-spacing: -0.04em;
+      color: #101114;
+      line-height: 1;
+    }
+
+    .cl-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 0.95rem;
+    }
+
+    .cl-tag {
+      display: inline-flex;
+      align-items: center;
+      padding: 4px 13px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      font-family: var(--font-body);
+      background: rgba(0, 0, 0, 0.05);
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      border-radius: 9999px;
+      color: #3b4047;
+      letter-spacing: 0.01em;
+      transition: background 0.2s ease, transform 0.2s ease;
+    }
+
+    .cl-tag:hover {
+      background: rgba(0, 0, 0, 0.09);
+      transform: translateY(-1px);
+    }
+
+    .cl-layout {
+      display: flex;
+      align-items: flex-start;
+      gap: clamp(2.5rem, 4.5vw, 5rem);
+      width: 100%;
+    }
+
+    /* Left: Figma Canvas Column */
+    .cl-canvas-col {
+      flex: 1.5;
+      position: relative;
+      width: 100%;
+    }
+
+    /* Dashed selection bounding frame */
+    .figma-frame-wrapper {
+      position: relative;
+      border: 1px dashed rgba(0, 0, 0, 0.32);
+      padding: 12px;
+      background: transparent;
+    }
+
+    /* 4 Corner Green Selection Handles */
+    .figma-handle {
+      position: absolute;
+      width: 7px;
+      height: 7px;
+      background-color: #72c02c;
+      border: 1px solid #52961d;
+      z-index: 5;
+    }
+
+    .handle-tl { top: -4px; left: -4px; }
+    .handle-tr { top: -4px; right: -4px; }
+    .handle-bl { bottom: -4px; left: -4px; }
+    .handle-br { bottom: -4px; right: -4px; }
+
+    /* Inner Studio Gray Canvas */
+    .figma-inner-canvas {
+      background-color: #dedede;
+      border: 1px solid rgba(0, 0, 0, 0.06);
+      width: 100%;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0;
+      position: relative;
+    }
+
+    .figma-showcase-img {
+      width: 100%;
+      height: auto;
+      max-height: 520px;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .figma-frame-wrapper:hover .figma-showcase-img {
+      transform: scale(1.025);
+    }
+
+    /* Centered Components Cluster */
+    .components-kit {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      max-width: 320px;
+    }
+
+    /* 1. Typography */
+    .kit-typography {
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+      margin-bottom: 1.35rem;
+      user-select: none;
+    }
+
+    .typo-aa {
+      font-family: var(--font-heading);
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: #111215;
+      line-height: 1;
+      letter-spacing: -0.03em;
+    }
+
+    .typo-bb {
+      font-family: var(--font-heading);
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: #111215;
+      line-height: 1;
+      letter-spacing: -0.02em;
+    }
+
+    .typo-cc {
+      font-family: var(--font-body);
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #5d636b;
+      line-height: 1;
+    }
+
+    /* 2. Swatches */
+    .kit-swatches {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 1.2rem;
+    }
+
+    .kit-swatch {
+      width: 34px;
+      height: 34px;
+      border-radius: 6px;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      cursor: pointer;
+    }
+
+    .kit-swatch:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    }
+
+    .swatch-teal { background-color: #3ecf8e; }
+    .swatch-emerald { background-color: #0e7f57; }
+    .swatch-navy { background-color: #101726; }
+    .swatch-lime { background-color: #c6ff1a; }
+    .swatch-white {
+      background-color: #f7f7f7;
+      border: 1px solid rgba(0, 0, 0, 0.15);
+    }
+
+    /* 3. Buttons */
+    .kit-buttons {
+      display: flex;
+      gap: 10px;
+      width: 100%;
+      max-width: 290px;
+      margin-bottom: 1.1rem;
+    }
+
+    .btn-sample-primary {
+      flex: 1;
+      height: 36px;
+      background-color: #111215;
+      border: none;
+      border-radius: 9999px;
+      cursor: pointer;
+      transition: transform 0.2s ease, opacity 0.2s ease;
+    }
+
+    .btn-sample-primary:hover {
+      transform: translateY(-1px);
+      opacity: 0.88;
+    }
+
+    .btn-sample-outline {
+      flex: 1;
+      height: 36px;
+      background-color: #f7f7f8;
+      border: 1.5px solid #111215;
+      border-radius: 9999px;
+      cursor: pointer;
+      transition: transform 0.2s ease, background 0.2s ease;
+    }
+
+    .btn-sample-outline:hover {
+      transform: translateY(-1px);
+      background-color: #ffffff;
+    }
+
+    /* 4. Input */
+    .kit-input {
+      width: 100%;
+      max-width: 290px;
+      height: 36px;
+      background-color: #ffffff;
+      border: 1px solid rgba(0, 0, 0, 0.18);
+      border-radius: 6px;
+      padding: 0 14px;
+      display: flex;
+      align-items: center;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+    }
+
+    .kit-placeholder {
+      font-family: var(--font-body);
+      font-size: 0.82rem;
+      color: #9ea3aa;
+      font-weight: 500;
+      user-select: none;
+    }
+
+    /* Right: Features Column */
+    .cl-features-col {
+      flex: 1.1;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      padding-top: 0.2rem;
+    }
+
+    .cl-feature-item {
+      display: flex;
+      flex-direction: column;
+      gap: 0.45rem;
+    }
+
+    .cl-feature-title {
+      font-family: var(--font-body);
+      font-size: clamp(1.18rem, 1.45vw, 1.35rem);
+      font-weight: 800;
+      color: #439b1e;
+      line-height: 1.25;
+      letter-spacing: -0.015em;
+    }
+
+    .cl-feature-desc {
+      font-family: var(--font-body);
+      font-size: clamp(0.96rem, 1.15vw, 1.08rem);
+      line-height: 1.6;
+      color: #4b515a;
+      max-width: 440px;
+    }
+
+    /* Color token chips below 3rd feature */
+    .cl-token-chips {
+      display: flex;
+      gap: 10px;
+      margin-top: 0.6rem;
+    }
+
+    .token-chip {
+      width: 22px;
+      height: 22px;
+      border-radius: 5px;
+      display: inline-block;
+      transition: transform 0.2s ease;
+      cursor: pointer;
+    }
+
+    .token-chip:hover {
+      transform: scale(1.15);
+    }
+
+    .chip-teal { background-color: #3ecf8e; }
+    .chip-emerald { background-color: #0e7f57; }
+    .chip-navy { background-color: #101726; }
+    .chip-lime { background-color: #c6ff1a; }
+
+    /* Responsive adjustments */
+    @media (max-width: 960px) {
+      .cl-layout {
+        flex-direction: column;
+        gap: 2.5rem;
+      }
+      .cl-canvas-col, .cl-features-col {
+        width: 100%;
+      }
+      .figma-inner-canvas {
+        min-height: 380px;
+      }
+    }
+
+    /* =========================================================
+       PROJECTS & CLIENTS SECTION (Selected Work Grid - PREMIUM)
+       ========================================================= */
+    .projects-clients-section {
+      width: 100%;
+      background-color: #08090b;
+      color: #ffffff;
+      padding: clamp(5rem, 7vw, 7.5rem) clamp(2rem, 5vw, 6rem);
+      position: relative;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      box-sizing: border-box;
+    }
+
+    .pc-inner {
+      max-width: 1480px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .pc-header {
+      margin-bottom: clamp(2.5rem, 4vw, 3.8rem);
+    }
+
+    .pc-script {
+      font-family: 'Caveat', cursive;
+      font-size: clamp(1.85rem, 2.5vw, 2.5rem);
+      font-weight: 700;
+      color: #6abf28;
+      letter-spacing: 0.01em;
+      transform: rotate(-1.5deg);
+      display: inline-block;
+      margin-bottom: -0.2rem;
+    }
+
+    .pc-title {
+      font-family: var(--font-heading);
+      font-size: clamp(3rem, 5.5vw, 4.8rem);
+      font-weight: 900;
+      letter-spacing: -0.04em;
+      color: #ffffff;
+      line-height: 1;
+    }
+
+    .pc-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: clamp(1.2rem, 1.8vw, 2rem);
+      width: 100%;
+    }
+
+    .pc-card {
+      display: flex;
+      flex-direction: column;
+      border-radius: 16px;
+      overflow: hidden;
+      position: relative;
+      background: #111317;
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.6);
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease, border-color 0.3s ease;
+      cursor: pointer;
+      text-decoration: none;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .pc-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 24px 50px rgba(0, 0, 0, 0.8), 0 0 30px rgba(187, 244, 38, 0.15);
+      border-color: rgba(187, 244, 38, 0.45);
+    }
+
+    .pc-card.pc-hidden {
+      display: none;
+    }
+
+    /* Card Top Bar - Clean Dark Header */
+    .pc-card-top {
+      background: #181a20;
+      padding: 10px 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      user-select: none;
+    }
+
+    .pc-top-left {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+    }
+
+    .pc-status-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background-color: #bbf426;
+      display: inline-block;
+      box-shadow: 0 0 7px #bbf426;
+    }
+
+    .pc-tag-category {
+      font-family: var(--font-heading);
+      font-size: 0.7rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: #e5e7eb;
+    }
+
+    .pc-tag-year {
+      font-family: var(--font-body);
+      font-size: 0.68rem;
+      font-weight: 700;
+      color: #9ca3af;
+      background: rgba(255, 255, 255, 0.06);
+      padding: 2px 8px;
+      border-radius: 99px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    /* Card Image Thumbnail */
+    .pc-card-thumb-wrap {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      overflow: hidden;
+      position: relative;
+      background: #08090b;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .pc-card-thumb {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), filter 0.4s ease;
+    }
+
+    .pc-card:hover .pc-card-thumb {
+      transform: scale(1.05);
+      filter: brightness(1.05);
+    }
+
+    /* Card Center Body */
+    .pc-card-body {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      padding: 1.25rem 1.25rem 0.9rem 1.25rem;
+      position: relative;
+      background: #111317;
+    }
+
+    .pc-card-title {
+      font-family: var(--font-heading);
+      font-size: clamp(1.15rem, 1.3vw, 1.35rem);
+      font-weight: 800;
+      color: #ffffff;
+      line-height: 1.25;
+      margin: 0 0 0.25rem 0;
+      letter-spacing: -0.02em;
+    }
+
+    .pc-card-subtitle {
+      font-family: var(--font-body);
+      font-size: 0.76rem;
+      color: #9ca3af;
+      font-weight: 500;
+      line-height: 1.45;
+      margin: 0 0 1rem 0;
+    }
+
+    /* Section Subheaders ("WHAT I DID", "SOFTWARE USED") */
+    .pc-section-label {
+      font-family: var(--font-heading);
+      font-size: 0.65rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #bbf426;
+      margin-bottom: 0.4rem;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .pc-work-list {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 0.95rem 0;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .pc-work-item {
+      font-family: var(--font-body);
+      font-size: 0.72rem;
+      color: #d1d5db;
+      line-height: 1.38;
+      position: relative;
+      padding-left: 13px;
+    }
+
+    .pc-work-item::before {
+      content: "•";
+      position: absolute;
+      left: 0;
+      color: #bbf426;
+      font-weight: bold;
+    }
+
+    .pc-tools-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+      margin-bottom: 0.5rem;
+    }
+
+    .pc-tool-badge {
+      font-family: var(--font-body);
+      font-size: 0.67rem;
+      font-weight: 700;
+      color: #e5e7eb;
+      background: rgba(255, 255, 255, 0.07);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      padding: 3px 8px;
+      border-radius: 6px;
+      transition: all 0.25s ease;
+    }
+
+    .pc-card:hover .pc-tool-badge {
+      background: rgba(187, 244, 38, 0.12);
+      border-color: rgba(187, 244, 38, 0.35);
+      color: #f0fdf4;
+    }
+
+    /* Card Bottom Bar */
+    .pc-card-bottom {
+      background: #16181e;
+      padding: 11px 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      user-select: none;
+    }
+
+    .pc-tag-tech {
+      font-family: var(--font-body);
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: #9ca3af;
+    }
+
+    .pc-tag-action {
+      font-family: var(--font-heading);
+      font-size: 0.72rem;
+      font-weight: 800;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      transition: color 0.2s ease, transform 0.2s ease;
+    }
+
+    .pc-card:hover .pc-tag-action {
+      color: #bbf426;
+      transform: translateX(3px);
+    }
+
+    /* Floating Filter Pill Bar */
+    .pc-filter-wrapper {
+      display: flex;
+      justify-content: center;
+      width: 100%;
+      margin-top: clamp(3rem, 4.5vw, 4.2rem);
+    }
+
+    .pc-filter-bar {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(18, 20, 25, 0.88);
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 9999px;
+      padding: 6px 7px;
+      box-shadow: 0 12px 35px rgba(0, 0, 0, 0.65);
+    }
+
+    .pc-filter-btn {
+      background: transparent;
+      border: none;
+      color: rgba(255, 255, 255, 0.72);
+      padding: 7px 20px;
+      border-radius: 9999px;
+      font-family: var(--font-body);
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.25s ease;
+    }
+
+    .pc-filter-btn:hover {
+      color: #ffffff;
+    }
+
+    .pc-filter-btn.active {
+      background-color: #bbf426;
+      color: #0b0c0e;
+      font-weight: 700;
+      box-shadow: 0 0 15px rgba(187, 244, 38, 0.4);
+    }
+
+    @media (max-width: 1024px) {
+      .pc-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 600px) {
+      .pc-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 1100px) {
+      .ui-overlay {
+        padding: 6.5rem 2rem 2rem;
+      }
+      .left-section, .right-section {
+        width: 330px;
+      }
+      .vertical-decor {
+        display: none;
+      }
+      .nav-links {
+        display: none;
+      }
+      .toc-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .toc-card:nth-child(3n) {
+        border-right: 1px solid rgba(255, 255, 255, 0.08);
+      }
+      .toc-card:nth-child(2n) {
+        border-right: none;
+      }
+      .toc-card:nth-child(n+5) {
+        border-bottom: none;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .content-body {
+        flex-direction: column;
+        gap: 2.2rem;
+      }
+      .left-section, .right-section {
+        width: 100%;
+        max-width: 420px;
+      }
+      .footer-bar {
+        margin-top: 2rem;
+      }
+      .active-badge-center {
+        position: relative;
+        left: auto;
+        bottom: auto;
+        transform: none;
+      }
+      .toc-grid {
+        grid-template-columns: 1fr;
+      }
+      .toc-card {
+        border-right: none !important;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+      }
+      .toc-card:last-child {
+        border-bottom: none !important;
+      }
+      .site-footer {
+        flex-direction: column;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- TOP NAVBAR -->
+  <nav class="navbar">
+    <a href="#home" class="nav-logo">
+      <div class="dp-wrapper">
+        <img id="nav-dp" src="prakash-portfolio_00239.webp" alt="Bhatu Prakash" class="dp-img">
+        <span class="dp-status-dot"></span>
+      </div>
+      <span class="logo-text">Bhatu Prakash</span>
+    </a>
+
+    <div class="nav-right">
+      <ul class="nav-links">
+        <li><a href="#home" class="nav-link">Home</a></li>
+        <li><a href="#contents" class="nav-link">Services</a></li>
+        <li><a href="#uiux" class="nav-link">UI/UX</a></li>
+        <li><a href="#projects" class="nav-link">Projects</a></li>
+        <li><a href="#contents" class="nav-link">Contact</a></li>
+      </ul>
+      <a href="#contents" class="btn-get-started">Get started</a>
+    </div>
+  </nav>
+
+  <!-- HERO SECTION WITH PINNED CANVAS SCROLL ANIMATION -->
+  <section id="home" class="hero-scroll-wrapper">
+    <div class="hero-sticky">
+      
+      <!-- Canvas Animation Background -->
+      <div class="canvas-container">
+        <canvas id="canvas"></canvas>
+      </div>
+
+      <!-- "About me" floating badge -->
+      <div class="about-me-badge">
+        <span class="about-me-script">About me</span>
+      </div>
+
+      <!-- Pinned UI Content Overlay -->
+      <div class="ui-overlay">
+        
+        <!-- SUB-HEADER BAR -->
+        <div class="sub-header-bar">
+          <div></div>
+          <div class="portfolio-tag">PORTFOLIO — 2026</div>
+        </div>
+
+        <!-- MIDDLE SECTIONS -->
+        <main class="content-body">
+
+          <!-- LEFT COLUMN -->
+          <section class="left-section">
+            <h1 class="hero-title">
+              Hell<span class="custom-o"><span class="outer-ring"><span class="inner-circle"></span></span></span>!
+            </h1>
+
+            <div class="intro-line">
+              <span class="status-dot"></span>
+              <span class="intro-muted">I am</span>
+              <span class="intro-name">Bhatu Prakash</span>
+            </div>
+
+            <p class="bio-text">
+              <span class="bio-highlight">UI/UX Designer, Frontend Developer & Visual Creator</span> — crafting modern interfaces, WordPress & Shopify stores, graphic design, and video editing.
+            </p>
+
+            <div class="tags-container">
+              <span class="tag-pill">UI/UX Design</span>
+              <span class="tag-pill">Frontend Dev</span>
+              <span class="tag-pill">Graphic Design</span>
+              <span class="tag-pill">Shopify</span>
+              <span class="tag-pill">WordPress</span>
+              <span class="tag-pill">Video Editing</span>
+              <span class="tag-pill">Figma</span>
+              <span class="tag-pill">Photoshop</span>
+              <span class="tag-pill">After Effects</span>
+            </div>
+          </section>
+
+          <!-- RIGHT COLUMN -->
+          <section class="right-section">
+            <div class="vertical-decor">DESIGN • CODE • SHIP</div>
+
+            <!-- STATS -->
+            <div class="stats-container">
+              <div class="stat-row">
+                <div class="stat-digits">3<span class="stat-symbol">+</span></div>
+                <div class="stat-desc">YEARS<br>EXPERIENCE</div>
+              </div>
+              <div class="stat-row">
+                <div class="stat-digits">40<span class="stat-symbol">+</span></div>
+                <div class="stat-desc">PROJECTS<br>SHIPPED</div>
+              </div>
+              <div class="stat-row">
+                <div class="stat-digits">100<span class="stat-symbol">%</span></div>
+                <div class="stat-desc">DESIGN<br>+ CODE</div>
+              </div>
+            </div>
+
+            <!-- SKILL BARS -->
+            <div class="skills-wrapper">
+              <div class="skill-item">
+                <div class="skill-meta">
+                  <span class="skill-title">UI/UX & Figma</span>
+                  <span class="skill-pct">95%</span>
+                </div>
+                <div class="progress-bar-bg">
+                  <div class="progress-bar-fill" style="width: 95%;"></div>
+                </div>
+              </div>
+
+              <div class="skill-item">
+                <div class="skill-meta">
+                  <span class="skill-title">Graphic Design (PS / AI)</span>
+                  <span class="skill-pct">92%</span>
+                </div>
+                <div class="progress-bar-bg">
+                  <div class="progress-bar-fill" style="width: 92%;"></div>
+                </div>
+              </div>
+
+              <div class="skill-item">
+                <div class="skill-meta">
+                  <span class="skill-title">Frontend (HTML/CSS/JS)</span>
+                  <span class="skill-pct">90%</span>
+                </div>
+                <div class="progress-bar-bg">
+                  <div class="progress-bar-fill" style="width: 90%;"></div>
+                </div>
+              </div>
+
+              <div class="skill-item">
+                <div class="skill-meta">
+                  <span class="skill-title">WordPress & Shopify</span>
+                  <span class="skill-pct">88%</span>
+                </div>
+                <div class="progress-bar-bg">
+                  <div class="progress-bar-fill" style="width: 88%;"></div>
+                </div>
+              </div>
+
+              <div class="skill-item">
+                <div class="skill-meta">
+                  <span class="skill-title">Video Editing (PR / AE)</span>
+                  <span class="skill-pct">86%</span>
+                </div>
+                <div class="progress-bar-bg">
+                  <div class="progress-bar-fill" style="width: 86%;"></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- FREELANCE STATUS PILL -->
+            <div class="freelance-pill">
+              <span class="pulse-glow-dot"></span>
+              <span class="freelance-label">Available for freelance & full-time</span>
+            </div>
+          </section>
+
+        </main>
+
+        <!-- FOOTER BAR -->
+        <footer class="footer-bar">
+          <div class="location-tag">AHMEDABAD, INDIA</div>
+
+          <div class="active-badge-center">
+            <div class="active-badge-card">
+              <div class="badge-years">2022 — NOW</div>
+              <div class="badge-sub">ACTIVE YEARS</div>
+            </div>
+          </div>
+
+          <div class="work-status-tag">OPEN TO WORK</div>
+        </footer>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- NEXT SECTION (FLOWS SEAMLESSLY DIRECTLY AFTER HERO ANIMATION) -->
+  <div class="page-content-wrapper">
+
+    <!-- TOP SKILLS MARQUEE (Matching reference screenshot) -->
+    <div class="skills-ticker-wrapper">
+      <div class="skills-ticker-track">
+        <div class="ticker-content">
+          <span class="ticker-item">Figma</span>
+          <span class="ticker-star">✦</span>
+          <span class="ticker-item">Photoshop</span>
+          <span class="ticker-star">✦</span>
+          <span class="ticker-item">Illustrator</span>
+          <span class="ticker-star">✦</span>
+          <span class="ticker-item">Premiere Pro</span>
+          <span class="ticker-star">✦</span>
+          <span class="ticker-item">After Effects</span>
+          <span class="ticker-star">✦</span>
+          <span class="ticker-item">HTML5</span>
+          <span class="ticker-star">✦</span>
+          <span class="ticker-item">CSS3</span>
+          <span class="ticker-star">✦</span>
+          <span class="ticker-item">JavaScript</span>
+          <span class="ticker-star">✦</span>
+          <span class="ticker-item">WordPress</span>
+          <span class="ticker-star">✦</span>
+          <span class="ticker-item">Elementor</span>
+          <span class="ticker-star">✦</span>
+          <span class="ticker-item">Shopify</span>
+          <span class="ticker-star">✦</span>
+          <span class="ticker-item">Bootstrap</span>
+          <span class="ticker-star">✦</span>
+          <span class="ticker-item">Tailwind</span>
+          <span class="ticker-star">✦</span>
+        </div>
+        <div class="ticker-content" aria-hidden="true">
+          <span class="ticker-item">Figma</span>
+          <span class="ticker-star">✦</span>
+          <span class="ticker-item">Photoshop</span>
+          <span class="ticker-star">✦</span>
+          <span class="ticker-item">Illustrator</span>
+          <span class="ticker-star">✦</span>
+          <span class="ticker-item">Premiere Pro</span>
+          <span class="ticker-star">✦</span>
+          <span class="ticker-item">After Effects</span>
+          <span class="ticker-star">✦</span>
+          <span class="ticker-item">HTML5</span>
+          <span class="ticker-star">✦</span>
+          <span class="ticker-item">CSS3</span>
+          <span class="ticker-star">✦</span>
+          <span class="ticker-item">JavaScript</span>
+          <span class="ticker-star">✦</span>
+          <span class="ticker-item">WordPress</span>
+          <span class="ticker-star">✦</span>
+          <span class="ticker-item">Elementor</span>
+          <span class="ticker-star">✦</span>
+          <span class="ticker-item">Shopify</span>
+          <span class="ticker-star">✦</span>
+          <span class="ticker-item">Bootstrap</span>
+          <span class="ticker-star">✦</span>
+          <span class="ticker-item">Tailwind</span>
+          <span class="ticker-star">✦</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- TABLE OF CONTENTS (Exact design & typography from reference) -->
+    <section id="contents" class="toc-section">
+      <div class="toc-header">
+        <div class="toc-cursive">Table of</div>
+        <h2 class="toc-title">Contents</h2>
+      </div>
+
+      <!-- 3x2 Editorial Grid -->
+      <div class="toc-grid">
+        
+        <!-- 01: UI/UX Design -->
+        <a href="#uiux" class="toc-card">
+          <div class="card-top">
+            <span class="card-num">01</span>
+            <span class="card-arrow">↗</span>
+          </div>
+          <div class="card-title-block">
+            <div class="card-heading-main">UI/UX</div>
+            <div class="card-heading-script">Design</div>
+          </div>
+          <p class="card-desc">
+            Wireframes, user flows, interactive prototypes<br>and pixel-perfect high-fidelity UI<br>crafted in Figma.
+          </p>
+        </a>
+
+        <!-- 02: Frontend Development -->
+        <div class="toc-card">
+          <div class="card-top">
+            <span class="card-num">02</span>
+            <span class="card-arrow">↗</span>
+          </div>
+          <div class="card-title-block">
+            <div class="card-heading-main">Frontend</div>
+            <div class="card-heading-script">Development</div>
+          </div>
+          <p class="card-desc">
+            Modern, responsive, fast web interfaces built<br>with HTML5, CSS3, JavaScript,<br>Bootstrap & Tailwind CSS.
+          </p>
+        </div>
+
+        <!-- 03: Graphic Design -->
+        <div class="toc-card">
+          <div class="card-top">
+            <span class="card-num">03</span>
+            <span class="card-arrow">↗</span>
+          </div>
+          <div class="card-title-block">
+            <div class="card-heading-main">Graphic</div>
+            <div class="card-heading-script">Design</div>
+          </div>
+          <p class="card-desc">
+            Creative brand identity, logos, vector art<br>and marketing visual assets crafted in<br>Photoshop & Illustrator.
+          </p>
+        </div>
+
+        <!-- 04: Shopify Theme Customization -->
+        <div class="toc-card">
+          <div class="card-top">
+            <span class="card-num">04</span>
+            <span class="card-arrow">↗</span>
+          </div>
+          <div class="card-title-block">
+            <div class="card-heading-main">Shopify</div>
+            <div class="card-heading-script">Customization</div>
+          </div>
+          <p class="card-desc">
+            Custom Liquid themes, high-converting product<br>layouts, store modifications and<br>seamless checkout setups.
+          </p>
+        </div>
+
+        <!-- 05: Video Editing -->
+        <div class="toc-card">
+          <div class="card-top">
+            <span class="card-num">05</span>
+            <span class="card-arrow">↗</span>
+          </div>
+          <div class="card-title-block">
+            <div class="card-heading-main">Video</div>
+            <div class="card-heading-script">Editing</div>
+          </div>
+          <p class="card-desc">
+            Engaging commercial video edits, viral reels,<br>motion graphics and post-production in<br>Premiere Pro & After Effects.
+          </p>
+        </div>
+
+        <!-- 06: WordPress & Elementor -->
+        <div class="toc-card">
+          <div class="card-top">
+            <span class="card-num">06</span>
+            <span class="card-arrow">↗</span>
+          </div>
+          <div class="card-title-block">
+            <div class="card-heading-main">WordPress</div>
+            <div class="card-heading-script">Elementor</div>
+          </div>
+          <p class="card-desc">
+            Custom business websites, dynamic landing<br>pages and flexible CMS solutions built<br>with WordPress & Elementor.
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- UI/UX DESIGN BANNER SECTION (FIGMA SELECTION BOX) -->
+    <section id="uiux" class="design-systems-banner-section">
+      <a id="systems" style="position: absolute; top: -60px; visibility: hidden; pointer-events: none;"></a>
+      <div class="ds-banner-inner">
+        
+        <div class="ds-figma-box">
+          <span class="ds-handle ds-handle-tl"></span>
+          <span class="ds-handle ds-handle-tc"></span>
+          <span class="ds-handle ds-handle-tr"></span>
+          <span class="ds-handle ds-handle-bl"></span>
+          <span class="ds-handle ds-handle-bc"></span>
+          <span class="ds-handle ds-handle-br"></span>
+          <span class="ds-cursor-icon">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M5 9l-3 3 3 3M9 5l3-3 3 3M15 19l-3 3-3-3M19 9l3 3-3 3M2 12h20M12 2v20"/>
+            </svg>
+          </span>
+
+          <h2 class="ds-title">UI/UX Design</h2>
+        </div>
+
+        <p class="ds-desc">
+          Scalable Figma component libraries — typography, color tokens,<br>
+          spacing and icons — adopted across multiple client projects and<br>
+          cutting design-to-dev handoff time by 40%.
+        </p>
+
+      </div>
+    </section>
+
+    <!-- UI/UX DESIGN PROCESS & CASE STUDY -->
+    <section id="case-study" class="component-library-section">
+      <div class="cl-inner">
+        <div class="cl-header">
+          <div class="cl-script">Design Process</div>
+          <h2 class="cl-title">How I Craft UI/UX</h2>
+          <div class="cl-tags">
+            <span class="cl-tag">01. Discovery</span>
+            <span class="cl-tag">02. Wireframing</span>
+            <span class="cl-tag">03. Design System</span>
+            <span class="cl-tag">04. Prototyping</span>
+            <span class="cl-tag">05. Dev Handoff</span>
+          </div>
+        </div>
+
+        <div class="cl-layout">
+          <!-- Left: Figma Canvas Column (Case Study Artifact) -->
+          <div class="cl-canvas-col">
+            <div class="figma-frame-wrapper">
+              <span class="figma-handle handle-tl"></span>
+              <span class="figma-handle handle-tr"></span>
+              <span class="figma-handle handle-bl"></span>
+              <span class="figma-handle handle-br"></span>
+
+              <div class="figma-inner-canvas">
+                <img src="Ui-ux.jpg" alt="UI/UX Design Process - Healthcare SaaS Case Study" class="figma-showcase-img">
+              </div>
+            </div>
+          </div>
+
+          <!-- Right: Process Steps Column -->
+          <div class="cl-features-col">
+            <div class="cl-feature-item">
+              <h3 class="cl-feature-title">01. Research &amp; User Journey</h3>
+              <p class="cl-feature-desc">
+                Stakeholder interviews, clinical persona mapping, and empathy mapping to uncover real pain points and structure intuitive information architecture.
+              </p>
+            </div>
+
+            <div class="cl-feature-item">
+              <h3 class="cl-feature-title">02. Wireframing &amp; UX Flows</h3>
+              <p class="cl-feature-desc">
+                Low-to-high fidelity wireframes and user flow mapping in Figma to test navigation logic, data hierarchy, and remove user friction early.
+              </p>
+            </div>
+
+            <div class="cl-feature-item">
+              <h3 class="cl-feature-title">03. Design System &amp; UI Kit</h3>
+              <p class="cl-feature-desc">
+                Building scalable atomic component libraries with Figma Auto Layout, responsive data grids, typography scales, and unified design tokens.
+              </p>
+            </div>
+
+            <div class="cl-feature-item">
+              <h3 class="cl-feature-title">04. Prototyping &amp; Dev Handoff</h3>
+              <p class="cl-feature-desc">
+                Interactive clickable prototypes validated with real users, paired with pixel-perfect Figma specs and tokens for 40% faster developer handoff.
+              </p>
+              <div class="cl-token-chips">
+                <span class="token-chip chip-teal" title="Color Tokens"></span>
+                <span class="token-chip chip-emerald" title="Components"></span>
+                <span class="token-chip chip-navy" title="Prototypes"></span>
+                <span class="token-chip chip-lime" title="Specs"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECTS & CLIENTS SECTION -->
+    <section id="projects" class="projects-clients-section">
+      <div class="pc-inner">
+        <div class="pc-header">
+          <div class="pc-script">Selected work</div>
+          <h2 class="pc-title">Projects &amp; Clients</h2>
+        </div>
+
+        <!-- 4x2 Grid of 8 Project Cards -->
+        <div class="pc-grid">
+          
+          <!-- 1: Healthcare / Practice Management System -->
+          <div class="pc-card" data-category="uiux">
+            <div class="pc-card-top">
+              <div class="pc-top-left">
+                <span class="pc-status-dot"></span>
+                <span class="pc-tag-category">Healthcare</span>
+              </div>
+              <span class="pc-tag-year">2025</span>
+            </div>
+            <div class="pc-card-thumb-wrap">
+              <img src="proj-healthcare.jpg" alt="Practice Management System UI Mockup" class="pc-card-thumb" loading="lazy">
+            </div>
+            <div class="pc-card-body">
+              <h3 class="pc-card-title">Practice Management System</h3>
+              <p class="pc-card-subtitle">Clinical Workflow &amp; Electronic Health Records SaaS</p>
+              
+              <div class="pc-section-label">What I Did</div>
+              <ul class="pc-work-list">
+                <li class="pc-work-item">Clinical Persona Mapping &amp; User Journey UX</li>
+                <li class="pc-work-item">End-to-End EHR Dashboard &amp; Patient Queue Flow</li>
+                <li class="pc-work-item">108+ Component Design System &amp; Clickable Prototypes</li>
+              </ul>
+
+              <div class="pc-section-label">Software &amp; Tools</div>
+              <div class="pc-tools-list">
+                <span class="pc-tool-badge">Figma</span>
+                <span class="pc-tool-badge">Illustrator</span>
+                <span class="pc-tool-badge">Whimsical</span>
+                <span class="pc-tool-badge">Notion</span>
+              </div>
+            </div>
+            <div class="pc-card-bottom">
+              <span class="pc-tag-tech">Clinical SaaS • EHR</span>
+              <span class="pc-tag-action">View Case ↗</span>
+            </div>
+          </div>
+
+          <!-- 2: AI SaaS / iTranscript360 -->
+          <div class="pc-card" data-category="uiux">
+            <div class="pc-card-top">
+              <div class="pc-top-left">
+                <span class="pc-status-dot" style="background:#06b6d4; box-shadow:0 0 7px #06b6d4;"></span>
+                <span class="pc-tag-category">AI SaaS</span>
+              </div>
+              <span class="pc-tag-year">2025</span>
+            </div>
+            <div class="pc-card-thumb-wrap">
+              <img src="proj-itranscript.jpg" alt="iTranscript360 AI Medical Transcription" class="pc-card-thumb" loading="lazy">
+            </div>
+            <div class="pc-card-body">
+              <h3 class="pc-card-title">iTranscript360</h3>
+              <p class="pc-card-subtitle">Medical Audio Speech AI &amp; Clinical Documentation</p>
+              
+              <div class="pc-section-label">What I Did</div>
+              <ul class="pc-work-list">
+                <li class="pc-work-item">Audio Spectrogram &amp; Waveform Scrubber UX</li>
+                <li class="pc-work-item">Live Speech-to-Text Clinical Note Editor</li>
+                <li class="pc-work-item">HL7 / FHIR Integration Architecture &amp; Usability Tests</li>
+              </ul>
+
+              <div class="pc-section-label">Software &amp; Tools</div>
+              <div class="pc-tools-list">
+                <span class="pc-tool-badge">Figma</span>
+                <span class="pc-tool-badge">Adobe XD</span>
+                <span class="pc-tool-badge">ProtoPie</span>
+                <span class="pc-tool-badge">Miro</span>
+              </div>
+            </div>
+            <div class="pc-card-bottom">
+              <span class="pc-tag-tech">Speech AI • HL7 FHIR</span>
+              <span class="pc-tag-action">View Case ↗</span>
+            </div>
+          </div>
+
+          <!-- 3: Mobile App / FlyFi -->
+          <div class="pc-card" data-category="uiux">
+            <div class="pc-card-top">
+              <div class="pc-top-left">
+                <span class="pc-status-dot" style="background:#f59e0b; box-shadow:0 0 7px #f59e0b;"></span>
+                <span class="pc-tag-category">Mobile App</span>
+              </div>
+              <span class="pc-tag-year">2025</span>
+            </div>
+            <div class="pc-card-thumb-wrap">
+              <img src="proj-flyfi.jpg" alt="FlyFi In-Flight Mobile Portal App" class="pc-card-thumb" loading="lazy">
+            </div>
+            <div class="pc-card-body">
+              <h3 class="pc-card-title">FlyFi</h3>
+              <p class="pc-card-subtitle">In-Flight Wi-Fi Connectivity &amp; Passenger Entertainment</p>
+              
+              <div class="pc-section-label">What I Did</div>
+              <ul class="pc-work-list">
+                <li class="pc-work-item">iOS &amp; Android In-Flight Experience Design</li>
+                <li class="pc-work-item">Real-Time Speed Test Gauge &amp; Flight Altitude Tracker</li>
+                <li class="pc-work-item">Interactive Micro-Animations &amp; Passenger Dark Mode</li>
+              </ul>
+
+              <div class="pc-section-label">Software &amp; Tools</div>
+              <div class="pc-tools-list">
+                <span class="pc-tool-badge">Figma</span>
+                <span class="pc-tool-badge">Principle</span>
+                <span class="pc-tool-badge">Illustrator</span>
+                <span class="pc-tool-badge">iOS UIKit</span>
+              </div>
+            </div>
+            <div class="pc-card-bottom">
+              <span class="pc-tag-tech">iOS &amp; Android • Mobile UX</span>
+              <span class="pc-tag-action">View Case ↗</span>
+            </div>
+          </div>
+
+          <!-- 4: Fintech / Dashboards -->
+          <div class="pc-card" data-category="web">
+            <div class="pc-card-top">
+              <div class="pc-top-left">
+                <span class="pc-status-dot" style="background:#10b981; box-shadow:0 0 7px #10b981;"></span>
+                <span class="pc-tag-category">Fintech</span>
+              </div>
+              <span class="pc-tag-year">2024</span>
+            </div>
+            <div class="pc-card-thumb-wrap">
+              <img src="proj-fintech.jpg" alt="Fintech Trading Dashboard Analytics" class="pc-card-thumb" loading="lazy">
+            </div>
+            <div class="pc-card-body">
+              <h3 class="pc-card-title">Fintech Dashboards</h3>
+              <p class="pc-card-subtitle">High-Frequency Trading Analytics &amp; Portfolio Suite</p>
+              
+              <div class="pc-section-label">What I Did</div>
+              <ul class="pc-work-list">
+                <li class="pc-work-item">High-Density Candlestick Chart Information Architecture</li>
+                <li class="pc-work-item">Real-Time Order Book &amp; Latency-Critical UI UX</li>
+                <li class="pc-work-item">Dark Mode Design Tokens &amp; Modular Analytics Widgets</li>
+              </ul>
+
+              <div class="pc-section-label">Software &amp; Tools</div>
+              <div class="pc-tools-list">
+                <span class="pc-tool-badge">Figma</span>
+                <span class="pc-tool-badge">TradingView</span>
+                <span class="pc-tool-badge">CSS3 / SVG</span>
+                <span class="pc-tool-badge">FigJam</span>
+              </div>
+            </div>
+            <div class="pc-card-bottom">
+              <span class="pc-tag-tech">Trading UI • Data Viz</span>
+              <span class="pc-tag-action">View Case ↗</span>
+            </div>
+          </div>
+
+          <!-- 5: E-Commerce / Shopify Storefronts -->
+          <div class="pc-card" data-category="web">
+            <div class="pc-card-top">
+              <div class="pc-top-left">
+                <span class="pc-status-dot" style="background:#22c55e; box-shadow:0 0 7px #22c55e;"></span>
+                <span class="pc-tag-category">E-Commerce</span>
+              </div>
+              <span class="pc-tag-year">2024</span>
+            </div>
+            <div class="pc-card-thumb-wrap">
+              <img src="proj-shopify.jpg" alt="Shopify Luxury Brand Storefront" class="pc-card-thumb" loading="lazy">
+            </div>
+            <div class="pc-card-body">
+              <h3 class="pc-card-title">Shopify Storefronts</h3>
+              <p class="pc-card-subtitle">Bespoke High-Converting Luxury &amp; Fashion Stores</p>
+              
+              <div class="pc-section-label">What I Did</div>
+              <ul class="pc-work-list">
+                <li class="pc-work-item">Editorial Brand Storefront UX &amp; Mobile-First Flow</li>
+                <li class="pc-work-item">Slideout Cart Drawer &amp; 1-Click Checkout Optimization</li>
+                <li class="pc-work-item">+42.8% Conversion Lift &amp; Core Web Vitals Tuning</li>
+              </ul>
+
+              <div class="pc-section-label">Software &amp; Tools</div>
+              <div class="pc-tools-list">
+                <span class="pc-tool-badge">Figma</span>
+                <span class="pc-tool-badge">Shopify Liquid</span>
+                <span class="pc-tool-badge">Photoshop</span>
+                <span class="pc-tool-badge">SCSS</span>
+              </div>
+            </div>
+            <div class="pc-card-bottom">
+              <span class="pc-tag-tech">Custom Themes • Liquid</span>
+              <span class="pc-tag-action">View Case ↗</span>
+            </div>
+          </div>
+
+          <!-- 6: Design Systems / Component Libraries -->
+          <div class="pc-card" data-category="uiux">
+            <div class="pc-card-top">
+              <div class="pc-top-left">
+                <span class="pc-status-dot" style="background:#a855f7; box-shadow:0 0 7px #a855f7;"></span>
+                <span class="pc-tag-category">Design Systems</span>
+              </div>
+              <span class="pc-tag-year">2025</span>
+            </div>
+            <div class="pc-card-thumb-wrap">
+              <img src="proj-designsystem.jpg" alt="Orbita Design System UI Kit" class="pc-card-thumb" loading="lazy">
+            </div>
+            <div class="pc-card-body">
+              <h3 class="pc-card-title">Component Libraries</h3>
+              <p class="pc-card-subtitle">Multi-Brand Atomic Design System with Token Sync</p>
+              
+              <div class="pc-section-label">What I Did</div>
+              <ul class="pc-work-list">
+                <li class="pc-work-item">120+ Master Components with Figma Auto Layout v5</li>
+                <li class="pc-work-item">Multi-Brand Color, Typography &amp; Spacing Tokens</li>
+                <li class="pc-work-item">Dev-Ready Handoff Specs &amp; Storybook Token Sync</li>
+              </ul>
+
+              <div class="pc-section-label">Software &amp; Tools</div>
+              <div class="pc-tools-list">
+                <span class="pc-tool-badge">Figma</span>
+                <span class="pc-tool-badge">Tokens Studio</span>
+                <span class="pc-tool-badge">Storybook</span>
+                <span class="pc-tool-badge">FigJam</span>
+              </div>
+            </div>
+            <div class="pc-card-bottom">
+              <span class="pc-tag-tech">Design System • Tokens</span>
+              <span class="pc-tag-action">View Case ↗</span>
+            </div>
+          </div>
+
+          <!-- 7: Motion / Brand & Explainer Films -->
+          <div class="pc-card" data-category="motion">
+            <div class="pc-card-top">
+              <div class="pc-top-left">
+                <span class="pc-status-dot" style="background:#f59e0b; box-shadow:0 0 7px #f59e0b;"></span>
+                <span class="pc-tag-category">Motion</span>
+              </div>
+              <span class="pc-tag-year">2024</span>
+            </div>
+            <div class="pc-card-thumb-wrap">
+              <img src="proj-motion.jpg" alt="Brand & Explainer Motion Films" class="pc-card-thumb" loading="lazy">
+            </div>
+            <div class="pc-card-body">
+              <h3 class="pc-card-title">Brand &amp; Explainer Films</h3>
+              <p class="pc-card-subtitle">SaaS Product Launch Videos &amp; 3D Kinetic Motion</p>
+              
+              <div class="pc-section-label">What I Did</div>
+              <ul class="pc-work-list">
+                <li class="pc-work-item">Video Storyboarding, Scripting &amp; Scene Direction</li>
+                <li class="pc-work-item">3D Kinetic Typography &amp; Abstract Ribbon Renders</li>
+                <li class="pc-work-item">Audio Mastering &amp; 4K 60fps Commercial Video Editing</li>
+              </ul>
+
+              <div class="pc-section-label">Software &amp; Tools</div>
+              <div class="pc-tools-list">
+                <span class="pc-tool-badge">After Effects</span>
+                <span class="pc-tool-badge">Cinema 4D</span>
+                <span class="pc-tool-badge">Premiere Pro</span>
+                <span class="pc-tool-badge">Audition</span>
+              </div>
+            </div>
+            <div class="pc-card-bottom">
+              <span class="pc-tag-tech">Motion Graphics • 3D</span>
+              <span class="pc-tag-action">View Case ↗</span>
+            </div>
+          </div>
+
+          <!-- 8: Development / 30+ Client Websites -->
+          <div class="pc-card" data-category="web">
+            <div class="pc-card-top">
+              <div class="pc-top-left">
+                <span class="pc-status-dot" style="background:#eab308; box-shadow:0 0 7px #eab308;"></span>
+                <span class="pc-tag-category">Development</span>
+              </div>
+              <span class="pc-tag-year">2024</span>
+            </div>
+            <div class="pc-card-thumb-wrap">
+              <img src="proj-webdev.jpg" alt="30+ Client Websites Web Development" class="pc-card-thumb" loading="lazy">
+            </div>
+            <div class="pc-card-body">
+              <h3 class="pc-card-title">30+ Client Websites</h3>
+              <p class="pc-card-subtitle">Modern Responsive Web Apps &amp; Frontend Engineering</p>
+              
+              <div class="pc-section-label">What I Did</div>
+              <ul class="pc-work-list">
+                <li class="pc-work-item">Full-Stack Responsive Web Architecture &amp; Semantic HTML</li>
+                <li class="pc-work-item">⚡ 100/100 Lighthouse Speed &amp; Performance Tuning</li>
+                <li class="pc-work-item">Custom WordPress CMS &amp; Headless Vercel Deployment</li>
+              </ul>
+
+              <div class="pc-section-label">Software &amp; Tools</div>
+              <div class="pc-tools-list">
+                <span class="pc-tool-badge">VS Code</span>
+                <span class="pc-tool-badge">React</span>
+                <span class="pc-tool-badge">Next.js</span>
+                <span class="pc-tool-badge">WordPress</span>
+              </div>
+            </div>
+            <div class="pc-card-bottom">
+              <span class="pc-tag-tech">React • Next.js • WP</span>
+              <span class="pc-tag-action">View Case ↗</span>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Floating Filter Pill Controls -->
+        <div class="pc-filter-wrapper">
+          <div class="pc-filter-bar">
+            <button class="pc-filter-btn active" data-filter="all">All</button>
+            <button class="pc-filter-btn" data-filter="uiux">UI/UX</button>
+            <button class="pc-filter-btn" data-filter="web">Web Dev</button>
+            <button class="pc-filter-btn" data-filter="motion">Motion</button>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+      <div class="footer-copy">
+        © 2026 Bhatu Prakash. All rights reserved. Ahmedabad, India.
+      </div>
+
+      <ul class="footer-socials">
+        <li><a href="#" class="social-link">LinkedIn</a></li>
+        <li><a href="#" class="social-link">Twitter / X</a></li>
+        <li><a href="#" class="social-link">GitHub</a></li>
+        <li><a href="#" class="social-link">Dribbble</a></li>
+      </ul>
+
+      <button id="back-to-top" class="btn-back-to-top">
+        <span>Back to Top</span>
+        <span>↑</span>
+      </button>
+    </footer>
+
+  </div>
+
+  <!-- Lenis Smooth Scroll Engine -->
+  <script src="lenis.min.js"></script>
+  <script>
+    (function () {
+      const TOTAL_FRAMES = 240;
+      const canvas = document.getElementById('canvas');
+      const ctx = canvas.getContext('2d', { alpha: false });
+      const heroWrapper = document.getElementById('home');
+
+      const images = new Array(TOTAL_FRAMES);
+      const loaded = new Uint8Array(TOTAL_FRAMES);
+
+      let targetFrame = 0;
+      let currentFrame = 0;
+      let lastRenderedFrame = -1;
+      let needsRedraw = true;
+      let imagePrefix = '';
+
+      function getFrameSrc(index) {
+        const padded = String(index).padStart(5, '0');
+        return `${imagePrefix}prakash-portfolio_${padded}.png`;
+      }
+
+      function resize() {
+        const dpr = Math.min(window.devicePixelRatio || 1, 2);
+        canvas.width = Math.round(window.innerWidth * dpr);
+        canvas.height = Math.round(window.innerHeight * dpr);
+        ctx.imageSmoothingEnabled = true;
+        ctx.imageSmoothingQuality = 'high';
+        needsRedraw = true;
+      }
+      window.addEventListener('resize', resize, { passive: true });
+      resize();
+
+      function drawImage(img) {
+        if (!img || !img.complete || img.naturalWidth === 0) return;
+        const cw = canvas.width;
+        const ch = canvas.height;
+        const iw = img.naturalWidth;
+        const ih = img.naturalHeight;
+
+        // Object-fit: cover with center alignment
+        const scale = Math.max(cw / iw, ch / ih);
+        const w = iw * scale;
+        const h = ih * scale;
+        const x = (cw - w) / 2;
+        const y = (ch - h) / 2;
+
+        ctx.drawImage(img, x, y, w, h);
+      }
+
+      function renderFrame(index) {
+        let bestIndex = index;
+        if (!loaded[index]) {
+          for (let d = 1; d < TOTAL_FRAMES; d++) {
+            const prev = index - d;
+            if (prev >= 0 && loaded[prev]) {
+              bestIndex = prev;
+              break;
+            }
+            const next = index + d;
+            if (next < TOTAL_FRAMES && loaded[next]) {
+              bestIndex = next;
+              break;
+            }
+          }
+        }
+
+        const img = images[bestIndex];
+        if (img && img.complete && img.naturalWidth > 0) {
+          drawImage(img);
+          lastRenderedFrame = bestIndex;
+          needsRedraw = false;
+        }
+      }
+
+      function fetchFrame(index) {
+        if (images[index]) return images[index];
+        const img = new Image();
+        images[index] = img;
+        img.onload = function () {
+          loaded[index] = 1;
+          if (index === 0 || Math.abs(index - Math.round(currentFrame)) <= 1) {
+            needsRedraw = true;
+          }
+        };
+        img.src = getFrameSrc(index);
+        return img;
+      }
+
+      function prioritizeNear(centerIndex) {
+        const rounded = Math.round(centerIndex);
+        for (let offset = 0; offset <= 12; offset++) {
+          const fwd = rounded + offset;
+          if (fwd < TOTAL_FRAMES && !images[fwd]) fetchFrame(fwd);
+          const bwd = rounded - offset;
+          if (bwd >= 0 && !images[bwd]) fetchFrame(bwd);
+        }
+      }
+
+      async function startPreloading() {
+        const dpImg = document.getElementById('nav-dp');
+        if (dpImg && imagePrefix) {
+          dpImg.src = `${imagePrefix}prakash-portfolio_00239.png`;
+        }
+
+        // 1. First Frame
+        const first = fetchFrame(0);
+        if (first.complete) {
+          loaded[0] = 1;
+          renderFrame(0);
+        } else {
+          first.onload = () => {
+            loaded[0] = 1;
+            renderFrame(0);
+          };
+        }
+
+        // 2. Keyframes Skeleton (Every 5th frame)
+        const keyframes = [];
+        for (let i = 0; i < TOTAL_FRAMES; i += 5) {
+          keyframes.push(i);
+        }
+        if (keyframes[keyframes.length - 1] !== TOTAL_FRAMES - 1) {
+          keyframes.push(TOTAL_FRAMES - 1);
+        }
+
+        const batchSize = 6;
+        for (let i = 0; i < keyframes.length; i += batchSize) {
+          const batch = keyframes.slice(i, i + batchSize);
+          await Promise.all(
+            batch.map(idx => new Promise(res => {
+              const img = fetchFrame(idx);
+              if (img.complete) {
+                loaded[idx] = 1;
+                res();
+              } else {
+                img.onload = () => { loaded[idx] = 1; res(); };
+                img.onerror = res;
+              }
+            }))
+          );
+        }
+
+        // 3. Fill in all remaining frames
+        const remaining = [];
+        for (let i = 0; i < TOTAL_FRAMES; i++) {
+          if (!loaded[i]) remaining.push(i);
+        }
+
+        for (let i = 0; i < remaining.length; i += batchSize) {
+          const batch = remaining.slice(i, i + batchSize);
+          await Promise.all(
+            batch.map(idx => new Promise(res => {
+              const img = fetchFrame(idx);
+              if (img.complete) {
+                loaded[idx] = 1;
+                res();
+              } else {
+                img.onload = () => { loaded[idx] = 1; res(); };
+                img.onerror = res;
+              }
+            }))
+          );
+        }
+      }
+
+      // Auto-detect image folder prefix
+      const probe = new Image();
+      probe.onload = function () {
+        imagePrefix = '';
+        startPreloading();
+      };
+      probe.onerror = function () {
+        imagePrefix = 'images/';
+        startPreloading();
+      };
+      probe.src = 'prakash-portfolio_00000.png';
+
+      // Lenis Smooth Momentum Scroll
+      let lenis = null;
+      if (typeof Lenis !== 'undefined') {
+        lenis = new Lenis({
+          lerp: 0.08,
+          wheelMultiplier: 0.95,
+          smoothWheel: true,
+          touchMultiplier: 1.5,
+        });
+      }
+
+      // Auto hide navbar on scroll down, show on scroll up
+      let lastScrollY = window.pageYOffset || 0;
+      const navbar = document.querySelector('.navbar');
+
+      function handleNavVisibility() {
+        if (!navbar) return;
+        const currentScrollY = window.pageYOffset || document.documentElement.scrollTop || 0;
+        if (currentScrollY <= 80) {
+          navbar.classList.remove('nav-hidden');
+          lastScrollY = currentScrollY;
+          return;
+        }
+        if (currentScrollY > lastScrollY + 6) {
+          // Scrolling DOWN -> hide navbar
+          navbar.classList.add('nav-hidden');
+        } else if (currentScrollY < lastScrollY - 6) {
+          // Scrolling UP -> reveal navbar
+          navbar.classList.remove('nav-hidden');
+        }
+        lastScrollY = currentScrollY;
+      }
+
+      // Calculate scroll progress seamlessly
+      function updateProgress() {
+        handleNavVisibility();
+        if (!heroWrapper) return;
+        const heroRect = heroWrapper.getBoundingClientRect();
+        const scrollDistance = heroWrapper.offsetHeight - window.innerHeight;
+        
+        // When heroRect.top is 0 => progress is 0. When hero reaches end => progress is 1.
+        const progress = scrollDistance > 0 ? Math.max(0, Math.min(1, -heroRect.top / scrollDistance)) : 0;
+        targetFrame = progress * (TOTAL_FRAMES - 1);
+        prioritizeNear(targetFrame);
+      }
+
+      if (lenis) {
+        lenis.on('scroll', updateProgress);
+      }
+      window.addEventListener('scroll', updateProgress, { passive: true });
+
+      // Smooth anchor scrolling via Lenis
+      document.querySelectorAll('a[href^="#"]').forEach(link => {
+        link.addEventListener('click', function (e) {
+          const targetId = this.getAttribute('href');
+          if (targetId && targetId !== '#') {
+            e.preventDefault();
+            const targetEl = document.querySelector(targetId);
+            if (targetEl) {
+              if (lenis) {
+                lenis.scrollTo(targetEl, { offset: targetId === '#home' ? 0 : -60, duration: 1.2 });
+              } else {
+                targetEl.scrollIntoView({ behavior: 'smooth' });
+              }
+            }
+          }
+        });
+      });
+
+      // Back to top button
+      const backToTopBtn = document.getElementById('back-to-top');
+      if (backToTopBtn) {
+        backToTopBtn.addEventListener('click', () => {
+          if (lenis) {
+            lenis.scrollTo(0, { duration: 1.2 });
+          } else {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          }
+        });
+      }
+
+      // Projects & Clients interactive filtering
+      const filterBtns = document.querySelectorAll('.pc-filter-btn');
+      const projectCards = document.querySelectorAll('.pc-card');
+
+      filterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          filterBtns.forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          const filter = btn.getAttribute('data-filter');
+
+          projectCards.forEach(card => {
+            const cat = card.getAttribute('data-category');
+            if (filter === 'all' || cat === filter) {
+              card.classList.remove('pc-hidden');
+              card.style.opacity = '1';
+              card.style.transform = 'translateY(0)';
+            } else {
+              card.classList.add('pc-hidden');
+            }
+          });
+        });
+      });
+
+      // Main RAF Animation Loop
+      function tick(time) {
+        if (lenis) {
+          lenis.raf(time);
+        }
+
+        const delta = targetFrame - currentFrame;
+        if (Math.abs(delta) > 0.001) {
+          currentFrame += delta * 0.18;
+        } else {
+          currentFrame = targetFrame;
+        }
+
+        const activeIndex = Math.max(0, Math.min(TOTAL_FRAMES - 1, Math.round(currentFrame)));
+        if (activeIndex !== lastRenderedFrame || needsRedraw) {
+          renderFrame(activeIndex);
+        }
+
+        requestAnimationFrame(tick);
+      }
+
+      requestAnimationFrame(tick);
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,2373 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FlyFi Website Redesign — In-Flight Portal &amp; Live Telemetry Case Study | Bhatu Prakash</title>
+  <meta name="description"
+    content="UI/UX Case Study: FlyFi Website Redesign (flyfi.app). Real-time 3D flight trajectory radar, airline in-flight Wi-Fi speed database, and terminal gateway directory.">
+
+  <!-- Google Fonts: Bricolage Grotesque, Inter, Plus Jakarta Sans, Caveat & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800;12..96,900&family=Caveat:wght@600;700&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="responsive.css">
+
+  <style>
+    /* ==========================================================================
+       FLYFI WEBSITE REDESIGN — LIGHT AVIATION TECH DESIGN SYSTEM
+       Designer: Bhatu Prakash
+       Palette: Cockpit Navy (#0B132B), Sky Blue (#0099FF), Cloud White (#F8FAFC)
+       Typography: Bricolage Grotesque (Display), Inter (Body), JetBrains Mono (Specs)
+       ========================================================================== */
+    :root {
+      /* Brand Neutrals */
+      --navy-950: #070d18;
+      --navy-900: #0b132b;
+      --navy-850: #131d38;
+      --navy-800: #1e293b;
+      --navy-700: #334155;
+      --slate-600: #475569;
+      --slate-500: #64748b;
+      --slate-400: #94a3b8;
+      --slate-300: #cbd5e1;
+      --slate-200: #e2e8f0;
+      --slate-100: #f1f5f9;
+      --slate-50: #f8fafc;
+      --white: #ffffff;
+
+      /* Aviation Brand Sky Blue Tokens */
+      --sky-800: #075985;
+      --sky-700: #0369a1;
+      --sky-600: #0284c7;
+      --sky-500: #0099ff;
+      --sky-400: #38bdf8;
+      --sky-100: #e0f2fe;
+      --sky-50: #f0f9ff;
+
+      /* Semantic Flight Accents */
+      --flight-green: #10b981;
+      --flight-green-dark: #047857;
+      --flight-green-50: #ecfdf5;
+      --flight-amber: #f59e0b;
+      --flight-amber-dark: #b45309;
+      --flight-amber-50: #fffbeb;
+      --purple-600: #8b5cf6;
+      --purple-50: #f5f3ff;
+
+      /* Semantic Surface Tokens */
+      --bg-body: #f8fafc;
+      --bg-surface: #ffffff;
+      --bg-subtle: #f1f5f9;
+      --text-primary: var(--navy-900);
+      --text-secondary: var(--slate-600);
+      --text-muted: var(--slate-500);
+      --border-subtle: #e2e8f0;
+      --border-strong: #cbd5e1;
+      --border-accent: var(--sky-500);
+
+      /* Shadows */
+      --shadow-xs: 0 1px 2px 0 rgba(11, 19, 43, 0.04);
+      --shadow-sm: 0 1px 3px 0 rgba(11, 19, 43, 0.06), 0 1px 2px -1px rgba(11, 19, 43, 0.04);
+      --shadow-md: 0 4px 6px -1px rgba(11, 19, 43, 0.06), 0 2px 4px -2px rgba(11, 19, 43, 0.04);
+      --shadow-lg: 0 10px 15px -3px rgba(11, 19, 43, 0.07), 0 4px 6px -4px rgba(11, 19, 43, 0.03);
+      --shadow-xl: 0 20px 25px -5px rgba(11, 19, 43, 0.08), 0 8px 10px -6px rgba(11, 19, 43, 0.04);
+
+      /* Typography Tokens */
+      --font-heading: 'Bricolage Grotesque', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      --font-body: 'Inter', 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+      --font-script: 'Caveat', cursive;
+
+      --radius-sm: 6px;
+      --radius-md: 10px;
+      --radius-lg: 16px;
+      --radius-xl: 22px;
+    }
+
+    /* Reset & Base Styles */
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      color-scheme: light;
+    }
+
+    body {
+      background-color: var(--bg-body);
+      color: var(--text-primary);
+      font-family: var(--font-body);
+      font-size: 1rem;
+      line-height: 1.68;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+      font-family: var(--font-heading);
+      color: var(--navy-900);
+      font-weight: 700;
+      line-height: 1.25;
+      letter-spacing: -0.02em;
+    }
+
+    p {
+      color: var(--text-secondary);
+      line-height: 1.7;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* READING PROGRESS BAR */
+    .reading-progress-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--sky-700), var(--sky-500), #60a5fa);
+      width: 0%;
+      z-index: 1000;
+      transition: width 0.1s linear;
+    }
+
+    /* TOP NAVBAR */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.9rem clamp(1.25rem, 4vw, 5rem);
+      background: rgba(255, 255, 255, 0.94);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border-subtle);
+      z-index: 100;
+      transition: all 0.25s ease;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+      text-decoration: none;
+      color: var(--navy-900);
+    }
+
+    .dp-wrapper {
+      position: relative;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      padding: 2px;
+      background: linear-gradient(135deg, var(--sky-500), #93c5fd);
+      flex-shrink: 0;
+    }
+
+    .dp-img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+      display: block;
+      background-color: var(--slate-100);
+    }
+
+    .dp-status-dot {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      width: 11px;
+      height: 11px;
+      border-radius: 50%;
+      background-color: var(--flight-green);
+      border: 2px solid var(--white);
+    }
+
+    .logo-text {
+      font-family: var(--font-heading);
+      font-size: 1.18rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: var(--navy-900);
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.75rem;
+      list-style: none;
+    }
+
+    .nav-link {
+      color: var(--slate-600);
+      text-decoration: none;
+      font-size: 0.92rem;
+      font-weight: 600;
+      transition: color 0.2s ease;
+    }
+
+    .nav-link:hover {
+      color: var(--sky-600);
+    }
+
+    .btn-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      background: var(--white);
+      border: 1px solid var(--border-strong);
+      color: var(--navy-800);
+      font-size: 0.88rem;
+      font-weight: 600;
+      padding: 0.55rem 1.15rem;
+      border-radius: var(--radius-md);
+      transition: all 0.2s ease;
+    }
+
+    .btn-back:hover {
+      background: var(--slate-50);
+      border-color: var(--sky-600);
+      color: var(--sky-700);
+      transform: translateX(-2px);
+    }
+
+    .btn-live-out {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--sky-50);
+      color: var(--sky-700);
+      border: 1px solid var(--sky-100);
+      font-family: var(--font-heading);
+      font-size: 0.88rem;
+      font-weight: 700;
+      padding: 0.55rem 1.15rem;
+      border-radius: var(--radius-md);
+      transition: all 0.2s ease;
+      white-space: nowrap;
+    }
+
+    .btn-live-out:hover {
+      background: var(--sky-500);
+      color: var(--white);
+      box-shadow: 0 4px 12px rgba(0, 153, 255, 0.25);
+    }
+
+    .mobile-nav-toggle {
+      display: none;
+      background: var(--slate-100);
+      border: 1px solid var(--border-strong);
+      border-radius: 8px;
+      cursor: pointer;
+      width: 40px;
+      height: 40px;
+      padding: 0;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 5px;
+      transition: background 0.2s ease, border-color 0.2s ease;
+    }
+
+    .mobile-nav-toggle:hover {
+      background: var(--slate-200);
+      border-color: var(--sky-600);
+    }
+
+    .hamburger-line {
+      display: block;
+      width: 20px;
+      height: 2px;
+      background-color: var(--navy-900) !important;
+      border-radius: 2px;
+      transition: all 0.2s ease;
+    }
+
+    /* FLOATING TABLE OF CONTENTS DOCK */
+    .cs-toc-wrapper {
+      position: sticky;
+      top: 74px;
+      z-index: 90;
+      display: flex;
+      justify-content: center;
+      padding: 0.6rem 1rem;
+      pointer-events: none;
+    }
+
+    .cs-toc-inner {
+      pointer-events: auto;
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+      background: rgba(255, 255, 255, 0.95);
+      border: 1px solid var(--border-subtle);
+      box-shadow: var(--shadow-md);
+      border-radius: 999px;
+      padding: 0.35rem 0.65rem;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      max-width: 95vw;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+
+    .cs-toc-inner::-webkit-scrollbar {
+      display: none;
+    }
+
+    .cs-toc-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 0.74rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--slate-500);
+      padding: 0 0.5rem;
+      white-space: nowrap;
+    }
+
+    .cs-toc-list {
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+      list-style: none;
+    }
+
+    .cs-toc-item a {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--slate-600);
+      padding: 0.35rem 0.85rem;
+      border-radius: 999px;
+      white-space: nowrap;
+      transition: all 0.2s ease;
+    }
+
+    .cs-toc-item a:hover {
+      color: var(--sky-700);
+      background: var(--slate-100);
+    }
+
+    .cs-toc-item a.active {
+      color: var(--sky-700);
+      background: var(--sky-50);
+      border: 1px solid var(--sky-100);
+      font-weight: 700;
+    }
+
+    /* MAIN CONTAINER */
+    .cs-wrapper {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 2.5rem clamp(1.25rem, 4vw, 3rem) 5rem;
+    }
+
+    /* BREADCRUMB */
+    .cs-breadcrumb {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.84rem;
+      color: var(--slate-500);
+      margin-bottom: 2rem;
+    }
+
+    .cs-breadcrumb a {
+      color: var(--slate-500);
+      transition: color 0.2s;
+    }
+
+    .cs-breadcrumb a:hover {
+      color: var(--sky-600);
+    }
+
+    .cs-breadcrumb .sep {
+      color: var(--slate-300);
+    }
+
+    .cs-breadcrumb .current {
+      color: var(--navy-800);
+      font-weight: 600;
+    }
+
+    /* ==========================================================================
+       SECTION 01: HERO & METADATA
+       ========================================================================== */
+    .cs-hero {
+      margin-bottom: 4.5rem;
+      scroll-margin-top: 130px;
+    }
+
+    .cs-hero-header {
+      text-align: center;
+      max-width: 980px;
+      margin: 0 auto 2.5rem;
+    }
+
+    .cs-badge-row {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .cs-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      padding: 0.35rem 0.85rem;
+      border-radius: 999px;
+      background: var(--slate-100);
+      color: var(--slate-600);
+      border: 1px solid var(--border-subtle);
+      letter-spacing: 0.02em;
+    }
+
+    .cs-pill-sky {
+      background: var(--sky-50);
+      color: var(--sky-700);
+      border-color: var(--sky-100);
+    }
+
+    .cs-pill-green {
+      background: var(--flight-green-50);
+      color: var(--flight-green-dark);
+      border-color: #a7f3d0;
+    }
+
+    .cs-script {
+      display: block;
+      font-family: var(--font-script);
+      font-size: 1.45rem;
+      color: var(--sky-600);
+      margin-bottom: 0.5rem;
+    }
+
+    .cs-title {
+      font-size: clamp(2.2rem, 4.2vw, 3.5rem);
+      line-height: 1.15;
+      font-weight: 800;
+      color: var(--navy-950);
+      margin-bottom: 1.25rem;
+      letter-spacing: -0.03em;
+    }
+
+    .cs-title .highlight {
+      color: var(--sky-600);
+      background: linear-gradient(120deg, var(--sky-600), #2563eb);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .cs-tagline {
+      font-size: clamp(1.05rem, 1.8vw, 1.2rem);
+      color: var(--navy-700);
+      line-height: 1.7;
+      max-width: 880px;
+      margin: 0 auto;
+    }
+
+    /* METADATA MATRIX */
+    .cs-meta-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.25rem;
+      background: var(--white);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 1.5rem 1.75rem;
+      box-shadow: var(--shadow-sm);
+      margin-bottom: 2.5rem;
+    }
+
+    .meta-item {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+
+    .meta-label {
+      font-size: 0.74rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--slate-400);
+    }
+
+    .meta-value {
+      font-family: var(--font-heading);
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--navy-900);
+      line-height: 1.35;
+    }
+
+    .meta-sub {
+      font-size: 0.8rem;
+      color: var(--slate-500);
+    }
+
+    .live-ref-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      color: var(--sky-600);
+      font-weight: 700;
+      transition: color 0.2s;
+    }
+
+    .live-ref-link:hover {
+      color: var(--sky-700);
+      text-decoration: underline;
+    }
+
+    /* HERO SHOWCASE FRAME */
+    .cs-hero-mockup-frame {
+      position: relative;
+      background: var(--white);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-xl);
+      padding: 0.85rem;
+      box-shadow: var(--shadow-xl);
+      overflow: hidden;
+      margin-bottom: 2.5rem;
+      cursor: zoom-in;
+    }
+
+    .cs-hero-mockup-frame img {
+      width: 100%;
+      height: auto;
+      border-radius: calc(var(--radius-xl) - 4px);
+      border: 1px solid var(--border-subtle);
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .cs-hero-mockup-frame:hover img {
+      transform: scale(1.008);
+    }
+
+    .cs-mockup-overlay-pill {
+      position: absolute;
+      bottom: 1.75rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(11, 19, 43, 0.88);
+      color: var(--white);
+      font-size: 0.82rem;
+      font-weight: 600;
+      padding: 0.5rem 1.25rem;
+      border-radius: 999px;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+      pointer-events: none;
+    }
+
+    .status-pulse {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background-color: var(--sky-400);
+      box-shadow: 0 0 0 3px rgba(0, 153, 255, 0.3);
+      display: inline-block;
+    }
+
+    /* ARCHITECTURAL HIGHLIGHT PILLARS (VERIFIED & AUTHENTIC) */
+    .arch-pillars-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.25rem;
+    }
+
+    .pillar-card {
+      background: var(--white);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 1.5rem;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .pillar-card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+      border-color: var(--sky-500);
+    }
+
+    .pillar-icon-wrap {
+      width: 40px;
+      height: 40px;
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--slate-100);
+      color: var(--sky-700);
+      margin-bottom: 0.25rem;
+    }
+
+    .pillar-icon-wrap.sky {
+      background: var(--sky-50);
+      color: var(--sky-600);
+    }
+
+    .pillar-icon-wrap.green {
+      background: var(--flight-green-50);
+      color: var(--flight-green-dark);
+    }
+
+    .pillar-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--navy-900);
+    }
+
+    .pillar-desc {
+      font-size: 0.88rem;
+      color: var(--slate-600);
+      line-height: 1.6;
+    }
+
+    /* ==========================================================================
+       SECTION COMMON PATTERNS
+       ========================================================================== */
+    .cs-section {
+      margin-bottom: 5.5rem;
+      scroll-margin-top: 130px;
+    }
+
+    .cs-section-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.76rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--sky-700);
+      background: var(--sky-50);
+      border: 1px solid var(--sky-100);
+      padding: 0.35rem 0.85rem;
+      border-radius: 999px;
+      margin-bottom: 0.85rem;
+    }
+
+    .cs-section-heading {
+      font-size: clamp(1.85rem, 3.2vw, 2.5rem);
+      font-weight: 800;
+      color: var(--navy-950);
+      letter-spacing: -0.025em;
+      line-height: 1.22;
+      margin-bottom: 1rem;
+    }
+
+    .cs-body-p {
+      font-size: 1.05rem;
+      color: var(--slate-600);
+      line-height: 1.75;
+      margin-bottom: 1.5rem;
+      max-width: 940px;
+    }
+
+    .cs-card {
+      background: var(--white);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      box-shadow: var(--shadow-sm);
+    }
+
+    /* ==========================================================================
+       SECTION 02: THE WEB CHALLENGE & OBJECTIVES
+       ========================================================================== */
+    .problem-solution-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin-top: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .ps-card {
+      background: var(--white);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    .ps-card.solution {
+      border: 2px solid var(--sky-500);
+      background: linear-gradient(180deg, #ffffff 0%, var(--sky-50) 100%);
+    }
+
+    .ps-badge {
+      display: inline-block;
+      font-size: 0.74rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: 0.35rem 0.75rem;
+      border-radius: 999px;
+      align-self: flex-start;
+    }
+
+    .ps-badge.problem {
+      background: #fee2e2;
+      color: #991b1b;
+    }
+
+    .ps-badge.solution {
+      background: var(--sky-500);
+      color: var(--white);
+    }
+
+    .ps-title {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--navy-900);
+    }
+
+    .ps-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.9rem;
+    }
+
+    .ps-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      font-size: 0.94rem;
+      color: var(--slate-600);
+      line-height: 1.55;
+    }
+
+    .ps-list .bullet {
+      flex-shrink: 0;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      font-weight: 800;
+      margin-top: 2px;
+    }
+
+    .ps-list .bullet.cross {
+      background: #fee2e2;
+      color: #b91c1c;
+    }
+
+    .ps-list .bullet.check {
+      background: #dcfce7;
+      color: #15803d;
+    }
+
+    /* ==========================================================================
+       SECTION 04 & 05: FEATURE SPOTLIGHTS (RADAR & BENCHMARKS)
+       ========================================================================== */
+    .feature-spotlight-box {
+      background: var(--white);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-xl);
+      padding: 2.25rem;
+      box-shadow: var(--shadow-sm);
+      display: grid;
+      grid-template-columns: 1fr 1.15fr;
+      gap: 2.5rem;
+      align-items: center;
+      margin-top: 2rem;
+    }
+
+    .feature-spotlight-box.reverse {
+      grid-template-columns: 1.15fr 1fr;
+    }
+
+    .feature-spotlight-box.reverse .spotlight-text {
+      order: 2;
+    }
+
+    .feature-spotlight-box.reverse .spotlight-media {
+      order: 1;
+    }
+
+    .spotlight-text {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .spotlight-title {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--navy-900);
+      letter-spacing: -0.02em;
+    }
+
+    .spotlight-desc {
+      font-size: 0.98rem;
+      color: var(--slate-600);
+      line-height: 1.7;
+    }
+
+    .spotlight-specs-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    .spotlight-specs-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      font-size: 0.92rem;
+      color: var(--slate-600);
+      line-height: 1.55;
+    }
+
+    .spotlight-specs-list .check {
+      color: var(--sky-600);
+      font-weight: 800;
+      flex-shrink: 0;
+    }
+
+    .spotlight-media {
+      background: var(--slate-100);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 0.6rem;
+      overflow: hidden;
+      cursor: zoom-in;
+    }
+
+    .spotlight-media img {
+      width: 100%;
+      height: 380px;
+      object-fit: cover;
+      object-position: top center;
+      border-radius: calc(var(--radius-lg) - 4px);
+      border: 1px solid var(--border-subtle);
+      transition: transform 0.3s ease;
+    }
+
+    .spotlight-media:hover img {
+      transform: scale(1.02);
+    }
+
+    /* ==========================================================================
+       SECTION 06: WEB PRODUCTION SHOWCASE GALLERY
+       ========================================================================== */
+    .web-gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.75rem;
+      margin-top: 2rem;
+    }
+
+    .web-gallery-card {
+      background: var(--white);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+    }
+
+    .web-gallery-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-lg);
+      border-color: var(--sky-500);
+    }
+
+    .web-thumb-wrap {
+      background: var(--slate-100);
+      padding: 0.75rem;
+      cursor: zoom-in;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .web-thumb-wrap img {
+      width: 100%;
+      height: 340px;
+      object-fit: cover;
+      object-position: top center;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-subtle);
+      transition: transform 0.3s ease;
+    }
+
+    .web-thumb-wrap:hover img {
+      transform: scale(1.02);
+    }
+
+    .web-thumb-badge {
+      position: absolute;
+      top: 1.1rem;
+      right: 1.1rem;
+      background: rgba(11, 19, 43, 0.8);
+      color: var(--white);
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 999px;
+      backdrop-filter: blur(6px);
+      pointer-events: none;
+    }
+
+    .web-card-body {
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      flex-grow: 1;
+    }
+
+    .web-tag {
+      font-size: 0.74rem;
+      font-weight: 700;
+      color: var(--sky-700);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .web-card-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--navy-900);
+    }
+
+    .web-card-desc {
+      font-size: 0.9rem;
+      color: var(--slate-600);
+      line-height: 1.6;
+    }
+
+    /* ==========================================================================
+       SECTION 07: DESIGN TOKENS & CSS ARCHITECTURE
+       ========================================================================== */
+    .token-system-container {
+      background: var(--white);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 2.25rem;
+      box-shadow: var(--shadow-sm);
+      margin-top: 1.75rem;
+    }
+
+    .token-header-strip {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--border-subtle);
+      padding-bottom: 1.25rem;
+      margin-bottom: 1.75rem;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .token-heading-title {
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: var(--navy-950);
+    }
+
+    .token-badge-tech {
+      font-family: var(--font-mono);
+      font-size: 0.76rem;
+      background: var(--sky-50);
+      color: var(--sky-700);
+      padding: 4px 10px;
+      border-radius: 4px;
+      border: 1px solid var(--sky-100);
+    }
+
+    .swatch-grid {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .swatch-card {
+      background: var(--slate-50);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .swatch-preview {
+      width: 100%;
+      height: 48px;
+      border-radius: var(--radius-sm);
+      margin-bottom: 0.25rem;
+    }
+
+    .swatch-token-name {
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--navy-900);
+    }
+
+    .swatch-hex {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--slate-500);
+    }
+
+    /* CODE INSPECTOR BLOCK */
+    .code-inspector-block {
+      background: var(--navy-950);
+      border: 1px solid var(--navy-800);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-lg);
+      margin-top: 2rem;
+    }
+
+    .code-topbar {
+      background: rgba(255, 255, 255, 0.04);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 0.75rem 1.25rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      color: var(--slate-400);
+    }
+
+    .code-filename {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--sky-400);
+      font-weight: 600;
+    }
+
+    .code-pre {
+      padding: 1.5rem;
+      font-family: var(--font-mono);
+      font-size: 0.88rem;
+      line-height: 1.7;
+      color: #e2e8f0;
+      overflow-x: auto;
+    }
+
+    .c-prop { color: #38bdf8; }
+    .c-val { color: #54e4a6; }
+    .c-comment { color: #64748b; font-style: italic; }
+
+    /* ==========================================================================
+       SECTION 08: INTERACTIVE VIDEO & MOTION DEMO
+       ========================================================================== */
+    .hero-mockup-wrapper {
+      background: var(--white);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      box-shadow: var(--shadow-xl);
+      margin-top: 1.5rem;
+    }
+
+    .mockup-topbar {
+      background: var(--slate-100);
+      border-bottom: 1px solid var(--border-subtle);
+      padding: 0.75rem 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .mac-window-controls {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .dot {
+      width: 11px;
+      height: 11px;
+      border-radius: 50%;
+    }
+
+    .dot-red { background: #ff5f56; }
+    .dot-yellow { background: #ffbd2e; }
+    .dot-green { background: #27c93f; }
+
+    .mac-url-bar {
+      background: var(--white);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-sm);
+      padding: 3px 14px;
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      color: var(--slate-600);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .mac-actions {
+      font-size: 0.74rem;
+      color: var(--slate-400);
+      font-family: var(--font-mono);
+    }
+
+    .hero-mockup-video {
+      width: 100%;
+      height: auto;
+      max-height: 700px;
+      display: block;
+      background: #000;
+    }
+
+    .mockup-caption-bar {
+      padding: 0.85rem 1.25rem;
+      background: var(--slate-50);
+      border-top: 1px solid var(--border-subtle);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.82rem;
+      color: var(--slate-600);
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .mockup-badge {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      background: var(--sky-50);
+      color: var(--sky-700);
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-weight: 700;
+    }
+
+    /* ==========================================================================
+       SECTION 09: RETROSPECTIVE & LEARNINGS
+       ========================================================================== */
+    .retro-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .retro-card {
+      background: var(--white);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 2rem 1.75rem;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .retro-num {
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--sky-700);
+      background: var(--sky-50);
+      padding: 2px 8px;
+      border-radius: 4px;
+      align-self: flex-start;
+    }
+
+    .retro-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--navy-900);
+    }
+
+    .retro-desc {
+      font-size: 0.92rem;
+      color: var(--slate-600);
+      line-height: 1.65;
+    }
+
+    /* ==========================================================================
+       NEXT PROJECT CROSS-NAVIGATION BANNER
+       ========================================================================== */
+    .cs-next-banner {
+      margin-top: 4rem;
+      background: linear-gradient(135deg, var(--navy-950), var(--navy-900));
+      border-radius: var(--radius-xl);
+      padding: 3rem clamp(1.5rem, 4vw, 3.5rem);
+      color: var(--white);
+      box-shadow: var(--shadow-xl);
+    }
+
+    .next-card {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 2.5rem;
+      flex-wrap: wrap;
+    }
+
+    .next-info {
+      max-width: 620px;
+    }
+
+    .next-script {
+      display: block;
+      font-family: var(--font-script);
+      font-size: 1.4rem;
+      color: var(--sky-400);
+      margin-bottom: 0.35rem;
+    }
+
+    .next-title {
+      font-size: clamp(1.6rem, 2.8vw, 2.2rem);
+      font-weight: 800;
+      color: var(--white);
+      margin-bottom: 0.75rem;
+      letter-spacing: -0.02em;
+    }
+
+    .next-desc {
+      font-size: 1rem;
+      color: var(--slate-300);
+      line-height: 1.65;
+    }
+
+    .next-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      min-width: 260px;
+    }
+
+    .next-actions .btn-cta {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      background: var(--sky-500);
+      color: var(--white);
+      font-family: var(--font-heading);
+      font-size: 0.92rem;
+      font-weight: 800;
+      padding: 0.8rem 1.5rem;
+      border-radius: var(--radius-md);
+      transition: all 0.2s ease;
+      box-shadow: 0 4px 15px rgba(0, 153, 255, 0.3);
+    }
+
+    .next-actions .btn-cta:hover {
+      background: var(--sky-400);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0, 153, 255, 0.4);
+    }
+
+    .next-actions .btn-subtle {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      background: rgba(255, 255, 255, 0.08);
+      color: var(--white);
+      font-size: 0.86rem;
+      font-weight: 600;
+      padding: 0.65rem 1.25rem;
+      border-radius: var(--radius-md);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      transition: all 0.2s ease;
+    }
+
+    .next-actions .btn-subtle:hover {
+      background: rgba(255, 255, 255, 0.15);
+      border-color: rgba(255, 255, 255, 0.3);
+      transform: translateY(-1px);
+    }
+
+    /* ==========================================================================
+       SITE FOOTER
+       ========================================================================== */
+    .site-footer {
+      max-width: 1240px;
+      margin: 4rem auto 0;
+      padding: 2.5rem clamp(1.25rem, 4vw, 3rem) 3rem;
+      border-top: 1px solid var(--border-subtle);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      color: var(--slate-500);
+      font-size: 0.88rem;
+    }
+
+    .footer-links {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      list-style: none;
+    }
+
+    .footer-link {
+      color: var(--slate-600);
+      font-weight: 600;
+      transition: color 0.2s;
+    }
+
+    .footer-link:hover {
+      color: var(--sky-600);
+    }
+
+    .btn-top {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--white);
+      border: 1px solid var(--border-strong);
+      color: var(--navy-800);
+      font-size: 0.84rem;
+      font-weight: 600;
+      padding: 0.5rem 1rem;
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .btn-top:hover {
+      background: var(--slate-100);
+      color: var(--sky-600);
+      border-color: var(--sky-600);
+    }
+
+    /* ==========================================================================
+       IMAGE LIGHTBOX MODAL
+       ========================================================================== */
+    .lightbox-modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(7, 13, 24, 0.92);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      z-index: 99999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s ease;
+    }
+
+    .lightbox-modal.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .lightbox-content {
+      max-width: 92vw;
+      max-height: 90vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+    }
+
+    .lightbox-img {
+      max-width: 100%;
+      max-height: 86vh;
+      object-fit: contain;
+      border-radius: var(--radius-md);
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: 1.5rem;
+      right: 2rem;
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: var(--white);
+      font-size: 1.5rem;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.2s;
+      z-index: 100000;
+    }
+
+    .lightbox-close:hover {
+      background: rgba(255, 255, 255, 0.25);
+      transform: scale(1.05);
+    }
+
+    /* ==========================================================================
+       RESPONSIVE BREAKPOINTS
+       ========================================================================== */
+    @media (max-width: 1024px) {
+      .cs-meta-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .arch-pillars-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .problem-solution-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .feature-spotlight-box,
+      .feature-spotlight-box.reverse {
+        grid-template-columns: 1fr;
+      }
+
+      .feature-spotlight-box.reverse .spotlight-text {
+        order: 1;
+      }
+
+      .feature-spotlight-box.reverse .spotlight-media {
+        order: 2;
+      }
+
+      .web-gallery-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .swatch-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .retro-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+      }
+
+      .mobile-nav-toggle {
+        display: flex;
+      }
+
+      .cs-toc-wrapper {
+        top: 66px;
+      }
+
+      .cs-toc-label {
+        display: none;
+      }
+
+      .cs-meta-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .arch-pillars-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .swatch-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .next-card {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .site-footer {
+        flex-direction: column;
+        text-align: center;
+        gap: 1.25rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- READING PROGRESS BAR -->
+  <div class="reading-progress-bar" id="progressBar"></div>
+
+  <!-- TOP NAVBAR -->
+  <nav class="navbar" id="navbar">
+    <a href="index.html" class="nav-logo">
+      <div class="dp-wrapper">
+        <img src="prakash-portfolio_00239.webp" alt="Bhatu Prakash" class="dp-img" width="40" height="40">
+        <span class="dp-status-dot"></span>
+      </div>
+      <span class="logo-text">Bhatu Prakash</span>
+    </a>
+
+    <div class="nav-right">
+      <ul class="nav-links">
+        <li><a href="index.html#home" class="nav-link">Home</a></li>
+        <li><a href="index.html#projects" class="nav-link">Selected Work</a></li>
+        <li><a href="case-study-flyfi.html" class="nav-link">FlyFi Mobile</a></li>
+        <li><a href="case-study-pms.html" class="nav-link">PMS Web</a></li>
+        <li><a href="case-study-uk.html" class="nav-link">UK NHS</a></li>
+      </ul>
+
+      <a href="index.html#projects" class="btn-back">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+          stroke-linecap="round" stroke-linejoin="round">
+          <line x1="19" y1="12" x2="5" y2="12"></line>
+          <polyline points="12 19 5 12 12 5"></polyline>
+        </svg>
+        Back to Projects
+      </a>
+
+      <a href="https://flyfi.app/" target="_blank" rel="noopener noreferrer" class="btn-live-out">
+        Visit FlyFi.app ↗
+      </a>
+
+      <button id="mobileNavToggle" class="mobile-nav-toggle" type="button" aria-label="Open menu" aria-expanded="false"
+        aria-controls="mobileNavDrawer">
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- MOBILE NAV DRAWER -->
+  <div id="mobileNavDrawer" class="mobile-nav-drawer" aria-hidden="true">
+    <div class="mobile-nav-backdrop"></div>
+    <div class="mobile-nav-panel">
+      <div class="mobile-nav-header">
+        <div class="mobile-nav-brand">
+          <img src="prakash-portfolio_00239.webp" alt="Bhatu Prakash" class="mobile-dp-img" width="44" height="44">
+          <div class="mobile-brand-meta">
+            <span class="mobile-brand-name">Bhatu Prakash</span>
+            <span class="mobile-brand-status"><span class="dot"></span> Available for work</span>
+          </div>
+        </div>
+        <button id="mobileNavClose" class="mobile-nav-close" type="button" aria-label="Close navigation">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+      <ul class="mobile-nav-list">
+        <li><a href="index.html#home" class="mobile-nav-item"><span class="mn-num">01</span><span
+              class="mn-text">Home</span><span class="mn-arrow">↗</span></a></li>
+        <li><a href="index.html#projects" class="mobile-nav-item"><span class="mn-num">02</span><span
+              class="mn-text">← All Projects</span><span class="mn-arrow">↗</span></a></li>
+        <li><a href="case-study-flyfi-web.html" class="mobile-nav-item highlight"><span class="mn-num">03</span><span
+              class="mn-text">FlyFi Web Redesign</span><span class="mn-arrow">↗</span></a></li>
+        <li><a href="case-study-flyfi.html" class="mobile-nav-item"><span class="mn-num">04</span><span
+              class="mn-text">FlyFi Mobile App</span><span class="mn-arrow">↗</span></a></li>
+        <li><a href="case-study-mobile.html" class="mobile-nav-item"><span class="mn-num">05</span><span
+              class="mn-text">PMS Mobile App</span><span class="mn-arrow">↗</span></a></li>
+        <li><a href="case-study-pms.html" class="mobile-nav-item"><span class="mn-num">06</span><span
+              class="mn-text">PMS Web SaaS</span><span class="mn-arrow">↗</span></a></li>
+        <li><a href="case-study-uk.html" class="mobile-nav-item"><span class="mn-num">07</span><span
+              class="mn-text">UK NHS Edition</span><span class="mn-arrow">↗</span></a></li>
+        <li><a href="contact.html" class="mobile-nav-item"><span class="mn-num">08</span><span
+              class="mn-text">Contact / Hire</span><span class="mn-arrow">↗</span></a></li>
+      </ul>
+      <div class="mobile-nav-footer">
+        <a href="https://flyfi.app/" target="_blank" rel="noopener noreferrer" class="mobile-nav-cta">
+          <span>Visit FlyFi.app ↗</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- STICKY FLOATING CHAPTER TOC DOCK -->
+  <div class="cs-toc-wrapper" id="stickyToc">
+    <div class="cs-toc-inner">
+      <span class="cs-toc-label">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <path d="M4 6h16M4 12h16M4 18h7"></path>
+        </svg>
+        Web Chapters:
+      </span>
+      <ul class="cs-toc-list">
+        <li class="cs-toc-item"><a href="#overview" class="active">01. Overview</a></li>
+        <li class="cs-toc-item"><a href="#challenge">02. Web Challenge</a></li>
+        <li class="cs-toc-item"><a href="#role-strategy">03. Role &amp; Strategy</a></li>
+        <li class="cs-toc-item"><a href="#telemetry-portal">04. Radar Portal</a></li>
+        <li class="cs-toc-item"><a href="#wifi-benchmarks">05. Wi-Fi Database</a></li>
+        <li class="cs-toc-item"><a href="#web-showcase">06. Production Showcase</a></li>
+        <li class="cs-toc-item"><a href="#design-tokens">07. Design Tokens</a></li>
+        <li class="cs-toc-item"><a href="#video-demo">08. Video Motion</a></li>
+        <li class="cs-toc-item"><a href="#retrospective">09. Retrospective</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- MAIN CASE STUDY WRAPPER -->
+  <div class="cs-wrapper">
+
+    <!-- BREADCRUMB -->
+    <nav class="cs-breadcrumb" aria-label="Breadcrumb">
+      <a href="index.html">Home</a>
+      <span class="sep">/</span>
+      <a href="index.html#projects">Case Studies</a>
+      <span class="sep">/</span>
+      <span class="current">FlyFi Website Redesign</span>
+    </nav>
+
+    <!-- ==========================================================================
+         SECTION 01: HERO & METADATA
+         ========================================================================== -->
+    <header class="cs-hero" id="overview">
+      <div class="cs-hero-header">
+        <div class="cs-badge-row">
+          <span class="cs-pill cs-pill-web">🌐 In-Flight Web Portal Redesign</span>
+          <span class="cs-pill cs-pill-live">⚡ Live at flyfi.app</span>
+          <span class="cs-pill cs-pill-sky">✈️ 3D Flight Radar &amp; Wi-Fi Directory</span>
+          <span class="cs-pill">Bricolage Grotesque &amp; JetBrains Mono</span>
+        </div>
+
+        <span class="cs-script">Aviation SaaS Web Redesign &amp; Token Architecture</span>
+        <h1 class="cs-title">
+          FlyFi Website Redesign: <br>
+          <span class="highlight">In-Flight Portal &amp; Live Flight Telemetry</span>
+        </h1>
+        <p class="cs-tagline">
+          Architecting a high-performance web platform for global airline passengers (<a href="https://flyfi.app/" target="_blank" rel="noopener noreferrer" style="color: var(--sky-600); text-decoration: underline;">flyfi.app</a>) — combining real-time 3D flight trajectory radar, crowdsourced in-flight Wi-Fi coverage databases, and searchable terminal gateway credentials across 500+ international airports.
+        </p>
+      </div>
+
+      <!-- METADATA MATRIX -->
+      <div class="cs-meta-grid">
+        <div class="meta-item">
+          <span class="meta-label">My Role</span>
+          <span class="meta-value">Lead UI/UX &amp; Web Architect</span>
+          <span class="meta-sub">Figma Wireframing, CSS Token System &amp; Layout</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-label">Typography Stack</span>
+          <span class="meta-value">Bricolage Grotesque &amp; JetBrains Mono</span>
+          <span class="meta-sub">Tabular Telemetry Numerals &amp; Ink-Trapped Display</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-label">Live Platform</span>
+          <span class="meta-value">flyfi.app</span>
+          <span class="meta-sub">
+            <a href="https://flyfi.app/" target="_blank" rel="noopener noreferrer" class="live-ref-link">
+              Visit Live Web Platform ↗
+            </a>
+          </span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-label">Deliverables</span>
+          <span class="meta-value">Web Redesign &amp; Token Kit</span>
+          <span class="meta-sub">Responsive Web HUD, UI Tokens, Video Motion</span>
+        </div>
+      </div>
+
+      <!-- HERO SHOWCASE FRAME -->
+      <div class="cs-hero-mockup-frame zoomable" onclick="openLightbox('flyfi-web-mockup.webp')">
+        <img src="flyfi-web-mockup.webp" alt="FlyFi Website Redesign MacBook Pro Showcase" width="1240" height="720">
+        <div class="cs-mockup-overlay-pill">
+          <span class="status-pulse"></span>
+          MacBook Pro 16" · Live Platform at flyfi.app · Click to Zoom
+        </div>
+      </div>
+
+      <!-- ARCHITECTURAL VALUE PILLARS (VERIFIED & AUTHENTIC) -->
+      <div class="arch-pillars-grid">
+        <div class="pillar-card">
+          <div class="pillar-icon-wrap sky">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+            </svg>
+          </div>
+          <h4 class="pillar-title">3D Trajectory Radar</h4>
+          <p class="pillar-desc">Interactive flight map displaying current flight altitude (FL380–FL420), heading angle, and dynamic ETA predictions.</p>
+        </div>
+
+        <div class="pillar-card">
+          <div class="pillar-icon-wrap green">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+              <path d="M5 12.55a11 11 0 0 1 14.08 0"></path>
+              <path d="M1.42 9a16 16 0 0 1 21.16 0"></path>
+              <path d="M8.53 16.11a6 6 0 0 1 6.95 0"></path>
+              <line x1="12" y1="20" x2="12.01" y2="20"></line>
+            </svg>
+          </div>
+          <h4 class="pillar-title">In-Flight Wi-Fi Database</h4>
+          <p class="pillar-desc">Comprehensive breakdown of satellite connectivity vendors (Starlink, Viasat, Gogo) across 35+ international carriers.</p>
+        </div>
+
+        <div class="pillar-card">
+          <div class="pillar-icon-wrap">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+              <rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect>
+              <rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect>
+              <line x1="6" y1="6" x2="6.01" y2="6"></line>
+              <line x1="6" y1="18" x2="6.01" y2="18"></line>
+            </svg>
+          </div>
+          <h4 class="pillar-title">500+ Airport Gateways</h4>
+          <p class="pillar-desc">Searchable directory of terminal Wi-Fi networks, captive-portal login tips, and airport lounge access credentials.</p>
+        </div>
+
+        <div class="pillar-card">
+          <div class="pillar-icon-wrap sky">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+              <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+              <line x1="9" y1="9" x2="15" y2="15"></line>
+              <line x1="15" y1="9" x2="9" y2="15"></line>
+            </svg>
+          </div>
+          <h4 class="pillar-title">Cross-Device Synergy</h4>
+          <p class="pillar-desc">Engineered to funnel desktop trip planners into the native FlyFi iOS and Android companion apps prior to boarding.</p>
+        </div>
+      </div>
+    </header>
+
+    <!-- ==========================================================================
+         SECTION 02: THE WEB CHALLENGE
+         ========================================================================== -->
+    <section class="cs-section" id="challenge">
+      <span class="cs-section-badge">02 · The Challenge</span>
+      <h2 class="cs-section-heading">Transforming In-Flight Connectivity from a Black Box to Transparent Clarity</h2>
+      <p class="cs-body-p">
+        Passengers flying across domestic and international routes frequently suffer from opaque satellite Wi-Fi pricing, sluggish captive portals, and zero visibility into satellite coverage handoffs. The FlyFi web redesign was conceived to deliver instant clarity before passengers board and while in transit:
+      </p>
+
+      <div class="problem-solution-grid">
+        <div class="ps-card">
+          <span class="ps-badge problem">Legacy Web Friction</span>
+          <h3 class="ps-title">Fragmented Airline Portals</h3>
+          <ul class="ps-list">
+            <li>
+              <span class="bullet cross">✕</span>
+              <span><strong>No Pre-Flight Equipment Transparency:</strong> Passengers cannot verify whether their specific aircraft tail number has Starlink, Viasat, or Gogo Ku-band.</span>
+            </li>
+            <li>
+              <span class="bullet cross">✕</span>
+              <span><strong>Sluggish Captive Portals:</strong> Confusing multi-step authentication leads to failed logins and unexpected in-flight charges.</span>
+            </li>
+            <li>
+              <span class="bullet cross">✕</span>
+              <span><strong>Disjointed Desktop Hierarchy:</strong> Outdated travel blogs and clunky tables create poor readability on high-resolution laptop displays.</span>
+            </li>
+            <li>
+              <span class="bullet cross">✕</span>
+              <span><strong>Terminal Search Friction:</strong> Travelers cannot easily look up layover airport Wi-Fi passwords without installing separate heavy apps.</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="ps-card solution">
+          <span class="ps-badge solution">The Redesigned Web Experience</span>
+          <h3 class="ps-title">Instant Travel Intelligence</h3>
+          <ul class="ps-list">
+            <li>
+              <span class="bullet check">✓</span>
+              <span><strong>Live 3D Flight Radar Web Portal:</strong> Real-time trajectory with altitude profiles, ground speed, and satellite beam handoff zones.</span>
+            </li>
+            <li>
+              <span class="bullet check">✓</span>
+              <span><strong>Airline Wi-Fi Database:</strong> Transparent speed test benchmarks for Delta, United, Emirates, Qatar Airways, and 35+ carriers.</span>
+            </li>
+            <li>
+              <span class="bullet check">✓</span>
+              <span><strong>Airport Lounge &amp; Gate Wi-Fi:</strong> Searchable terminal credentials and captive portal bypass guides for 500+ global hubs.</span>
+            </li>
+            <li>
+              <span class="bullet check">✓</span>
+              <span><strong>Unified Token Architecture:</strong> High-contrast typography and responsive layouts optimized across laptop, tablet, and mobile browsers.</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         SECTION 03: MY ROLE & STRATEGY
+         ========================================================================== -->
+    <section class="cs-section" id="role-strategy">
+      <span class="cs-section-badge">03 · Strategy</span>
+      <h2 class="cs-section-heading">Lead UI/UX Responsibilities &amp; Cross-Platform Strategy</h2>
+      <p class="cs-body-p">
+        As the Lead UI/UX Designer and Web Architect, my focus centered on creating an authoritative, modern web destination that establishes FlyFi's brand credibility while complementing the companion mobile app:
+      </p>
+
+      <div class="arch-pillars-grid">
+        <div class="pillar-card">
+          <div class="pillar-icon-wrap sky">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+              <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+              <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
+            </svg>
+          </div>
+          <h4 class="pillar-title">Desktop &amp; Mobile Web Design</h4>
+          <p class="pillar-desc">Architected responsive wireframes and high-fidelity screen mockups in Figma, ensuring fluid scaling from 4K displays down to smartphones.</p>
+        </div>
+
+        <div class="pillar-card">
+          <div class="pillar-icon-wrap green">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+              <polyline points="16 18 22 12 16 6"></polyline>
+              <polyline points="8 6 2 12 8 18"></polyline>
+            </svg>
+          </div>
+          <h4 class="pillar-title">Atomic CSS Tokens</h4>
+          <p class="pillar-desc">Defined a structured CSS custom properties system managing aviation color swatches, card radiuses, and elevation shadows.</p>
+        </div>
+
+        <div class="pillar-card">
+          <div class="pillar-icon-wrap">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+              <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+            </svg>
+          </div>
+          <h4 class="pillar-title">Web-to-App Conversion</h4>
+          <p class="pillar-desc">Structured onboarding touchpoints that convert pre-flight web visitors into active iOS App Store and Google Play installs.</p>
+        </div>
+
+        <div class="pillar-card">
+          <div class="pillar-icon-wrap sky">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+              <circle cx="12" cy="12" r="10"></circle>
+              <line x1="2" y1="12" x2="22" y2="12"></line>
+              <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+            </svg>
+          </div>
+          <h4 class="pillar-title">Aviation Data Visualization</h4>
+          <p class="pillar-desc">Designed clear tabular numeral layouts using JetBrains Mono to present flight telemetry without visual jitter.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         SECTION 04: RADAR PORTAL & TELEMETRY
+         ========================================================================== -->
+    <section class="cs-section" id="telemetry-portal">
+      <span class="cs-section-badge">04 · Telemetry Portal</span>
+      <h2 class="cs-section-heading">Live 3D Flight Trajectory Radar Web Experience</h2>
+      <p class="cs-body-p">
+        The centerpiece of the FlyFi web redesign is its real-time 3D flight radar. Built for aviation enthusiasts and passengers planning long-haul journeys, the portal visualizes cruising altitudes, ground speeds, and weather vectors:
+      </p>
+
+      <div class="feature-spotlight-box">
+        <div class="spotlight-text">
+          <h3 class="spotlight-title">Interactive Flight Radar &amp; Altitude Profile</h3>
+          <p class="spotlight-desc">
+            Visualizes dynamic airspeed, barometric altitude, heading angles, and remaining flight times with high-precision typography. The web portal features clear route waypoints and oceanic waypoint landmarks.
+          </p>
+          <ul class="spotlight-specs-list">
+            <li><span class="check">✓</span> <strong>Real-Time Flight HUD:</strong> Speed: 520 KTS · Altitude: FL390 · Latency: 18ms.</li>
+            <li><span class="check">✓</span> <strong>Aircraft Telemetry:</strong> IATA carrier lookup (JFK, LHR, DXB, HND) and aircraft tail tracking.</li>
+            <li><span class="check">✓</span> <strong>Responsive Flight Canvas:</strong> Fluidly scales across ultrawide monitors and tablet touchscreens.</li>
+          </ul>
+        </div>
+        <div class="spotlight-media" onclick="openLightbox('flyfi-features-mockup.webp')">
+          <img src="flyfi-features-mockup.webp" alt="FlyFi Web Features Mockup Flight Radar" loading="lazy">
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         SECTION 05: IN-FLIGHT WI-FI DATABASE
+         ========================================================================== -->
+    <section class="cs-section" id="wifi-benchmarks">
+      <span class="cs-section-badge">05 · Wi-Fi Benchmarks</span>
+      <h2 class="cs-section-heading">Airline Satellite Wi-Fi Speed Database &amp; Airport Directory</h2>
+      <p class="cs-body-p">
+        Eliminating travel guesswork: FlyFi provides verified speed benchmarks across satellite vendors and terminal networks, giving travelers actionable connection intelligence before they board:
+      </p>
+
+      <div class="feature-spotlight-box reverse">
+        <div class="spotlight-text">
+          <h3 class="spotlight-title">Carrier Benchmarks &amp; 500+ Airport Gateways</h3>
+          <p class="spotlight-desc">
+            Provides travelers with verified network SSIDs, captive-portal passwords, and lounge access credentials. Speed ratings clearly differentiate Starlink LEO, Viasat Ka-band, and Gogo Ku-band connections.
+          </p>
+          <ul class="spotlight-specs-list">
+            <li><span class="check">✓</span> <strong>Airline Coverage:</strong> Delta, United, Emirates, British Airways, Singapore Airlines &amp; 30+ more.</li>
+            <li><span class="check">✓</span> <strong>Satellite Provider Metrics:</strong> Throughput benchmarks, video streaming permissions, and pricing plans.</li>
+            <li><span class="check">✓</span> <strong>Terminal Keychain:</strong> Verified passwords and captive portal tips for 500+ global hubs.</li>
+          </ul>
+        </div>
+        <div class="spotlight-media" onclick="openLightbox('flyfi-mobile-mockup.webp')">
+          <img src="flyfi-mobile-mockup.webp" alt="FlyFi Mobile & Web Synergy Mockup" loading="lazy">
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         SECTION 06: WEB PRODUCTION SHOWCASE
+         ========================================================================== -->
+    <section class="cs-section" id="web-showcase">
+      <span class="cs-section-badge">06 · Web Showcase</span>
+      <h2 class="cs-section-heading">High-Resolution Web Platform Production Gallery</h2>
+      <p class="cs-body-p">
+        Explore key visual perspectives of the live FlyFi web platform (<a href="https://flyfi.app/" target="_blank" rel="noopener noreferrer" style="color: var(--sky-600); font-weight: 700;">flyfi.app</a>). Each interface was crafted to balance high-density flight information with elegant, uncluttered layouts:
+      </p>
+
+      <div class="web-gallery-grid">
+
+        <!-- Showcase 1: Full Web Platform -->
+        <div class="web-gallery-card">
+          <div class="web-thumb-wrap" onclick="openLightbox('Flyfi-web.webp')">
+            <span class="web-thumb-badge">🔍 Zoom Full-Page</span>
+            <img src="Flyfi-web.webp" alt="FlyFi Web Redesign Complete Platform Capture" loading="lazy">
+          </div>
+          <div class="web-card-body">
+            <span class="web-tag">Desktop Capture · flyfi.app</span>
+            <h4 class="web-card-title">Complete Web Platform Production Interface</h4>
+            <p class="web-card-desc">Full-length desktop capture showing the landing hero, flight radar search, airline speed database, and download CTAs.</p>
+          </div>
+        </div>
+
+        <!-- Showcase 2: MacBook Pro Mockup -->
+        <div class="web-gallery-card">
+          <div class="web-thumb-wrap" onclick="openLightbox('flyfi-web-mockup.webp')">
+            <span class="web-thumb-badge">🔍 Zoom 4K</span>
+            <img src="flyfi-web-mockup.webp" alt="FlyFi Web Redesign MacBook Pro Perspective" loading="lazy">
+          </div>
+          <div class="web-card-body">
+            <span class="web-tag">Hardware Perspective</span>
+            <h4 class="web-card-title">MacBook Pro 16" Perspective Mockup</h4>
+            <p class="web-card-desc">Angled laptop perspective highlighting the radar navigation bar, telemetry pills, and dark mode contrast.</p>
+          </div>
+        </div>
+
+        <!-- Showcase 3: Features Showcase -->
+        <div class="web-gallery-card">
+          <div class="web-thumb-wrap" onclick="openLightbox('flyfi-features-mockup.webp')">
+            <span class="web-thumb-badge">🔍 Zoom 4K</span>
+            <img src="flyfi-features-mockup.webp" alt="FlyFi In-Flight Features & Radar Showcase" loading="lazy">
+          </div>
+          <div class="web-card-body">
+            <span class="web-tag">Aviation Features</span>
+            <h4 class="web-card-title">In-Flight Wi-Fi &amp; Radar Module</h4>
+            <p class="web-card-desc">Detailed card layout showcasing satellite connectivity benchmarks, airport passwords, and flight tracking HUD.</p>
+          </div>
+        </div>
+
+        <!-- Showcase 4: Web & Mobile Synergy -->
+        <div class="web-gallery-card">
+          <div class="web-thumb-wrap" onclick="openLightbox('flyfi-mobile-mockup.webp')">
+            <span class="web-thumb-badge">🔍 Zoom 4K</span>
+            <img src="flyfi-mobile-mockup.webp" alt="FlyFi Web & Mobile App Ecosystem" loading="lazy">
+          </div>
+          <div class="web-card-body">
+            <span class="web-tag">Ecosystem Synergy</span>
+            <h4 class="web-card-title">Web to Mobile Companion App Funnel</h4>
+            <p class="web-card-desc">Seamless visual alignment between the desktop web planning portal and the native iOS/Android travel app.</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         SECTION 07: DESIGN TOKENS & CSS ARCHITECTURE
+         ========================================================================== -->
+    <section class="cs-section" id="design-tokens">
+      <span class="cs-section-badge">07 · Design Tokens</span>
+      <h2 class="cs-section-heading">Atomic CSS Custom Properties &amp; Typography System</h2>
+      <p class="cs-body-p">
+        Every color, radius, border, and elevation level follows a rigorous token hierarchy designed specifically for high-velocity in-flight portals. Below is the live token architecture implemented across <a href="https://flyfi.app/" target="_blank" style="color: var(--sky-600); font-weight: 700;">flyfi.app</a>:
+      </p>
+
+      <div class="token-system-container">
+        <div class="token-header-strip">
+          <div>
+            <div class="token-heading-title">FlyFi Atomic Color Token Matrix</div>
+            <p style="font-size: 0.88rem; color: var(--slate-500); margin-top: 0.35rem;">
+              Defined with CSS Custom Properties for seamless surface depth layering
+            </p>
+          </div>
+          <div class="token-badge-tech">:root tokens active</div>
+        </div>
+
+        <!-- Color Swatch Matrix -->
+        <div class="swatch-grid">
+          <div class="swatch-card">
+            <div class="swatch-preview" style="background: #0099ff; box-shadow: 0 0 10px rgba(0,153,255,0.3);"></div>
+            <div class="swatch-token-name">--sky-500</div>
+            <div class="swatch-hex">#0099FF · Primary</div>
+          </div>
+          <div class="swatch-card">
+            <div class="swatch-preview" style="background: #0b132b;"></div>
+            <div class="swatch-token-name">--navy-900</div>
+            <div class="swatch-hex">#0B132B · Cockpit</div>
+          </div>
+          <div class="swatch-card">
+            <div class="swatch-preview" style="background: #f8fafc; border: 1px solid #cbd5e1;"></div>
+            <div class="swatch-token-name">--slate-50</div>
+            <div class="swatch-hex">#F8FAFC · Surface</div>
+          </div>
+          <div class="swatch-card">
+            <div class="swatch-preview" style="background: #38bdf8;"></div>
+            <div class="swatch-token-name">--sky-400</div>
+            <div class="swatch-hex">#38BDF8 · Cyan</div>
+          </div>
+          <div class="swatch-card">
+            <div class="swatch-preview" style="background: #10b981;"></div>
+            <div class="swatch-token-name">--flight-green</div>
+            <div class="swatch-hex">#10B981 · On-Time</div>
+          </div>
+          <div class="swatch-card">
+            <div class="swatch-preview" style="background: #f59e0b;"></div>
+            <div class="swatch-token-name">--flight-amber</div>
+            <div class="swatch-hex">#F59E0B · Delay</div>
+          </div>
+        </div>
+
+        <!-- Typography Specimen -->
+        <div class="arch-pillars-grid" style="margin-bottom: 2rem;">
+          <div class="pillar-card">
+            <span style="font-family: var(--font-mono); font-size: 0.74rem; font-weight: 700; color: var(--sky-700); text-transform: uppercase;">Display Typography</span>
+            <h4 style="font-size: 1.35rem; font-weight: 800; color: var(--navy-900); margin-top: 4px;">Bricolage Grotesque</h4>
+            <p style="font-size: 0.88rem; color: var(--slate-600); line-height: 1.6;">
+              Used across hero titles and section headings. Its expressive ink-traps and warm humanist curves bring character and high-speed legibility to aviation interfaces.
+            </p>
+          </div>
+
+          <div class="pillar-card">
+            <span style="font-family: var(--font-mono); font-size: 0.74rem; font-weight: 700; color: var(--flight-green-dark); text-transform: uppercase;">Telemetry Numerals</span>
+            <h4 style="font-size: 1.35rem; font-weight: 800; color: var(--navy-900); margin-top: 4px;">JetBrains Mono</h4>
+            <p style="font-size: 0.88rem; color: var(--slate-600); line-height: 1.6;">
+              Used for GPS coordinates, altitude values, IATA codes (JFK, LHR, DXB), and Wi-Fi speed ratings. Ensures tabular numeral alignment and zero visual jitter.
+            </p>
+          </div>
+        </div>
+
+        <!-- Live Code Block -->
+        <div class="code-inspector-block">
+          <div class="code-topbar">
+            <span class="code-filename">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="16 18 22 12 16 6"></polyline>
+                <polyline points="8 6 2 12 8 18"></polyline>
+              </svg>
+              flyfi-design-tokens.css
+            </span>
+            <span>CSS Variables System</span>
+          </div>
+          <pre class="code-pre"><code><span class="c-prop">:root</span> {
+  <span class="c-comment">/* Primary Brand Neutrals */</span>
+  <span class="c-prop">--navy-900</span>: <span class="c-val">#0b132b</span>; <span class="c-comment">/* Cockpit Navy */</span>
+  <span class="c-prop">--navy-850</span>: <span class="c-val">#131d38</span>;
+  <span class="c-prop">--slate-50</span>: <span class="c-val">#f8fafc</span>; <span class="c-comment">/* Cloud Base Surface */</span>
+  <span class="c-prop">--white</span>: <span class="c-val">#ffffff</span>;
+
+  <span class="c-comment">/* Aviation Sky Blue Tokens */</span>
+  <span class="c-prop">--sky-600</span>: <span class="c-val">#0284c7</span>;
+  <span class="c-prop">--sky-500</span>: <span class="c-val">#0099ff</span>; <span class="c-comment">/* Active Flight & CTA */</span>
+  <span class="c-prop">--sky-400</span>: <span class="c-val">#38bdf8</span>;
+  <span class="c-prop">--sky-50</span>: <span class="c-val">#f0f9ff</span>;
+
+  <span class="c-comment">/* Flight Telemetry Status */</span>
+  <span class="c-prop">--flight-green</span>: <span class="c-val">#10b981</span>; <span class="c-comment">/* On-Time & Landed */</span>
+  <span class="c-prop">--flight-amber</span>: <span class="c-val">#f59e0b</span>; <span class="c-comment">/* Gate Change / Delay */</span>
+
+  <span class="c-comment">/* Radii & Elevation */</span>
+  <span class="c-prop">--radius-md</span>: <span class="c-val">10px</span>;
+  <span class="c-prop">--radius-lg</span>: <span class="c-val">16px</span>;
+  <span class="c-prop">--radius-xl</span>: <span class="c-val">22px</span>;
+
+  <span class="c-comment">/* Typography Stack */</span>
+  <span class="c-prop">--font-heading</span>: <span class="c-val">"Bricolage Grotesque", system-ui, sans-serif</span>;
+  <span class="c-prop">--font-body</span>: <span class="c-val">"Inter", system-ui, sans-serif</span>;
+  <span class="c-prop">--font-mono</span>: <span class="c-val">"JetBrains Mono", monospace</span>;
+}</code></pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         SECTION 08: INTERACTIVE VIDEO & MOTION DEMO
+         ========================================================================== -->
+    <section class="cs-section" id="video-demo">
+      <span class="cs-section-badge">08 · Video Demonstration</span>
+      <h2 class="cs-section-heading">Interactive Motion Demonstration &amp; Live Prototype</h2>
+      <p class="cs-body-p">
+        Watch the interactive video recording of the FlyFi platform in action — demonstrating real-time flight telemetry transitions, 3D radar map dragging, and satellite speed benchmark lookups:
+      </p>
+
+      <div class="hero-mockup-wrapper">
+        <div class="mockup-topbar">
+          <div class="mac-window-controls">
+            <span class="dot dot-red"></span>
+            <span class="dot dot-yellow"></span>
+            <span class="dot dot-green"></span>
+          </div>
+          <div class="mac-url-bar">
+            <span>🔒</span> https://flyfi.app
+          </div>
+          <div class="mac-actions">MacBook Pro 16" · Live Recording</div>
+        </div>
+
+        <video class="hero-mockup-video" autoplay loop muted playsinline controls poster="flyfi-video-moc.webp" preload="metadata">
+          <source src="flyfi.mp4" type="video/mp4">
+          Your browser does not support HTML5 video playback.
+        </video>
+
+        <div class="mockup-caption-bar">
+          <span>FlyFi Web Redesign: 3D flight trajectory radar, airline Wi-Fi speeds, and airport gateway directory</span>
+          <span class="mockup-badge">🎬 Live Interactive Video</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         SECTION 09: RETROSPECTIVE & LEARNINGS
+         ========================================================================== -->
+    <section class="cs-section" id="retrospective">
+      <span class="cs-section-badge">09 · Retrospective</span>
+      <h2 class="cs-section-heading">Engineering Retrospective &amp; Design Reflections</h2>
+      <p class="cs-body-p">
+        Redesigning an aviation web platform that serves both high-stress travelers and aviation enthusiasts yielded critical insights regarding performance, data density, and web-to-app synergy:
+      </p>
+
+      <div class="retro-grid">
+        <div class="retro-card">
+          <span class="retro-num">Takeaway 01</span>
+          <h4 class="retro-title">Tabular Alignment Prevents Eye Fatigue</h4>
+          <p class="retro-desc">
+            Flight altitude and speed metrics fluctuate continuously. Utilizing `JetBrains Mono` with fixed-width numerals ensured that altitude profiles never caused layout shifts or visual jitter as data streamed into the browser.
+          </p>
+        </div>
+
+        <div class="retro-card">
+          <span class="retro-num">Takeaway 02</span>
+          <h4 class="retro-title">High-Contrast Light Surfaces Win in Travel</h4>
+          <p class="retro-desc">
+            While dark mode is popular for night flights, daytime travel planning on laptops in bright airport concourses requires crisp white surfaces (#FFFFFF) and 1px distinct borders to resist direct solar glare through terminal windows.
+          </p>
+        </div>
+
+        <div class="retro-card">
+          <span class="retro-num">Takeaway 03</span>
+          <h4 class="retro-title">Positioning Web as the Acquisition Funnel</h4>
+          <p class="retro-desc">
+            Rather than trying to replicate all mobile app features on the desktop, the web experience is optimized for pre-trip research: searching airline Wi-Fi speed benchmarks and directing travelers to install the mobile app for gate notifications.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         NEXT PROJECT CROSS-NAVIGATION BANNER
+         ========================================================================== -->
+    <section class="cs-next-banner">
+      <div class="next-card">
+        <div class="next-info">
+          <span class="next-script">Connected Portfolio Projects</span>
+          <h3 class="next-title">Explore FlyFi Mobile Companion App</h3>
+          <p class="next-desc">
+            Inspect the complete 22-screen iOS and Android mobile app designed in Figma across flight tracking, one-thumb drawers, and terminal Wi-Fi keychains.
+          </p>
+        </div>
+        <div class="next-actions">
+          <a href="case-study-flyfi.html" class="btn-cta">
+            View FlyFi Mobile App Study →
+          </a>
+          <a href="case-study-staysaver.html" class="btn-subtle">
+            StaySaver Hospitality SaaS (In Dev) ↗
+          </a>
+          <a href="case-study-pms.html" class="btn-subtle">
+            PMS Web SaaS Platform ↗
+          </a>
+          <a href="case-study-mobile.html" class="btn-subtle">
+            PMS Mobile Companion App ↗
+          </a>
+          <a href="case-study-uk.html" class="btn-subtle">
+            iTranscript360 UK NHS Edition ↗
+          </a>
+          <a href="index.html#projects" class="btn-subtle">
+            ← All Selected Projects
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- SITE FOOTER -->
+  <footer class="site-footer">
+    <div class="footer-left">
+      © 2026 Bhatu Prakash • Senior UI/UX Designer &amp; Web Architect. Ahmedabad, India.
+    </div>
+
+    <ul class="footer-links">
+      <li><a href="index.html#projects" class="footer-link">Selected Work</a></li>
+      <li><a href="case-study-staysaver.html" class="footer-link">StaySaver (In Dev)</a></li>
+      <li><a href="case-study-flyfi-web.html" class="footer-link" style="color: var(--sky-600); font-weight: 700;">FlyFi Web Redesign</a></li>
+      <li><a href="case-study-flyfi.html" class="footer-link">FlyFi Mobile App</a></li>
+      <li><a href="case-study-pms.html" class="footer-link">PMS Web SaaS</a></li>
+      <li><a href="case-study-uk.html" class="footer-link">UK NHS Edition</a></li>
+    </ul>
+
+    <button class="btn-top" type="button" onclick="window.scrollTo({top: 0, behavior: 'smooth'});">
+      <span>Back to Top</span>
+      <span>↑</span>
+    </button>
+  </footer>
+
+  <!-- IMAGE LIGHTBOX MODAL -->
+  <div class="lightbox-modal" id="lightbox" role="dialog" aria-modal="true" aria-label="Expanded interface preview">
+    <button class="lightbox-close" id="lightbox-close" aria-label="Close image preview">&times;</button>
+    <div class="lightbox-content">
+      <img src="" alt="Enlarged Platform Screen" class="lightbox-img" id="lightbox-img">
+    </div>
+  </div>
+
+  <!-- INTERACTION SCRIPTS -->
+  <script>
+    (function () {
+      'use strict';
+
+      // 1. Reading Progress Bar
+      const progressBar = document.getElementById('progressBar');
+      window.addEventListener('scroll', () => {
+        const scrollTop = window.scrollY || document.documentElement.scrollTop;
+        const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        if (progressBar && scrollHeight > 0) {
+          const progress = (scrollTop / scrollHeight) * 100;
+          progressBar.style.width = progress + '%';
+        }
+      }, { passive: true });
+
+      // 2. Image Lightbox Modal
+      const lightbox = document.getElementById('lightbox');
+      const lightboxImg = document.getElementById('lightbox-img');
+      const lightboxClose = document.getElementById('lightbox-close');
+
+      window.openLightbox = function (src) {
+        if (!src || !lightbox || !lightboxImg) return;
+        lightboxImg.src = src;
+        lightbox.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      };
+
+      function closeLightbox() {
+        if (!lightbox || !lightboxImg) return;
+        lightbox.classList.remove('active');
+        lightboxImg.src = '';
+        document.body.style.overflow = '';
+      }
+
+      document.querySelectorAll('.zoomable').forEach(el => {
+        el.addEventListener('click', () => {
+          const img = el.tagName === 'IMG' ? el : el.querySelector('img');
+          if (img) {
+            const src = img.getAttribute('src');
+            window.openLightbox(src);
+          }
+        });
+      });
+
+      if (lightboxClose) {
+        lightboxClose.addEventListener('click', closeLightbox);
+      }
+
+      if (lightbox) {
+        lightbox.addEventListener('click', (e) => {
+          if (e.target === lightbox) {
+            closeLightbox();
+          }
+        });
+      }
+
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && lightbox && lightbox.classList.contains('active')) {
+          closeLightbox();
+        }
+      });
+
+      // 3. ScrollSpy for Sticky Chapter TOC Dock
+      const tocLinks = document.querySelectorAll('.cs-toc-item a');
+      const sections = document.querySelectorAll('header.cs-hero, section.cs-section');
+
+      window.addEventListener('scroll', () => {
+        let currentSection = '';
+        const scrollPosition = window.scrollY + 180;
+
+        sections.forEach(section => {
+          const sectionTop = section.offsetTop;
+          const sectionHeight = section.offsetHeight;
+          if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+            currentSection = section.getAttribute('id');
+          }
+        });
+
+        if (currentSection) {
+          tocLinks.forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('href') === '#' + currentSection) {
+              link.classList.add('active');
+            }
+          });
+        }
+      }, { passive: true });
+    })();
+  </script>
+  <script src="mobile-nav.js"></script>
+</body>
+
+</html>

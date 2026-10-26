@@ -47,51 +47,83 @@
     }
 
     /* TOP NAVBAR */
+    /* =========================================================
+       MODERN FLOATING GLASS ISLAND NAVBAR
+       ========================================================= */
     .navbar {
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
+      top: 1.25rem;
+      left: 50%;
+      transform: translateX(-50%);
+      width: min(1280px, calc(100% - 2.5rem));
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 1rem clamp(2rem, 4.5vw, 5.5rem);
-      background: rgba(11, 12, 14, 0.85);
-      backdrop-filter: blur(18px);
-      -webkit-backdrop-filter: blur(18px);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-      z-index: 100;
+      padding: 0.7rem 1.15rem 0.7rem 0.95rem;
+      background: rgba(14, 16, 22, 0.72);
+      backdrop-filter: blur(24px) saturate(190%);
+      -webkit-backdrop-filter: blur(24px) saturate(190%);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 9999px;
+      box-shadow: 0 16px 40px -8px rgba(0, 0, 0, 0.65), 
+                  0 0 0 1px rgba(255, 255, 255, 0.05),
+                  inset 0 1px 0 rgba(255, 255, 255, 0.2),
+                  0 8px 26px -4px rgba(204, 255, 0, 0.07);
+      z-index: 1000;
       pointer-events: auto;
-      transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
+                  background 0.3s ease, 
+                  border-color 0.3s ease,
+                  box-shadow 0.3s ease, 
+                  top 0.3s ease,
+                  padding 0.3s ease;
+    }
+
+    .navbar.is-scrolled {
+      top: 0.85rem;
+      background: rgba(11, 13, 18, 0.88);
+      border-color: rgba(255, 255, 255, 0.16);
+      box-shadow: 0 20px 48px -10px rgba(0, 0, 0, 0.8), 
+                  0 0 0 1px rgba(255, 255, 255, 0.08),
+                  inset 0 1px 0 rgba(255, 255, 255, 0.22),
+                  0 10px 30px -4px rgba(204, 255, 0, 0.1);
+      padding: 0.6rem 1.05rem 0.6rem 0.85rem;
     }
 
     .navbar.nav-hidden {
-      transform: translateY(-100%);
+      transform: translate(-50%, calc(-100% - 2.5rem));
     }
 
     .nav-logo {
-      display: flex;
+      display: inline-flex;
       align-items: center;
-      gap: 0.85rem;
+      gap: 0.75rem;
       text-decoration: none;
       cursor: pointer;
+      padding: 0.25rem 0.6rem 0.25rem 0.25rem;
+      border-radius: 9999px;
+      transition: background 0.25s ease;
+    }
+
+    .nav-logo:hover {
+      background: rgba(255, 255, 255, 0.05);
     }
 
     .dp-wrapper {
       position: relative;
-      width: 42px;
-      height: 42px;
+      width: 40px;
+      height: 40px;
       border-radius: 50%;
       padding: 2px;
-      background: linear-gradient(135deg, var(--accent), rgba(204, 255, 0, 0.25));
+      background: linear-gradient(135deg, var(--accent) 0%, rgba(204, 255, 0, 0.3) 100%);
       box-shadow: 0 0 16px rgba(204, 255, 0, 0.35);
       flex-shrink: 0;
-      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.28s ease;
     }
 
     .nav-logo:hover .dp-wrapper {
-      transform: scale(1.06);
-      box-shadow: 0 0 22px rgba(204, 255, 0, 0.55);
+      transform: scale(1.08) rotate(3deg);
+      box-shadow: 0 0 24px rgba(204, 255, 0, 0.65);
     }
 
     .dp-img {
@@ -106,71 +138,119 @@
 
     .dp-status-dot {
       position: absolute;
-      bottom: 0px;
-      right: 0px;
+      bottom: -1px;
+      right: -1px;
       width: 11px;
       height: 11px;
       border-radius: 50%;
       background-color: var(--accent);
-      border: 2px solid var(--bg);
-      box-shadow: 0 0 8px var(--accent);
+      border: 2px solid #0e1016;
+      box-shadow: 0 0 10px var(--accent);
+      animation: statusPulse 2.4s ease-in-out infinite;
+    }
+
+    @keyframes statusPulse {
+      0%, 100% {
+        box-shadow: 0 0 8px var(--accent);
+        transform: scale(1);
+      }
+      50% {
+        box-shadow: 0 0 16px var(--accent), 0 0 24px rgba(204, 255, 0, 0.5);
+        transform: scale(1.15);
+      }
+    }
+
+    .nav-brand-info {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.15;
     }
 
     .logo-text {
       font-family: var(--font-heading);
-      font-size: 1.35rem;
+      font-size: 1.08rem;
       font-weight: 800;
       color: #ffffff;
-      letter-spacing: -0.02em;
+      letter-spacing: -0.025em;
       white-space: nowrap;
+    }
+
+    .logo-role {
+      font-size: 0.68rem;
+      font-weight: 600;
+      color: rgba(255, 255, 255, 0.5);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
     }
 
     .nav-right {
       display: flex;
       align-items: center;
-      gap: clamp(1.5rem, 3vw, 3rem);
+      gap: 1.25rem;
     }
 
     .nav-links {
       display: flex;
       align-items: center;
-      gap: clamp(1.2rem, 2vw, 2.2rem);
+      gap: 0.25rem;
       list-style: none;
+      margin: 0;
+      padding: 0.25rem;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 9999px;
     }
 
     .nav-link {
-      color: #d1d1db;
-      font-size: 0.92rem;
-      font-weight: 500;
+      color: #a8a8b8;
+      font-size: 0.86rem;
+      font-weight: 600;
       text-decoration: none;
-      transition: color 0.2s ease;
+      padding: 0.48rem 0.95rem;
+      border-radius: 9999px;
+      transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+      white-space: nowrap;
+      display: inline-block;
     }
 
     .nav-link:hover {
-      color: var(--accent);
+      color: #ffffff;
+      background: rgba(255, 255, 255, 0.1);
+      transform: translateY(-1px);
     }
 
     .btn-get-started {
-      background-color: var(--accent);
+      background: linear-gradient(135deg, var(--accent) 0%, #b8e600 100%);
       color: #000000;
       font-family: var(--font-heading);
-      font-size: 0.88rem;
+      font-size: 0.86rem;
       font-weight: 800;
-      padding: 0.6rem 1.35rem;
-      border-radius: 8px;
+      padding: 0.58rem 1.25rem;
+      border-radius: 9999px;
       text-decoration: none;
       display: inline-flex;
       align-items: center;
+      gap: 0.45rem;
       justify-content: center;
-      transition: all 0.25s ease;
-      box-shadow: 0 0 16px rgba(204, 255, 0, 0.25);
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 4px 18px rgba(204, 255, 0, 0.32);
       white-space: nowrap;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-get-started svg {
+      transition: transform 0.25s ease;
     }
 
     .btn-get-started:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 0 25px rgba(204, 255, 0, 0.5);
-      background-color: #d8ff33;
+      transform: translateY(-2px) scale(1.02);
+      box-shadow: 0 6px 28px rgba(204, 255, 0, 0.58);
+      color: #000000;
+    }
+
+    .btn-get-started:hover svg {
+      transform: translate(2px, -2px);
     }
 
     /* HERO PINNED SECTION CONTAINER (Calibrated height to eliminate empty gap) */
@@ -5200,14 +5280,17 @@
 </head>
 <body>
 
-  <!-- TOP NAVBAR -->
-  <nav class="navbar">
-    <a href="#home" class="nav-logo">
+  <!-- TOP FLOATING GLASS ISLAND NAVBAR -->
+  <nav class="navbar" id="mainNavbar">
+    <a href="#home" class="nav-logo" aria-label="Bhatu Prakash Home">
       <div class="dp-wrapper">
-        <img id="nav-dp" src="avatar-thumb.webp" alt="Bhatu Prakash" class="dp-img" width="42" height="42">
-        <span class="dp-status-dot"></span>
+        <img id="nav-dp" src="avatar-thumb.webp" alt="Bhatu Prakash" class="dp-img" width="40" height="40">
+        <span class="dp-status-dot" title="Available for freelance &amp; fulltime roles"></span>
       </div>
-      <span class="logo-text">Bhatu Prakash</span>
+      <div class="nav-brand-info">
+        <span class="logo-text">Bhatu Prakash</span>
+        <span class="logo-role">Creative Designer</span>
+      </div>
     </a>
 
     <div class="nav-right">
@@ -5220,7 +5303,10 @@
         <li><a href="#testimonials" class="nav-link">Reviews</a></li>
         <li><a href="contact.html" class="nav-link">Contact</a></li>
       </ul>
-      <a href="contact.html" class="btn-get-started">Let's Talk</a>
+      <a href="contact.html" class="btn-get-started">
+        <span>Let's Talk</span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
+      </a>
       <button id="mobileNavToggle" class="mobile-nav-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobileNavDrawer">
         <span class="hamburger-line"></span>
         <span class="hamburger-line"></span>
@@ -11532,6 +11618,11 @@
       function handleNavVisibility() {
         if (!navbar) return;
         const currentScrollY = window.pageYOffset || document.documentElement.scrollTop || 0;
+        if (currentScrollY > 40) {
+          navbar.classList.add('is-scrolled');
+        } else {
+          navbar.classList.remove('is-scrolled');
+        }
         if (currentScrollY <= 80) {
           navbar.classList.remove('nav-hidden');
           lastScrollY = currentScrollY;

@@ -473,8 +473,7 @@ img, video, iframe, canvas, svg {
    -------------------------------------------------------------------------- */
 @media (min-width: 1601px) {
   .navbar {
-    padding-left: clamp(3rem, 8vw, 8rem);
-    padding-right: clamp(3rem, 8vw, 8rem);
+    width: min(1320px, calc(100% - 4rem));
   }
 
   .ui-overlay {
@@ -503,17 +502,18 @@ img, video, iframe, canvas, svg {
    -------------------------------------------------------------------------- */
 @media (max-width: 1200px) {
   .nav-links {
-    gap: clamp(0.9rem, 1.4vw, 1.5rem) !important;
+    gap: 0.2rem !important;
   }
 
   .nav-link {
-    font-size: 0.88rem !important;
+    font-size: 0.82rem !important;
+    padding: 0.42rem 0.75rem !important;
   }
 
   .btn-get-started,
   .btn-nav-back {
-    padding: 8px 16px !important;
-    font-size: 0.85rem !important;
+    padding: 0.52rem 1.05rem !important;
+    font-size: 0.82rem !important;
   }
 
   /* Instagram cards 2 columns */
@@ -533,9 +533,9 @@ img, video, iframe, canvas, svg {
 }
 
 /* --------------------------------------------------------------------------
-   6. BREAKPOINT: <= 1080px (SWITCH TO HAMBURGER & REFINED TABLET)
+   6. BREAKPOINT: <= 1120px (SWITCH TO HAMBURGER & REFINED TABLET)
    -------------------------------------------------------------------------- */
-@media (max-width: 1080px) {
+@media (max-width: 1120px) {
   .navbar .nav-links {
     display: none !important;
   }
@@ -575,11 +575,18 @@ img, video, iframe, canvas, svg {
 @media (max-width: 860px) {
   /* NAVBAR */
   .navbar {
-    padding: 0.65rem 0.95rem !important;
-    gap: 8px !important;
-    width: 100% !important;
-    max-width: 100vw !important;
+    top: 0.75rem !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    width: calc(100% - 1.5rem) !important;
+    max-width: calc(100% - 1.5rem) !important;
+    padding: 0.55rem 0.95rem !important;
+    border-radius: 9999px !important;
     box-sizing: border-box !important;
+  }
+
+  .navbar.nav-hidden {
+    transform: translate(-50%, calc(-100% - 2rem)) !important;
   }
 
   .nav-logo {
@@ -594,6 +601,10 @@ img, video, iframe, canvas, svg {
     text-overflow: ellipsis !important;
     white-space: nowrap !important;
     max-width: 140px !important;
+  }
+
+  .logo-role {
+    display: none !important;
   }
 
   .dp-wrapper {
@@ -1148,7 +1159,10 @@ img, video, iframe, canvas, svg {
 @media (max-width: 480px) {
   /* Ultra-compact top navigation */
   .navbar {
-    padding: 0.6rem 0.85rem !important;
+    top: 0.6rem !important;
+    width: calc(100% - 1.2rem) !important;
+    max-width: calc(100% - 1.2rem) !important;
+    padding: 0.5rem 0.8rem !important;
     gap: 8px !important;
   }
 

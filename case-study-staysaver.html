@@ -14,7 +14,6 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800;12..96,900&family=Caveat:wght@600;700&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
     rel="stylesheet">
-  <link rel="stylesheet" href="responsive.css">
 
   <style>
     /* ==========================================================================
@@ -610,21 +609,29 @@
 
     .cs-mockup-overlay-pill {
       position: absolute;
-      bottom: 1.75rem;
+      bottom: 1.5rem;
       left: 50%;
       transform: translateX(-50%);
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      background: rgba(14, 42, 71, 0.9);
+      background: rgba(14, 42, 71, 0.92);
       color: var(--white);
       font-size: 0.82rem;
       font-weight: 600;
       padding: 0.5rem 1.25rem;
-      border-radius: 999px;
+      border-radius: 9999px;
       backdrop-filter: blur(10px);
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+      -webkit-backdrop-filter: blur(10px);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
       pointer-events: none;
+      white-space: nowrap;
+      width: fit-content;
+      max-width: 90%;
+    }
+
+    .pill-mobile-text {
+      display: none;
     }
 
     .status-pulse-gold {
@@ -1545,20 +1552,48 @@
     }
 
     @media (max-width: 768px) {
-      .nav-links {
-        display: none;
+      .nav-links,
+      .btn-back,
+      .btn-staging {
+        display: none !important;
       }
 
       .mobile-nav-toggle {
-        display: flex;
+        display: flex !important;
       }
 
       .cs-toc-wrapper {
-        top: 66px;
+        display: none !important;
       }
 
-      .cs-toc-label {
-        display: none;
+      .cs-hero-mockup-frame {
+        padding: 0.5rem !important;
+        border-radius: 18px !important;
+        margin-bottom: 1.75rem !important;
+      }
+
+      .cs-mockup-overlay-pill {
+        position: absolute !important;
+        bottom: 8px !important;
+        left: 50% !important;
+        transform: translateX(-50%) !important;
+        width: fit-content !important;
+        max-width: calc(100% - 24px) !important;
+        padding: 5px 14px !important;
+        font-size: 0.72rem !important;
+        white-space: nowrap !important;
+        border-radius: 9999px !important;
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
+        z-index: 5 !important;
+      }
+
+      .pill-desktop-text {
+        display: none !important;
+      }
+
+      .pill-mobile-text {
+        display: inline !important;
       }
 
       .cs-meta-grid {
@@ -1589,6 +1624,7 @@
       }
     }
   </style>
+  <link rel="stylesheet" href="responsive.css">
 </head>
 
 <body>
@@ -1784,7 +1820,8 @@
         <img src="stay-saver.webp" alt="StaySaver Web Platform Desktop Interface" width="1240" height="720">
         <div class="cs-mockup-overlay-pill">
           <span class="status-pulse-gold"></span>
-          StaySaver Web Platform · staysaver.app · Click to Zoom
+          <span class="pill-desktop-text">StaySaver Web Platform · staysaver.app · Click to Zoom</span>
+          <span class="pill-mobile-text">StaySaver · Tap to Zoom 🔍</span>
         </div>
       </div>
 
@@ -2001,7 +2038,12 @@
 
         <div class="mockup-caption-bar">
           <span>BrandMotion.aep: SaaS launch kinetic film highlighting granular hourly time-slice booking and luxury suites.</span>
-          <span class="mockup-badge">🎬 Live Interactive Video</span>
+          <div style="display: flex; gap: 8px; align-items: center;">
+            <button class="cs-video-sound-toggle" aria-label="Toggle Sound" style="background: rgba(15,23,42,0.85); color: #fff; border: 1px solid rgba(255,255,255,0.2); border-radius: 9999px; padding: 4px 12px; font-size: 0.76rem; font-weight: 600; cursor: pointer; display: inline-flex; align-items: center; gap: 5px; transition: all 0.2s;">
+              <span class="sound-icon">🔇</span> <span class="sound-label">Unmute</span>
+            </button>
+            <span class="mockup-badge">🎬 Live Interactive Video</span>
+          </div>
         </div>
       </div>
     </section>
@@ -2354,6 +2396,64 @@
           });
         }
       }, { passive: true });
+
+      // Video Autoplay & Intersection Observer
+      const csVideos = document.querySelectorAll('.hero-mockup-video');
+      csVideos.forEach(video => {
+        video.muted = true;
+        video.defaultMuted = true;
+        video.setAttribute('muted', '');
+        video.setAttribute('playsinline', '');
+        video.setAttribute('webkit-playsinline', '');
+
+        const wrapper = video.closest('.hero-mockup-wrapper') || video.parentElement;
+        const soundBtn = wrapper ? wrapper.querySelector('.cs-video-sound-toggle') : null;
+        if (soundBtn) {
+          soundBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            video.muted = !video.muted;
+            const icon = soundBtn.querySelector('.sound-icon');
+            const label = soundBtn.querySelector('.sound-label');
+            if (video.muted) {
+              if (icon) icon.textContent = '🔇';
+              if (label) label.textContent = 'Unmute';
+            } else {
+              if (icon) icon.textContent = '🔊';
+              if (label) label.textContent = 'Mute';
+              video.play().catch(() => {});
+            }
+          });
+        }
+
+        video.addEventListener('click', () => {
+          if (video.paused) {
+            video.play().catch(() => {});
+          } else {
+            video.pause();
+          }
+        });
+
+        if ('IntersectionObserver' in window) {
+          const videoObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+              if (entry.isIntersecting) {
+                const playPromise = video.play();
+                if (playPromise !== undefined) {
+                  playPromise.catch(() => {
+                    video.muted = true;
+                    video.play().catch(() => {});
+                  });
+                }
+              } else {
+                if (!video.paused) {
+                  video.pause();
+                }
+              }
+            });
+          }, { threshold: 0.25 });
+          videoObserver.observe(video);
+        }
+      });
     })();
   </script>
   <script src="mobile-nav.js"></script>

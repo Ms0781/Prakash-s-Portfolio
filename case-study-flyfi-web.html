@@ -14,7 +14,6 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800;12..96,900&family=Caveat:wght@600;700&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
     rel="stylesheet">
-  <link rel="stylesheet" href="responsive.css">
 
   <style>
     /* ==========================================================================
@@ -1541,6 +1540,7 @@
       }
     }
   </style>
+  <link rel="stylesheet" href="responsive.css">
 </head>
 
 <body>
@@ -2169,7 +2169,12 @@
 
         <div class="mockup-caption-bar">
           <span>FlyFi Web Redesign: 3D flight trajectory radar, airline Wi-Fi speeds, and airport gateway directory</span>
-          <span class="mockup-badge">🎬 Live Interactive Video</span>
+          <div style="display: flex; gap: 8px; align-items: center;">
+            <button class="cs-video-sound-toggle" aria-label="Toggle Sound" style="background: rgba(15,23,42,0.85); color: #fff; border: 1px solid rgba(255,255,255,0.2); border-radius: 9999px; padding: 4px 12px; font-size: 0.76rem; font-weight: 600; cursor: pointer; display: inline-flex; align-items: center; gap: 5px; transition: all 0.2s;">
+              <span class="sound-icon">🔇</span> <span class="sound-label">Unmute</span>
+            </button>
+            <span class="mockup-badge">🎬 Live Interactive Video</span>
+          </div>
         </div>
       </div>
     </section>
@@ -2365,6 +2370,64 @@
           });
         }
       }, { passive: true });
+
+      // Video Autoplay & Intersection Observer
+      const csVideos = document.querySelectorAll('.hero-mockup-video');
+      csVideos.forEach(video => {
+        video.muted = true;
+        video.defaultMuted = true;
+        video.setAttribute('muted', '');
+        video.setAttribute('playsinline', '');
+        video.setAttribute('webkit-playsinline', '');
+
+        const wrapper = video.closest('.hero-mockup-wrapper') || video.parentElement;
+        const soundBtn = wrapper ? wrapper.querySelector('.cs-video-sound-toggle') : null;
+        if (soundBtn) {
+          soundBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            video.muted = !video.muted;
+            const icon = soundBtn.querySelector('.sound-icon');
+            const label = soundBtn.querySelector('.sound-label');
+            if (video.muted) {
+              if (icon) icon.textContent = '🔇';
+              if (label) label.textContent = 'Unmute';
+            } else {
+              if (icon) icon.textContent = '🔊';
+              if (label) label.textContent = 'Mute';
+              video.play().catch(() => {});
+            }
+          });
+        }
+
+        video.addEventListener('click', () => {
+          if (video.paused) {
+            video.play().catch(() => {});
+          } else {
+            video.pause();
+          }
+        });
+
+        if ('IntersectionObserver' in window) {
+          const videoObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+              if (entry.isIntersecting) {
+                const playPromise = video.play();
+                if (playPromise !== undefined) {
+                  playPromise.catch(() => {
+                    video.muted = true;
+                    video.play().catch(() => {});
+                  });
+                }
+              } else {
+                if (!video.paused) {
+                  video.pause();
+                }
+              }
+            });
+          }, { threshold: 0.25 });
+          videoObserver.observe(video);
+        }
+      });
     })();
   </script>
   <script src="mobile-nav.js"></script>

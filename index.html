@@ -7,7 +7,6 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800;12..96,900&family=Caveat:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="responsive.css">
   <style>
     :root {
       --accent: #ccff00;
@@ -205,7 +204,7 @@
       align-items: center;
       justify-content: center;
       pointer-events: none;
-      background-color: var(--bg);
+      background-color: transparent;
       overflow: hidden;
       z-index: 0;
     }
@@ -1170,6 +1169,91 @@
     .figma-frame-wrapper:hover .figma-canvas-badge {
       transform: scale(1.08);
       box-shadow: 0 6px 16px rgba(0, 0, 0, 0.16);
+    }
+
+    /* Motion Video Canvas in Figma Frame */
+    .figma-inner-canvas.motion-video-canvas {
+      background-color: #0b0d11;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      position: relative;
+    }
+
+    .motion-canvas-video-container {
+      position: relative;
+      width: 100%;
+      overflow: hidden;
+      background: #000;
+      border-radius: 2px;
+    }
+
+    .figma-showcase-video {
+      width: 100%;
+      height: auto;
+      display: block;
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
+      cursor: pointer;
+    }
+
+    .motion-canvas-controls {
+      position: absolute;
+      bottom: 14px;
+      left: 14px;
+      right: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      z-index: 6;
+      pointer-events: auto;
+    }
+
+    .motion-canvas-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 7px 14px;
+      background: rgba(15, 23, 42, 0.85);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 9999px;
+      color: #ffffff;
+      font-size: 12px;
+      font-weight: 600;
+      font-family: inherit;
+      cursor: pointer;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.45);
+      transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .motion-canvas-pill:hover {
+      background: rgba(30, 41, 59, 0.95);
+      border-color: rgba(255, 255, 255, 0.38);
+      transform: translateY(-1px);
+    }
+
+    .motion-canvas-pill-action {
+      background: rgba(0, 119, 182, 0.88);
+      border-color: rgba(0, 180, 216, 0.45);
+    }
+
+    .motion-canvas-pill-action:hover {
+      background: rgba(0, 150, 214, 0.98);
+      border-color: rgba(255, 255, 255, 0.55);
+    }
+
+    @media (max-width: 640px) {
+      .motion-canvas-controls {
+        bottom: 10px;
+        left: 10px;
+        right: 10px;
+        gap: 6px;
+      }
+      .motion-canvas-pill {
+        padding: 5px 10px;
+        font-size: 11px;
+      }
     }
 
     /* Centered Components Cluster */
@@ -5112,6 +5196,7 @@
     }
 
   </style>
+  <link rel="stylesheet" href="responsive.css">
 </head>
 <body>
 
@@ -5185,16 +5270,6 @@
   <!-- HERO SECTION WITH PINNED CANVAS SCROLL ANIMATION -->
   <section id="home" class="hero-scroll-wrapper">
     <div class="hero-sticky">
-      
-      <!-- Canvas Animation Background -->
-      <div class="canvas-container">
-        <canvas id="canvas"></canvas>
-      </div>
-
-      <!-- "About me" floating badge -->
-      <div class="about-me-badge">
-        <span class="about-me-script">About me</span>
-      </div>
 
       <!-- Pinned UI Content Overlay -->
       <div class="ui-overlay">
@@ -5224,6 +5299,18 @@
               <span class="bio-highlight">UI/UX Designer, Frontend Developer & Visual Creator</span> — crafting modern interfaces, WordPress & Shopify stores, graphic design, and video editing.
             </p>
 
+            <!-- Hero Action Buttons -->
+            <div class="hero-cta-group">
+              <a href="#projects" class="hero-btn-primary">
+                <span>Explore Projects</span>
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg>
+              </a>
+              <a href="contact.html" class="hero-btn-secondary">
+                <span>Let's Talk</span>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+              </a>
+            </div>
+
             <div class="tags-container">
               <span class="tag-pill">UI/UX Design</span>
               <span class="tag-pill">Frontend Dev</span>
@@ -5236,6 +5323,16 @@
               <span class="tag-pill">After Effects</span>
             </div>
           </section>
+
+          <!-- 3D AVATAR SPOTLIGHT CONTAINER -->
+          <div class="canvas-container" id="canvasContainer" aria-label="3D Avatar interactive model">
+            <!-- "About me" floating badge -->
+            <div class="about-me-badge">
+              <span class="about-me-script">About me</span>
+            </div>
+            <canvas id="canvas"></canvas>
+            <span class="avatar-swipe-hint">✦ Swipe to rotate 360° ✦</span>
+          </div>
 
           <!-- RIGHT COLUMN -->
           <section class="right-section">
@@ -5633,15 +5730,6 @@
             <div class="pc-header">
               <div class="pc-script">Selected work</div>
               <h2 class="pc-title">Projects &amp; Clients</h2>
-            </div>
-            <!-- Floating Filter Pill Controls -->
-            <div class="pc-filter-wrapper">
-              <div class="pc-filter-bar">
-                <button class="pc-filter-btn active" data-filter="all">All</button>
-                <button class="pc-filter-btn" data-filter="uiux">UI/UX</button>
-                <button class="pc-filter-btn" data-filter="web">Web Dev</button>
-                <button class="pc-filter-btn" data-filter="motion">Motion</button>
-              </div>
             </div>
           </div>
 
@@ -9946,16 +10034,31 @@
               <span class="figma-handle handle-bl"></span>
               <span class="figma-handle handle-br"></span>
 
-              <div class="figma-inner-canvas">
-                <img src="video-editing.webp" alt="Video Editing &amp; 3D Logo Animation Process - Aurora Motion Case Study" class="figma-showcase-img" loading="lazy" decoding="async">
-                <!-- Clean Discreet Adobe Tool Badge in Top-Right Corner -->
-                <div class="figma-canvas-badge video-canvas-badge" title="Crafted in Adobe After Effects &amp; Premiere Pro">
-                  <svg width="34" height="18" viewBox="0 0 58 30" fill="none">
-                    <rect x="0" y="0" width="27" height="30" rx="4" fill="#00005B" stroke="#9999FF" stroke-width="1.6"/>
-                    <text x="13.5" y="20.5" fill="#9999FF" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-weight="800" font-size="13" text-anchor="middle">Ae</text>
-                    <rect x="31" y="0" width="27" height="30" rx="4" fill="#00005B" stroke="#EA77FF" stroke-width="1.6"/>
-                    <text x="44.5" y="20.5" fill="#EA77FF" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-weight="800" font-size="13" text-anchor="middle">Pr</text>
-                  </svg>
+              <div class="figma-inner-canvas motion-video-canvas">
+                <div class="motion-canvas-video-container">
+                  <video id="process-showcase-video" class="figma-showcase-img figma-showcase-video" src="assets/videos/design-website.mp4" poster="assets/video-thumbs/design-website.png" autoplay loop muted playsinline preload="auto" title="Digital Agency Experience — High-End Web Experience &amp; UI Motion"></video>
+                  
+                  <!-- Clean Discreet Adobe Tool Badge in Top-Right Corner -->
+                  <div class="figma-canvas-badge video-canvas-badge" title="Crafted in Adobe After Effects &amp; Premiere Pro">
+                    <svg width="34" height="18" viewBox="0 0 58 30" fill="none">
+                      <rect x="0" y="0" width="27" height="30" rx="4" fill="#00005B" stroke="#9999FF" stroke-width="1.6"/>
+                      <text x="13.5" y="20.5" fill="#9999FF" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-weight="800" font-size="13" text-anchor="middle">Ae</text>
+                      <rect x="31" y="0" width="27" height="30" rx="4" fill="#00005B" stroke="#EA77FF" stroke-width="1.6"/>
+                      <text x="44.5" y="20.5" fill="#EA77FF" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-weight="800" font-size="13" text-anchor="middle">Pr</text>
+                    </svg>
+                  </div>
+
+                  <!-- Overlay Action Bar: Sound Toggle & Full HD Showcase Modal -->
+                  <div class="motion-canvas-controls">
+                    <button type="button" id="motion-canvas-sound-btn" class="motion-canvas-pill" aria-label="Toggle Sound">
+                      <span id="motion-canvas-sound-icon">🔇</span>
+                      <span id="motion-canvas-sound-text">Tap for Sound</span>
+                    </button>
+                    <button type="button" id="motion-canvas-modal-btn" class="motion-canvas-pill motion-canvas-pill-action" aria-label="Watch Full Digital Agency Showcase in HD Modal">
+                      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
+                      <span>Full Showcase</span>
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
@@ -10021,9 +10124,9 @@
           </div>
 
           <div class="vs-filter-bar" role="tablist" aria-label="Video Category Filters">
-            <button class="vs-filter-btn active" data-filter="all">All Works (16)</button>
+            <button class="vs-filter-btn active" data-filter="all">All Works (17)</button>
             <button class="vs-filter-btn" data-filter="reels">Reels &amp; Shorts (6)</button>
-            <button class="vs-filter-btn" data-filter="commercial">Commercial &amp; Films (7)</button>
+            <button class="vs-filter-btn" data-filter="commercial">Commercial &amp; Films (8)</button>
             <button class="vs-filter-btn" data-filter="logo">Motion Idents (3)</button>
           </div>
         </div>
@@ -10601,7 +10704,41 @@
             </div>
           </div>
 
-          <!-- Card 16: Minimalist Geometric Logo Reveal (Square) -->
+          <!-- Card 16: PMS Healthcare AI Dashboard & Audio Transcription Showcase -->
+          <div class="video-card" data-category="commercial" data-format="landscape" data-category-name="Healthcare AI SaaS Showcase" data-title="PMS &amp; iTranscript 360 — AI Medical Consultation &amp; Transcription Dashboard" data-thumb="assets/video-thumbs/dashbord_2.png" data-video="assets/videos/dashbord_2.mp4" tabindex="0" role="button" aria-label="Watch PMS AI Medical Consultation &amp; Transcription Dashboard Showcase">
+            <div class="video-media-wrap">
+              <img src="assets/video-thumbs/dashbord_2.png" alt="PMS &amp; iTranscript 360 — AI Medical Consultation &amp; Transcription Dashboard" class="video-thumb-img" loading="lazy">
+              <span class="video-cat-badge">AI Dashboard</span>
+              <div class="video-play-btn" aria-hidden="true">
+                <span class="play-pulse"></span>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M8 5v14l11-7z"/>
+                </svg>
+              </div>
+              <span class="video-duration-badge">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                0:42
+              </span>
+            </div>
+            <div class="video-card-info">
+              <div class="video-card-meta">
+                <span class="video-client-name">PMS Healthcare SaaS</span>
+                <div class="video-tool-tags">
+                  <span class="tool-tag tag-saas-mini">AI SaaS</span>
+                  <span class="tool-tag tag-web-mini">Dashboard</span>
+                </div>
+              </div>
+              <h3 class="video-card-title">PMS &amp; iTranscript 360 — AI Medical Consultation &amp; Transcription Dashboard</h3>
+              <div class="video-card-footer">
+                <span class="video-play-link">
+                  Watch Showcase
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 17: Minimalist Geometric Logo Reveal (Square) -->
           <div class="video-card" data-category="logo" data-format="square" data-category-name="Brand Identity Motion" data-title="Minimal Geometric Monogram — Brand Logo Animation &amp; Reveal" data-thumb="assets/video-thumbs/motion-logo-ident.png" data-video="assets/videos/motion-logo-ident.mp4" tabindex="0" role="button" aria-label="Watch Minimal Geometric Monogram Logo Reveal">
             <div class="video-media-wrap">
               <img src="assets/video-thumbs/motion-logo-ident.png" alt="Minimal Geometric Monogram — Brand Logo Animation &amp; Reveal" class="video-thumb-img" loading="lazy">
@@ -10659,6 +10796,10 @@
         </div>
         <div class="video-modal-body" id="modal-body">
           <video id="modal-video-player" class="modal-video-element" controls playsinline></video>
+          <button id="modal-sound-toggle" class="modal-sound-btn" aria-label="Toggle Sound" style="position: absolute; bottom: 20px; left: 20px; z-index: 25; background: rgba(0,0,0,0.75); color: #fff; border: 1px solid rgba(255,255,255,0.25); border-radius: 9999px; padding: 6px 14px; font-size: 0.78rem; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 6px; backdrop-filter: blur(8px); transition: all 0.2s;">
+            <span id="modal-sound-icon">🔇</span>
+            <span id="modal-sound-text">Tap for Sound</span>
+          </button>
           <div id="modal-fallback" class="modal-video-fallback">
             <img id="modal-fallback-img" src="" alt="Video Preview">
             <div class="modal-fallback-overlay">
@@ -10716,7 +10857,7 @@
           <span class="tools-script">Arsenal &amp; Proficiency</span>
           <h2 class="tools-title">Creative &amp; Technical Stack</h2>
           <p class="tools-desc">
-            Industry-standard design applications, 3D motion engines, and modern frontend frameworks I utilize to craft bespoke visual experiences and digital products.
+            Industry-standard design applications, motion graphic suites, and modern frontend frameworks I utilize to craft bespoke visual experiences and digital products.
           </p>
         </div>
       </div>
@@ -10725,40 +10866,86 @@
         <!-- Track 1: Design & Motion (Scroll Left) -->
         <div class="marquee-row">
           <div class="marquee-content">
+            <!-- First Half: Repeated for rich density & zero blank gaps -->
             <div class="tool-pill"><div class="tool-pill-icon icon-figma">Fg</div><span class="tool-pill-name">Figma</span><span class="tool-pill-tag">Design Systems</span></div>
             <div class="tool-pill"><div class="tool-pill-icon icon-ae">Ae</div><span class="tool-pill-name">Adobe After Effects</span><span class="tool-pill-tag">Motion FX</span></div>
             <div class="tool-pill"><div class="tool-pill-icon icon-pr">Pr</div><span class="tool-pill-name">Adobe Premiere Pro</span><span class="tool-pill-tag">4K Editing</span></div>
             <div class="tool-pill"><div class="tool-pill-icon icon-ai">Ai</div><span class="tool-pill-name">Adobe Illustrator</span><span class="tool-pill-tag">Vectors</span></div>
             <div class="tool-pill"><div class="tool-pill-icon icon-ps">Ps</div><span class="tool-pill-name">Adobe Photoshop</span><span class="tool-pill-tag">Compositing</span></div>
-            <div class="tool-pill"><div class="tool-pill-icon icon-c4d">C4D</div><span class="tool-pill-name">Cinema 4D</span><span class="tool-pill-tag">3D Ident</span></div>
-            <div class="tool-pill"><div class="tool-pill-icon icon-blender">Bl</div><span class="tool-pill-name">Blender 3D</span><span class="tool-pill-tag">Shading</span></div>
-            <!-- Duplicate for seamless infinite loop -->
+
             <div class="tool-pill"><div class="tool-pill-icon icon-figma">Fg</div><span class="tool-pill-name">Figma</span><span class="tool-pill-tag">Design Systems</span></div>
             <div class="tool-pill"><div class="tool-pill-icon icon-ae">Ae</div><span class="tool-pill-name">Adobe After Effects</span><span class="tool-pill-tag">Motion FX</span></div>
             <div class="tool-pill"><div class="tool-pill-icon icon-pr">Pr</div><span class="tool-pill-name">Adobe Premiere Pro</span><span class="tool-pill-tag">4K Editing</span></div>
             <div class="tool-pill"><div class="tool-pill-icon icon-ai">Ai</div><span class="tool-pill-name">Adobe Illustrator</span><span class="tool-pill-tag">Vectors</span></div>
             <div class="tool-pill"><div class="tool-pill-icon icon-ps">Ps</div><span class="tool-pill-name">Adobe Photoshop</span><span class="tool-pill-tag">Compositing</span></div>
-            <div class="tool-pill"><div class="tool-pill-icon icon-c4d">C4D</div><span class="tool-pill-name">Cinema 4D</span><span class="tool-pill-tag">3D Ident</span></div>
-            <div class="tool-pill"><div class="tool-pill-icon icon-blender">Bl</div><span class="tool-pill-name">Blender 3D</span><span class="tool-pill-tag">Shading</span></div>
+
+            <div class="tool-pill"><div class="tool-pill-icon icon-figma">Fg</div><span class="tool-pill-name">Figma</span><span class="tool-pill-tag">Design Systems</span></div>
+            <div class="tool-pill"><div class="tool-pill-icon icon-ae">Ae</div><span class="tool-pill-name">Adobe After Effects</span><span class="tool-pill-tag">Motion FX</span></div>
+            <div class="tool-pill"><div class="tool-pill-icon icon-pr">Pr</div><span class="tool-pill-name">Adobe Premiere Pro</span><span class="tool-pill-tag">4K Editing</span></div>
+            <div class="tool-pill"><div class="tool-pill-icon icon-ai">Ai</div><span class="tool-pill-name">Adobe Illustrator</span><span class="tool-pill-tag">Vectors</span></div>
+            <div class="tool-pill"><div class="tool-pill-icon icon-ps">Ps</div><span class="tool-pill-name">Adobe Photoshop</span><span class="tool-pill-tag">Compositing</span></div>
+
+            <!-- Second Half: Mirror Duplicate for seamless infinite loop with zero jump -->
+            <div class="tool-pill"><div class="tool-pill-icon icon-figma">Fg</div><span class="tool-pill-name">Figma</span><span class="tool-pill-tag">Design Systems</span></div>
+            <div class="tool-pill"><div class="tool-pill-icon icon-ae">Ae</div><span class="tool-pill-name">Adobe After Effects</span><span class="tool-pill-tag">Motion FX</span></div>
+            <div class="tool-pill"><div class="tool-pill-icon icon-pr">Pr</div><span class="tool-pill-name">Adobe Premiere Pro</span><span class="tool-pill-tag">4K Editing</span></div>
+            <div class="tool-pill"><div class="tool-pill-icon icon-ai">Ai</div><span class="tool-pill-name">Adobe Illustrator</span><span class="tool-pill-tag">Vectors</span></div>
+            <div class="tool-pill"><div class="tool-pill-icon icon-ps">Ps</div><span class="tool-pill-name">Adobe Photoshop</span><span class="tool-pill-tag">Compositing</span></div>
+
+            <div class="tool-pill"><div class="tool-pill-icon icon-figma">Fg</div><span class="tool-pill-name">Figma</span><span class="tool-pill-tag">Design Systems</span></div>
+            <div class="tool-pill"><div class="tool-pill-icon icon-ae">Ae</div><span class="tool-pill-name">Adobe After Effects</span><span class="tool-pill-tag">Motion FX</span></div>
+            <div class="tool-pill"><div class="tool-pill-icon icon-pr">Pr</div><span class="tool-pill-name">Adobe Premiere Pro</span><span class="tool-pill-tag">4K Editing</span></div>
+            <div class="tool-pill"><div class="tool-pill-icon icon-ai">Ai</div><span class="tool-pill-name">Adobe Illustrator</span><span class="tool-pill-tag">Vectors</span></div>
+            <div class="tool-pill"><div class="tool-pill-icon icon-ps">Ps</div><span class="tool-pill-name">Adobe Photoshop</span><span class="tool-pill-tag">Compositing</span></div>
+
+            <div class="tool-pill"><div class="tool-pill-icon icon-figma">Fg</div><span class="tool-pill-name">Figma</span><span class="tool-pill-tag">Design Systems</span></div>
+            <div class="tool-pill"><div class="tool-pill-icon icon-ae">Ae</div><span class="tool-pill-name">Adobe After Effects</span><span class="tool-pill-tag">Motion FX</span></div>
+            <div class="tool-pill"><div class="tool-pill-icon icon-pr">Pr</div><span class="tool-pill-name">Adobe Premiere Pro</span><span class="tool-pill-tag">4K Editing</span></div>
+            <div class="tool-pill"><div class="tool-pill-icon icon-ai">Ai</div><span class="tool-pill-name">Adobe Illustrator</span><span class="tool-pill-tag">Vectors</span></div>
+            <div class="tool-pill"><div class="tool-pill-icon icon-ps">Ps</div><span class="tool-pill-name">Adobe Photoshop</span><span class="tool-pill-tag">Compositing</span></div>
           </div>
         </div>
 
         <!-- Track 2: Web & Engineering (Scroll Right) -->
         <div class="marquee-row reverse">
           <div class="marquee-content">
+            <!-- First Half: Repeated for rich density & zero blank gaps -->
             <div class="tool-pill"><div class="tool-pill-icon icon-shopify">Sp</div><span class="tool-pill-name">Shopify &amp; Liquid</span><span class="tool-pill-tag">E-Commerce</span></div>
             <div class="tool-pill"><div class="tool-pill-icon icon-react">Re</div><span class="tool-pill-name">React / Next.js</span><span class="tool-pill-tag">Frontend</span></div>
             <div class="tool-pill"><div class="tool-pill-icon icon-js">JS</div><span class="tool-pill-name">JavaScript (ES6+)</span><span class="tool-pill-tag">Canvas &amp; DOM</span></div>
             <div class="tool-pill"><div class="tool-pill-icon icon-css">CSS</div><span class="tool-pill-name">CSS3 &amp; Animations</span><span class="tool-pill-tag">Responsive UI</span></div>
             <div class="tool-pill"><div class="tool-pill-icon icon-wp">Wp</div><span class="tool-pill-name">WordPress &amp; Elementor</span><span class="tool-pill-tag">Dynamic CMS</span></div>
-            <div class="tool-pill"><div class="tool-pill-icon icon-figma">Wf</div><span class="tool-pill-name">Webflow</span><span class="tool-pill-tag">Visual Dev</span></div>
-            <!-- Duplicate for seamless infinite loop -->
+
             <div class="tool-pill"><div class="tool-pill-icon icon-shopify">Sp</div><span class="tool-pill-name">Shopify &amp; Liquid</span><span class="tool-pill-tag">E-Commerce</span></div>
             <div class="tool-pill"><div class="tool-pill-icon icon-react">Re</div><span class="tool-pill-name">React / Next.js</span><span class="tool-pill-tag">Frontend</span></div>
             <div class="tool-pill"><div class="tool-pill-icon icon-js">JS</div><span class="tool-pill-name">JavaScript (ES6+)</span><span class="tool-pill-tag">Canvas &amp; DOM</span></div>
             <div class="tool-pill"><div class="tool-pill-icon icon-css">CSS</div><span class="tool-pill-name">CSS3 &amp; Animations</span><span class="tool-pill-tag">Responsive UI</span></div>
             <div class="tool-pill"><div class="tool-pill-icon icon-wp">Wp</div><span class="tool-pill-name">WordPress &amp; Elementor</span><span class="tool-pill-tag">Dynamic CMS</span></div>
-            <div class="tool-pill"><div class="tool-pill-icon icon-figma">Wf</div><span class="tool-pill-name">Webflow</span><span class="tool-pill-tag">Visual Dev</span></div>
+
+            <div class="tool-pill"><div class="tool-pill-icon icon-shopify">Sp</div><span class="tool-pill-name">Shopify &amp; Liquid</span><span class="tool-pill-tag">E-Commerce</span></div>
+            <div class="tool-pill"><div class="tool-pill-icon icon-react">Re</div><span class="tool-pill-name">React / Next.js</span><span class="tool-pill-tag">Frontend</span></div>
+            <div class="tool-pill"><div class="tool-pill-icon icon-js">JS</div><span class="tool-pill-name">JavaScript (ES6+)</span><span class="tool-pill-tag">Canvas &amp; DOM</span></div>
+            <div class="tool-pill"><div class="tool-pill-icon icon-css">CSS</div><span class="tool-pill-name">CSS3 &amp; Animations</span><span class="tool-pill-tag">Responsive UI</span></div>
+            <div class="tool-pill"><div class="tool-pill-icon icon-wp">Wp</div><span class="tool-pill-name">WordPress &amp; Elementor</span><span class="tool-pill-tag">Dynamic CMS</span></div>
+
+            <!-- Second Half: Mirror Duplicate for seamless infinite loop with zero jump -->
+            <div class="tool-pill"><div class="tool-pill-icon icon-shopify">Sp</div><span class="tool-pill-name">Shopify &amp; Liquid</span><span class="tool-pill-tag">E-Commerce</span></div>
+            <div class="tool-pill"><div class="tool-pill-icon icon-react">Re</div><span class="tool-pill-name">React / Next.js</span><span class="tool-pill-tag">Frontend</span></div>
+            <div class="tool-pill"><div class="tool-pill-icon icon-js">JS</div><span class="tool-pill-name">JavaScript (ES6+)</span><span class="tool-pill-tag">Canvas &amp; DOM</span></div>
+            <div class="tool-pill"><div class="tool-pill-icon icon-css">CSS</div><span class="tool-pill-name">CSS3 &amp; Animations</span><span class="tool-pill-tag">Responsive UI</span></div>
+            <div class="tool-pill"><div class="tool-pill-icon icon-wp">Wp</div><span class="tool-pill-name">WordPress &amp; Elementor</span><span class="tool-pill-tag">Dynamic CMS</span></div>
+
+            <div class="tool-pill"><div class="tool-pill-icon icon-shopify">Sp</div><span class="tool-pill-name">Shopify &amp; Liquid</span><span class="tool-pill-tag">E-Commerce</span></div>
+            <div class="tool-pill"><div class="tool-pill-icon icon-react">Re</div><span class="tool-pill-name">React / Next.js</span><span class="tool-pill-tag">Frontend</span></div>
+            <div class="tool-pill"><div class="tool-pill-icon icon-js">JS</div><span class="tool-pill-name">JavaScript (ES6+)</span><span class="tool-pill-tag">Canvas &amp; DOM</span></div>
+            <div class="tool-pill"><div class="tool-pill-icon icon-css">CSS</div><span class="tool-pill-name">CSS3 &amp; Animations</span><span class="tool-pill-tag">Responsive UI</span></div>
+            <div class="tool-pill"><div class="tool-pill-icon icon-wp">Wp</div><span class="tool-pill-name">WordPress &amp; Elementor</span><span class="tool-pill-tag">Dynamic CMS</span></div>
+
+            <div class="tool-pill"><div class="tool-pill-icon icon-shopify">Sp</div><span class="tool-pill-name">Shopify &amp; Liquid</span><span class="tool-pill-tag">E-Commerce</span></div>
+            <div class="tool-pill"><div class="tool-pill-icon icon-react">Re</div><span class="tool-pill-name">React / Next.js</span><span class="tool-pill-tag">Frontend</span></div>
+            <div class="tool-pill"><div class="tool-pill-icon icon-js">JS</div><span class="tool-pill-name">JavaScript (ES6+)</span><span class="tool-pill-tag">Canvas &amp; DOM</span></div>
+            <div class="tool-pill"><div class="tool-pill-icon icon-css">CSS</div><span class="tool-pill-name">CSS3 &amp; Animations</span><span class="tool-pill-tag">Responsive UI</span></div>
+            <div class="tool-pill"><div class="tool-pill-icon icon-wp">Wp</div><span class="tool-pill-name">WordPress &amp; Elementor</span><span class="tool-pill-tag">Dynamic CMS</span></div>
           </div>
         </div>
       </div>
@@ -10827,7 +11014,7 @@
             </div>
             <div class="t-metric-col">
               <span class="t-metric-label">Project Scope</span>
-              <span class="t-metric-val" id="tSpotScope">After Effects 3D / Cinema 4D / UI</span>
+              <span class="t-metric-val" id="tSpotScope">After Effects 3D / Motion Graphics / UI</span>
             </div>
             <div class="t-metric-col">
               <span class="t-metric-label">Client Location</span>
@@ -11173,8 +11360,12 @@
 
       function resize() {
         const dpr = Math.min(window.devicePixelRatio || 1, 2);
-        canvas.width = Math.round(window.innerWidth * dpr);
-        canvas.height = Math.round(window.innerHeight * dpr);
+        const container = document.getElementById('canvasContainer');
+        const isMobile = window.innerWidth <= 860;
+        const w = (isMobile && container && container.clientWidth > 0) ? container.clientWidth : window.innerWidth;
+        const h = (isMobile && container && container.clientHeight > 0) ? container.clientHeight : window.innerHeight;
+        canvas.width = Math.round(w * dpr);
+        canvas.height = Math.round(h * dpr);
         ctx.imageSmoothingEnabled = true;
         ctx.imageSmoothingQuality = 'high';
         needsRedraw = true;
@@ -11194,7 +11385,13 @@
         const w = iw * scale;
         const h = ih * scale;
         const x = (cw - w) / 2;
-        const y = (ch - h) / 2;
+        let y = (ch - h) / 2;
+
+        // On mobile, position avatar upper body perfectly in the spotlight window
+        if (window.innerWidth <= 860) {
+          const dpr = Math.min(window.devicePixelRatio || 1, 2);
+          y = (ch - h) / 2 + (20 * dpr);
+        }
 
         ctx.drawImage(img, x, y, w, h);
       }
@@ -11905,8 +12102,23 @@
           if (modalVideoPlayer) {
             modalVideoPlayer.src = videoSrc;
             modalVideoPlayer.style.display = 'block';
+            modalVideoPlayer.muted = true;
+            modalVideoPlayer.setAttribute('muted', '');
+            modalVideoPlayer.setAttribute('playsinline', '');
+            modalVideoPlayer.setAttribute('webkit-playsinline', '');
+            modalVideoPlayer.currentTime = 0;
             modalVideoPlayer.load();
-            modalVideoPlayer.play().catch(() => {});
+
+            const playPromise = modalVideoPlayer.play();
+            if (playPromise !== undefined) {
+              playPromise.then(() => {
+                updateModalSoundBtn();
+              }).catch(() => {
+                modalVideoPlayer.muted = true;
+                modalVideoPlayer.play().catch(() => {});
+                updateModalSoundBtn();
+              });
+            }
           }
           if (modalFallback) modalFallback.style.display = 'none';
         } else {
@@ -11986,6 +12198,184 @@
         });
       }
 
+      // Modal sound toggle button
+      const modalSoundToggle = document.getElementById('modal-sound-toggle');
+      function updateModalSoundBtn() {
+        if (!modalSoundToggle || !modalVideoPlayer) return;
+        const icon = document.getElementById('modal-sound-icon');
+        const text = document.getElementById('modal-sound-text');
+        if (modalVideoPlayer.muted) {
+          if (icon) icon.textContent = '🔇';
+          if (text) text.textContent = 'Tap for Sound';
+        } else {
+          if (icon) icon.textContent = '🔊';
+          if (text) text.textContent = 'Mute';
+        }
+      }
+      if (modalSoundToggle && modalVideoPlayer) {
+        modalSoundToggle.addEventListener('click', function (e) {
+          e.stopPropagation();
+          modalVideoPlayer.muted = !modalVideoPlayer.muted;
+          updateModalSoundBtn();
+          if (modalVideoPlayer.paused) {
+            modalVideoPlayer.play().catch(() => {});
+          }
+        });
+      }
+
+      // Live Video Preview on Card Hover (Desktop) and In-View (Mobile)
+      vsCards.forEach(card => {
+        const videoSrc = card.getAttribute('data-video');
+        const mediaWrap = card.querySelector('.video-media-wrap');
+        if (!videoSrc || !mediaWrap) return;
+
+        let previewVideo = null;
+
+        function getOrCreatePreview() {
+          if (!previewVideo) {
+            previewVideo = document.createElement('video');
+            previewVideo.className = 'video-card-inline-preview';
+            previewVideo.src = videoSrc;
+            previewVideo.muted = true;
+            previewVideo.loop = true;
+            previewVideo.playsInline = true;
+            previewVideo.setAttribute('muted', '');
+            previewVideo.setAttribute('playsinline', '');
+            previewVideo.setAttribute('webkit-playsinline', '');
+            previewVideo.preload = 'metadata';
+            previewVideo.style.cssText = 'position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: 1; opacity: 0; transition: opacity 0.3s ease; pointer-events: none; border-radius: inherit;';
+            mediaWrap.appendChild(previewVideo);
+          }
+          return previewVideo;
+        }
+
+        // Desktop Hover Preview
+        card.addEventListener('mouseenter', () => {
+          const vid = getOrCreatePreview();
+          vid.play().then(() => {
+            vid.style.opacity = '1';
+          }).catch(() => {});
+        });
+
+        card.addEventListener('mouseleave', () => {
+          if (previewVideo) {
+            previewVideo.style.opacity = '0';
+            previewVideo.pause();
+            previewVideo.currentTime = 0;
+          }
+        });
+      });
+
+      // Mobile In-View Video Preview
+      if ('IntersectionObserver' in window && window.innerWidth <= 768) {
+        const cardObserver = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            const card = entry.target;
+            const videoSrc = card.getAttribute('data-video');
+            const mediaWrap = card.querySelector('.video-media-wrap');
+            if (!videoSrc || !mediaWrap) return;
+
+            let vid = mediaWrap.querySelector('.video-card-inline-preview');
+            if (entry.isIntersecting) {
+              if (!vid) {
+                vid = document.createElement('video');
+                vid.className = 'video-card-inline-preview';
+                vid.src = videoSrc;
+                vid.muted = true;
+                vid.loop = true;
+                vid.playsInline = true;
+                vid.setAttribute('muted', '');
+                vid.setAttribute('playsinline', '');
+                vid.setAttribute('webkit-playsinline', '');
+                vid.preload = 'metadata';
+                vid.style.cssText = 'position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: 1; opacity: 0; transition: opacity 0.3s ease; pointer-events: none; border-radius: inherit;';
+                mediaWrap.appendChild(vid);
+              }
+              vid.play().then(() => {
+                vid.style.opacity = '1';
+              }).catch(() => {});
+            } else {
+              if (vid) {
+                vid.style.opacity = '0';
+                vid.pause();
+              }
+            }
+          });
+        }, { threshold: 0.6 });
+
+        vsCards.forEach(c => cardObserver.observe(c));
+      }
+
+      // Motion Process Canvas Video - Controls & Modal Integration
+      const processVideo = document.getElementById('process-showcase-video');
+      const motionSoundBtn = document.getElementById('motion-canvas-sound-btn');
+      const motionModalBtn = document.getElementById('motion-canvas-modal-btn');
+
+      if (processVideo && motionSoundBtn) {
+        motionSoundBtn.addEventListener('click', function(e) {
+          e.stopPropagation();
+          processVideo.muted = !processVideo.muted;
+          const soundIcon = document.getElementById('motion-canvas-sound-icon');
+          const soundText = document.getElementById('motion-canvas-sound-text');
+          if (processVideo.muted) {
+            if (soundIcon) soundIcon.textContent = '🔇';
+            if (soundText) soundText.textContent = 'Tap for Sound';
+          } else {
+            if (soundIcon) soundIcon.textContent = '🔊';
+            if (soundText) soundText.textContent = 'Mute Sound';
+          }
+          if (processVideo.paused) {
+            processVideo.play().catch(() => {});
+          }
+        });
+      }
+
+      function openMotionProcessModal() {
+        const agencyCard = document.querySelector('.video-card[data-video*="design-website.mp4"]');
+        if (agencyCard && typeof openVideoModal === 'function') {
+          openVideoModal(agencyCard);
+        } else if (videoModal && modalVideoPlayer) {
+          if (modalTitle) modalTitle.textContent = 'Digital Agency Experience — High-End Web Experience & UI Motion';
+          if (modalCategory) modalCategory.textContent = 'Web UI/UX Showcase';
+          modalVideoPlayer.src = 'assets/videos/design-website.mp4';
+          modalVideoPlayer.style.display = 'block';
+          modalVideoPlayer.muted = false;
+          modalVideoPlayer.currentTime = 0;
+          videoModal.classList.add('is-open');
+          videoModal.setAttribute('aria-hidden', 'false');
+          document.body.style.overflow = 'hidden';
+          modalVideoPlayer.play().catch(() => {});
+          if (typeof updateModalSoundBtn === 'function') updateModalSoundBtn();
+        }
+      }
+
+      if (motionModalBtn) {
+        motionModalBtn.addEventListener('click', function(e) {
+          e.stopPropagation();
+          openMotionProcessModal();
+        });
+      }
+
+      if (processVideo) {
+        processVideo.addEventListener('click', function(e) {
+          e.stopPropagation();
+          openMotionProcessModal();
+        });
+
+        if ('IntersectionObserver' in window) {
+          const processVideoObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+              if (entry.isIntersecting) {
+                processVideo.play().catch(() => {});
+              } else {
+                processVideo.pause();
+              }
+            });
+          }, { threshold: 0.2 });
+          processVideoObserver.observe(processVideo);
+        }
+      }
+
       // =========================================================
       // FAQ Accordion Interaction
       // =========================================================
@@ -12017,7 +12407,7 @@
           category: "3D SaaS Commercial & UI",
           quote: "“Bhatu took our raw SaaS platform and transformed it into a breathtaking kinetic commercial and cohesive design system. His graph-editor easing and 3D lighting in After Effects are genuinely world-class. Our demo signups surged immediately after launch.”",
           outcome: "+340% Higher Conversion Rate",
-          scope: "After Effects 3D / Cinema 4D / UI",
+          scope: "After Effects 3D / Motion Graphics / UI",
           location: "San Francisco, USA 🇺🇸",
           avatar: "KV",
           avatarColor: "#6abf28",
@@ -12256,6 +12646,57 @@
       }
 
       requestAnimationFrame(tick);
+
+      // Interactive 3D Avatar Swipe/Drag to Spin 360° (Touch & Mouse)
+      const containerEl = document.getElementById('canvasContainer') || canvas;
+      if (containerEl) {
+        let dragStartX = 0;
+        let startFrame = 0;
+        let isDragging = false;
+
+        const onDragStart = (clientX) => {
+          dragStartX = clientX;
+          startFrame = currentFrame;
+          isDragging = true;
+        };
+
+        const onDragMove = (clientX) => {
+          if (!isDragging) return;
+          const deltaX = clientX - dragStartX;
+          const frameDelta = deltaX * 0.45;
+          let newFrame = (startFrame - frameDelta) % TOTAL_FRAMES;
+          if (newFrame < 0) newFrame += TOTAL_FRAMES;
+          targetFrame = newFrame;
+          currentFrame = newFrame;
+          needsRedraw = true;
+          renderFrame(Math.round(currentFrame));
+        };
+
+        const onDragEnd = () => {
+          isDragging = false;
+        };
+
+        containerEl.addEventListener('touchstart', (e) => {
+          if (e.touches && e.touches.length > 0) onDragStart(e.touches[0].clientX);
+        }, { passive: true });
+
+        containerEl.addEventListener('touchmove', (e) => {
+          if (e.touches && e.touches.length > 0) onDragMove(e.touches[0].clientX);
+        }, { passive: true });
+
+        containerEl.addEventListener('touchend', onDragEnd, { passive: true });
+        containerEl.addEventListener('touchcancel', onDragEnd, { passive: true });
+
+        containerEl.addEventListener('mousedown', (e) => {
+          onDragStart(e.clientX);
+        });
+
+        window.addEventListener('mousemove', (e) => {
+          if (isDragging) onDragMove(e.clientX);
+        });
+
+        window.addEventListener('mouseup', onDragEnd);
+      }
     })();
   </script>
   <script src="mobile-nav.js"></script>

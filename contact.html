@@ -760,7 +760,6 @@
           <li><a href="index.html#contents" class="nav-link">Services</a></li>
           <li><a href="index.html#projects" class="nav-link">Projects</a></li>
           <li><a href="index.html#video-showcase" class="nav-link">Motion &amp; Reels</a></li>
-          <li><a href="index.html#testimonials" class="nav-link">Reviews</a></li>
           <li><a href="contact.html" class="nav-link active">Contact</a></li>
         </ul>
         <a href="index.html" class="btn-nav-back">
@@ -797,8 +796,7 @@
         <li><a href="index.html#projects" class="mobile-nav-item"><span class="mn-num">03</span><span class="mn-text">Featured Projects</span><span class="mn-arrow">↗</span></a></li>
         <li><a href="index.html#logos-banner" class="mobile-nav-item"><span class="mn-num">04</span><span class="mn-text">Brand Logos</span><span class="mn-arrow">↗</span></a></li>
         <li><a href="index.html#video-showcase" class="mobile-nav-item"><span class="mn-num">05</span><span class="mn-text">Motion &amp; Reels</span><span class="mn-arrow">↗</span></a></li>
-        <li><a href="index.html#testimonials" class="mobile-nav-item"><span class="mn-num">06</span><span class="mn-text">Client Reviews</span><span class="mn-arrow">↗</span></a></li>
-        <li><a href="contact.html" class="mobile-nav-item highlight"><span class="mn-num">07</span><span class="mn-text">Contact / Hire</span><span class="mn-arrow">↗</span></a></li>
+        <li><a href="contact.html" class="mobile-nav-item highlight"><span class="mn-num">06</span><span class="mn-text">Contact / Hire</span><span class="mn-arrow">↗</span></a></li>
       </ul>
       <div class="mobile-nav-footer">
         <a href="index.html" class="mobile-nav-cta">
@@ -910,6 +908,11 @@
                 <input type="tel" id="form-phone" class="field-input" placeholder="+1 (555) 000-0000">
               </div>
             </div>
+
+            <!-- Hidden form inputs for pill selections -->
+            <input type="hidden" name="services" id="input-services" value="UI/UX Design, 3D Logo Animation">
+            <input type="hidden" name="budget" id="input-budget" value=" – .5K">
+            <input type="hidden" name="timeline" id="input-timeline" value="1–2 Weeks">
 
             <!-- Service Selection Multi-Pills -->
             <div class="form-field">
@@ -1106,25 +1109,37 @@
       }
 
       // 3. Multi-Select Service Pills
+      const servicesInput = document.getElementById('input-services');
+      function updateServicesInput() {
+        const active = Array.from(document.querySelectorAll('#services-group .pill-toggle-btn.active'))
+          .map(b => b.getAttribute('data-val') || b.textContent.trim());
+        if (servicesInput) servicesInput.value = active.join(', ');
+      }
+
       document.querySelectorAll('#services-group .pill-toggle-btn').forEach(btn => {
         btn.addEventListener('click', function () {
           this.classList.toggle('active');
+          updateServicesInput();
         });
       });
 
       // 4. Single-Select Budget Pills
+      const budgetInput = document.getElementById('input-budget');
       document.querySelectorAll('#budget-group .pill-toggle-btn').forEach(btn => {
         btn.addEventListener('click', function () {
           document.querySelectorAll('#budget-group .pill-toggle-btn').forEach(b => b.classList.remove('active'));
           this.classList.add('active');
+          if (budgetInput) budgetInput.value = this.getAttribute('data-val') || this.textContent.trim();
         });
       });
 
       // 5. Single-Select Timeline Pills
+      const timelineInput = document.getElementById('input-timeline');
       document.querySelectorAll('#timeline-group .pill-toggle-btn').forEach(btn => {
         btn.addEventListener('click', function () {
           document.querySelectorAll('#timeline-group .pill-toggle-btn').forEach(b => b.classList.remove('active'));
           this.classList.add('active');
+          if (timelineInput) timelineInput.value = this.getAttribute('data-val') || this.textContent.trim();
         });
       });
 
@@ -1136,6 +1151,14 @@
       if (form && banner && submitBtn) {
         form.addEventListener('submit', function (e) {
           e.preventDefault();
+
+          // Validate that at least one service is selected
+          const activeServices = document.querySelectorAll('#services-group .pill-toggle-btn.active');
+          if (activeServices.length === 0) {
+            alert('Please select at least one service to proceed.');
+            return;
+          }
+
           submitBtn.disabled = true;
           submitBtn.style.opacity = '0.7';
           submitBtn.innerHTML = '<span>Transmitting Inquiry...</span>';
@@ -1148,10 +1171,23 @@
             form.reset();
 
             // Re-apply default pills
+            document.querySelectorAll('#services-group .pill-toggle-btn').forEach((b, i) => {
+              if (i === 0 || i === 1) b.classList.add('active');
+              else b.classList.remove('active');
+            });
+            updateServicesInput();
+
             document.querySelectorAll('#budget-group .pill-toggle-btn').forEach((b, i) => {
               if (i === 1) b.classList.add('active');
               else b.classList.remove('active');
             });
+            if (budgetInput) budgetInput.value = ' – .5K';
+
+            document.querySelectorAll('#timeline-group .pill-toggle-btn').forEach((b, i) => {
+              if (i === 1) b.classList.add('active');
+              else b.classList.remove('active');
+            });
+            if (timelineInput) timelineInput.value = '1–2 Weeks';
 
             setTimeout(() => {
               banner.classList.remove('is-active');

@@ -87,13 +87,11 @@ const server = http.createServer((req, res) => {
       'Connection': 'keep-alive'
     };
 
-    // Cache static assets (images/fonts can be cached, but CSS/JS/HTML must always revalidate)
+    // Cache static assets (images/fonts cached 24h; CSS/JS/HTML revalidate with ETag for instant 304)
     if (['.css', '.js', '.html'].includes(ext)) {
-      headers['Cache-Control'] = 'no-cache, no-store, must-revalidate';
-      headers['Pragma'] = 'no-cache';
-      headers['Expires'] = '0';
+      headers['Cache-Control'] = 'no-cache';
     } else if (['.png', '.jpg', '.jpeg', '.webp', '.svg', '.woff2', '.woff'].includes(ext)) {
-      headers['Cache-Control'] = 'public, max-age=86400';
+      headers['Cache-Control'] = 'public, max-age=86400, immutable';
     } else {
       headers['Cache-Control'] = 'no-cache';
     }

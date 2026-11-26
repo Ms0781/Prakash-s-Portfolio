@@ -3,22 +3,21 @@
 
 <head>
   <meta charset="UTF-8">
+  <script>(function(d){var t;try{t=localStorage.getItem('theme')}catch(e){}d.setAttribute('data-theme',t==='dark'?'dark':'light')})(document.documentElement);</script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>StaySaver — Flexible Hourly &amp; Day-Use Hospitality Platform Case Study | Bhatu Prakash</title>
+  <title>StaySaver — Flexible Hourly &amp; Day-Use Hospitality Platform Case Study | Prakash Bhatu</title>
   <meta name="description"
-    content="Comprehensive UI/UX &amp; Motion Design Case Study for StaySaver (staysaver.app) by Bhatu Prakash. Hourly micro-stays, flexible day-use hotel booking, keyless check-in, and 3D kinetic launch film.">
-
-  <!-- Google Fonts: Bricolage Grotesque, Inter, Plus Jakarta Sans, Caveat & JetBrains Mono -->
+    content="Comprehensive UI/UX &amp; Motion Design Case Study for StaySaver (staysaver.app) by Prakash Bhatu. Hourly micro-stays, flexible day-use hotel booking, keyless check-in, and 3D kinetic launch film.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800;12..96,900&family=Caveat:wght@600;700&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
-    rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <!-- Project typefaces, used only in typography specimens -->
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 
   <style>
     /* ==========================================================================
        STAYSAVER — LUXURY HOSPITALITY SAAS DESIGN SYSTEM
-       Designer: Bhatu Prakash
+       Designer: Prakash Bhatu
        Palette: Heritage Navy (#0E2A47), Champagne Gold (#C1A364), Alabaster (#FAF7F2)
        Typography: Bricolage Grotesque (Display), Inter / Plus Jakarta Sans (Body)
        ========================================================================== */
@@ -1625,6 +1624,119 @@
     }
   </style>
   <link rel="stylesheet" href="responsive.css">
+  <link rel="stylesheet" href="case-study.css">
+  <style data-dark-overrides>
+    :root[data-theme="dark"] {
+      --navy-950: #f4f4f0;
+      --navy-900: #f4f4f0;
+      --navy-850: #e6e6e0;
+      --navy-800: #d6d6d0;
+      --navy-700: #b4b4bb;
+      --slate-600: #b4b4bb;
+      --slate-500: #9b9ba3;
+      --slate-400: #85858c;
+      --slate-300: #3a3a40;
+      --slate-200: #2a2a30;
+      --slate-100: #1f1f24;
+      --slate-50: #18181c;
+      --white: #141417;
+      --bg-body: #0a0a0b;
+      --bg-surface: #141417;
+      --bg-subtle: #1b1b1f;
+      --text-primary: #f4f4f0;
+      --text-secondary: #b4b4bb;
+      --text-muted: #9b9ba3;
+      --border-subtle: rgba(255, 255, 255, 0.09);
+      --border-strong: rgba(255, 255, 255, 0.17);
+      --gold-100: rgba(193, 163, 100, 0.22);
+      --gold-50: rgba(193, 163, 100, 0.14);
+      --status-emerald-50: rgba(16, 185, 129, 0.14);
+      --status-amber-50: rgba(245, 158, 11, 0.14);
+      --status-blue-50: rgba(2, 132, 199, 0.14);
+      color-scheme: dark;
+    }
+    :root[data-theme="dark"] .nav-link:hover { color: #c3ae83; }
+    :root[data-theme="dark"] .btn-back:hover { color: #b3a17c; }
+    :root[data-theme="dark"] .btn-staging { color: #b3a17c; }
+    :root[data-theme="dark"] .btn-staging:hover { color: #0a0a0b; }
+    :root[data-theme="dark"] .cs-toc-item a:hover { color: #b3a17c; }
+    :root[data-theme="dark"] .cs-toc-item a.active { color: #b3a17c; }
+    :root[data-theme="dark"] .cs-breadcrumb a:hover { color: #c3ae83; }
+    :root[data-theme="dark"] .cs-pill-hotel { color: #b3a17c; }
+    :root[data-theme="dark"] .cs-pill-dev { background: rgba(255, 255, 255, 0.05); color: #7391e7; }
+    :root[data-theme="dark"] .cs-script { color: #c3ae83; }
+    :root[data-theme="dark"] .cs-title .highlight { color: #c3ae83; }
+    :root[data-theme="dark"] .live-ref-link { color: #c3ae83; }
+    :root[data-theme="dark"] .live-ref-link:hover { color: #b3a17c; }
+    :root[data-theme="dark"] .dev-banner-body h3 { color: #b3916a; }
+    :root[data-theme="dark"] .dev-banner-body p { color: #b89f88; }
+    :root[data-theme="dark"] .cs-mockup-overlay-pill { color: #f4f4f0; }
+    :root[data-theme="dark"] .pillar-icon-wrap { color: #c3ae83; }
+    :root[data-theme="dark"] .pillar-icon-wrap.gold { color: #b3a17c; }
+    :root[data-theme="dark"] .pillar-icon-wrap.navy { background: rgba(255, 255, 255, 0.05); color: #8ea0d7; }
+    :root[data-theme="dark"] .cs-section-badge { color: #b3a17c; }
+    :root[data-theme="dark"] .badge-status.done { color: #63ab97; }
+    :root[data-theme="dark"] .badge-status.active { color: #b3a17c; }
+    :root[data-theme="dark"] .ps-badge.problem { background: rgba(255, 255, 255, 0.05); color: #cc8d8d; }
+    :root[data-theme="dark"] .ps-badge.solution { color: #0a0a0b; }
+    :root[data-theme="dark"] .ps-list .bullet.cross { background: rgba(255, 255, 255, 0.05); color: #dc8e8e; }
+    :root[data-theme="dark"] .ps-list .bullet.check { color: #b3a17c; }
+    :root[data-theme="dark"] .mockup-badge { color: #b3a17c; }
+    :root[data-theme="dark"] .spotlight-specs-list .check { color: #c3ae83; }
+    :root[data-theme="dark"] .token-badge-tech { color: #b3a17c; }
+    :root[data-theme="dark"] .code-inspector-block { background: #0f0f11; }
+    :root[data-theme="dark"] .c-comment { color: #9fa9b7; }
+    :root[data-theme="dark"] .retro-num { color: #b3a17c; }
+    :root[data-theme="dark"] .cs-next-banner { background: #0f0f11; color: #f4f4f0; }
+    :root[data-theme="dark"] .next-title { color: #f4f4f0; }
+    :root[data-theme="dark"] .next-actions .btn-subtle { color: #f4f4f0; }
+    :root[data-theme="dark"] .footer-link:hover { color: #c3ae83; }
+    :root[data-theme="dark"] .btn-top:hover { color: #b3a17c; }
+    :root[data-theme="dark"] .lightbox-close { color: #f4f4f0; }
+    :root[data-theme="dark"] [style*="color: var(--gold-700)"] { color: #c3ae83 !important; }
+    :root[data-theme="dark"] [style*="color: var(--gold-800)"] { color: #b3a17c !important; }
+    :root[data-theme="light"] .nav-link:hover { color: #675124; }
+    :root[data-theme="light"] .btn-back:hover { color: #56431c; }
+    :root[data-theme="light"] .btn-staging { color: #56431c; }
+    :root[data-theme="light"] .btn-staging:hover { color: #0a0a0b; }
+    :root[data-theme="light"] .cs-toc-item a:hover { color: #56431c; }
+    :root[data-theme="light"] .cs-toc-item a.active { color: #56431c; }
+    :root[data-theme="light"] .cs-breadcrumb a:hover { color: #675124; }
+    :root[data-theme="light"] .cs-pill-hotel { color: #56431c; }
+    :root[data-theme="light"] .cs-pill-dev { color: #13338c; }
+    :root[data-theme="light"] .cs-script { color: #675124; }
+    :root[data-theme="light"] .cs-title .highlight { color: #675124; }
+    :root[data-theme="light"] .live-ref-link { color: #675124; }
+    :root[data-theme="light"] .live-ref-link:hover { color: #56431c; }
+    :root[data-theme="light"] .dev-banner-body h3 { color: #563209; }
+    :root[data-theme="light"] .pillar-icon-wrap { color: #675124; }
+    :root[data-theme="light"] .pillar-icon-wrap.gold { color: #56431c; }
+    :root[data-theme="light"] .cs-section-badge { color: #56431c; }
+    :root[data-theme="light"] .badge-status.done { color: #034e39; }
+    :root[data-theme="light"] .badge-status.active { color: #56431c; }
+    :root[data-theme="light"] .ps-badge.solution { color: #0a0a0b; }
+    :root[data-theme="light"] .ps-list .bullet.check { color: #56431c; }
+    :root[data-theme="light"] .spotlight-specs-list .check { color: #675124; }
+    :root[data-theme="light"] .token-badge-tech { color: #56431c; }
+    :root[data-theme="light"] .c-prop { color: #8a7851; }
+    :root[data-theme="light"] .c-comment { color: #414b5a; }
+    :root[data-theme="light"] .retro-num { color: #56431c; }
+    :root[data-theme="light"] .footer-link:hover { color: #675124; }
+    :root[data-theme="light"] .btn-top:hover { color: #56431c; }
+    :root[data-theme="light"] [style*="color: var(--gold-700)"] { color: #675124 !important; }
+    :root[data-theme="light"] [style*="color: var(--gold-800)"] { color: #56431c !important; }
+  </style>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+  <link rel="canonical" href="https://prakashportfolio-sigma.vercel.app/case-study-staysaver.html">
+  <meta name="theme-color" content="#ffffff">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Prakash Bhatu">
+  <meta property="og:title" content="StaySaver — Flexible Hourly &amp; Day-Use Hospitality Platform Case Study | Prakash Bhatu">
+  <meta property="og:description" content="Comprehensive UI/UX &amp; Motion Design Case Study for StaySaver (staysaver.app) by Prakash Bhatu. Hourly micro-stays, flexible day-use hotel booking, keyless check-in, and 3D kinetic launch film.">
+  <meta property="og:url" content="https://prakashportfolio-sigma.vercel.app/case-study-staysaver.html">
+  <meta property="og:image" content="https://prakashportfolio-sigma.vercel.app/img/og-image.jpg">
+  <meta name="twitter:card" content="summary_large_image">
 </head>
 
 <body>
@@ -1632,90 +1744,48 @@
   <!-- READING PROGRESS BAR -->
   <div class="reading-progress-bar" id="progressBar"></div>
 
-  <!-- TOP NAVBAR -->
-  <nav class="navbar" id="navbar">
-    <a href="index.html" class="nav-logo">
-      <div class="dp-wrapper">
-        <img src="prakash-portfolio_00239.webp" alt="Bhatu Prakash" class="dp-img" width="40" height="40">
-        <span class="dp-status-dot"></span>
-      </div>
-      <span class="logo-text">Bhatu Prakash</span>
+  <a class="pb-skip" href="#main-content">Skip to content</a>
+  <header class="pb-header">
+    <a href="index.html" class="pb-brand" aria-label="Prakash Bhatu — home">
+      <span class="pb-brand-mark" aria-hidden="true"><img src="img/avatar.webp" width="34" height="34" alt=""></span>
+      <span>Prakash Bhatu<small>Designer &amp; Developer</small></span>
     </a>
-
-    <div class="nav-right">
-      <ul class="nav-links">
-        <li><a href="index.html#home" class="nav-link">Home</a></li>
-        <li><a href="index.html#projects" class="nav-link">Selected Work</a></li>
-        <li><a href="case-study-flyfi.html" class="nav-link">FlyFi Mobile</a></li>
-        <li><a href="case-study-pms.html" class="nav-link">PMS Web</a></li>
-        <li><a href="case-study-uk.html" class="nav-link">UK NHS</a></li>
+    <nav aria-label="Primary">
+      <ul class="pb-nav">
+        <li><a href="index.html#projects">Work</a></li>
+        <li><a href="index.html#services">Services</a></li>
+        <li><a href="index.html#about">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
       </ul>
-
-      <a href="index.html#projects" class="btn-back">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
-          stroke-linecap="round" stroke-linejoin="round">
-          <line x1="19" y1="12" x2="5" y2="12"></line>
-          <polyline points="12 19 5 12 12 5"></polyline>
-        </svg>
-        Back to Projects
-      </a>
-
-      <a href="https://staysaver.app/" target="_blank" rel="noopener noreferrer" class="btn-staging">
-        <span>staysaver.app (Staging) ↗</span>
-      </a>
-
-      <button id="mobileNavToggle" class="mobile-nav-toggle" type="button" aria-label="Open menu" aria-expanded="false"
-        aria-controls="mobileNavDrawer">
-        <span class="hamburger-line"></span>
-        <span class="hamburger-line"></span>
-        <span class="hamburger-line"></span>
+    </nav>
+    <div class="pb-actions">
+      <button class="pb-theme" type="button" data-theme-toggle aria-label="Switch to light mode">
+        <svg class="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+        <svg class="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
       </button>
+      <a class="pb-btn pb-btn--ghost" href="https://staysaver.app/" target="_blank" rel="noopener noreferrer">Live site <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+      <a class="pb-btn" href="contact.html">Let's talk <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+      <button class="pb-toggle" id="pbToggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="pbMenu"><span></span><span></span></button>
     </div>
-  </nav>
+  </header>
 
-  <!-- MOBILE NAV DRAWER -->
-  <div id="mobileNavDrawer" class="mobile-nav-drawer" aria-hidden="true">
-    <div class="mobile-nav-backdrop"></div>
-    <div class="mobile-nav-panel">
-      <div class="mobile-nav-header">
-        <div class="mobile-nav-brand">
-          <img src="prakash-portfolio_00239.webp" alt="Bhatu Prakash" class="mobile-dp-img" width="44" height="44">
-          <div class="mobile-brand-meta">
-            <span class="mobile-brand-name">Bhatu Prakash</span>
-            <span class="mobile-brand-status"><span class="dot"></span> Available for work</span>
-          </div>
-        </div>
-        <button id="mobileNavClose" class="mobile-nav-close" type="button" aria-label="Close navigation">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
-            stroke-linecap="round" stroke-linejoin="round">
-            <line x1="18" y1="6" x2="6" y2="18"></line>
-            <line x1="6" y1="6" x2="18" y2="18"></line>
-          </svg>
-        </button>
-      </div>
-      <ul class="mobile-nav-list">
-        <li><a href="index.html#home" class="mobile-nav-item"><span class="mn-num">01</span><span
-              class="mn-text">Home</span><span class="mn-arrow">↗</span></a></li>
-        <li><a href="index.html#projects" class="mobile-nav-item"><span class="mn-num">02</span><span
-              class="mn-text">← All Projects</span><span class="mn-arrow">↗</span></a></li>
-        <li><a href="case-study-staysaver.html" class="mobile-nav-item highlight"><span class="mn-num">03</span><span
-              class="mn-text">StaySaver (In Dev)</span><span class="mn-arrow">↗</span></a></li>
-        <li><a href="case-study-flyfi.html" class="mobile-nav-item"><span class="mn-num">04</span><span
-              class="mn-text">FlyFi Mobile App</span><span class="mn-arrow">↗</span></a></li>
-        <li><a href="case-study-flyfi-web.html" class="mobile-nav-item"><span class="mn-num">05</span><span
-              class="mn-text">FlyFi Web Redesign</span><span class="mn-arrow">↗</span></a></li>
-        <li><a href="case-study-pms.html" class="mobile-nav-item"><span class="mn-num">06</span><span
-              class="mn-text">PMS Web SaaS</span><span class="mn-arrow">↗</span></a></li>
-        <li><a href="case-study-uk.html" class="mobile-nav-item"><span class="mn-num">07</span><span
-              class="mn-text">UK NHS Edition</span><span class="mn-arrow">↗</span></a></li>
-        <li><a href="contact.html" class="mobile-nav-item"><span class="mn-num">08</span><span
-              class="mn-text">Contact / Hire</span><span class="mn-arrow">↗</span></a></li>
-      </ul>
-      <div class="mobile-nav-footer">
-        <a href="https://staysaver.app/" target="_blank" rel="noopener noreferrer" class="mobile-nav-cta">
-          <span>Explore staysaver.app ↗</span>
-        </a>
-      </div>
+  <div class="pb-menu" id="pbMenu" aria-hidden="true">
+    <nav aria-label="Case studies">
+      <ol>
+        <li><a href="index.html">Home<span>Portfolio</span></a></li>
+        <li><a href="case-study-staysaver.html" aria-current="page">StaySaver<span>Current</span></a></li>
+        <li><a href="case-study.html">iTranscript360<span>Case study</span></a></li>
+        <li><a href="case-study-flyfi.html">FlyFi Mobile App<span>Case study</span></a></li>
+        <li><a href="case-study-flyfi-web.html">FlyFi Website<span>Case study</span></a></li>
+        <li><a href="case-study-pms.html">PMS Web Platform<span>Case study</span></a></li>
+        <li><a href="case-study-mobile.html">PMS Mobile App<span>Case study</span></a></li>
+        <li><a href="case-study-uk.html">iTranscript360 UK<span>Case study</span></a></li>
+        <li><a href="contact.html">Contact<span>Start a project</span></a></li>
+      </ol>
+    </nav>
+    <div class="pb-menu-foot">
+      <a href="mailto:bhatuprakash140@gmail.com">bhatuprakash140@gmail.com</a>
+      <a href="https://staysaver.app/" target="_blank" rel="noopener noreferrer">Visit live site ↗</a>
     </div>
   </div>
 
@@ -1736,14 +1806,14 @@
         <li class="cs-toc-item"><a href="#motion-film">05. 3D Launch Film</a></li>
         <li class="cs-toc-item"><a href="#product-architecture">06. Slot Engine</a></li>
         <li class="cs-toc-item"><a href="#design-tokens">07. Design Tokens</a></li>
-        <li class="cs-toc-item"><a href="#economic-impact">08. Target Economics</a></li>
+        <li class="cs-toc-item"><a href="#economic-impact">08. Value Goals</a></li>
         <li class="cs-toc-item"><a href="#retrospective">09. Retrospective</a></li>
       </ul>
     </div>
   </div>
 
   <!-- MAIN CASE STUDY WRAPPER -->
-  <div class="cs-wrapper">
+  <div class="cs-wrapper" id="main-content">
 
     <!-- BREADCRUMB -->
     <nav class="cs-breadcrumb" aria-label="Breadcrumb">
@@ -1761,7 +1831,7 @@
       <div class="cs-hero-header">
         <div class="cs-badge-row">
           <span class="cs-pill cs-pill-hotel">🏨 Hospitality &amp; Micro-Stay SaaS</span>
-          <span class="cs-pill cs-pill-dev"><span class="status-pulse-gold"></span> In Active Staging Phase</span>
+          <span class="cs-pill cs-pill-dev"><span class="status-pulse-gold"></span> Live at staysaver.app</span>
           <span class="cs-pill cs-pill-hotel">🎬 3D Kinetic Film &amp; Motion Direction</span>
           <span class="cs-pill">🔑 Keyless IoT Room Entry</span>
         </div>
@@ -1772,7 +1842,7 @@
           <span class="highlight">Hourly Hotel Rooms &amp; Flexible Micro-Stay Booking Platform</span>
         </h1>
         <p class="cs-tagline">
-          A transformative hospitality platform designed to liberate travelers, executives, and transit commuters from rigid 24-hour booking windows. StaySaver (<a href="https://staysaver.app/" target="_blank" rel="noopener noreferrer" style="color: var(--gold-700); text-decoration: underline;">staysaver.app</a>) enables on-demand booking for 3-hour layovers, executive day-use suites, and full-day workations. <strong>Currently in active staging development prior to official public rollout.</strong>
+          A transformative hospitality platform designed to liberate travelers, executives, and transit commuters from rigid 24-hour booking windows. StaySaver (<a href="https://staysaver.app/" target="_blank" rel="noopener noreferrer" style="color: var(--gold-700); text-decoration: underline;">staysaver.app</a>) enables on-demand booking for 3-hour layovers, executive day-use suites, and full-day workations. <strong>Now live at staysaver.app.</strong>
         </p>
       </div>
 
@@ -1788,30 +1858,19 @@
           <span class="meta-value">staysaver.app</span>
           <span class="meta-sub">
             <a href="https://staysaver.app/" target="_blank" rel="noopener noreferrer" class="live-ref-link">
-              Visit Staging Server ↗
+              Visit Live Website ↗
             </a>
           </span>
         </div>
         <div class="meta-item">
           <span class="meta-label">Project Status</span>
-          <span class="meta-value" style="color: var(--gold-800);">🚧 Active Development (Staging)</span>
-          <span class="meta-sub">PMS &amp; Keyless Lock API Integration In Progress</span>
+          <span class="meta-value" style="color: var(--gold-800);">✓ Live</span>
+          <span class="meta-sub">Public website at staysaver.app</span>
         </div>
         <div class="meta-item">
           <span class="meta-label">Core Deliverables</span>
           <span class="meta-value">Web Platform UX, Brand Motion, Tokens</span>
           <span class="meta-sub">3D Launch Film, UI Kit, Keyless IoT Architecture</span>
-        </div>
-      </div>
-
-      <!-- DEVELOPMENT SPRINT BANNER -->
-      <div class="dev-banner">
-        <div class="dev-banner-icon">⚡</div>
-        <div class="dev-banner-body">
-          <h3>Development Status Notice — Pre-Launch Staging Phase</h3>
-          <p>
-            The production domain <strong>https://staysaver.app/</strong> is currently configured on our cloud staging infrastructure. While the product design system, user flows, and 3D kinetic campaign are 100% complete, engineering teams are actively implementing real-time hotel PMS APIs (Opera, Cloudbeds) and automated digital keycard integrations. Public access and early-bird beta registration will launch upon conclusion of the pilot hotel partner onboarding phase.
-          </p>
         </div>
       </div>
 
@@ -1879,7 +1938,7 @@
       <span class="cs-section-badge">02 · Engineering Roadmap</span>
       <h2 class="cs-section-heading">Development Milestones &amp; Launch Timeline</h2>
       <p class="cs-body-p">
-        A structured overview of how StaySaver is transitioning from research, prototyping, and brand motion into production-grade infrastructure on staysaver.app:
+        A structured overview of how StaySaver went from research, prototyping, and brand motion to the live platform at staysaver.app:
       </p>
 
       <div class="roadmap-grid">
@@ -1895,10 +1954,10 @@
           <p class="roadmap-desc">SaaS launch kinetic film engineered in After Effects (<code>BrandMotion.aep</code>) and Cinema 4D for investor presentations and partners.</p>
         </div>
 
-        <div class="roadmap-card in-progress">
-          <span class="badge-status active">⚙ In Active Sprint (75%)</span>
-          <h4 class="roadmap-title">Phase 03: Booking Engine Staging</h4>
-          <p class="roadmap-desc">Frontend responsive client implementation, dynamic price-per-hour calculator, and staging deployment to staysaver.app.</p>
+        <div class="roadmap-card completed">
+          <span class="badge-status done">✓ Live</span>
+          <h4 class="roadmap-title">Phase 03: Booking Platform Launch</h4>
+          <p class="roadmap-desc">Frontend responsive client implementation, dynamic price-per-hour calculator, and public launch at staysaver.app.</p>
         </div>
 
         <div class="roadmap-card in-progress">
@@ -1926,11 +1985,11 @@
           <ul class="ps-list">
             <li>
               <span class="bullet cross">✕</span>
-              <span><strong>Full Price for Brief Stays:</strong> Transit passengers on 5-hour layovers forced to pay full $200–$400 overnight rates for 3 hours of rest.</span>
+              <span><strong>Full Price for Brief Stays:</strong> Travelers on long layovers often have to pay a full overnight rate for just a few hours of rest.</span>
             </li>
             <li>
               <span class="bullet cross">✕</span>
-              <span><strong>Daytime Room Vacancy:</strong> Hotels face 35%–45% unoccupied room vacancy between 9:00 AM and 6:00 PM with zero daytime monetization.</span>
+              <span><strong>Daytime Room Vacancy:</strong> Many hotel rooms sit empty during the day, between checkout and evening check-in.</span>
             </li>
             <li>
               <span class="bullet cross">✕</span>
@@ -1953,7 +2012,7 @@
             </li>
             <li>
               <span class="bullet check">✓</span>
-              <span><strong>Up to 65% Guest Savings:</strong> Travelers pay strictly for the hours used, opening luxury hotels to transit commuters and daytime remote workers.</span>
+              <span><strong>Pay for Hours Used:</strong> Travelers pay strictly for the hours used, opening luxury hotels to transit commuters and daytime remote workers.</span>
             </li>
             <li>
               <span class="bullet check">✓</span>
@@ -2026,7 +2085,7 @@
           </div>
           <div class="mac-url-bar">
             <span>🔒</span> https://staysaver.app
-            <span class="dev-indicator" style="font-family: var(--font-mono); font-size: 0.7rem; background: var(--gold-50); color: var(--gold-800); padding: 2px 6px; border-radius: 4px; font-weight: 700;">STAGING</span>
+            <span class="dev-indicator" style="font-family: var(--font-mono); font-size: 0.7rem; background: var(--gold-50); color: var(--gold-800); padding: 2px 6px; border-radius: 4px; font-weight: 700;">LIVE</span>
           </div>
           <div class="mac-actions">MacBook Pro 16" · 3D Motion Film</div>
         </div>
@@ -2055,7 +2114,7 @@
       <span class="cs-section-badge">06 · Product Architecture</span>
       <h2 class="cs-section-heading">Engineered for Frictionless Micro-Stay Discovery</h2>
       <p class="cs-body-p">
-        Every interaction was refined to eliminate traditional booking friction and enable complete reservation in under 45 seconds:
+        Every interaction was refined to eliminate traditional booking friction and make reservation quick and simple:
       </p>
 
       <div class="feature-spotlight-box">
@@ -2083,7 +2142,7 @@
       <span class="cs-section-badge">07 · Design Tokens</span>
       <h2 class="cs-section-heading">Heritage Navy &amp; Champagne Gold Design Tokens</h2>
       <p class="cs-body-p">
-        The design language blends the precision of Bhatu Prakash's signature CSS token architecture with luxury hospitality warmth:
+        The design language blends the precision of Prakash Bhatu's signature CSS token architecture with luxury hospitality warmth:
       </p>
 
       <div class="token-system-container">
@@ -2168,43 +2227,43 @@
          SECTION 08: TARGET ECONOMICS & MODELING
          ========================================================================== -->
     <section class="cs-section" id="economic-impact">
-      <span class="cs-section-badge">08 · Economic Modeling</span>
-      <h2 class="cs-section-heading">Anticipated Performance &amp; Economic Value Modeling</h2>
+      <span class="cs-section-badge">08 · Value Goals</span>
+      <h2 class="cs-section-heading">What the Design Sets Out to Deliver</h2>
       <p class="cs-body-p">
-        Target economics projected from early pilot feedback with metro boutique hotels and airport transit commuters:
+        The product decisions were guided by four goals for travelers and partner hotels:
       </p>
 
       <div class="arch-pillars-grid">
         <div class="pillar-card">
           <div class="pillar-icon-wrap gold">
-            <span style="font-family: var(--font-heading); font-size: 1.2rem; font-weight: 800;">65%</span>
+            <span style="font-family: var(--font-heading); font-size: 0.95rem; font-weight: 800;">/hr</span>
           </div>
-          <h4 class="pillar-title">Average Traveler Savings</h4>
-          <p class="pillar-desc">Estimated guest cost reduction compared to paying a full 24-hour overnight rate for daytime rests.</p>
+          <h4 class="pillar-title">Pay Only for Hours Used</h4>
+          <p class="pillar-desc">Travelers book the hours they need instead of paying a full overnight rate for a short daytime rest.</p>
         </div>
 
         <div class="pillar-card">
           <div class="pillar-icon-wrap navy">
-            <span style="font-family: var(--font-mono); font-size: 1.1rem; font-weight: 800;">&lt; 45s</span>
+            <span style="font-family: var(--font-mono); font-size: 0.95rem; font-weight: 800;">FAST</span>
           </div>
-          <h4 class="pillar-title">Search to Digital Key</h4>
-          <p class="pillar-desc">Streamlined checkout flow generating an encrypted mobile room keycard in under 45 seconds.</p>
+          <h4 class="pillar-title">Quick Search to Booking</h4>
+          <p class="pillar-desc">A short, focused checkout flow that gets a guest from search to a confirmed booking in a few steps.</p>
         </div>
 
         <div class="pillar-card">
           <div class="pillar-icon-wrap gold">
-            <span style="font-family: var(--font-heading); font-size: 1.2rem; font-weight: 800;">+38%</span>
+            <span style="font-family: var(--font-heading); font-size: 0.95rem; font-weight: 800;">DAY</span>
           </div>
-          <h4 class="pillar-title">Target RevPAR Lift</h4>
-          <p class="pillar-desc">Projected incremental daytime revenue for participating partner hotels utilizing unoccupied rooms.</p>
+          <h4 class="pillar-title">Daytime Value for Hotels</h4>
+          <p class="pillar-desc">Hotels can offer rooms that would otherwise sit empty between checkout and evening check-in.</p>
         </div>
 
         <div class="pillar-card">
           <div class="pillar-icon-wrap navy">
-            <span style="font-family: var(--font-mono); font-size: 1.1rem; font-weight: 800;">500+</span>
+            <span style="font-family: var(--font-mono); font-size: 0.95rem; font-weight: 800;">GROW</span>
           </div>
-          <h4 class="pillar-title">Launch Pipeline Rooms</h4>
-          <p class="pillar-desc">Projected initial room pipeline across major airport transit corridors and central business hubs.</p>
+          <h4 class="pillar-title">Built to Scale</h4>
+          <p class="pillar-desc">A design system and booking flow ready to extend to more hotels, cities and transit hubs.</p>
         </div>
       </div>
     </section>
@@ -2214,9 +2273,9 @@
          ========================================================================== -->
     <section class="cs-section" id="retrospective">
       <span class="cs-section-badge">09 · Retrospective</span>
-      <h2 class="cs-section-heading">Design Retrospective &amp; Staging Takeaways</h2>
+      <h2 class="cs-section-heading">Design Retrospective &amp; Launch Takeaways</h2>
       <p class="cs-body-p">
-        Transitioning StaySaver through active staging revealed critical insights on brand perception, hotel operational realities, and mobile-first transit travelers:
+        Taking StaySaver from concept to launch revealed critical insights on brand perception, hotel operational realities, and mobile-first transit travelers:
       </p>
 
       <div class="retro-grid">
@@ -2280,24 +2339,46 @@
 
   </div>
 
-  <!-- SITE FOOTER -->
-  <footer class="site-footer">
-    <div class="footer-left">
-      © 2026 Bhatu Prakash • Senior UI/UX Designer &amp; Motion Director. Ahmedabad, India.
+  <footer class="pb-footer" aria-labelledby="pbFooterTitle">
+    <div class="pb-container">
+      <div class="pb-footer-top">
+        <div>
+          <h2 id="pbFooterTitle">Prakash Bhatu</h2>
+          <p>Independent Designer &amp; Developer — UI/UX, websites and creative design.</p>
+          <span class="pb-status"><i aria-hidden="true"></i>Available for freelance projects</span>
+        </div>
+        <nav aria-label="Footer">
+          <h3>Navigate</h3>
+          <ul>
+            <li><a href="index.html#projects">Work</a></li>
+            <li><a href="index.html#services">Services</a></li>
+            <li><a href="index.html#about">About</a></li>
+            <li><a href="index.html#process">Process</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </nav>
+        <div>
+          <h3>Social</h3>
+          <ul>
+            <li><a href="https://www.linkedin.com/in/prakash-bhatu" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a></li>
+            <li><a href="https://wa.me/919773189041" target="_blank" rel="noopener noreferrer">WhatsApp ↗</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3>Contact</h3>
+          <ul>
+            <li><a href="mailto:bhatuprakash140@gmail.com">bhatuprakash140<wbr>@gmail.com</a></li>
+            <li><a href="tel:+919773189041">+91 97731 89041</a></li>
+          </ul>
+        </div>
+      </div>
+      <p class="pb-footer-word" aria-hidden="true">Prakash Bhatu<span>.</span></p>
+      <div class="pb-footer-bottom">
+        <span>© <span data-year>2026</span> Prakash Bhatu. All rights reserved.</span>
+        <span>Ahmedabad, India</span>
+        <a href="#" data-to-top>Back to top ↑</a>
+      </div>
     </div>
-
-    <ul class="footer-links">
-      <li><a href="index.html#projects" class="footer-link">Selected Work</a></li>
-      <li><a href="case-study-staysaver.html" class="footer-link" style="color: var(--gold-800); font-weight: 700;">StaySaver (In Dev)</a></li>
-      <li><a href="case-study-flyfi.html" class="footer-link">FlyFi Mobile App</a></li>
-      <li><a href="case-study-pms.html" class="footer-link">PMS Web SaaS</a></li>
-      <li><a href="case-study-uk.html" class="footer-link">UK NHS Edition</a></li>
-    </ul>
-
-    <button class="btn-top" type="button" onclick="window.scrollTo({top: 0, behavior: 'smooth'});">
-      <span>Back to Top</span>
-      <span>↑</span>
-    </button>
   </footer>
 
   <!-- IMAGE LIGHTBOX MODAL -->
@@ -2456,7 +2537,7 @@
       });
     })();
   </script>
-  <script src="mobile-nav.js"></script>
+  <script src="case-study.js" defer></script>
 </body>
 
 </html>

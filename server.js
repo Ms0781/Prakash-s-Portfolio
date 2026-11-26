@@ -55,9 +55,9 @@ const server = http.createServer((req, res) => {
 
   const filePath = path.join(ROOT_DIR, reqPath);
 
-  // Security check: prevent directory traversal outside root and images symlink
+  // Security check: prevent directory traversal outside root
   const resolved = path.resolve(filePath);
-  if (!resolved.startsWith(ROOT_DIR) && !resolved.includes('prakash-images')) {
+  if (resolved !== ROOT_DIR && !resolved.startsWith(ROOT_DIR + path.sep)) {
     res.writeHead(403);
     res.end('Forbidden');
     return;

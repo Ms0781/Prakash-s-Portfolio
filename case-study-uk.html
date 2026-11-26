@@ -3,22 +3,23 @@
 
 <head>
   <meta charset="UTF-8">
+  <script>(function(d){var t;try{t=localStorage.getItem('theme')}catch(e){}d.setAttribute('data-theme',t==='dark'?'dark':'light')})(document.documentElement);</script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>iTranscript360 UK NHS Edition Case Study — Bhatu Prakash</title>
+  <title>iTranscript360 UK NHS Edition Case Study — Prakash Bhatu</title>
   <meta name="description"
     content="UI/UX Case Study: Designing the UK NHS Edition of iTranscript360. Direct EMIS Web and SystmOne integration, UK sovereign data storage, and AI-powered British medical transcription.">
 
   <!-- Fonts: Bricolage Grotesque (Headings), Inter & Plus Jakarta Sans (Body), JetBrains Mono (Specs), Caveat (Accents) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800;12..96,900&family=Caveat:wght@600;700&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
-    rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <!-- Project typefaces, used only in typography specimens -->
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 
   <style>
     /* ==========================================================================
        ITRANSCRIPT360 UK NHS EDITION — LIGHT HEALTHCARE SAAS DESIGN SYSTEM
-       Designer: Bhatu Prakash
+       Designer: Prakash Bhatu
        Palette: Deep Navy (#142033), Healthcare Teal (#147D70 / #3EC5AA), NHS Trust Blue (#005EB8), Neutral (#F7F9FC)
        Typography: Bricolage Grotesque (Headings), Inter / Plus Jakarta Sans (Body), JetBrains Mono (Specs)
        ========================================================================== */
@@ -1402,7 +1403,7 @@
     }
 
     .sample-h1 {
-      font-family: var(--font-heading);
+      font-family: 'Bricolage Grotesque', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
       font-size: 2rem;
       font-weight: 800;
       color: var(--navy-950);
@@ -1410,7 +1411,7 @@
     }
 
     .sample-h2 {
-      font-family: var(--font-heading);
+      font-family: 'Bricolage Grotesque', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
       font-size: 1.5rem;
       font-weight: 700;
       color: var(--navy-900);
@@ -1418,21 +1419,21 @@
     }
 
     .sample-h3 {
-      font-family: var(--font-heading);
+      font-family: 'Bricolage Grotesque', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
       font-size: 1.2rem;
       font-weight: 700;
       color: var(--navy-850);
     }
 
     .sample-base {
-      font-family: var(--font-body);
+      font-family: 'Inter', 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
       font-size: 0.98rem;
       color: var(--slate-600);
       line-height: 1.7;
     }
 
     .sample-caption {
-      font-family: var(--font-body);
+      font-family: 'Inter', 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
       font-size: 0.85rem;
       color: var(--slate-500);
       font-style: italic;
@@ -1850,6 +1851,131 @@
     }
   </style>
   <link rel="stylesheet" href="responsive.css">
+  <link rel="stylesheet" href="case-study.css">
+  <style data-dark-overrides>
+    :root[data-theme="dark"] {
+      --navy-950: #f4f4f0;
+      --navy-900: #f4f4f0;
+      --navy-850: #e6e6e0;
+      --navy-800: #d6d6d0;
+      --navy-700: #b4b4bb;
+      --slate-600: #b4b4bb;
+      --slate-500: #9b9ba3;
+      --slate-400: #85858c;
+      --slate-300: #3a3a40;
+      --slate-200: #2a2a30;
+      --slate-100: #1f1f24;
+      --slate-50: #18181c;
+      --white: #141417;
+      --bg-body: #0a0a0b;
+      --bg-surface: #141417;
+      --bg-subtle: #1b1b1f;
+      --text-primary: #f4f4f0;
+      --text-secondary: #b4b4bb;
+      --text-muted: #9b9ba3;
+      --border-subtle: rgba(255, 255, 255, 0.09);
+      --border-strong: rgba(255, 255, 255, 0.17);
+      --teal-100: rgba(62, 197, 170, 0.22);
+      --teal-50: rgba(62, 197, 170, 0.14);
+      --nhs-blue-50: rgba(0, 94, 184, 0.14);
+      --nhs-blue-100: rgba(0, 94, 184, 0.22);
+      --emerald-50: rgba(5, 150, 105, 0.14);
+      --amber-50: rgba(217, 119, 6, 0.14);
+      --rose-50: rgba(225, 29, 72, 0.14);
+      color-scheme: dark;
+    }
+    :root[data-theme="dark"] .nav-link:hover { color: #6daea6; }
+    :root[data-theme="dark"] .btn-back:hover { color: #86aeaa; }
+    :root[data-theme="dark"] .btn-live-out { color: #619bd3; }
+    :root[data-theme="dark"] .btn-live-out:hover { color: #f4f4f0; }
+    :root[data-theme="dark"] .cs-toc-item a:hover { color: #6daea6; }
+    :root[data-theme="dark"] .cs-toc-item a.active { color: #619bd3; }
+    :root[data-theme="dark"] .cs-breadcrumb a:hover { color: #6daea6; }
+    :root[data-theme="dark"] .cs-pill-uk { background: rgba(255, 255, 255, 0.05); color: #cc8d8d; }
+    :root[data-theme="dark"] .cs-pill-nhs { color: #619bd3; }
+    :root[data-theme="dark"] .cs-pill-teal { color: #86aeaa; }
+    :root[data-theme="dark"] .cs-script { color: #6daea6; }
+    :root[data-theme="dark"] .cs-title .highlight { color: #619bd3; }
+    :root[data-theme="dark"] .live-ref-link { color: #6daea6; }
+    :root[data-theme="dark"] .live-ref-link:hover { color: #86aeaa; }
+    :root[data-theme="dark"] .cs-mockup-overlay-pill { color: #f4f4f0; }
+    :root[data-theme="dark"] .pillar-icon-wrap { color: #6daea6; }
+    :root[data-theme="dark"] .pillar-icon-wrap.nhs { color: #619bd3; }
+    :root[data-theme="dark"] .pillar-icon-wrap.teal { color: #6daea6; }
+    :root[data-theme="dark"] .cs-section-badge { color: #6daea6; }
+    :root[data-theme="dark"] .cs-section-badge.nhs { color: #619bd3; }
+    :root[data-theme="dark"] .comp-badge.uk { color: #f4f4f0; }
+    :root[data-theme="dark"] .comp-list .bullet.cross { background: rgba(255, 255, 255, 0.05); color: #dc8e8e; }
+    :root[data-theme="dark"] .comp-list .bullet.check { background: rgba(255, 255, 255, 0.05); color: #6eb087; }
+    :root[data-theme="dark"] .ehr-callout-banner { background: #0f0f11; color: #f4f4f0; }
+    :root[data-theme="dark"] .ehr-callout-banner h4 { color: #f4f4f0; }
+    :root[data-theme="dark"] .ehr-tag { color: #f4f4f0; }
+    :root[data-theme="dark"] .ai-btn-pill.perplexity:hover { color: #62b3dc; }
+    :root[data-theme="dark"] .fe-hud-demo { background: #0f0f11; color: #f4f4f0; }
+    :root[data-theme="dark"] .step-number-tag { color: #619bd3; }
+    :root[data-theme="dark"] .service-tag.blue { color: #619bd3; }
+    :root[data-theme="dark"] .service-tag.teal { color: #86aeaa; }
+    :root[data-theme="dark"] .service-specs-list .check { color: #6daea6; }
+    :root[data-theme="dark"] .btn-zoom-pane:hover { color: #86aeaa; }
+    :root[data-theme="dark"] .gallery-tag { color: #6daea6; }
+    :root[data-theme="dark"] .type-tag { color: #6daea6; }
+    :root[data-theme="dark"] .retro-num { color: #6daea6; }
+    :root[data-theme="dark"] .cs-next-banner { background: #0f0f11; color: #f4f4f0; }
+    :root[data-theme="dark"] .next-title { color: #f4f4f0; }
+    :root[data-theme="dark"] .next-actions .btn-subtle { color: #f4f4f0; }
+    :root[data-theme="dark"] .social-link:hover { color: #6daea6; }
+    :root[data-theme="dark"] .btn-back-to-top:hover { color: #6daea6; }
+    :root[data-theme="dark"] .lightbox-close { color: #f4f4f0; }
+    :root[data-theme="dark"] [style*="color: var(--nhs-blue)"] { color: #619bd3 !important; }
+    :root[data-theme="dark"] [style*="color: var(--teal-700)"] { color: #6daea6 !important; }
+    :root[data-theme="dark"] [style*="color: var(--teal-800)"] { color: #86aeaa !important; }
+    :root[data-theme="dark"] .ehr-tag.accent { color: #0a0a0b; }
+    :root[data-theme="light"] .nav-link:hover { color: #0d5149; }
+    :root[data-theme="light"] .btn-back:hover { color: #083d37; }
+    :root[data-theme="light"] .btn-live-out { color: #003d78; }
+    :root[data-theme="light"] .cs-toc-item a:hover { color: #0d5149; }
+    :root[data-theme="light"] .cs-toc-item a.active { color: #003d78; }
+    :root[data-theme="light"] .cs-breadcrumb a:hover { color: #0d5149; }
+    :root[data-theme="light"] .cs-pill-nhs { color: #003d78; }
+    :root[data-theme="light"] .cs-pill-teal { color: #083d37; }
+    :root[data-theme="light"] .cs-script { color: #0d5149; }
+    :root[data-theme="light"] .cs-title .highlight { color: #003d78; }
+    :root[data-theme="light"] .live-ref-link { color: #0d5149; }
+    :root[data-theme="light"] .live-ref-link:hover { color: #083d37; }
+    :root[data-theme="light"] .pillar-icon-wrap { color: #0d5149; }
+    :root[data-theme="light"] .pillar-icon-wrap.nhs { color: #003d78; }
+    :root[data-theme="light"] .pillar-icon-wrap.teal { color: #0d5149; }
+    :root[data-theme="light"] .cs-section-badge { color: #0d5149; }
+    :root[data-theme="light"] .cs-section-badge.nhs { color: #003d78; }
+    :root[data-theme="light"] .comp-list .bullet.check { color: #0e5328; }
+    :root[data-theme="light"] .ai-btn-pill.chatgpt:hover { color: #0a6a53; }
+    :root[data-theme="light"] .ai-btn-pill.claude:hover { color: #8d4d04; }
+    :root[data-theme="light"] .ai-btn-pill.perplexity:hover { color: #015681; }
+    :root[data-theme="light"] .step-number-tag { color: #003d78; }
+    :root[data-theme="light"] .service-tag.blue { color: #003d78; }
+    :root[data-theme="light"] .service-tag.teal { color: #083d37; }
+    :root[data-theme="light"] .service-specs-list .check { color: #0d5149; }
+    :root[data-theme="light"] .btn-zoom-pane:hover { color: #083d37; }
+    :root[data-theme="light"] .gallery-tag { color: #0d5149; }
+    :root[data-theme="light"] .type-tag { color: #0d5149; }
+    :root[data-theme="light"] .retro-num { color: #0d5149; }
+    :root[data-theme="light"] .social-link:hover { color: #0d5149; }
+    :root[data-theme="light"] .btn-back-to-top:hover { color: #0d5149; }
+    :root[data-theme="light"] [style*="color: var(--nhs-blue)"] { color: #003d78 !important; }
+    :root[data-theme="light"] [style*="color: var(--teal-700)"] { color: #0d5149 !important; }
+    :root[data-theme="light"] [style*="color: var(--teal-800)"] { color: #083d37 !important; }
+  </style>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+  <link rel="canonical" href="https://prakashportfolio-sigma.vercel.app/case-study-uk.html">
+  <meta name="theme-color" content="#ffffff">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Prakash Bhatu">
+  <meta property="og:title" content="iTranscript360 UK NHS Edition Case Study — Prakash Bhatu">
+  <meta property="og:description" content="UI/UX Case Study: Designing the UK NHS Edition of iTranscript360. Direct EMIS Web and SystmOne integration, UK sovereign data storage, and AI-powered British medical transcription.">
+  <meta property="og:url" content="https://prakashportfolio-sigma.vercel.app/case-study-uk.html">
+  <meta property="og:image" content="https://prakashportfolio-sigma.vercel.app/img/og-image.jpg">
+  <meta name="twitter:card" content="summary_large_image">
 </head>
 
 <body>
@@ -1857,88 +1983,48 @@
   <!-- READING PROGRESS BAR -->
   <div class="reading-progress-bar" id="progressBar"></div>
 
-  <!-- TOP NAVBAR -->
-  <nav class="navbar" id="navbar">
-    <a href="index.html" class="nav-logo">
-      <div class="dp-wrapper">
-        <img src="prakash-portfolio_00239.webp" alt="Bhatu Prakash" class="dp-img" width="40" height="40">
-        <span class="dp-status-dot"></span>
-      </div>
-      <span class="logo-text">Bhatu Prakash</span>
+  <a class="pb-skip" href="#main-content">Skip to content</a>
+  <header class="pb-header">
+    <a href="index.html" class="pb-brand" aria-label="Prakash Bhatu — home">
+      <span class="pb-brand-mark" aria-hidden="true"><img src="img/avatar.webp" width="34" height="34" alt=""></span>
+      <span>Prakash Bhatu<small>Designer &amp; Developer</small></span>
     </a>
-
-    <div class="nav-right">
-      <ul class="nav-links">
-        <li><a href="index.html#home" class="nav-link">Home</a></li>
-        <li><a href="index.html#projects" class="nav-link">Selected Work</a></li>
-        <li><a href="case-study-pms.html" class="nav-link">PMS Web</a></li>
-        <li><a href="case-study-mobile.html" class="nav-link">PMS Mobile</a></li>
-        <li><a href="case-study.html" class="nav-link">Corporate Web</a></li>
+    <nav aria-label="Primary">
+      <ul class="pb-nav">
+        <li><a href="index.html#projects">Work</a></li>
+        <li><a href="index.html#services">Services</a></li>
+        <li><a href="index.html#about">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
       </ul>
-
-      <a href="index.html#projects" class="btn-back">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
-          stroke-linecap="round" stroke-linejoin="round">
-          <line x1="19" y1="12" x2="5" y2="12"></line>
-          <polyline points="12 19 5 12 12 5"></polyline>
-        </svg>
-        Back to Projects
-      </a>
-
-      <a href="https://uk.itranscript360.com/" target="_blank" rel="noopener noreferrer" class="btn-live-out">
-        Live UK Portal ↗
-      </a>
-
-      <button id="mobileNavToggle" class="mobile-nav-toggle" type="button" aria-label="Open menu" aria-expanded="false"
-        aria-controls="mobileNavDrawer">
-        <span class="hamburger-line"></span>
-        <span class="hamburger-line"></span>
-        <span class="hamburger-line"></span>
+    </nav>
+    <div class="pb-actions">
+      <button class="pb-theme" type="button" data-theme-toggle aria-label="Switch to light mode">
+        <svg class="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+        <svg class="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
       </button>
+      <a class="pb-btn pb-btn--ghost" href="https://uk.itranscript360.com/" target="_blank" rel="noopener noreferrer">Live site <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+      <a class="pb-btn" href="contact.html">Let's talk <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+      <button class="pb-toggle" id="pbToggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="pbMenu"><span></span><span></span></button>
     </div>
-  </nav>
+  </header>
 
-  <!-- MOBILE NAV DRAWER -->
-  <div id="mobileNavDrawer" class="mobile-nav-drawer" aria-hidden="true">
-    <div class="mobile-nav-backdrop"></div>
-    <div class="mobile-nav-panel">
-      <div class="mobile-nav-header">
-        <div class="mobile-nav-brand">
-          <img src="prakash-portfolio_00239.webp" alt="Bhatu Prakash" class="mobile-dp-img" width="44" height="44">
-          <div class="mobile-brand-meta">
-            <span class="mobile-brand-name">Bhatu Prakash</span>
-            <span class="mobile-brand-status"><span class="dot"></span> Available for work</span>
-          </div>
-        </div>
-        <button id="mobileNavClose" class="mobile-nav-close" type="button" aria-label="Close navigation">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
-            stroke-linecap="round" stroke-linejoin="round">
-            <line x1="18" y1="6" x2="6" y2="18"></line>
-            <line x1="6" y1="6" x2="18" y2="18"></line>
-          </svg>
-        </button>
-      </div>
-      <ul class="mobile-nav-list">
-        <li><a href="index.html#home" class="mobile-nav-item"><span class="mn-num">01</span><span
-              class="mn-text">Home</span><span class="mn-arrow">↗</span></a></li>
-        <li><a href="index.html#projects" class="mobile-nav-item"><span class="mn-num">02</span><span class="mn-text">←
-              All Projects</span><span class="mn-arrow">↗</span></a></li>
-        <li><a href="case-study-uk.html" class="mobile-nav-item highlight"><span class="mn-num">03</span><span
-              class="mn-text">UK NHS Edition</span><span class="mn-arrow">↗</span></a></li>
-        <li><a href="case-study-pms.html" class="mobile-nav-item"><span class="mn-num">04</span><span
-              class="mn-text">PMS Web SaaS</span><span class="mn-arrow">↗</span></a></li>
-        <li><a href="case-study-mobile.html" class="mobile-nav-item"><span class="mn-num">05</span><span
-              class="mn-text">PMS Mobile App</span><span class="mn-arrow">↗</span></a></li>
-        <li><a href="case-study.html" class="mobile-nav-item"><span class="mn-num">06</span><span class="mn-text">Global
-              Corporate Web</span><span class="mn-arrow">↗</span></a></li>
-        <li><a href="contact.html" class="mobile-nav-item"><span class="mn-num">07</span><span class="mn-text">Contact /
-              Hire</span><span class="mn-arrow">↗</span></a></li>
-      </ul>
-      <div class="mobile-nav-footer">
-        <a href="https://uk.itranscript360.com/" target="_blank" rel="noopener noreferrer" class="mobile-nav-cta">
-          <span>Live UK Portal ↗</span>
-        </a>
-      </div>
+  <div class="pb-menu" id="pbMenu" aria-hidden="true">
+    <nav aria-label="Case studies">
+      <ol>
+        <li><a href="index.html">Home<span>Portfolio</span></a></li>
+        <li><a href="case-study-staysaver.html">StaySaver<span>Case study</span></a></li>
+        <li><a href="case-study.html">iTranscript360<span>Case study</span></a></li>
+        <li><a href="case-study-flyfi.html">FlyFi Mobile App<span>Case study</span></a></li>
+        <li><a href="case-study-flyfi-web.html">FlyFi Website<span>Case study</span></a></li>
+        <li><a href="case-study-pms.html">PMS Web Platform<span>Case study</span></a></li>
+        <li><a href="case-study-mobile.html">PMS Mobile App<span>Case study</span></a></li>
+        <li><a href="case-study-uk.html" aria-current="page">iTranscript360 UK<span>Current</span></a></li>
+        <li><a href="contact.html">Contact<span>Start a project</span></a></li>
+      </ol>
+    </nav>
+    <div class="pb-menu-foot">
+      <a href="mailto:bhatuprakash140@gmail.com">bhatuprakash140@gmail.com</a>
+      <a href="https://uk.itranscript360.com/" target="_blank" rel="noopener noreferrer">Visit live site ↗</a>
     </div>
   </div>
 
@@ -1966,7 +2052,7 @@
   </div>
 
   <!-- MAIN CASE STUDY WRAPPER -->
-  <div class="cs-wrapper">
+  <div class="cs-wrapper" id="main-content">
 
     <!-- BREADCRUMB -->
     <nav class="cs-breadcrumb" aria-label="Breadcrumb">
@@ -2006,7 +2092,7 @@
         <div class="meta-item">
           <span class="meta-label">My Role</span>
           <span class="meta-value">UI/UX Designer &amp; Frontend Dev</span>
-          <span class="meta-sub">Figma Design, Responsive HTML5/CSS3, Neural HUD</span>
+          <span class="meta-sub">Figma Design, Responsive HTML5/CSS3, AI Dashboard UI</span>
         </div>
         <div class="meta-item">
           <span class="meta-label">Target Healthcare Market</span>
@@ -2196,7 +2282,7 @@
          ========================================================================== -->
     <section class="cs-section" id="role-architecture">
       <span class="cs-section-badge teal">03 · Frontend Architecture</span>
-      <h2 class="cs-section-heading">My Responsibilities &amp; Live AI Neural HUD</h2>
+      <h2 class="cs-section-heading">My Responsibilities &amp; Live AI Dashboard</h2>
       <p class="cs-body-p">
         As the Lead UI/UX Designer and Frontend Developer, my responsibilities encompassed the entire digital
         presentation layer: establishing the regional design system in Figma, architecting responsive layouts in
@@ -2748,8 +2834,7 @@
               style="font-size: 0.78rem; padding: 4px 12px; border-radius: 999px; background: var(--nhs-blue-50); border: 1px solid var(--nhs-blue-100); color: var(--nhs-blue); font-weight: 700;">Weights:
               400 · 500 · 600 · 700 · 800</span>
             <span
-              style="font-size: 0.78rem; padding: 4px 12px; border-radius: 999px; background: var(--teal-50); border: 1px solid var(--teal-100); color: var(--teal-800); font-weight: 700;">WCAG
-              AAA Contrast Compliant</span>
+              style="font-size: 0.78rem; padding: 4px 12px; border-radius: 999px; background: var(--teal-50); border: 1px solid var(--teal-100); color: var(--teal-800); font-weight: 700;">High-contrast, accessibility-minded</span>
           </div>
         </div>
 
@@ -2894,7 +2979,7 @@
             View PMS Web SaaS Case Study →
           </a>
           <a href="case-study-staysaver.html" class="btn-subtle">
-            StaySaver Hospitality SaaS (In Dev) ↗
+            StaySaver Hospitality SaaS (Live) ↗
           </a>
           <a href="case-study-mobile.html" class="btn-subtle">
             PMS Mobile Companion App ↗
@@ -2911,27 +2996,46 @@
 
   </div>
 
-  <!-- SITE FOOTER -->
-  <footer class="site-footer">
-    <div class="footer-copy">
-      © 2026 Bhatu Prakash. All rights reserved. Senior UI/UX Designer &amp; Frontend Architect.
+  <footer class="pb-footer" aria-labelledby="pbFooterTitle">
+    <div class="pb-container">
+      <div class="pb-footer-top">
+        <div>
+          <h2 id="pbFooterTitle">Prakash Bhatu</h2>
+          <p>Independent Designer &amp; Developer — UI/UX, websites and creative design.</p>
+          <span class="pb-status"><i aria-hidden="true"></i>Available for freelance projects</span>
+        </div>
+        <nav aria-label="Footer">
+          <h3>Navigate</h3>
+          <ul>
+            <li><a href="index.html#projects">Work</a></li>
+            <li><a href="index.html#services">Services</a></li>
+            <li><a href="index.html#about">About</a></li>
+            <li><a href="index.html#process">Process</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </nav>
+        <div>
+          <h3>Social</h3>
+          <ul>
+            <li><a href="https://www.linkedin.com/in/prakash-bhatu" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a></li>
+            <li><a href="https://wa.me/919773189041" target="_blank" rel="noopener noreferrer">WhatsApp ↗</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3>Contact</h3>
+          <ul>
+            <li><a href="mailto:bhatuprakash140@gmail.com">bhatuprakash140<wbr>@gmail.com</a></li>
+            <li><a href="tel:+919773189041">+91 97731 89041</a></li>
+          </ul>
+        </div>
+      </div>
+      <p class="pb-footer-word" aria-hidden="true">Prakash Bhatu<span>.</span></p>
+      <div class="pb-footer-bottom">
+        <span>© <span data-year>2026</span> Prakash Bhatu. All rights reserved.</span>
+        <span>Ahmedabad, India</span>
+        <a href="#" data-to-top>Back to top ↑</a>
+      </div>
     </div>
-
-    <ul class="footer-socials">
-      <li><a href="index.html#projects" class="social-link">Selected Work</a></li>
-      <li><a href="case-study-staysaver.html" class="social-link">StaySaver (In Dev)</a></li>
-      <li><a href="case-study-uk.html" class="social-link" style="color: var(--teal-700); font-weight: 700;">UK NHS
-          Edition</a></li>
-      <li><a href="case-study-pms.html" class="social-link">PMS Web Platform</a></li>
-      <li><a href="case-study-mobile.html" class="social-link">PMS Mobile App</a></li>
-      <li><a href="case-study.html" class="social-link">Global Corporate Web</a></li>
-    </ul>
-
-    <button id="back-to-top" class="btn-back-to-top" type="button"
-      onclick="window.scrollTo({top: 0, behavior: 'smooth'});">
-      <span>Back to Top</span>
-      <span>↑</span>
-    </button>
   </footer>
 
   <!-- IMAGE LIGHTBOX MODAL -->
@@ -3071,7 +3175,7 @@
       setTimeout(typeWriter, 1000);
     })();
   </script>
-  <script src="mobile-nav.js"></script>
+  <script src="case-study.js" defer></script>
 </body>
 
 </html>
